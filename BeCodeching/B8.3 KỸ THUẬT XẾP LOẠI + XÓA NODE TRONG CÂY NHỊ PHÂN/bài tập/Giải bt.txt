@@ -1,0 +1,237 @@
+#include<iostream>
+#include<fstream>
+using namespace std;
+
+struct node
+{
+	int data;
+	node* pleft;
+	node* pright;
+};
+typedef struct node node;
+typedef node* b_tree;
+//=============================
+//Tạo cây
+node* create_node(int x);
+void create_tree(b_tree& t, int x);
+void add_tree_data(b_tree& t);
+//Xuất cây
+void output_tree_NRL(b_tree t);
+//load file
+void load_file(b_tree& t);
+//Hàm xếp loại cây
+void check_tree(b_tree t);
+//Hàm xoá 
+void delete_one_node_1_side(node*& t);
+void delete_node_2_side(b_tree& t, node*& k);
+void delete_node_tree(b_tree& t, int vt);
+//menu
+void menu();
+//=============================
+void main()
+{
+	menu();
+	system("pause");
+}
+//=============================
+void menu()
+{
+	//settings
+	b_tree t = NULL;
+	bool quit = false;
+	//loadfile
+	load_file(t); system("pause");
+	//run
+	while (quit != true)
+	{
+		system("cls");
+		int choice;
+		cout << "1. Nhap data." << endl;
+		cout << "2. Xuat cay." << endl;
+		cout << "3. Xep loai cay." << endl;
+		cout << "4. Xoa phan tu cua cay." << endl;
+		cout << "0. Thoat." << endl;
+		cout << "Nhap lc: "; cin >> choice;
+		switch (choice)
+		{
+		case 1:
+			add_tree_data(t);
+			break;
+		case 2:
+			output_tree_NRL(t); system("pause");
+			break;
+		case 3:
+			check_tree(t); system("pause");
+			break;
+		case 4:
+			int n; cout << "Nhap so muon xoa: "; cin >> n;
+			delete_node_tree(t, n);
+			break;
+		case 0:
+			cout << "Quitting" << endl; quit = true;
+			break;
+		default:
+			cout << "Loi nhap lai!" << endl;
+			break;
+		}
+	}
+}
+//=============================
+//Tạo cây
+node* create_node(int x)
+{
+	node* p = new node;
+	p->data = x;
+	p->pleft = NULL;
+	p->pright = NULL;
+	return p;
+}
+void create_tree(b_tree& t, int x)
+{
+	if (t == NULL)
+	{
+		node* p = create_node(x);
+		t = p;
+	}
+	else
+	{
+		if (x < t->data)
+		{
+			create_tree(t->pleft, x);
+		}
+		else if (x > t->data)
+		{
+			create_tree(t->pright, x);
+		}
+	}
+}
+void add_tree_data(b_tree& t)
+{
+	int n; cout << "Nhap so luong: "; cin >> n;
+	for (int i = 1; i <= n; i++)
+	{
+		int x;
+		cout << "Nhap phan tu thu " << i << " : "; cin >> x;
+		create_tree(t, x);
+	}
+}
+//Xuất cây
+void output_tree_NRL(b_tree t)
+{
+	if (t != NULL)
+	{
+		//node
+		cout << t->data << endl;
+		//right
+		output_tree_NRL(t->pright);
+		//left
+		output_tree_NRL(t->pleft);
+	}
+}
+//load file
+void load_file(b_tree& t)
+{
+	ifstream fi("tree_ls.txt");
+	if (fi.fail())
+	{
+		cout << "ERR0R!" << endl;
+		return;
+	}
+	while (fi.eof() == false)
+	{
+		int x; fi >> x;
+		create_tree(t, x);
+	}
+	fi.close();
+}
+//Hàm xếp loại cây
+void check_tree(b_tree t)
+{
+	if (t != NULL)
+	{
+		//node
+		if (t->pleft == NULL && t->pright == NULL)
+		{
+			cout << "Node la: " << t->data << endl;
+		}
+		else
+		{
+			if (t->pleft != NULL && t->pright != NULL)
+			{
+				cout << "Node 2 con: " << t->data << endl;
+			}
+			else
+			{
+				cout << "node 1 con: " << t->data << endl;
+			}
+		}
+		//left
+		check_tree(t->pleft);
+		//right
+		check_tree(t->pright);
+	}
+}
+//Hàm xoá 
+void delete_one_node_1_side(node*& t)
+{
+	if (t->pleft != NULL && t->pright == NULL)
+	{
+		node* p = t;
+		t = t->pleft;
+		delete p; p = NULL;
+	}
+	else if (t->pright != NULL && t->pleft == NULL)
+	{
+		node* p = t;
+		t = t->pright;
+		delete p; p = NULL;
+	}
+}
+void delete_node_2_side(b_tree& t, node*& k)
+{
+	if (k->pright == NULL)
+	{
+		t->data = k->data;
+		if (k->pleft == NULL && k->pright == NULL)
+		{
+			delete k; k = NULL;
+		}
+		else
+		{
+			delete_one_node_1_side(k);
+		}
+	}
+	else
+	{
+		delete_node_2_side(t, k->pright);
+	}
+}
+void delete_node_tree(b_tree& t, int vt)
+{
+	if (t != NULL)
+	{
+		if (vt == t->data)
+		{
+			if (t->pleft == NULL && t->pright == NULL)
+			{
+				delete t; t = NULL;
+			}
+			else if (t->pleft != NULL && t->pright != NULL)
+			{
+				delete_node_2_side(t, t->pleft);
+			}
+			else
+			{
+				delete_one_node_1_side(t);
+			}
+		}
+		else if (vt < t->data)
+		{
+			delete_node_tree(t->pleft, vt);
+		}
+		else if (vt > t->data)
+		{
+			delete_node_tree(t->pright, vt);
+		}
+	}
+}

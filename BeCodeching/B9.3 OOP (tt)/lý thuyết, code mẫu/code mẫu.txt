@@ -1,0 +1,53 @@
+#include <iostream>
+using namespace std;
+class nguoi
+{
+public:
+
+	virtual void danh() = 0;
+	virtual void an()
+	{
+		cout << "An chay" << endl;
+	}
+};
+
+class thieu_lam : public nguoi
+{
+public:
+	void danh()
+	{
+		cout << "Nhap duong chi" << endl;
+	}
+};
+class nga_mi : public nguoi
+{
+public:
+	void danh()
+	{
+		cout << "Tri thuong" << endl;
+	}
+};
+class cai_bang : public nguoi
+{
+public:
+	void danh()
+	{
+		cout << "da cau bong phap" << endl;
+	}
+	void an()
+	{
+		cout << "An man" << endl;
+	}
+};
+
+
+void main()
+{
+
+	nguoi *p = new thieu_lam;
+
+	p->danh();
+	p->an();
+
+	system("pause");
+}

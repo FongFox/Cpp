@@ -1,0 +1,1006 @@
+Kỹ thuật đặt lính canh, các bài tập cơ bản
+Bài 134: Viết hàm tìm giá trị lớn nhất trong mảng 1 chiều các số thực
+Bài 135: Viết hàm tìm giá trị dương đầu tiên trong mảng 1 chiều các số thực. Nếu mảng không có giá trị dương thì trả về -1
+Bài 136: Tìm số chẵn cuối cùng trong mảng 1 chiều các số nguyên. Nếu mảng không có giá trị chẵn thì trả về -1
+Bài 137: Tìm 1 vị trí mà giá trị tại vị trí đó là giá trị nhỏ nhất trong mảng 1 chiều các số thực
+Bài 138: Tìm vị trí của giá trị chẵn đầu tiên trong mảng 1 chiều các số nguyên. Nếu mảng không có giá trị chẵn thì sẽ trả về -1
+Bài 139: Tìm vị trí số hoàn thiện cuối cùng trong mảng 1 chiều các số nguyên. Nếu mảng không có số hoàn thiện thì trả về giá trị  -1
+Bài 140: Hãy tìm giá trị dương nhỏ nhất trong mảng 1 chiều các số thực. Nếu mảng không có giá trị dương thì sẽ trả về -1
+Bài 141: Hãy tìm vị trí giá trị dương nhỏ nhất trong mảng 1 chiều các số thực. Nếu mảng không có giá trị dương thì trả về  -1
+======================================================================================================================================================================
+Bài 134: Viết hàm tìm giá trị lớn nhất trong mảng 1 chiều các số thực
+#include<iostream>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị
+void input_number_array(int n, int a[]);
+//Hàm Nhập giá trị
+void input_number_array(int n, float a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_max(int n, float a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất
+void output(int n, int a[]);
+//Hàm xuất (float)
+void output(int n, float a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX]; int n;
+	int b[MAX] = {}; int nb = 0;
+	float arr[MAX];
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, arr);
+	output(n, arr);
+
+	find_max(n, arr);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm Nhập giá trị
+void input_number_array(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu a[" << i << "]= "; cin >> a[i];
+	}
+}
+//Hàm Nhập giá trị
+void input_number_array(int n, float a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu------------------------------------------------------------------------------------------------
+//Hàm chung
+void find_max(int n, float a[])
+{
+	float max = FLT_MIN;
+	int index;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] > max)
+		{
+			max = a[i];
+			index = i;
+		}
+	}
+	cout << "Phan tu co gia tri lon nhat trong mang" << endl;
+	cout << "a[" << index << "]= " << max;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất 
+void output(int n, int a[])
+{
+	cout << endl << "=========================== Xuat ==================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+//Hàm xuất (float)
+void output(int n, float a[])
+{
+	cout << endl << "=========================== Xuat ==================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+======================================================================================================================================================================
+Bài 135: Viết hàm tìm giá trị dương đầu tiên trong mảng 1 chiều các số thực. Nếu mảng không có giá trị dương thì trả về -1
+#include<iostream>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị
+void input_number_array(int n, int a[]);
+//Hàm Nhập giá trị (float)
+void input_number_array(int n, float a[]);
+
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void check(int n, float a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất
+void output(int n, int a[]);
+//Hàm xuất (float)
+void output(int n, float a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX]; int n;
+	int b[MAX] = {}; int nb = 0;
+	float arr[MAX];
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, arr);
+	output(n, arr);
+
+	check(n, arr);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm Nhập giá trị
+void input_number_array(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu a[" << i << "]= "; cin >> a[i];
+	}
+}
+//Hàm Nhập giá trị (float)
+void input_number_array(int n, float a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm chung
+void check(int n, float a[])
+{
+	cout << "=========================== Ket qua =====================" << endl;
+	float plus_number = -1;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] > 0)
+		{
+			plus_number = a[i];
+			int index = i;
+			cout << "a[" << i << "] = " << a[i] << endl;
+			return;
+		}
+	}
+	cout << plus_number << endl;
+}
+
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất 
+void output(int n, int a[])
+{
+	cout << endl << "=========================== Xuat ==================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+//Hàm xuất (float)
+void output(int n, float a[])
+{
+	cout << endl << "=========================== Xuat ==================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+======================================================================================================================================================================
+Bài 136: Tìm số chẵn cuối cùng trong mảng 1 chiều các số nguyên. Nếu mảng không có giá trị chẵn thì trả về -1. (đề yêu cầu tìm số chẵn đứng cuối cùng trong mảng)
+---------------------- cách 1 (đặt lính canh) -------------------------------------
+-----------------------------------------------------------------------------------
+#include<iostream>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị
+void input_number_array(int n, int a[]);
+
+
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_the_last_number_array(int n, int a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất
+void output(int n, int a[]);
+
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX]; int n;
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output(n, a);
+
+	find_the_last_number_array(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm Nhập giá trị
+void input_number_array(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm chung
+void find_the_last_number_array(int n, int a[])
+{
+	int last_number = -1;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] % 2 == 0)
+		{
+			last_number = a[i];
+		}
+	}
+	cout << "Ket qua: " << last_number << endl;
+}
+
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất 
+void output(int n, int a[])
+{
+	cout << endl << "=========================== Xuat ==================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+--------------------- Cách 2 (duyệt từ dưới lên trên) -----------------------------
+-----------------------------------------------------------------------------------
+#include<iostream>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị
+void input_number_array(int n, int a[]);
+
+
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_the_last_number_array(int n, int a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất
+void output(int n, int a[]);
+
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX]; int n;
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output(n, a);
+
+	find_the_last_number_array(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm Nhập giá trị
+void input_number_array(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm chung
+void find_the_last_number_array(int n, int a[])
+{
+	cout << "Ket qua: ";
+	for (int i = n - 1; i >= 0; i--)
+	{
+		if (a[i] % 2 == 0)
+		{
+			cout << a[i] << endl;
+			return;
+		}
+	}
+	cout << "-1" << endl;
+}
+
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất 
+void output(int n, int a[])
+{
+	cout << endl << "=========================== Xuat ==================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+======================================================================================================================================================================
+Bài 137: Tìm 1 vị trí mà giá trị tại vị trí đó là giá trị nhỏ nhất trong mảng 1 chiều các số thực
+#include<iostream>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị
+void input_number_array(int n, int a[]);
+//Hàm Nhập giá trị (float)
+void input_number_array(int n, float a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_min(int n, float a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất
+void output(int n, int a[]);
+//Hàm xuất (float)
+void output(int n, float a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, arr);
+	output(n, arr);
+
+	find_min(n, arr);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm Nhập giá trị
+void input_number_array(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu a[" << i << "]= "; cin >> a[i];
+	}
+}
+//Hàm Nhập giá trị (float)
+void input_number_array(int n, float a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm chung
+void find_min(int n, float a[])
+{
+	float min = FLT_MAX; int index = -999;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] < min)
+		{
+			min = a[i];
+			index = i;
+		}
+	}
+	cout << "Gia tri nho nhat nam o vi tri " << index << endl;
+}
+
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất 
+void output(int n, int a[])
+{
+	cout << endl << "=========================== Xuat ==================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+//Hàm xuất (float)
+void output(int n, float a[])
+{
+	cout << endl << "=========================== Xuat ==================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+======================================================================================================================================================================
+Bài 137: Tìm 1 vị trí mà giá trị tại vị trí đó là giá trị nhỏ nhất trong mảng 1 chiều các số thực
+#include<iostream>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị
+void input_number_array(int n, int a[]);
+//Hàm Nhập giá trị (float)
+void input_number_array(int n, float a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_min(int n, float a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất
+void output(int n, int a[]);
+//Hàm xuất (float)
+void output(int n, float a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, arr);
+	output(n, arr);
+
+	find_min(n, arr);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm Nhập giá trị
+void input_number_array(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu a[" << i << "]= "; cin >> a[i];
+	}
+}
+//Hàm Nhập giá trị (float)
+void input_number_array(int n, float a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm chung
+void find_min(int n, float a[])
+{
+	float min = FLT_MAX; int index = -999;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] < min)
+		{
+			min = a[i];
+			index = i;
+		}
+	}
+	cout << "Gia tri nho nhat nam o vi tri " << index << endl;
+}
+
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất 
+void output(int n, int a[])
+{
+	cout << endl << "=========================== Xuat ==================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+//Hàm xuất (float)
+void output(int n, float a[])
+{
+	cout << endl << "=========================== Xuat ==================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+======================================================================================================================================================================
+Bài 138: Tìm vị trí của giá trị chẵn đầu tiên trong mảng 1 chiều các số nguyên. Nếu mảng không có giá trị chẵn thì sẽ trả về -1
+#include<iostream>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị
+void input_number_array(int n, int a[]);
+
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_the_first_number(int n, int a[]);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất
+void output(int n, int a[]);
+
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output(n, a);
+
+	find_the_first_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm Nhập giá trị
+void input_number_array(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm chung
+void find_the_first_number(int n, int a[])
+{
+	cout << "Ket qua:  ";
+	int first_number = -1;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] % 2 == 0)
+		{
+			first_number = a[i];
+			break;
+		}
+	}
+	cout << first_number << endl;
+}
+
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất 
+void output(int n, int a[])
+{
+	cout << endl << "=========================== Xuat ==================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+======================================================================================================================================================================
+Bài 139: Tìm vị trí số hoàn thiện cuối cùng trong mảng 1 chiều các số nguyên. Nếu mảng không có số hoàn thiện thì trả về giá trị  -1
+#include<iostream>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị
+void input_number_array(int n, int a[]);
+
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm số hoàn hảo
+int perfect_number(int n);
+//Hàm chung 
+void find_the_last_perfect_number(int n, int a[]);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất
+void output(int n, int a[]);
+
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output(n, a);
+
+	find_the_last_perfect_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm Nhập giá trị
+void input_number_array(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm số hoàn hảo
+int perfect_number(int n)
+{
+	int sum = 0;
+	for (int i = 1; i <= n / 2; i++)
+	{
+		if (n % i == 0)
+		{
+			sum += i;
+		}
+	}
+	return sum;
+}
+//Hàm chung 
+void find_the_last_perfect_number(int n, int a[])
+{
+	int last_number = -1;
+	cout << "Ket qua:   ";
+	for (int i = 0; i < n; i++)
+	{
+		int check = perfect_number(a[i]);
+		if (check == a[i])
+		{
+			last_number = a[i];
+		}
+	}
+	cout << last_number << endl;
+}
+
+
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất 
+void output(int n, int a[])
+{
+	cout << endl << "=========================== Xuat ==================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+======================================================================================================================================================================
+Bài 140: Hãy tìm giá trị dương nhỏ nhất trong mảng 1 chiều các số thực. Nếu mảng không có giá trị dương thì sẽ trả về -1
+#include<iostream>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị
+void input_number_array(int n, int a[]);
+
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_the_min_plus_number(int n, int a[]);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất
+void output(int n, int a[]);
+
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output(n, a);
+
+	find_the_min_plus_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm Nhập giá trị
+void input_number_array(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm chung
+void find_the_min_plus_number(int n, int a[])
+{
+	int min = -1;
+	cout << "Ket qua:    ";
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i]>0)
+		{
+			if (min == -1)
+			{
+				min = a[i];
+			}
+			else if (min > a[i])
+			{
+				min = a[i];
+			}
+		}
+	}
+	cout << min << endl;
+}
+
+
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất 
+void output(int n, int a[])
+{
+	cout << endl << "=========================== Xuat ==================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+======================================================================================================================================================================
+Bài 141: Hãy tìm vị trí giá trị dương nhỏ nhất trong mảng 1 chiều các số thực. Nếu mảng không có giá trị dương thì trả về  -1
+#include<iostream>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị
+void input_number_array(int n, int a[]);
+
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_index_min_plus_number(int n, int a[]);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất
+void output(int n, int a[]);
+
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output(n, a);
+
+	find_index_min_plus_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm Nhập giá trị
+void input_number_array(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm chung
+void find_index_min_plus_number(int n, int a[])
+{
+	cout << "Ket qua:    ";
+	int min = -1; int index = -1;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] > 0)
+		{
+			if (min == -1)
+			{
+				min = a[i];
+				index = i;
+			}
+			else if (min > a[i])
+			{
+				min = a[i];
+				index = i;
+			}
+		}
+	}
+	cout << index << endl;
+}
+
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất 
+void output(int n, int a[])
+{
+	cout << endl << "=========================== Xuat ==================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+============================== Hết bài tập cơ bản =================================
+===================================================================================

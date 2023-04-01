@@ -1,0 +1,7 @@
+//==== Bài tập ====
+1. Code mẫu full kỹ thuật thêm cuối có cmt chi tiết dưới văn phong của các bạn(Bắt buộc cmt)
+2. Trình bày bản phân tích kỹ thuật thêm cuối (Cái phân tích 3 trường hợp trong link lý thuyết)
+3. Trinh bày bản phân tích và code kỹ thuật thêm đầu
+4. Trinh bày bản phân tích và code kỹ thuật xóa đầu
+//----- BT nâng cao không bắt buộc ----
+5. Trình bày bản phân tích và code kỹ thuật xóa cuối

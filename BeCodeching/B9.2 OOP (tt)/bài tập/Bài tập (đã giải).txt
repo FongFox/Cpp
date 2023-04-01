@@ -1,0 +1,198 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+class worker
+{
+	//thuộc tính
+protected:
+	string code;
+	string name;
+	int salary;
+	//phương thức
+public:
+	void input()
+	{
+		cin.ignore();
+		cout << "Nhap ma so: "; getline(cin, this->code);
+		cout << "Nhap ten nv: "; getline(cin, this->name);
+	}
+	void output()
+	{
+		cout << "Ma so: " << this->code << endl;
+		cout << "Ten nv: " << this->name << endl;
+	}
+	//hàm tạo & hủy
+public:
+	worker()
+	{
+
+	}
+	~worker()
+	{
+
+	}
+};
+
+class plumber : public worker
+{
+	//thuộc tính
+protected:
+	int hour_salary;
+	int hour_work;
+	//phương thức
+public:
+	void input()
+	{
+		worker::input();
+		cout << "Nhap luong 1 gio: "; cin >> this->hour_salary;
+		cout << "Nhap gio lam viec: "; cin >> this->hour_work;
+	}
+	void output()
+	{
+		cout << "==============================" << endl;
+		salary = hour_salary * hour_work;
+		worker::output();
+		cout << "Luong 1 gio: " << this->hour_salary << endl;
+		cout << "So gio lam viec: " << this->hour_work << endl;
+		cout << "Luong (da tinh): " << this->salary << endl;
+	}
+	//hàm tạo & hủy
+public:
+	plumber()
+	{
+
+	}
+	~plumber()
+	{
+
+	}
+};
+
+class shipper : public worker
+{
+	//thuộc tính
+protected:
+	int salary_per_product;
+	int product_shipped;
+	//phương thức
+public:
+	void input()
+	{
+		worker::input();
+		cout << "Nhap luong 1 sp: "; cin >> this->salary_per_product;
+		cout << "Nhap so sp da giao: "; cin >> this->product_shipped;
+	}
+	void output()
+	{
+		cout << "==============================" << endl;
+		salary = salary_per_product * product_shipped;
+		worker::output();
+		cout << "Luong 1 sp: " << this->salary_per_product << endl;
+		cout << "So sp da giao: " << this->product_shipped << endl;
+		cout << "Luong (da tinh): " << this->salary << endl;
+	}
+	//hàm tạo & hủy
+public:
+	shipper()
+	{
+
+	}
+	~shipper()
+	{
+
+	}
+};
+
+class taxi_driver : public worker
+{
+	//thuộc tính
+protected:
+	int salary_per_km;
+	int km_have_gone;
+	//phương thức
+public:
+	void input()
+	{
+		worker::input();
+		cout << "Nhap luong 1 km: "; cin >> this->salary_per_km;
+		cout << "Nhap so km da di: "; cin >> this->km_have_gone;
+	}
+	void output()
+	{
+		cout << "==============================" << endl;
+		salary = salary_per_km * km_have_gone;
+		worker::output();
+		cout << "Luong 1 km: " << this->salary_per_km << endl;
+		cout << "So km da di: " << this->km_have_gone << endl;
+		cout << "Luong (da tinh): " << this->salary << endl;
+	}
+	//hàm tạo & hủy
+public:
+	taxi_driver()
+	{
+
+	}
+	~taxi_driver()
+	{
+
+	}
+};
+//===================================
+void menu();
+
+void main()
+{
+	menu();
+	system("pause");
+}
+
+void menu()
+{
+	plumber a; shipper b; taxi_driver c;
+	bool quit = false;
+	while (quit != true)
+	{
+		system("cls");
+		int choice;
+		cout << "============ Nhap thong tin =========" << endl;
+		cout << "1. Nhan vien sua ong nuoc." << endl;
+		cout << "2. Nhan vien giao hang." << endl;
+		cout << "3. Nhan vien xe om." << endl;
+		cout << "============ Xuat thong tin =========" << endl;
+		cout << "4. Nhan vien sua ong nuoc." << endl;
+		cout << "5. Nhan vien giao hang." << endl;
+		cout << "6. Nhan vien xe om." << endl;
+		cout << "=====================================" << endl;
+		cout << "0. Thoat" << endl;
+		cout << "Nhap lua chon: "; cin >> choice;
+		system("cls");
+		switch (choice)
+		{
+		case 1:
+			a.input();
+			break;
+		case 2:
+			b.input();
+			break;
+		case 3:
+			c.input();
+			break;
+		case 4:
+			a.output(); system("pause");
+			break;
+		case 5:
+			b.output(); system("pause");
+			break;
+		case 6:
+			c.output(); system("pause");
+			break;
+		case 0:
+			cout << "quitting!" << endl; quit = true;
+			break;
+		default:
+			cout << "Loi nhap lai." << endl; break;
+		}
+	}
+}
+

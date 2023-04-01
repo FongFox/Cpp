@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int y, m;
+	cout << "Nhap nam: ";
+	cin >> y;
+	cout << "Nhap thang: ";
+	cin >> m;
+
+	m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12 ? cout << "Thang " << m << " co 31 ngay" : break;
+	
+	m == 4 || m == 6 || m == 9 || m == 11 ? cout << "Thang " << m << " co 30 ngay" : break;
+
+	m == 2 ? y % 2 == 0 ? cout << "Thang " << m << " co 29 ngay." : cout << "Thang " << m << " co 28 ngay." : break;
+
+	system("pause");
+	return 0;
+}

@@ -1,0 +1,1752 @@
+Các bài tập luyện tập
+Bài 142: Tìm giá trị nhỏ nhất trong mảng 1 chiều số thực
+Bài 143: Viết hàm tìm số chẵn đầu tiên trong mảng các số nguyên. Nếu mảng không có giá trị chẵn thì trả về  -1
+Bài 144: Tìm số nguyên tố đầu tiên trong mảng 1 chiều các số nguyên. Nếu mảng không có số nguyên tố thì trả về  – 1
+Bài 145: Tìm số hoàn thiện đầu tiên trong mảng 1 chiều số nguyên. Nếu mảng không có số hoàn thiện thì trả về  -1
+Bài 146: Tìm giá trị âm đầu tiên trong mảng 1 chiều các số thực. Nếu mảng không có giá trị âm thì trả về -1
+Bài 147: Tìm số dương cuối cùng trong mảng số thực. Nếu mảng không có giá trị dương thì trả về  -1
+Bài 148: Tìm số nguyên tố cuối cùng trong mảng 1 chiều các số nguyên. Nếu mảng không có số nguyên tố thì trả về  -1
+Bài 149: Tìm số hoàn thiện cuối cùng trong mảng 1 chiều các số nguyên. Nếu mảng không có số hoàn thiện thì trả về  -1
+Bài 150: Hãy tìm giá trị âm lớn nhất trong mảng 1 chiều các số thực. Nếu mảng không có giá trị âm thì trả về  -1
+Bài 151: Hãy tìm số nguyên tố lớn nhất trong mảng 1 chiều các số nguyên. Nếu mảng không có số nguyên tố thì trả về -1
+Bài 152: Hãy tìm số hoàn thiện nhỏ nhất trong mảng 1 chiều các số nguyên. Nếu mảng không có số hoàn thiện thì trả về -1
+Bài 153: Hãy tìm giá trị chẵn nhỏ nhất trong mảng 1 chiều các số nguyên. Nếu mảng không có số chẵn thì trả về -1
+Bài 154: Hãy tìm vị trí giá trị âm nhỏ nhất trong mảng các số thực. Nếu mảng không có số âm thì trả về -1
+======================================================================================================================================================================
+Bài 142: Tìm giá trị nhỏ nhất trong mảng 1 chiều số thực
+#include<iostream>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_min_number(int n, float a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, arr);
+	output_array(n, arr);
+
+	find_min_number(n, arr);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Bài 142: Tìm giá trị nhỏ nhất trong mảng 1 chiều số thực
+//Hàm chung
+void find_min_number(int n, float a[])
+{
+	cout << "Ket qua:    ";
+	float min = FLT_MAX;
+	for (int i = 0; i < n; i++)
+	{
+		if (min > a[i])
+		{
+			min = a[i];
+		}
+	}
+	cout << min << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================
+Bài 143: Viết hàm tìm số chẵn đầu tiên trong mảng các số nguyên. Nếu mảng không có giá trị chẵn thì trả về  -1
+#include<iostream>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_first_number(int n, int a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	find_first_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Bài 143: Viết hàm tìm số chẵn đầu tiên trong mảng các số nguyên. Nếu mảng không có giá trị chẵn thì trả về  -1
+//Hàm chung
+void find_first_number(int n, int a[])
+{
+	cout << "Ket qua:    ";
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] % 2 == 0)
+		{
+			cout << a[i] << endl;
+			return;
+		}
+	}
+	cout << "-1" << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================
+Bài 144: Tìm số nguyên tố đầu tiên trong mảng 1 chiều các số nguyên. Nếu mảng không có số nguyên tố thì trả về  – 1
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm check số nguyên tố
+bool check_prime_number(int n);
+//Hàm chung
+void find_first_prime_number(int n, int a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	find_first_prime_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Bài 144: Tìm số nguyên tố đầu tiên trong mảng 1 chiều các số nguyên. Nếu mảng không có số nguyên tố thì trả về  – 1
+//Hàm check số nguyên tố
+bool check_prime_number(int n)
+{
+	if (n <= 1)
+	{
+		return false;
+	}
+	else
+	{
+		for (int i = 2; i <= sqrt(n); i++)
+		{
+			if (n > 1 && n <= 3)
+			{
+				return true;
+			}
+			if (n % 2 == 0 || n % 3 == 0)
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+//Hàm chung
+void find_first_prime_number(int n, int a[])
+{
+	cout << "Ket qua:    ";
+	for (int i = 0; i < n; i++)
+	{
+		bool check = check_prime_number(a[i]);
+		if (check == true)
+		{
+			cout << a[i] << endl;
+			return;
+		}
+	}
+	cout << "-1" << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================
+Bài 145: Tìm số hoàn thiện đầu tiên trong mảng 1 chiều số nguyên. Nếu mảng không có số hoàn thiện thì trả về  -1
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm số hoàn hảo
+int perfect_number(int n);
+//Hàm chung
+void find_first_perfect_number(int n, int a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	find_first_perfect_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Bài 145: Tìm số hoàn thiện đầu tiên trong mảng 1 chiều số nguyên. Nếu mảng không có số hoàn thiện thì trả về  -1
+//Hàm số hoàn hảo
+int perfect_number(int n)
+{
+	int sum = 0;
+	for (int i = 1; i <= n / 2; i++)
+	{
+		if (n % i == 0)
+		{
+			sum += i;
+		}
+	}
+	return sum;
+}
+//Hàm chung
+void find_first_perfect_number(int n, int a[])
+{
+	cout << "Ket qua:    ";
+	for (int i = 0; i < n; i++)
+	{
+		int check = perfect_number(a[i]);
+		if (check == a[i])
+		{
+			cout << a[i] << endl;
+			return;
+		}
+	}
+	cout << "-1" << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================
+Bài 146: Tìm giá trị âm đầu tiên trong mảng 1 chiều các số thực. Nếu mảng không có giá trị âm thì trả về -1
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_first_negative_number(int n, float a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, arr);
+	output_array(n, arr);
+
+	find_first_negative_number(n, arr);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Bài 146: Tìm giá trị âm đầu tiên trong mảng 1 chiều các số thực. Nếu mảng không có giá trị âm thì trả về -1
+//Hàm chung
+void find_first_negative_number(int n, float a[])
+{
+	cout << "Ket qua:    ";
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] < 0)
+		{
+			cout << a[i] << endl;
+			return;
+		}
+	}
+	cout << "-1" << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================
+Bài 147: Tìm số dương cuối cùng trong mảng số thực. Nếu mảng không có giá trị dương thì trả về  -1
+----------------------------- Cách 1 ----------------------------------------------
+-----------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_last_number_array(int n, float a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, arr);
+	output_array(n, arr);
+
+	find_last_number_array(n, arr);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Bài 147: Tìm số dương cuối cùng trong mảng số thực. Nếu mảng không có giá trị dương thì trả về  -1
+//Hàm chung
+void find_last_number_array(int n, float a[])
+{
+	int last_number = -1;
+	cout << "Ket qua:    ";
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] > 0)
+		{
+			last_number = a[i];
+		}
+	}
+	cout << last_number << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+----------------------------------- Cách 2 ----------------------------------------
+-----------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_last_number_array(int n, float a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, arr);
+	output_array(n, arr);
+
+	find_last_number_array(n, arr);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Bài 147: Tìm số dương cuối cùng trong mảng số thực. Nếu mảng không có giá trị dương thì trả về  -1
+//Hàm chung
+void find_last_number_array(int n, float a[])
+{
+	cout << "Ket qua:    ";
+	for (int i = n - 1; i >= 0; i--)
+	{
+		if (a[i] > 0)
+		{
+			cout << a[i] << endl;
+			return;
+		}
+	}
+	cout << "-1" << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================
+Bài 148: Tìm số nguyên tố cuối cùng trong mảng 1 chiều các số nguyên. Nếu mảng không có số nguyên tố thì trả về  -1
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm check số nguyên tố
+bool check_prime_number(int n);
+//Hàm chung
+void find_last_prime_number(int n, int a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	find_last_prime_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm check số nguyên tố
+bool check_prime_number(int n)
+{
+	if (n <= 1)
+	{
+		return false;
+	}
+	else
+	{
+		for (int i = 2; i <= sqrt(n); i++)
+		{
+			if (n > 1 && n <= 3)
+			{
+				return true;
+			}
+			if (n % 2 == 0 || n % 3 == 0)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+}
+//Hàm chung
+void find_last_prime_number(int n, int a[])
+{
+	int last_number = -1;
+	cout << "Ket qua:    ";
+	for (int i = 0; i < n; i++)
+	{
+		bool check = check_prime_number(a[i]);
+		if (check == true)
+		{
+			last_number = a[i];
+		}
+	}
+	cout << last_number << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+---------------------------------- cách 2 -----------------------------------------
+-----------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm check số nguyên tố
+bool check_prime_number(int n);
+//Hàm chung
+void find_last_prime_number(int n, int a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	find_last_prime_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm check số nguyên tố
+bool check_prime_number(int n)
+{
+	if (n <= 1)
+	{
+		return false;
+	}
+	else
+	{
+		for (int i = 2; i <= sqrt(n); i++)
+		{
+			if (n > 1 && n <= 3)
+			{
+				return true;
+			}
+			if (n % 2 == 0 || n % 3 == 0)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+}
+//Hàm chung
+void find_last_prime_number(int n, int a[])
+{
+	cout << "Ket qua:    ";
+	for (int i = n - 1; i >= 0; i--)
+	{
+		bool check = check_prime_number(a[i]);
+		if (check == true)
+		{
+			cout << a[i] << endl;
+			return;
+		}
+	}
+	cout << "-1" << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================
+Bài 149: Tìm số hoàn thiện cuối cùng trong mảng 1 chiều các số nguyên. Nếu mảng không có số hoàn thiện thì trả về  -1
+-------------------------------------- cách 1 -------------------------------------
+-----------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm số hoàn thiện
+int perfect_number(int n);
+//Hàm chung
+void find_last_perfect_number(int n, int a[]);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	find_last_perfect_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm số hoàn thiện
+int perfect_number(int n)
+{
+	int sum = 0;
+	for (int i = 1; i <= n / 2; i++)
+	{
+		if (n % i == 0)
+		{
+			sum += i;
+		}
+	}
+	return sum;
+}
+//Hàm chung
+void find_last_perfect_number(int n, int a[])
+{
+	int last_number = -1;
+	cout << "Ket qua:    ";
+	for (int i = 0; i < n; i++)
+	{
+		int check = perfect_number(a[i]);
+		if (a[i] == check)
+		{
+			last_number = a[i];
+		}
+	}
+	cout << last_number << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+--------------------------------- cách 2 ------------------------------------------
+-----------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm số hoàn thiện
+int perfect_number(int n);
+//Hàm chung
+void find_last_perfect_number(int n, int a[]);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	find_last_perfect_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm số hoàn thiện
+int perfect_number(int n)
+{
+	int sum = 0;
+	for (int i = 1; i <= n / 2; i++)
+	{
+		if (n % i == 0)
+		{
+			sum += i;
+		}
+	}
+	return sum;
+}
+//Hàm chung
+void find_last_perfect_number(int n, int a[])
+{
+	cout << "Ket qua:    ";
+	for (int i = n - 1; i >= 0; i--)
+	{
+		int check = perfect_number(a[i]);
+		if (a[i] == check)
+		{
+			cout << a[i] << endl;
+			return;
+		}
+	}
+	cout << "-1" << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================
+Bài 149: Tìm số hoàn thiện cuối cùng trong mảng 1 chiều các số nguyên. Nếu mảng không có số hoàn thiện thì trả về  -1
+------------------------ cách 1 ---------------------------------------------------
+-----------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm số hoàn thiện
+int perfect_number(int n);
+//Hàm chung
+void find_last_number(int n, int a[]);
+
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	find_last_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Bài 149: Tìm số hoàn thiện cuối cùng trong mảng 1 chiều các số nguyên. Nếu mảng không có số hoàn thiện thì trả về  -1
+//Hàm số hoàn thiện
+int perfect_number(int n)
+{
+	int sum = 0;
+	for (int i = 1; i <= n / 2; i++)
+	{
+		if (n % i == 0)
+		{
+			sum += i;
+		}
+	}
+	return sum;
+}
+//Hàm chung
+void find_last_number(int n, int a[])
+{
+	int last_number = -1;
+	cout << "ket qua:    ";
+	for (int i = 0; i < n; i++)
+	{
+		int check = perfect_number(a[i]);
+		if (a[i] == check)
+		{
+			last_number = a[i];
+		}
+	}
+	cout << last_number << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+-------------------------------- cách 2 -------------------------------------------
+-----------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm số hoàn thiện
+int perfect_number(int n);
+//Hàm chung
+void find_last_number(int n, int a[]);
+
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	find_last_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Bài 149: Tìm số hoàn thiện cuối cùng trong mảng 1 chiều các số nguyên. Nếu mảng không có số hoàn thiện thì trả về  -1
+//Hàm số hoàn thiện
+int perfect_number(int n)
+{
+	int sum = 0;
+	for (int i = 1; i <= n / 2; i++)
+	{
+		if (n % i == 0)
+		{
+			sum += i;
+		}
+	}
+	return sum;
+}
+//Hàm chung
+void find_last_number(int n, int a[])
+{
+	cout << "ket qua:    ";
+	for (int i = 0; i < n; i++)
+	{
+		int check = perfect_number(a[i]);
+		if (a[i] == check)
+		{
+			cout << a[i] << endl;
+			return;
+		}
+	}
+	cout << "-1" << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================
+Bài 150: Hãy tìm giá trị âm lớn nhất trong mảng 1 chiều các số thực. Nếu mảng không có giá trị âm thì trả về  -1
+----------------------------------- cách 1 ----------------------------------------
+-----------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_max_negative_number(int n, float a[]);
+
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, arr);
+	output_array(n, arr);
+
+	find_max_negative_number(n, arr);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Bài 150: Hãy tìm giá trị âm lớn nhất trong mảng 1 chiều các số thực. Nếu mảng không có giá trị âm thì trả về  -1
+//Hàm chung
+void find_max_negative_number(int n, float a[])
+{
+	float max = -1;
+	cout << "Ket qua:    ";
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] < 0)
+		{
+			if (max == -1)
+			{
+				max = a[i];
+				continue;
+			}
+			if (a[i] > max)
+			{
+				max = a[i];
+			}
+		}
+	}
+	cout << max << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================
+Bài 151: Hãy tìm số nguyên tố lớn nhất trong mảng 1 chiều các số nguyên. Nếu mảng không có số nguyên tố thì trả về -1
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm số nguyên tố
+bool check_prime_number(int n);
+//Hàm chung
+void find_max_prime_number(int n, int a[]);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	find_max_prime_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Bài 151: Hãy tìm số nguyên tố lớn nhất trong mảng 1 chiều các số nguyên. Nếu mảng không có số nguyên tố thì trả về -1
+//Hàm số nguyên tố
+bool check_prime_number(int n)
+{
+	if (n <= 1)
+	{
+		return false;
+	}
+	else 
+	{
+		if (n > 1 && n <= 3)
+		{
+			return true;
+		}
+		for (int i = 2; i <= sqrt(n); i++)
+		{
+			if (n % 2 == 0 || n % 3 == 0)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+}
+//Hàm chung
+void find_max_prime_number(int n, int a[])
+{
+	int max = -1;
+	cout << "ket qua:    ";
+	for (int i = 0; i < n; i++)
+	{
+		bool check = check_prime_number(a[i]);
+		if (check)
+		{
+			if (max == -1)
+			{
+				max = a[i];
+				continue;
+			}
+			if (max < a[i])
+			{
+				max = a[i];
+			}
+		}
+	}
+	cout << max << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================
+Bài 152: Hãy tìm số hoàn thiện nhỏ nhất trong mảng 1 chiều các số nguyên. Nếu mảng không có số hoàn thiện thì trả về -1
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm số hoàn thiện 
+int perfect_number(int n);
+//Hàm chung
+void find_min_perfect_number(int n, int a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	find_min_perfect_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm số hoàn thiện 
+int perfect_number(int n)
+{
+	int sum = 0;
+	for (int i = 1; i <= n / 2; i++)
+	{
+		if (n % i == 0)
+		{
+			sum += i;
+		}
+	}
+	return sum;
+}
+//Hàm chung
+void find_min_perfect_number(int n, int a[])
+{
+	int min = -1;
+	cout << "Ket qua:    ";
+	for (int i = 0; i < n; i++)
+	{
+		int check = perfect_number(a[i]);
+		if (a[i] == check)
+		{
+			if (min == -1)
+			{
+				min = a[i];
+				continue;
+			}
+			if (min > a[i])
+			{
+				min = a[i];
+			}
+		}
+	}
+	cout << min << endl;
+}
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================
+Bài 154: Hãy tìm vị trí giá trị âm nhỏ nhất trong mảng các số thực. Nếu mảng không có số âm thì trả về -1
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_min_number(int n, int a[]);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, arr);
+	output_array(n, arr);
+
+	find_min_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm chung
+void find_min_number(int n, int a[])
+{
+	float min = -1;
+	cout << "Ket qua:    ";
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] < 0)
+		{
+			if (min == -1)
+			{
+				min = a[i];
+			}
+			if (min > a[i])
+			{
+				min = a[i];
+			}
+		}
+	}
+	cout << min << endl;
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+=================================== Hết bài tập ===================================
+===================================================================================

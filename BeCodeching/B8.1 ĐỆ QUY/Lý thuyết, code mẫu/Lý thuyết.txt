@@ -1,0 +1,40 @@
+//=========== Đệ Quy ===========
+
+Đệ quy: Hàm gọi lại chính nó
+
+
++ Đệ quy tuyến tính:	1 hàm gọi lại chính nó 1 lần
++ Đệ quy nhị phân: 1 hàm gọi lại chính nó 2 lần
+
++ Đệ quy hỗ tương: hàm a gọi hàm b và hàm b gọi hàm a
++ Đệ quy phi tuyến: Lệnh đệ quy được đặt trong vòng lặp
+
+
+	Công thức đệ quy:		+ Phần dừng
+				+ Phần đệ quy
+
+VD1: Tính giai thừa của n.
+				n! = n*(n-1)!
+
+	n = 5	5! = 5*4*3*2*1	5! = 5*4!
+		4! = 4*3*2*1	4! = 4*3!
+		3! = 3*2*1		3! = 3*2!
+		2! = 2*1		2! = 2*1!
+		1! = 1		1! = 1	Đáy <=> Phần dừng
+
+		f(n)	Dừng khi n == 1, trả về 1
+			f(n) = n * f(n-1)
+
+
+Bài 2. Cho số nguyên dương n. Tính 2 x 4 x 6 x...x 2n
+
+					t(n) = 2*n*t(n-1)
+
+	VD: n = 5		t(5) = 10*8*6*4*2	= 2*5*t(4)
+			t(4) = 8*6*4*2	= 2*4*t(3)
+			t(3) = 6*4*2	= 2*3*t(2)
+			t(2) = 4*2		= 2*2*t(1)
+			t(1) = 2		= 2		Đáy
+
+		f(n)	Dừng khi n==1, trả về 2
+			f(n) = 2*n*f(n-1)

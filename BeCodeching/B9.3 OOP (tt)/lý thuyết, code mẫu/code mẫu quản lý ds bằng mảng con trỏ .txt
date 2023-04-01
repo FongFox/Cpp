@@ -1,0 +1,189 @@
+#include <iostream>
+#include <string>
+#define MAX 100
+using namespace std;
+class nv
+{
+	//---- thuộc tính
+protected:
+	string ma_nv;
+	string ho_ten;
+	int luong;
+	//--- phương thức
+public:
+	void nhap()
+	{
+		cout << "Nhap ma nv: ";getline(cin, this->ma_nv);
+		cout << "Nhap ho ten: ";getline(cin, this->ho_ten);
+	}
+	void xuat()
+	{
+		cout << "Ma nv: " << this->ma_nv << endl;
+		cout << "Ho ten: " << this->ho_ten << endl;
+	}
+	//--- tạo hủy ---
+};
+
+class nv_sua_ong_nuoc : public nv
+{
+	//---- thuộc tính ---
+protected:
+	int luong_1_gio;
+	float so_gio_lam;
+	//--- phương thức --
+public:
+	void nhap()
+	{
+		nv::nhap();
+		cout << "Nhap luong 1 gio: ";cin >> this->luong_1_gio;
+		cout << "Nhap so gio lam: ";cin >> this->so_gio_lam;
+	}
+	void xuat()
+	{
+		nv::xuat();
+		cout << "Luong 1 gio: " << this->luong_1_gio << endl;
+		cout << "So gio lam: " << this->so_gio_lam << endl;
+	}
+	//--- tạo hủy ----
+public:
+	nv_sua_ong_nuoc()
+	{
+
+	}
+	~nv_sua_ong_nuoc()
+	{
+
+	}
+};
+//=============================
+class nv_xe_om : public nv
+{
+	//---- thuộc tính ---
+protected:
+	int luong_1_km;
+	float so_km_da_di;
+	//--- phương thức --
+public:
+	void nhap()
+	{
+		nv::nhap();
+		cout << "Nhap luong 1 km: ";cin >> this->luong_1_km;
+		cout << "Nhap so km da di: ";cin >> this->so_km_da_di;
+	}
+	void xuat()
+	{
+		nv::xuat();
+		cout << "Luong 1 km: " << this->luong_1_km << endl;
+		cout << "So km da di: " << this->so_km_da_di << endl;
+	}
+	//--- tạo hủy ----
+public:
+	nv_xe_om()
+	{
+
+	}
+	~nv_xe_om()
+	{
+
+	}
+};
+//=============================
+class nv_giao_hang : public nv
+{
+	//---- thuộc tính ---
+protected:
+	int luong_1_sp;
+	float so_sp_da_giao;
+	//--- phương thức --
+public:
+	void nhap()
+	{
+		nv::nhap();
+		cout << "Nhap luong 1 sp: ";cin >> this->luong_1_sp;
+		cout << "Nhap so sp da giao: ";cin >> this->so_sp_da_giao;
+	}
+	void xuat()
+	{
+		nv::xuat();
+		cout << "Luong 1 sp: " << this->luong_1_sp << endl;
+		cout << "So sp da giao: " << this->so_sp_da_giao << endl;
+	}
+	//--- tạo hủy ----
+public:
+	nv_giao_hang()
+	{
+
+	}
+	~nv_giao_hang()
+	{
+
+	}
+};
+//================
+void cap_phat(nv_sua_ong_nuoc *&p, int ncu, int nmoi);
+void main()
+{
+	nv_sua_ong_nuoc *ds_nv_son[MAX];int n_son = 0;
+
+
+	nv_xe_om ds_nv_xo[MAX];int n_xo = 0;
+	nv_giao_hang ds_nv_gh[MAX];int n_gh = 0;
+	while (true)
+	{
+		system("cls");
+		cout << "1. Nhap nv sua ong nuoc" << endl;
+		cout << "2. Xuat ds nv sua ong nuoc" << endl;
+		cout << "3. Nhap nv xe om" << endl;
+		cout << "4. Xuat ds nv xe om" << endl;
+		cout << "5. Nhap nv giao hang" << endl;
+		cout << "6. Xuat ds nv giao hang" << endl;
+		
+		int lc;cout << "Nhap lua chon: ";cin >> lc;
+		switch (lc)
+		{
+		case 1:
+		{
+			int sl;cout << "Nhap sl nhan vien sua ong nuoc can them: ";cin >> sl;
+			for (int i = 1;i <= sl;i++)
+			{
+				cout << "\t\t---- Nv thu " << i << " ------" << endl;
+				cin.ignore();
+				nv_sua_ong_nuoc x;//Lưu tạm
+				x.nhap();
+				//--- thêm cuối ----
+				ds_nv_son[n_son] = new nv_sua_ong_nuoc;
+				*ds_nv_son[n_son] = x;	//*(ds_nv_son + n_son) = x;
+				n_son++;//Tăng sl pt hiện tại
+			}
+			break;
+		}
+		case 2:
+		{
+			cout << "\t\t====== DS nhan vien sua ong nuoc ======" << endl;
+			for (int i = 0;i < n_son;i++)
+			{
+				cout << "\t\t---- Nhan vien thu " << i << " ---" << endl;
+				ds_nv_son[i].xuat();
+			}
+			system("pause");
+			break;
+		}
+		}
+	}
+	
+	system("pause");
+}
+
+void cap_phat(nv_sua_ong_nuoc *&p, int ncu, int nmoi)
+{
+	nv_sua_ong_nuoc *tam = p;
+	p = new nv_sua_ong_nuoc[nmoi];
+	for (int i = 0;i < ncu;i++)
+	{
+		p[i] = tam[i];
+	}
+	if (tam != NULL)
+	{
+		delete[] tam;
+	}
+}

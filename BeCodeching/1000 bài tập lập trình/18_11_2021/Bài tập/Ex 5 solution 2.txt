@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int n1, n2;
+	//Nhập số từ bàn phím
+	cout << "nhap so nguyen thu " << 1 << ": ";
+	cin >> n1;
+	cout << "nhap so nguyen thu " << 2 << ": ";
+	cin >> n2;
+	
+	cout << "So lon nhat: "; //xuất số lớn nhất
+	n1 > n2 ? cout << n1 : cout << n2; //So sánh 2 số rồi xuất ra số lớn nhất.
+
+	cout << endl;
+	system("pause");
+	return 0;
+}

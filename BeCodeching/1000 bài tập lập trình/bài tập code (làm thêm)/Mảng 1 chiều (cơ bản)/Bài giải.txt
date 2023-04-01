@@ -1,0 +1,180 @@
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Bài tập thêm về mảng 1 chiều=====================
+//void gia_tri_lon_nhat_float(int n, float a[]);
+//void gia_tri_min(int n, int a[]);
+//void check_gia_tri_chan_nho_hon_2004(int n, int a[]);
+//void dem_snt_nho_hon_100(int n, int a[]);
+//void sum_gia_tri_am(int n, float a[]);
+//void sap_xep_tang_dan(int n, float a[]);
+//void output(int n, float a[]);
+int main()
+{
+	int n;
+	int a[MAX] = {};
+	float ar[MAX] = {};
+	
+	do
+	{
+		nhap_so_phan_tu(n);
+	} while (n <= 0 || n > MAX);
+	
+	nhap_gia_tri_float(n, ar);
+	
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)========================================================================================
+//Hàm nhập phần tử
+void nhap_so_phan_tu(int& n)
+{
+	cout << "Nhap so phan tu can su dung: "; cin >> n;
+}
+
+//Hàm nhập giá trị trong mảng 1 chiều (int).
+//void nhap_gia_tri(int n, int a[])
+//{
+//	for (int i = 0; i < n; i++)
+//	{
+//		cout << "Nhap gia tri: "; cin >> a[i];
+//	}
+//}
+
+//Hàm nhập giá trị trong mảng 1 chiều (float).
+void nhap_gia_tri_float(int n, float a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap gia tri: "; cin >> a[i];
+	}
+}
+//=================================================Định nghĩa(bài tập thêm)========================================================
+
+//Hàm tìm giá trị lớn nhất trong mảng 1 chiều các số thực.
+//void gia_tri_lon_nhat_float(int n, float a[])
+//{
+//	cout << endl;
+//	float max = FLT_MIN;
+//	for (int i = 0; i < n; i++)
+//	{
+//		if (max < a[i])
+//		{
+//			max = a[i];
+//		}
+//	}
+//	cout << "MAX: " << max << endl;
+//}
+
+//Hàm tìm 1 vị trí mà giá trị tại vị trí đó là giá trị nhỏ nhất trong mảng 1 chiều các số nguyên.(Tìm min rồi xuất ra ở vị trí của min).
+//void gia_tri_min(int n, int a[])
+//{
+//	int pos = 0;
+//	int min = INT16_MAX;
+//	for (int i = 0; i < n; i++)
+//	{
+//		if (min > a[i])
+//		{
+//			min = a[i];
+//			pos = i;
+//		}
+//	}
+//	cout << "Da tim thay min (" << min << ") o vi tri " << pos << "." << endl;
+//}
+
+//Hàm kiểm tra trong mảng các số nguyên có tồn tại giá trị chẵn nhỏ hơn 2004 hay không
+//void check_gia_tri_chan_nho_hon_2004(int n, int a[])
+//{
+//	int max = 2004;
+//	cout << endl;
+//	for (int i = 0; i < n; i++)
+//	{
+//		if (a[i] % 2 == 0 && a[i] < max)
+//		{
+//			cout << "Da tim thay!" << endl;
+//			return;
+//		}
+//	}
+//}
+
+//Hàm đếm số lượng số nguyên tố nhỏ hơn 100 trong mảng
+//void dem_snt_nho_hon_100(int n, int a[])
+//{
+//	int c = 0;
+//	for (int i = 0; i < n; i++)
+//	{
+//		if (a[i] < 100 && a[i] > 1)
+//		{
+//			if (a[i] > 1 && a[i] < 4)
+//			{
+//				c += 1; continue;
+//			}
+//			if (a[i] % 2 == 0 || a[i] % 3 == 0)
+//			{
+//				continue;
+//			}
+//			else
+//			{
+//				c += 1; continue;
+//			}
+//			for (int j = 2; j <= sqrt(a[i]); j++)
+//			{
+//				if (a[i] % j == 0)
+//				{
+//					continue;
+//				}
+//			}
+//			c += 1; continue;
+//		}
+//	}
+//	cout << "Co tat ca " << c << " so nguyen to trong mang nay!" << endl;
+//}
+
+//Hàm tính tổng các giá trị âm trong mảng 1 chiều các số thực.
+//void sum_gia_tri_am(int n, float a[])
+//{
+//	float sum = 0;
+//	cout << endl;
+//	for (int i = 0; i < n; i++)
+//	{
+//		if (a[i] < 0) 
+//		{
+//			sum += a[i];
+//		}
+//	}
+//	cout << "sum: " << sum << endl;
+//}
+
+//Hàm sắp xếp mảng 1 chiều các số thực tăng dần.
+//void sap_xep(float& a, float& b)
+//{
+//	float temp = a;
+//	a = b;
+//	b = temp;
+//}
+//
+//void sap_xep_tang_dan(int n, float a[])
+//{
+//	for (int i = 0; i < n - 1; i++)
+//	{
+//		for (int j = i + 1; j < n; j++)
+//		{
+//			if (a[j] < a[i])
+//			{
+//				sap_xep(a[j], a[i]);
+//			}
+//		}
+//	}
+//}
+//
+//void output(int n, float a[])
+//{
+//	cout << endl << "Da sap xep!" << endl;
+//	for (int i = 0; i < n; i++)
+//	{
+//		cout << a[i] << "    ";
+//	}
+//}

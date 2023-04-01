@@ -1,0 +1,120 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+	//-- data--
+	int data;
+	//--- pointer ---
+	node *pnext;
+};
+typedef struct node node;
+
+typedef struct stack
+{
+	node *ptop = NULL;//<=> phead
+}stack;
+//===============
+void pop(stack &s);
+node* khoi_tao_node(int x);
+bool is_Empty(stack s);
+void push(stack &s, int x);
+int top(stack s);
+void xuat(stack &s);
+//-----------------------------------------
+void main()
+{
+	stack s;
+
+	while (true)
+	{
+		system("cls");
+		cout << "1. Push" << endl;
+		cout << "2. Xuat stack" << endl;
+		cout << "3. Top" << endl;
+		cout << "4. Pop" << endl;
+		int lc;cout << "Nhap lc: ";cin >> lc;
+		switch (lc)
+		{
+		case 1:
+		{
+			int sl;cout << "Nhap sl pt can them: ";cin >> sl;
+			for (int i = 1;i <= sl;i++)
+			{
+				int x;cout << "Nhap pt thu " << i << ": ";cin >> x;
+				push(s, x);
+			}
+			break;
+		}
+		case 2:
+		{
+			xuat(s);
+			system("pause");
+			break;
+		}
+		case 3:
+		{
+			cout << top(s) << endl;
+			system("pause");
+			break;
+		}
+		case 4:
+		{
+			pop(s);
+			break;
+		}
+		}
+	}
+	system("pause");
+}
+node* khoi_tao_node(int x)
+{
+	node *p = new node;
+	p->data = x;
+	p->pnext = NULL;
+	return p;
+}
+bool is_Empty(stack s)
+{
+	if (s.ptop == NULL)
+	{
+		return true;
+	}
+	return false;
+}
+void push(stack &s, int x)
+{
+	node *p = khoi_tao_node(x);
+	if (is_Empty(s)==true)
+	{
+		s.ptop = p;
+	}
+	else//1 pt, n pt
+	{
+		p->pnext = s.ptop;
+		s.ptop = p;
+	}
+}
+int top(stack s)
+{
+	if (is_Empty(s) == false)
+	{
+		return s.ptop->data;
+	}
+}
+void xuat(stack &s)
+{
+	while (is_Empty(s) == false)
+	{
+		cout << top(s) << endl;
+		pop(s);//Thay doi
+	}
+}
+void pop(stack &s)
+{
+	if (is_Empty(s) == false)
+	{
+		node *tam = s.ptop;
+		s.ptop = s.ptop->pnext;
+		delete tam;
+	}
+}

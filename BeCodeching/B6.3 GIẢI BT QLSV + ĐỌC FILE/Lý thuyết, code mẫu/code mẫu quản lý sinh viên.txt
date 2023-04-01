@@ -1,0 +1,188 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+typedef struct sinh_vien
+{
+	string ma_sv;
+	string ho_ten;
+	float ktlt;
+	float trr;
+	float ctdl;
+	float dtb;
+}sv;
+//========================
+istream& operator >> (istream &is, sv &a);
+ostream& operator <<(ostream &os, sv a);
+void xuat_ds_sv(sv ds[], int n);
+//--------------------------------------------------
+void tinh_dtb(sv &a);
+string xep_loai_1_sv(sv a);
+void xep_loai_ds(sv ds[], int n);
+//-----------------------
+string cat_ho_ten(string s, int x);
+void sap_xep_giam_thoe_ten(sv ds[], int n);
+void main()
+{
+	sv ds[100];int n = 0;
+	bool kt_menu = true;
+	while (kt_menu == true)
+	{
+		system("cls");
+		cout << "1. Nhap sinh vien" << endl;
+		cout << "2. Xuat danh sach sinh vien" << endl;
+		cout << "3. Xep loai hoc luc" << endl;
+		cout << "4. Sap xep giam theo ten" << endl;
+		cout << "0. Thoat" << endl;
+		int lc;cout << "Nhap lc: ";cin >> lc;
+		switch (lc)
+		{
+		case 1:
+		{
+			int sl;cout << "Nhap sl sinh vien can them: ";cin >> sl;
+			for (int i = 1;i <= sl;i++)
+			{
+				cin.ignore();//Xoá cho mỗi sv
+				cout << "\t\t---- SV thu " << i << " ---" << endl;
+				sv a;//Lưu tạm dữ liệu người dùng nhập
+				cin >> a;
+				//-- thêm cuối ---
+				ds[n++] = a;
+			}
+			break;
+		}
+		case 2:
+		{
+			xuat_ds_sv(ds, n);
+			system("pause");
+			break;
+		}
+		case 3:
+		{
+			xep_loai_ds(ds, n);
+			system("pause");
+			break;
+		}
+		case 4:
+		{
+			sap_xep_giam_thoe_ten(ds, n);
+			system("pause");
+			break;
+		}
+		case 0:
+		{
+			kt_menu = false;
+			break;
+		}
+		}
+	}
+	system("pause");
+}
+istream& operator >>(istream &is,sv &a)
+{
+	cout << "Nhap ma sv: ";getline(is, a.ma_sv);
+	cout << "Nhap ho ten: ";getline(is, a.ho_ten);
+	cout << "Nhap diem ktlt: ";is >> a.ktlt;
+	cout << "Nhap diem trr: ";is >> a.trr;
+	cout << "Nhap diem ctdl: ";is >> a.ctdl;
+	//----
+	tinh_dtb(a);
+	return is;
+}
+ostream& operator <<(ostream &os, sv a)
+{
+	os << "Ma sv: " << a.ma_sv << endl;
+	os << "Ho ten: " << a.ho_ten << endl;
+	os << "Diem ktlt: " << a.ktlt << endl;
+	os << "Diem trr: " << a.trr << endl;
+	os << "Diem ctdl: " << a.ctdl << endl;
+	cout << "Diem trung binh: " << a.dtb << endl;
+	return os;
+}
+void xuat_ds_sv(sv ds[], int n)
+{
+	cout << "\t\t====== DS SV =========" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "\t\t---- SV thu " << i << " -----" << endl;
+		cout << ds[i];
+	}
+}
+//-------------------------
+void tinh_dtb(sv &a)
+{
+	a.dtb = (a.ktlt + a.trr + a.ctdl) / 3;
+}
+string xep_loai_1_sv(sv a)
+{
+	if (a.dtb >= 9.8)
+	{
+		return "Xuat Sac";
+	}
+	else if (a.dtb >= 8)
+	{
+		return "Gioi";
+	}
+	else if (a.dtb >= 6.5)
+	{
+		return "Kha";
+	}
+	else if (a.dtb >= 4)
+	{
+		return "Trung Binh";
+	}
+	else
+	{
+		return "Yeu";
+	}
+}
+void xep_loai_ds(sv ds[], int n)
+{
+	cout << "\t\t=========== Xep loai ===============" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "\t\t---- Sinh vien: " << ds[i].ho_ten << " ----" << endl;
+		cout << "Diem trung binh: " << ds[i].dtb << endl;
+		cout << "Loai: " << xep_loai_1_sv(ds[i]) << endl;
+	}
+}
+//------------ Cat ho ten -----------
+string cat_ho_ten(string s,int x)//1: ten, 2: hodem
+{
+	//s = "Huynh Cong"
+
+	//ten: Thanh
+	string ten = "";
+	while (s.back() != ' ')
+	{
+		ten.insert(ten.begin() + 0, s.back());//Them vao ten
+		s.pop_back();//Xoa cuoi
+	}
+	s.pop_back();//xoa space
+
+	return  (x == 1) ? ten : s;
+}
+void sap_xep_giam_thoe_ten(sv ds[], int n)
+{
+	for (int i = 0;i < n - 1;i++)
+	{
+		for (int j = i + 1;j < n;j++)
+		{
+			string teni = cat_ho_ten(ds[i].ho_ten, 1);
+			string tenj = cat_ho_ten(ds[j].ho_ten, 1);
+			if (_stricmp(tenj.c_str(), teni.c_str()) > 0)
+			{
+				swap(ds[i], ds[j]);
+			}
+			else if (_stricmp(tenj.c_str(), teni.c_str()) == 0)
+			{
+				string hoi = cat_ho_ten(ds[i].ho_ten, 2);
+				string hoj = cat_ho_ten(ds[j].ho_ten, 2);
+				if (_stricmp(hoj.c_str(), hoi.c_str()) > 0)
+				{
+					swap(ds[i], ds[j]);
+				}
+			}
+		}
+	}
+}

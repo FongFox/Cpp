@@ -1,0 +1,14 @@
+//==== BÀI TẬP - DEADLINE 24h 31/3 ===
+1. Trình bày phân tích + code mẫu xóa trước vt cách sử dụng for khuyết
+2. Trình bày phân tích + hàm xoát node có data == vt
+3. Nâng cao ko bắt buộc: xây dựng hàm xóa trước vt cách đảm bảo 100% vt ko nằm ở pt thứ 2
+
+Bài tập:
+1. Trình bày phân tích xóa tại vt + code mẫu hàm xóa tại vt
+2. Code hàm xóa tại vt sử dụng h theo k + 100% vt ko nằm ở đầu
+
+3. Ứng dụng dslk quản lý 1 ds các số nguyên. Gồm các chức năng:
+ + Thêm pt vào danh sách(Thêm cuối)
+ + Xuất danh sách
+ + Xóa pt là số amstrong
+ + Sắp xếp các pt chẵn trong dslk tăng dần, các pt khác giữ nguyên (Sắp xếp có chọn lọc)

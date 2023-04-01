@@ -1,0 +1,8 @@
+//======= Bài tập: DEADLINE 12h 2/4/2022 ===
+1. Trình bày phân tích xóa tại vt + code mẫu hàm xóa tại vt
+2. Code hàm xóa tại vt sử dụng h theo k + 100% vt ko nằm ở đầu
+3. Ứng dụng dslk quản lý 1 ds các số nguyên. Gồm các chức năng:
+ + Thêm pt vào danh sách(Thêm cuối)
+ + Xuất danh sách
+ + Xóa pt là số amstrong
+ + Sắp xếp các pt chẵn trong dslk tăng dần, các pt khác giữ nguyên (Sắp xếp có chọn lọc)

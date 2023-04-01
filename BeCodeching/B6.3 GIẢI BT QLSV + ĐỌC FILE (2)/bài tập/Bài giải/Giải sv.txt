@@ -1,0 +1,334 @@
+/*
+Đề:
+Biết rằng sinh viên có:
+_ mã số sinh viên: char[20]
+_ họ tên sinh viên: char[30]
+_ điểm kĩ thuật lập trình : float
+_ điểm toán rời rạc: float
+_ điểm ctdl : float
+1. viết hàm nhập danh sách sinh viên														x
+2. viết hàm xuất danh sách sinh viên														x
+3. Xếp loại học lực sinh viên theo điểm trung bình 3 môn									
+- xuất sắc: >9.8
+- giỏi: >=8
+- khá: >=6.5		||
+- trung bình >=4
+- yếu <4
+4. sắp xếp danh sách sinh viên theo điểm trung bình											
+5. sắp xếp danh sách sinh viên giảm dần theo tên sinh viên. theo bảng mã ascii				x
+6. Viết chức năng quản lý danh sách sv: nhập xuất và sử dụng đọc file.
+*/
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<vector>
+#include"Other_lib.h"
+#define MAX 1000
+using namespace std;
+
+typedef struct list
+{
+	string mssv;
+	string ten;
+	float ktlt, trr, ctdl, dtb;
+} ls;
+//==============================================
+//Hàm nạp chồng phần tử cin >>
+istream& operator >> (istream& is, ls& a);
+//Hàm nạp chông phần tử cout <<
+ostream& operator << (ostream& os, ls a);
+//----------------------------------------------
+//menu
+void menu();
+//----------------------------------------------
+//Hàm nhập
+void input(int& n, ls a[]);
+//Hàm xuất
+void output(int n, ls a[]);
+//------------------------------------------------------
+//Hàm cắt họ tên (x==1: return ten || x!=0: return ho)
+string cat_ho_ten(string ho, int x);
+//Hàm so sánh string
+void so_sanh_theo_ten(int n, ls a[]);
+//------------------------------------------------------
+//Hàm xét và trả về
+int hoc_luc(float x);
+//Hàm xuất học lực
+void output_hoc_luc(int n, ls a[]);
+//Hàm sắp xếp học lực
+void sap_xep_hoc_luc(int n, ls a[]);
+//------------------------------------------------------
+//Tạo và ghi file
+void create_and_write_new_file(int n, ls a[]);
+//Đọc file
+void read_file(int& n, ls a[]);
+//Ghi tiếp file
+void continue_write_file(int n, ls a[]);
+//==============================================
+void main()
+{
+	menu();
+	system("cls");
+}
+//======================================================
+//Hàm nạp chồng phần tử cin >>
+istream& operator >> (istream& is, ls& a)
+{
+	cout << "Nhap mssv: "; getline(is, a.mssv);
+	cout << "Nhap ten sv: "; getline(is, a.ten);
+	cout << "Nhap diem ktlt: "; is >> a.ktlt;
+	cout << "Nhap diem trr: "; is >> a.trr;
+	cout << "Nhap diem ctdl: "; is >> a.ctdl;
+	return is;
+}
+//Hàm nạp chông phần tử cout <<
+ostream& operator << (ostream& os, ls a)
+{
+	os << "Mssv: " << a.mssv << endl;
+	os << "Ten sv: " << a.ten << endl;
+	os << "Diem ktlt: " << a.ktlt << endl;
+	os << "Diem trr: " << a.trr << endl;
+	os << "Diem ctdl: " << a.ctdl << endl;
+	return os;
+}
+//------------------------------------------------------
+//menu
+void menu()
+{
+	int sl{}, lc = -1; ls sv[MAX];
+
+	while (lc != 0)
+	{
+		system("cls");
+		cout << "1. Nhap thong tin." << endl;
+		cout << "2. Xuat thong tin." << endl;
+		cout << "3. So sanh theo ten." << endl;
+		cout << "4. Xuat hoc luc." << endl;
+		cout << "5. Sap xep theo hoc luc." << endl;
+		cout << "6. Tao va ghi file moi." << endl;
+		cout << "7. Doc file da co san." << endl;
+		cout << "8. Ghi tiep file da co san." << endl;
+		cout << "0. Thoat." << endl;
+		cout << "Nhap lc: "; cin >> lc;
+		system("cls");
+		switch (lc)
+		{
+		case 1:
+			input(sl, sv); break;
+		case 2:
+			output(sl, sv); break;
+		case 3:
+			so_sanh_theo_ten(sl, sv); break;
+		case 4:
+			output_hoc_luc(sl,sv); break;
+		case 5:
+			sap_xep_hoc_luc(sl, sv); break;
+		case 6:
+			create_and_write_new_file(sl, sv); break;
+		case 7:
+			read_file(sl, sv); cout << "Da chep het file!"; break;
+		case 8:
+			continue_write_file(sl, sv); break;
+		case 0:
+			cout << "Quitting." << endl; break;
+		default:
+			cout << "NULL! Nhap lai!" << endl; break;
+		}
+		_getch();
+	}
+	system("pause");
+}
+//------------------------------------------------------
+//Hàm nhập
+void input(int& n, ls a[])
+{
+	cout << "Nhap so luong: "; cin >> n; 
+	for (int i = 0; i < n; i++)
+	{
+		cin.ignore();
+		cout << "================ Nhap sv thu " << i + 1 << " ======================" << endl;
+		cin >> a[i];
+		a[i].dtb = (a[i].ctdl + a[i].ktlt + a[i].trr) / 3;
+	}
+}
+//Hàm xuất
+void output(int n, ls a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "================= Sv thu " << i + 1 << " ================" << endl;
+		cout << a[i];
+	}
+}
+//------------------------------------------------------
+//Hàm cắt họ tên (x==1: return ten || x!=0: return ho)
+string cat_ho_ten(string ho, int x)
+{
+	int size = ho.length(); string ten;
+	while (ho.back() != ' ')
+	{
+		ten.insert(ten.begin() + 0, ho.back());
+		ho.pop_back();
+	}
+	ho.pop_back();
+	return (x == 1) ? ten : ho;
+}
+//Hàm so sánh string
+void so_sanh_theo_ten(int n, ls a[])
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			string ten_i = cat_ho_ten(a[i].ten, 1);
+			string ten_j = cat_ho_ten(a[j].ten, 1);
+			if (_stricmp(ten_j.c_str(), ten_i.c_str()) < 0)
+			{
+				swap(a[i],a[j]);
+			}
+			else if (_stricmp(ten_j.c_str(), ten_i.c_str()) == 0)
+			{
+				string ho_i = cat_ho_ten(a[i].ten, 0);
+				string ho_j = cat_ho_ten(a[j].ten, 0);
+				if (_stricmp(ho_j.c_str(), ho_i.c_str()) < 0)
+				{
+					swap(a[i], a[j]);
+				}
+			}
+		}
+	}
+	cout << "Da sap xep xong!" << endl;
+}
+//------------------------------------------------------
+//Hàm xét và trả về
+int hoc_luc(float x)
+{
+	if (x >= 6.5)
+	{
+		if (x > 9.8)
+		{
+			return 1;
+		}
+		else if (x >= 8 && x <= 9.8)
+		{
+			return 2;
+		}
+		else if (x >= 6.5 && x < 8)
+		{
+			return 3;
+		}
+	}
+	else
+	{
+		if (x >= 4 && x < 6.5)
+		{
+			return 4;
+		}
+		else return 5;
+	}
+}
+//Hàm xuất học lực
+void output_hoc_luc(int n, ls a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "================= Sv thu " << i + 1 << " ================" << endl;
+		cout << a[i];
+		cout << "Hoc luc: ";
+		int hl = hoc_luc(a[i].dtb);
+		switch (hl)
+		{
+		case 1:
+			cout << "Xuc xich!" << endl; break;
+		case 2:
+			cout << "Gioi!" << endl; break;
+		case 3:
+			cout << "Kha!" << endl; break;
+		case 4:
+			cout << "Trung binh!" << endl; break;
+		case 5:
+			cout << "Yeu!" << endl; break;
+		}
+	}
+}
+//Hàm sắp xếp học lực
+void sap_xep_hoc_luc(int n, ls a[])
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		float max = a[i].dtb;
+		for (int j = i + 1; j < n; j++)
+		{
+			if (a[j].dtb > max)
+			{
+				swap(a[i], a[j]);
+			}
+		}
+	}
+	cout << "Sap xep thanh cong!" << endl;
+}
+//-------------------------------------------------------
+//Tạo và ghi file
+void create_and_write_new_file(int n, ls a[])
+{
+	ofstream fileout ("Sinh_vien.txt");
+	for (int i = 0; i < n; i++)
+	{
+		fileout << a[i].mssv << ",";
+		fileout << a[i].ten << ",";
+		fileout << a[i].ktlt << ",";
+		fileout << a[i].trr << ",";
+		fileout << a[i].ctdl; 
+		if (i != n - 1)
+		{
+			fileout << endl;
+		}
+	}
+	fileout.close();
+	cout << "Hoan thanh!" << endl;
+}
+//Đọc file
+void read_file(int& n, ls a[])
+{
+	ifstream filein;
+	filein.open("Sinh_vien.txt", ios_base::in);
+	if (filein.fail() == true)
+	{
+		cout << "NULL!" << endl; return;
+	}
+	n = 0;
+	while (filein.eof() != true)
+	{
+		if (filein.eof() == true)
+		{
+			filein.close(); return;
+		}
+		getline(filein, a[n].mssv, ',');
+		getline(filein, a[n].ten, ',');
+		filein >> a[n].ktlt; filein.ignore();
+		filein >> a[n].trr; filein.ignore();
+		filein >> a[n].ctdl; filein.ignore();
+		n+=1;
+	}
+	
+	
+}
+//Ghi tiếp file
+void continue_write_file(int n, ls a[])
+{
+	ofstream fileout("Sinh_vien.txt",ios_base::app);
+	for (int i = 0; i < n; i++)
+	{
+		fileout << endl << a[i].mssv << ",";
+		fileout << a[i].ten << ",";
+		fileout << a[i].ktlt << ",";
+		fileout << a[i].trr << ",";
+		fileout << a[i].ctdl;
+		if (i != n - 1)
+		{
+			fileout << endl;
+		}
+	}
+	fileout.close();
+	cout << "Hoan thanh!" << endl;
+}

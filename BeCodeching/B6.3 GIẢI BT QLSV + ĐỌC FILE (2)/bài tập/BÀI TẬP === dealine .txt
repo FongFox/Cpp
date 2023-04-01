@@ -1,0 +1,8 @@
+Đề:
+Biết rằng sinh viên có:
+_ mã số sinh viên: char[20]
+_ họ tên sinh viên: char[30]
+_ điểm kĩ thuật lập trình : float
+_ điểm toán rời rạc: float
+_ điểm ctdl : float
+Viết chức năng quản lý danh sách sv: nhập xuất và sử dụng đọc file.

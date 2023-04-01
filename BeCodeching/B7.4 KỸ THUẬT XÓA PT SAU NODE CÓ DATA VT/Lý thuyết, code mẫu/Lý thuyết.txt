@@ -1,0 +1,59 @@
+//================== Ôn tập ==========================
+	+ Thêm node x sau node có data == vt
+
+		+ DS rỗng		Có gì đâu mà thêm
+		+ DS có 1 pt
+		+ DS có n pt
+			- vt ở giữa		thêm sau k
+					B1: p lk pt sau k
+					B2: k lk với p
+
+			- vt ở đầu		Tự đúng
+			- vt ở cuối	-> Lưu ý ptail
+					-> Kiểm tra nếu k đang ở áp cuối -> Vừa thêm cuối
+					-> Cập nhật ptail
+
+			- vt ở pt thứ 2	Tự đúng
+			- vt ở pt áp cuối	Tự đúng
+			- 2 vt cách xa	Khởi tạo node*p mỗi lần cần thêm pt mới (để trong đk trong for)
+
+			- 2 vt liên tiếp	Tự đúng theo xử lý của 2 vt cách xa
+			- vt == x		Nhảy k tránh lặp vô tận
+
+//=================================================================
++ Xóa sau vt
+
+	+ DS rỗng		có gì đâu mà xóa
+	+ DS có 1 pt	Có gì đau mà xóa
+	+ DS có n pt
+		- vt ở giữa		Xoá sau k:		B1: tạm giữ pt sau k
+						B2: k lk pt sau tạm
+						B3: giải phóng tạm
+		- vt ở pt đầu	Tự đúng
+		- vt ở pt cuối	Duyệt áp cuối thôi - pt cuối ko có gì để xóa
+
+		- vt ở pt thứ 2	Tự đúng
+		- vt ở pt áp cuối	Xóa sau chính là xóa cuối -> Hỏi k ở đâu: k đang là pt cuối
+								-> Cần cập nhật ptail
+								Xong là thoát hàm luôn.
+
+		- 2 vt cách xa	Tự đúng
+				1	2	2
+
+		- 2 vt liên tiếp
+
+Giả thiết 1: Xóa theo logic:
+
+		phead			ptail
+		1	2	2	4
+					k
+
+
+		phead					ptail
+		1	2	2	2	3	4
+
+
+		phead		ptail
+		1	2	4
+
+-------------------- Thêm trước vt ----------------------------

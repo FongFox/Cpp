@@ -1,0 +1,165 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+void xuat(int a[], int n);
+void load_lv1(int a[], int &n);
+void load_lv2(int a[], int &n);
+void load_lv3(int a[], int &n);
+//=== ghi file ====
+void ghi(int a[], int n);
+int main()
+{
+	int a[100];int n = 0;
+	//load_lv1(a, n);
+	//load_lv2(a, n);
+	load_lv3(a, n);
+
+	xuat(a, n);
+
+	ghi(a, n);
+	system("pause");
+	return 0;
+}
+void load_lv1(int a[], int &n)
+{
+	//B0: khai bao bien file
+	ifstream filein;
+	//B1: mo file
+	filein.open("input.txt", ios_base::in);
+	//B2: doc file
+	filein >> n;//5
+	for (int i = 0;i < n;i++)
+	{
+		int x;//Lưu tạm dữ liệu lấy từ file
+		filein >> x;
+		//--- them ---
+		a[i] = x;
+	}
+
+	//B3: dong file
+	filein.close();
+}
+
+void load_lv2_1(int a[], int &n)
+{
+	//B0: khai bao bien file
+	ifstream filein;
+	//B1: mo file
+	filein.open("input.txt", ios_base::in);
+	//B2: doc file
+	int dem = 0;
+	while (filein.eof() != true)
+	{
+		int x;
+		filein >> x;
+		dem++;//1 lần bỏ qua được 1 số nguyên
+	}
+	filein.close();//TẮt
+	filein.open("input.txt", ios_base::in);//Mở lại
+	//------(Cần reset con trỏ về đầu)------ Load file khi biẾt n -----------
+	n = dem;//sl pt
+
+	for (int i = 0;i < n;i++)
+	{
+		int x;filein >> x;
+		a[i] = x;
+	}
+	//B3: dong file
+	filein.close();
+}
+void load_lv2(int a[], int &n)
+{
+	//B0: khai bao bien file
+	ifstream filein;
+	//B1: mo file
+	filein.open("input.txt", ios_base::in);
+	//B2: doc file
+	while (filein.eof() == false)
+	{
+		int x;
+		filein >> x;
+		//--- them cuoi ----
+		a[n] = x;
+		cout << a[n] << endl;
+		n++;
+	}
+
+	//B3: dong file
+	filein.close();
+}
+void load_lv3_1(int a[], int &n)
+{
+	//B0: khai bao bien file
+	ifstream filein;
+	//B1: mo file
+	filein.open("input.txt", ios_base::in);
+	//B2: doc file
+	while (filein.eof() == false)
+	{
+		int x;
+		filein >> x;
+		/*char c;
+		filein >> c;*/
+		filein.ignore();
+		//--- them cuoi ----
+		a[n] = x;
+		n++;
+	}
+
+	//B3: dong file
+	filein.close();
+}
+void load_lv3(int a[], int &n)
+{
+	//B0: khai bao bien file
+	ifstream filein;
+	//B1: mo file
+	filein.open("input.txt", ios_base::in);
+	//B2: doc file
+	while (filein.eof() == false)
+	{
+		int x;
+		filein >> x;
+		if (filein.eof() != true)
+		{
+			filein.seekg(1, 1);//x: số byte muốn dịch	y: Vị trí bắt đầu dịch
+							   // -(trái), +(phải)		0: begin	1: current 2: end
+		}
+
+		//--- them cuoi ----
+		a[n] = x;
+		cout << a[n] << endl;
+		n++;
+	}
+
+	//B3: dong file
+	filein.close();
+}
+void xuat(int a[], int n)
+{
+	cout << "\t\t=== Xuat ===" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "PT thu " << i << " la: " << a[i] << endl;
+	}
+}
+
+//=== ghi file ====
+void ghi(int a[], int n)
+{
+	//B0: Khai báo biến ghi file
+	ofstream fileout;
+	//B1: mở file
+	fileout.open("output.txt", ios_base::out);
+	//B2: Ghi file
+	for (int i = 0;i < n;i++)
+	{
+		fileout << a[i];
+		if (i != n - 1)
+		{
+			fileout << ",";
+		}
+	}
+	//B3: Đóng file
+	fileout.close();
+}

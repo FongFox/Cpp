@@ -1,0 +1,42 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+void load_file(int a[], int &n);
+void xuat(int a[], int n);
+void main()
+{
+	int a[100];int n = 0;
+	load_file(a, n);
+	xuat(a, n);
+	system("pause");
+}
+void xuat(int a[], int n)
+{
+	cout << "\t\t==== Xuat ===" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "PT thu " << i << " la: " << a[i] << endl;
+	}
+}
+void load_file(int a[], int &n)
+{
+	//B0: Khai bao bien file
+	ifstream filein;
+	//B1: Mo file
+	filein.open("C:\\dev\\input.txt", ios_base::in);
+	if (filein.fail() == true)
+	{
+		cout << "Mo khong duoc!" << endl;
+		return;
+	}
+	//B2: Doc file
+	filein >> n;//5
+	for (int i = 0;i < n;i++)
+	{
+		int x;//Lưu tạm data từ file
+		filein >> x;
+		a[i] = x;
+	}
+	//B3: Dong file
+	filein.close();
+}

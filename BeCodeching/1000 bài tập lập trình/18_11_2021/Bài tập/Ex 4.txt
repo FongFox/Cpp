@@ -1,0 +1,13 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int b = 4;
+	b = b++ + ++b;
+	
+	cout << b << endl;
+
+	system("pause");
+	return 0;
+}

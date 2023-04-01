@@ -1,0 +1,150 @@
+//============= Cấu trúc dữ liệu và giải thuật =============
++ DSLK
+	+ Cấu trúc
+	+ Thêm Đầu, cuối
+	+ Xóa đầu, cuối
+
+	+ Thêm sau vt
+	+ Xóa sau vt
+
+	+ Thêm trước vt
+	+ Xóa tại vt
+	+ sắp xếp
+
+	+ Xóa trước vt
+	+ Thêm trước sau
+	+ Xóa trước sau
++ stack queue
++ đệ quy, tree nhị phân, cây AVL
+
+//============== Tiếp cận ====================
+Mảng: Tập hợp các pt liên tiếp nhau trong bộ nhớ
+
+	=> Nhược: Phân mảnh bộ nhớ
+	=> Ưu: Dễ truy cập -> Toán tử chỉ số
+ 
+
+DSLK là gì: Tập hợp các pt rải rác nhau trong bộ nhớ
+
+	=> Ưu: Khắc phục được phân mảnh -> Tiết kiệm bộ nhớ
+	=> Nhược: Khó truy cập
+
+//============= Danh sách kỹ thuật ==============
+
+
+	+ Thêm cuối
+		- DS rỗng		Đầu bằng cuối bằng pt cần thêm
+				phead = ptail = p
+
+ 		- DS có 1 pt	ptail->pnext = p	//Liên kết pt cuối với p
+				ptail = p		//Cập nhật lại pt cuối
+
+		- Ds có n pt	Tương tự trường hợp ds có 1 pt.
+
+//==================================================================
+ 	+ Thêm đầu
+		- Ds rỗng		Tương tự Trường hợp ds rỗng của thêm cuối.
+
+		- Ds có 1 pt	p->pnext = phead;//B1: Liên kết pt cần thêm với phead
+				phead = p;//B2: Cập nhật lại phead
+
+		- Ds có n pt	Tương đương TH ds có 1 pt.
+
+//==================================================================
+	+ Xóa đầu
+		- Ds rỗng		CÓ gì đâu mà xóa
+
+		- Ds có 1 pt	B1: Giải phóng
+				B2: Cập nhật phead = ptail = NULL
+
+		- Ds có n pt	tam = phead;		B1: Cho tạm giữ pt đầu
+				phead= phead->pnext;	B2: Cập nhật phead
+				delete tam;			B3: Giải phóng tạm
+
+//===================================================================
+	+ Xóa cuối
+
+		- Ds rỗng		Có gì đâu mà xóa
+		- DS có 1 pt	Tương tự TH ds có 1 pt của kỹ thuật xóa đầu
+
+		- DS có n pt	B1: Tìm pt áp cuối  (k->pnext->pnext==NULL)
+				B2.1: Cập nhật liên kết của áp cuối = NULL
+				B2.2: Giải phóng pt cuối
+				B2.3: Cập nhật ptail
+
+//================================================================
+	+ Thêm sau vt		(Thêm pt x sau pt có data là vt)
+			
+		phead				ptail
+		1	2	3	4	2
+
+		x = 9, vt = 2
+
+		1	2	9	3	4	2	9
+
+	Phân tích: + DS rỗng
+		+ DS có 1 pt
+		+ DS có n pt		vt = 2, x = 9
+			- vt ở giữa		1 2 3 4 5
+			- vt ở đầu		2 1 3 4 5
+			- vt ở cuối		1 3 4 5 2
+			- vt ở áp cuối
+			- vt ở pt thứ 2
+			- vt cách xa	1 2 3 2 4
+			- vt liên tiếp	1 2 2 4 5
+			- vt bằng x	
+
+	+ Xóa sau vt	BT nâng cao(Không bắt buộc)
+
+
+//===== Ôn tập ==========
+
+	+ Thêm đầu:	+ DS rỗng		Thêm pt vào (Đầu bằng cuối = p) Tương đương thêm cuối TH ds rỗng
+			+ DS có 1 pt	B1: Lk pt cần thêm với p
+					B2: Cập nhật lại phead = p
+
+			+ Ds có n pt	Tương đương TH ds có 1 pt
+
+
+
+	+ Xóa đầu:	+ Ds rỗng		Không làm gì cả
+			+ Ds có 1 pt	B1: Giải phóng phead
+					B2: Cập nhật phead = ptail = NULL
+
+			+ Ds có n pt	B1: Cho tạm giữ pt đầu cần xóa
+					B2: Cập nhật phead tại pt thứ 2
+					B3: Giải phóng tạm
+
+	+ Xóa cuối:	+ Ds rỗng		Không làm gì
+			+ Ds có 1 pt	Tương đương TH ds có 1 pt của xóa đầu
+			+ DS có n pt	Tìm pt áp cuối
+						B1: Liên kết áp cuối với NULL
+						B2: Giải phóng pt cuối
+						B3: Cập nhật ptail
+
+
+//================= Thêm sau vt =================
+
+	+ DS rỗng
+	+ DS có 1 pt
+	+ DS có n pt		k->data==vt	-> Thêm sau vt <=> thêm sau k
+
+		+ vt ở giữa		B1: Lk p với pt sau k
+				B2: lk k với p
+				
+		+ vt ở đầu		Tự đúng
+		+ vt ở cuối		Tận dụng thêm sau k -> Nếu sau khi thêm mà thấy k ở áp cuối
+							-> Chúng ta vừa thêm cuối
+							=> Cần phải cập nhật ptail
+
+		+ vt ở pt thứ 2	Tự đúng
+		+ vt ở áp cuối	Tự đúng
+
+		+ vt cách xa	Khởi tạo node mỗi khi cần thêm (Để trong for và trong điều kiện)
+				Tránh bị dùng chung -> đứt phần tử.
+
+		+ vt liên tiếp	Tự đúng nhờ xử lý vt cách xa
+		+ vt == x		Nhảy k tránh lặp vô tận
+
+
++ Xóa sau vt

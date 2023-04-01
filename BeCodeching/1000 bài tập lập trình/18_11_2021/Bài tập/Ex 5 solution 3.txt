@@ -1,0 +1,18 @@
+#include<iostream>
+#include<stdbool.h>
+using namespace std;
+
+int main()
+{
+	int n1, n2;
+	bool value;
+	//Nhập số từ bàn phím
+	cout << "Nhap so nguyen lan thu " << 1 << ": ";
+	cin >> n1;
+	cout << "Nhap so nguyen lan thu " << 2 << ": ";
+	cin >> n2;
+	
+	cout << "So lon nhat: "; //Xuất số lớn nhất
+	n1 > n2 ? value = true : value = false ; //So sánh 2 số trả về giá trị đúng hoặc sai
+	value ? cout << n1 : cout << n2; //Xét giá trị đúng hoặc sai để trả về số nào lớn nhất 
+}

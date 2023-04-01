@@ -1,0 +1,119 @@
+/*
+Bài 128 + 130: Viết hàm nhập, xuất mảng 1 chiều các số thực.																				x
+Bài 129 + 131: Viết hàm nhập, xuất mảng 1 chiều các số nguyên.																				x
+Bài 132: Viết hàm liệt kê các giá trị chẵn trong mảng 1 chiều các số nguyên.																x
+Bài 133: Viết hàm liệt kê các vị trí mà giá trị tại đó là giá trị âm trong mảng 1 chiều các số thực.										x
+*/
+
+#include<iostream>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+void input_element(int& n);
+void input_array(int n, int a[]);
+void input_array(int n, float a[]);
+
+
+//------------------Hàm xử lý-------------------------------------------------
+void check_and_output_even_number(int n, int a[]);
+void check_and_output_negative_number(int n, float a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+void output_array(int n, int a[]);
+void output_array(int n, float a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int n; int a[MAX];
+	float arr[MAX];
+	do
+	{
+		input_element(n);
+	} while (n <= 0 || n > MAX);
+	input_array(n, arr);
+	output_array(n, arr);
+
+	check_and_output_negative_number(n, arr);
+	
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm nhập số phần tử cần dùng trong array.
+void input_element(int& n)
+{
+	cout << "Nhap phan tu can su dung: "; cin >> n;
+}
+
+//Hàm nhập giá trị array kiểu dữ liệu int.
+void input_array(int n, int a[])
+{
+	for (int i = 0; i < n; i++) //for dung de duyet mang => de nhap
+	{
+		cout << "Nhap gia tri a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//Hàm nhập giá trị array kiểu dữ liệu float.
+void input_array(int n, float a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap gia tri a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu------------------------------------------------------------------------------------------------
+//Hàm kiểm tra và xuất số chẵn. (kiểu dữ liệu int)
+void check_and_output_even_number(int n, int a[])
+{
+	cout << endl << "===========================Cac so chan trong array======================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] % 2 == 0)
+		{
+			cout << "a[" << i << "]= " << a[i] << endl;
+		}
+	}
+}
+
+//Hàm kiểm tra và xuất số âm có kiểu dữ liệu là float
+void check_and_output_negative_number(int n, float a[])
+{
+	cout << endl << "===========================Cac so am trong array (kieu Float)======================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] < 0)
+		{
+			cout << "a[" << i << "]= " << a[i] << endl;
+		}
+	}
+}
+
+
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất array theo kiểu dữ liệu int.
+void output_array(int n, int a[])
+{
+	cout << endl << "============================Xuat ham (hoac ket qua)=====================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << endl;
+	}
+}
+
+//Hàm xuất array theo kiểu dữ liệu float
+void output_array(int n, float a[])
+{
+	cout << endl << "============================Xuat ham (hoac ket qua)=====================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << endl;
+	}
+}

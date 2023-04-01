@@ -1,0 +1,52 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class nv_sua_ong_nuoc
+{
+	//---- thuộc tính ---
+protected:
+	string ma_nv;
+	string ho_ten;
+	int luong;
+	int luong_1_gio;
+	float so_gio_lam;
+	//--- phương thức ---
+public:
+	void nhap()
+	{
+		cout << "Nhap ma_nv: ";getline(cin, nv_sua_ong_nuoc::ma_nv);
+		cout << "Nhap ho ten: ";getline(cin, this->ho_ten);
+		cout << "Nhap luong 1 gio: ";cin >> this->luong_1_gio;
+		cout << "Nhap so gio lam: ";cin >> this->so_gio_lam;
+	}
+	void xuat()
+	{
+		cout << "Ma nv: " << this->ma_nv << endl;
+		cout << "Ho ten: " << this->ho_ten << endl;
+		cout << "Luong 1 gio: " << this->luong_1_gio << endl;
+		cout << "So gio lam: " << this->so_gio_lam << endl;
+	}
+	
+	//--- hàm tạo hủy ----
+public:
+	nv_sua_ong_nuoc()
+	{
+		//tạo
+	}
+	~nv_sua_ong_nuoc()
+	{
+		//hủy
+	}
+};
+
+
+void main()
+{ 
+
+	nv_sua_ong_nuoc a;
+
+	
+
+	system("pause");
+}

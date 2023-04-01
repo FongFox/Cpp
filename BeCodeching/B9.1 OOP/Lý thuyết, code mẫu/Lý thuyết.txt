@@ -1,0 +1,64 @@
+//========== Lập trình hướng đối tượng ======
+
+Lập trình tuyến tính:
+
+Lập trình hướng thủ tục hàm:	Sử dụng cho bài toán nhỏ
+
+Lập tình hướng đối tượng:	Sử dụng cho bài toán lớn.
+
+//=====================================================
+
+Con chó:	Thuộc tính: chân, lông, đuôi, mắt, mũi, mỗm, tai, màu lông, màu mắt, cân nặng, chiều cao, giống loài,
+			tuổi, tên,...
+	Phương thức: đi, chạy, nhảy, ăn, ngủ, nghỉ, canh nhà, sủa ,...
+
+Con chim:	Thuộc tính: chân, lông vũ. đuôi, mắt, mũi, mỏ, tai, màu lông, màu mắt, cân nặng, chiều cao, giống loài, tuổi,
+				tên, tiếng kêu,..
+	Phương thức: đi, chạy, nhảy, ăn, ngủ, nghỉ, bay lượng, hót,...
+
+Con cá:	Thuộc tích: vây, vi, vảy, đuôi, mắt, mũi, miệng, tai, màu vảy, màu mắt, cân nặng, chiều cao, giống loài,
+									 tuổi,...
+	Phương thức: Bơi, lặn, nhảy, ăn, ngủ, nghỉ,   
+
+//--------------------
+
+Động vật 4 chân:
+	Thuộc tính: : chân, lông, đuôi, mắt, mũi, mỗm, tai, màu lông, màu mắt, cân nặng, chiều cao, giống loài,
+			tuổi
+	Phương thức: đi, chạy, nhảy, ăn, ngủ, nghỉ
+
+
+Con chó:	Thuộc tính: chân, lông, đuôi, mắt, mũi, mỗm, tai, màu lông, màu mắt, cân nặng, chiều cao, giống loài,
+			tuổi, tên,...
+	Phương thức: đi, chạy, nhảy, ăn, ngủ, nghỉ, canh nhà, sủa ,...
+
+
+Con bò:	Thuộc tính: Chân, lông, đuôi, mắt, mũi, mỗm, tai, màu lông, màu mắt, cân nặng, chiều cao, giống loài, tuổi,..
+		Sừng
+	Phương thức: đi, chạy, nhảy, ăn, ngủ, nghỉ, kéo cày.
+//===============================================================
+Viết phần mềm quản lý tính lương cho 3 loại nv: nv sửa ống nước, nv xe ôm, nv giao hàng
+
+
++ Tính trừu tượng: Phân tích sau đó sàn lọc ra các thuộc tính và phương thức cần thiết cho bài toán.
++ Tính đóng gói:
+		3 tầm vực:	public, protected, private
+
+		public:	truy cập ở mọi nơi
+		protected: chỉ truy cập ở lớp nội tại + lớp con kế thừa
+		private:	chỉ được truy cập ở lớp nội tại
+
+
+	Tiếp tục hoàn thiện code quản lý 3 loại nhân viên:  menu 6 chức năng  ( Nâng cao: tính lương)
+
+	class là gì:
+	object là gì:
+
+
+	hàm tạo là gì ?
+	hàm hủy là gì?
+	setter, getter?
+
+
++ Tính kế thừa
++ Tính đa hình

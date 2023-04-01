@@ -1,0 +1,21 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int n1, n2;
+	//Nhập số từ bàn phím
+	cout << "Nhap so nguyen thu " << 1 << ": ";
+	cin >> n1;
+	cout << "Nhap so nguyen thu " << 2 << ": ";
+	cin >> n2;
+	//Tạo 1 biến max
+	int max;
+
+	n1 > n2 ? max = n1 : max = n2; //so sánh số nào lớn nhất gán biến max bằng số đó
+
+	cout << "So lon nhat la: " << max << endl; //in ra biến max
+
+	system("pause");
+	return 0;
+}

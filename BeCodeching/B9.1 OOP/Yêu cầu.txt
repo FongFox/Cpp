@@ -1,0 +1,2 @@
+Yêu cầu: Xem lại video buổi trước để giải bt code menu 6 chức năng
+Sau đó phân tích xem: code mình đã tối ưu chưa, có nhược điểm gì ?

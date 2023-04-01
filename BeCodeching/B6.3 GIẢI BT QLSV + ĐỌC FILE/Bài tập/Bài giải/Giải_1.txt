@@ -1,0 +1,172 @@
+1.
+Đường dẫn tuyệt đối sẽ dẫn tới địa chỉ cố định.
+Đường dẫn tương đối sẽ dẫn tới địa chỉ tương đối so với file chương trình.
+2.
+a. Đúng.
+b. Sai.
+========================================================================================================================================================
+1.
+/*
+1. đọc các số nguyên từ file input.txt biết
++ dòng đầu tiên là 1 số nguyên biểu diễn số lượng các số nguyên cần đọc
++ dòng thứ 2 là 1 dãy các số nguyên cần đọc
+VD: intput.txt
+5
+1 4 7 8 9
+(các bạn tự tạo)
+=== yêu cầu ===
+Tìm phần tử lớn nhất trong mảng số nguyên đó và ghi vào file input.txt
+*/
+#include<iostream>
+#include<fstream>
+#define MAX 1000
+using namespace std;
+
+void load_file(int& n, int a[]);
+void output_read(int n, int a[]);
+
+void main()
+{
+	int n; int ds[MAX];
+	load_file(n, ds);
+	output_read(n, ds);
+
+	system("pause");
+}
+
+void load_file(int& n, int a[])
+{
+	//B1: khai bao file
+	fstream file;
+	//B2: Mo file
+	file.open("C:\\Users\\phong\\Desktop\\My Work Space\\Visual_Studio\\Testing\\testing program Ex 1.0\\file_testing\\Input_1.txt", ios_base::in);
+	if (file.fail() == true)
+	{
+		cout << "Mo file khong hop le!" << endl;
+		system("pause"); return;
+	}
+	//B3: Doc file
+	file >> n;
+	for (int i = 0; i < n; i++)
+	{
+		int tam{}; file >> tam;
+		a[i] = tam;
+	}
+	//B4: Dong file
+	file.close();
+}
+
+void output_read(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << a[i] << "\t";
+	}
+}
+============================================================================
+2.
+/*
+2. đọc các số nguyên từ file input.txt
+biết: chỉ có 1 dòng duy nhất chứa các số nguyên
+VD: input.txt
+12 345 1 7 12 1
+==== yêu cầu ==
+tìm các phần tử là số amstrong trong mảng số nguyên đó và ghi vào file ouput.txt
+*/
+#include<iostream>
+#include<fstream>
+#include<string>
+#define MAX 1000
+using namespace std;
+
+template<class p1>
+void open_file(int& n, p1 a[]);
+template<class p1>
+void output_read(int n, p1 a[]);
+//check so amstrong
+int count(int n);
+bool isamstrong(int n);
+//tao va ghi vao
+void write_file(int n, int a[]);
+
+void main()
+{
+	int n; int ds[MAX];
+
+	open_file(n, ds);
+	/*output_read(n, ds);*/
+	write_file(n, ds);
+
+	system("pause");
+}
+
+template<class p1>
+void open_file(int& n, p1 a[])
+{
+	fstream file;
+	file.open("C:\\Users\\phong\\Desktop\\My Work Space\\Visual_Studio\\Testing\\testing program Ex 1.0\\file_testing\\Input\\Input_Amstrong_Number.txt", ios_base::in);
+	n = 0; int i = 0;
+	while (!file.eof())
+	{
+		int x; file >> x;
+		a[i++] = x; n += 1;
+	}
+	file.close();
+}
+template<class p1>
+void output_read(int n, p1 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << a[i] << "\t";
+	}
+}
+//check so amstrong
+int count(int n)
+{
+	int c = 0;
+	while (n != 0)
+	{
+		n /= 10;
+		c += 1;
+	}
+	return c;
+}
+bool isamstrong(int n)
+{
+	int c = count(n);
+	int tmp = n, sum = 0, last;
+	while (tmp > 0)
+	{
+		last = n % 10;
+		tmp /= 10;
+		sum += pow(last, c);
+	}
+	if (sum == n)
+	{
+		return true;
+	}
+	else return false;
+}
+//tao va ghi vao
+void write_file(int n, int a[])
+{
+	ofstream file;
+	file.open("C:\\Users\\phong\\Desktop\\My Work Space\\Visual_Studio\\Testing\\testing program Ex 1.0\\file_testing\\Output\\Output_1.txt",ios_base::out | ios::trunc);
+	if (file.is_open())
+	{
+		for (int i = 0; i < n; i++)
+		{
+			int check = isamstrong(a[i]);
+			if (check == true)
+			{
+				file << a[i] << "\t";
+			}
+		}
+		file.close();
+	}
+	else cout << "NULL" << endl;
+}
+============================================================================
+3.
+

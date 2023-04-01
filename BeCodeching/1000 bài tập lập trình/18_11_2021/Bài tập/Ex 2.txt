@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int a = 6, b = 5, c = 2;
+
+	b += c;
+	b *= c;
+	
+	int d = 5;
+	d = (b--) - (c++);
+	d = (++b) + (--c) - a++;
+	 
+	cout << a << endl;
+	cout << b << endl;
+	cout << c << endl;
+	cout << d << endl;
+
+	system("pause");
+	return 0;
+}

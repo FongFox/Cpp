@@ -1,0 +1,6 @@
+Bài 122: Viết hàm tìm giá trị lớn nhất trong mảng 1 chiều các số thực																											x
+Bài 123: Viết hàm tìm 1 vị trí mà giá trị tại vị trí đó là giá trị nhỏ nhất trong mảng 1 chiều các số nguyên.(Tìm min rồi xuất ra ở vị trí của min)								x
+Bài 124: Viết hàm kiểm tra trong mảng các số nguyên có tồn tại giá trị chẵn nhỏ hơn 2004 hay không																				x
+Bài 125: Viết hàm đếm số lượng số nguyên tố nhỏ hơn 100 trong mảng																												x
+Bài 126: Viết hàm tính tổng các giá trị âm trong mảng 1 chiều các số thực																										x
+Bài 127: Viết hàm sắp xếp mảng 1 chiều các số thực tăng dần				

@@ -1,0 +1,246 @@
+1.
+Cấu trúc:
+Mảng tĩnh gồm:
++ vị trí (nằm liên tiếp).
++ giá trị nằm trong vị trí đó.
+Danh sách liên kết:
++ Chia 1 ô làm 2 bên (tính chất tượng trưng).
+- 1 bên lưu giữ giá trị nào đó. 
+- 1 bên còn lại lưu địa chỉ nó trỏ đến (hoặc nối tới). Nếu nằm vị trí cuối trong dslk thì địa chỉ của nó là NULL.
++ là tập hợp những node (hoặc nói cho dễ hiểu đó là phần tử).
++ 1 node bên trong được chia làm 2 phần 1 phần là để dữ liệu (data) phần còn lại chứ địa chỉ muốn trỏ đến 1 node tiếp theo (hoặc null nếu đó là node cuối).
+2.
+Thêm cuối
+/*
+testing
+*/
+#include<iostream>
+using namespace std;
+
+struct node
+{
+	//------------ data -------------
+	int data;
+	//--------- pointer -------------
+	node* pnext;
+};
+typedef struct node node;
+
+typedef struct dslk
+{
+	node* phead = NULL;
+	node* ptail = NULL;
+} dslk;
+//====================================
+node* tao(int x);
+void them(dslk& ds, int x);
+void output(dslk ds);
+
+//====================================
+int main()
+{
+	dslk ds; 
+	int lc = -1;
+	
+	while (lc != 0)
+	{
+		system("cls");
+		cout << "1. Nhap phan tu." << endl;
+		cout << "2. Xuat phan tu." << endl;
+		cout << "0. Thoat." << endl;
+		cout << "Nhap lc: "; cin >> lc;
+		switch (lc)
+		{
+		case 1:
+			int sl; cout << "Nhap so luong: "; cin >> sl;
+			for (int i = 1; i <= sl; i++)
+			{
+				int a;
+				cout << "Nhap phan tu thu " << i << " : "; cin >> a;
+				them(ds, a);
+			}
+			break;
+		case 2:
+			output(ds); system("pause"); break;
+		case 0:
+			cout << "Quitting!" << endl; system("pause"); break;
+		default:
+			cout << "Loi nhap lai!" << endl; break;
+		}
+	}
+
+	system("pause");
+}
+
+node* tao(int x)
+{
+	node* p = new node;
+	p->data = x;
+	p->pnext = NULL;
+	return p;
+}
+
+void them(dslk& ds, int x)
+{
+	//Nếu ds rỗng
+	if (ds.phead == NULL && ds.ptail == NULL)
+	{
+		//Chuyển data sang node
+		node* p = tao(x);//định nghĩa: tạo 1 vùng nhớ mới bên heap thêm data và pnext (vùng chứa địa chỉ con trỏ tiếp theo) và vùng nhớ được quy định sẵn. (toán tử new của con trỏ trong c++)
+		//thêm
+		ds.phead = ds.ptail = p;//Cắm cờ phead và ptail vào p (vì đây là phần tử đầu tiên được tạo nên phead bằng ptail).
+	}
+	else if (ds.phead != NULL && ds.ptail != NULL)
+	{
+		//Nếu ds có 1 p/tử
+		if (ds.phead == ds.ptail)
+		{
+			//chuyển data sang node
+			node* p = tao(x);
+			//thêm 
+			//b1.0: tạo cầu nối giữa vùng nhớ đầu với vùng nhớ đã được tạo (lấy ptail)
+			ds.ptail->pnext = p;
+			//b1.1: gán ptail vào vùng nhớ mới được tạo (hay p mới được tạo)
+			ds.ptail = p;
+		}
+		//Nếu ds có n p/tử
+		else if (ds.phead != ds.ptail)
+		{
+			//chuyển data sang node
+			node* p = tao(x);
+			//Thêm
+			//b1.0: tạo cầu nối giữa phần ptail và vùng nhớ mới taj0 (hay p mới tạo)
+			ds.ptail->pnext = p;
+			//b1.1: gán ptail vào vùng nhớ mới tạo (hay mới tạo)
+			ds.ptail = p;
+		}
+	}
+}
+
+void output(dslk ds)
+{
+	int i = 1;
+	for (node* k = ds.phead; k != NULL; k = k->pnext)
+	{
+		cout << "Phan tu thu " << i++ << " : " << k->data << endl;
+ 	}
+}
+==========================================================================================================================================================
+3.
+Thêm đầu
+/*
+Thêm đầu
+*/
+#include<iostream>
+using namespace std;
+
+struct node
+{
+	//============= data =============
+	int data;
+	//========== pointer =============
+	node* pnext;
+};
+typedef struct node node;
+
+typedef struct dslk
+{
+	node* phead = NULL;
+	node* ptail = NULL;
+} dslk;
+//===================================
+node* tao(int x);
+void them(dslk& ds, int x);
+void output(dslk ds);
+//===================================
+int main()
+{
+	dslk ds; int x;
+	int lc = -1;
+
+	while (lc != 0)
+	{
+		system("cls");
+		cout << "1. Nhap phan tu." << endl;
+		cout << "2. Xuat phan tu." << endl;
+		cout << "0. Thoat." << endl;
+		cout << "Nhap lua chon: "; cin >> lc;
+		switch (lc)
+		{
+		case 1:
+			int sl; cout << "Nhap phan tu can dung: "; cin >> sl;
+			for (int i = 1; i <= sl; i++)
+			{
+				cout << "Nhap phan tu thu " << i << " : "; cin >> x;
+				them(ds, x);
+			}
+			break;
+		case 2:
+			output(ds); system("pause"); break;
+		case 0:
+			cout << "Quitting!"; break;
+		default:
+			cout << "Loi nhap lai!"; break;
+		}
+	}
+
+	system("pause");
+}
+
+node* tao(int x)
+{
+	node* p = new node;
+	p->data = x;
+	p->pnext = NULL;
+	return p;
+}
+
+void them(dslk& ds, int x)
+{
+	//Nếu ds rỗng
+	if (ds.phead == NULL && ds.ptail == NULL)
+	{
+		//Chuyển data sang node
+		node* p = tao(x);
+		//Thêm 
+		ds.phead = ds.ptail = p;
+	}
+	else if (ds.phead != NULL && ds.ptail != NULL)
+	{
+		//Nếu ds có 1 p/tử
+		if (ds.phead == ds.ptail)
+		{
+			//Chuyển data sang node
+			node* p = tao(x);
+			//Thêm
+			//Gán phead vào phần tử mới tạo
+			ds.phead = p;
+			//Tạo cầu nối giữa p/tử mới tạo và p/tử đang có
+			ds.phead->pnext = ds.ptail;
+		}
+		//Nếu ds có n p/tử
+		else if (ds.phead != ds.ptail)
+		{
+			//chuyển data sang node
+			node* p = tao(x);
+			//Thêm
+			//tạo 1 cái tạm
+			node* tam = ds.phead;
+			//Gán phead vào phần tử mới tạo
+			ds.phead = p;
+			//tạo cầu nối giữa p/tử mới tạo và p/tử đang có
+			ds.phead->pnext = tam;
+		}
+	}
+}
+
+void output(dslk ds)
+{
+	int i = 1;
+	for (node* k = ds.phead; k != NULL; k = k->pnext)
+	{
+		cout << "Phan tu thu " << i++ << " : " << k->data << endl;
+	}
+}
+
+

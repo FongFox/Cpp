@@ -1,0 +1,93 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+	//--- data ---
+	int data;
+	//--- pointer ---
+	node *pleft;
+	node *pright;
+};
+typedef struct node node;
+typedef struct node* tree;
+//============================
+void them(tree &t, int x);
+node* khoi_tao_node(int x);
+void NLR(tree t);
+
+
+void main()
+{
+	tree t = NULL;
+
+	while (true)
+	{
+		system("cls");
+		cout << "1. Nhap pt vao cay" << endl;
+		cout << "2. Xuat cay" << endl;
+		int lc;
+		cout << "Nhap lc: ";cin >> lc;
+		switch (lc)
+		{
+		case 1:
+		{
+			int sl;cout << "Nhap sl pt can them: ";cin >> sl;
+			for (int i = 1;i <= sl;i++)
+			{
+				int x;
+				cout << "Nhap gia tri thu " << i << ": ";cin >> x;
+				//---- thêm -----
+				them(t, x);
+			}
+			break; 
+		}
+		case 2:
+		{
+			NLR(t);
+			system("pause");
+			break;
+		}
+		}
+	}
+	system("pause");
+
+}
+node* khoi_tao_node(int x)
+{
+	node *p = new node;
+	p->data = x;
+	p->pleft = NULL;
+	p->pright = NULL;
+	return p;
+}
+void them(tree &t, int x)//t'' = t'->pright
+{
+	if (t == NULL)//t'''
+	{
+		node *p = khoi_tao_node(x);
+		t = p;//t''' = p(7)
+	}
+	else
+	{
+		if (x > t->data)
+		{
+			them(t->pright, x);//
+		}
+		else if (x < t->data)
+		{
+			them(t->pleft, x);//
+		}
+	}
+}
+void NLR(tree t) 
+{
+	if (t != NULL)
+	{
+		//--- node ---
+		cout << t->data << endl;
+		//--- left ---
+		NLR(t->pleft);
+		//--- right ---
+		NLR(t->pright);
+	}
+}

@@ -1,0 +1,4 @@
+Bài 128 + 130: Viết hàm nhập, xuất mảng 1 chiều các số thực
+Bài 129 + 131: Viết hàm nhập, xuất mảng 1 chiều các số nguyên
+Bài 132: Viết hàm liệt kê các giá trị chẵn trong mảng 1 chiều các số nguyên
+Bài 133: Viết hàm liệt kê các vị trí mà giá trị tại đó là giá trị âm trong mảng 1 chiều các số thực

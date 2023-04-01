@@ -1,0 +1,123 @@
+//=== BT về nhà ===
+BT code:	Tiếp tục hoàn thiện code quản lý 3 loại nhân viên:  menu 6 chức năng  ( Nâng cao: tính lương)
+
+BT LT:
+1. class là gì:
+2. object là gì:
+
+
+//======================= giải LT ============================
+1. 
+object là đối tượng.
+class là là kiểu dữ liệu trong đó có thể chứa những thuộc tính của object.
+========================= giải code ==========================
+#include<iostream>
+#include<string>
+using namespace std;
+
+typedef class plumber
+{
+private:
+	string code;
+	string name;
+	int h_salary;
+	float h_work;
+	int salary;
+public:
+	void input_plumber()
+	{
+		cout << "============= Nhap thong tin ============" << endl;
+		cout << "Nhap ma so: "; getline(cin, this->code);
+		cout << "Nhap ho ten: "; getline(cin, this->name);
+		cout << "Nhap luong trong 1 gio: "; cin >> this->h_salary;
+		cout << "Nhap so gio lam: "; cin >> this->h_work;
+		salary = h_salary * h_work;
+	}
+	void output_plumber()
+	{
+		cout << "============ Xuat nv =============" << endl;
+		cout << "Ma so: " << this->code << endl;
+		cout << "Ho ten nhan vien: " << this->name << endl;
+		cout << "So gio lam cua nhan vien: " << this->h_work << endl;
+		cout << "Luong nhan vien (da tinh): " << this->salary << endl;
+	}
+} plumber;
+
+typedef class motorbike_taxi
+{
+private:
+	string code;
+	string name;
+	float km_traveled;
+	int salary_per_1_km;
+	int salary;
+public:
+	void input_motorbike_taxi()
+	{
+		cout << "============= Nhap thong tin ============" << endl;
+		cout << "Nhap ma so: "; getline(cin, this->code);
+		cout << "Nhap ho ten nhan vien: "; getline(cin, this->name);
+		cout << "Nhap luong trong 1 km: "; cin >> this
+			->salary_per_1_km;
+		cout << "Nhap so km da di: "; cin >> this->km_traveled;
+		salary = salary_per_1_km * km_traveled;
+	}
+	void output_motorbike_taxi()
+	{
+		cout << "============ Xuat nv =============" << endl;
+		cout << "Nhap ma so: " << this->code << endl;
+		cout << "Nhap ho ten nhan vien: " << this->name << endl;
+		cout << "Nhap so km da di: " << this->km_traveled << endl;
+		cout << "Luong cua nhan vien (da tinh): " << this->salary << endl;
+	}
+} motorbike_taxi;
+
+typedef class shipper
+{
+private:
+	string code;
+	string name;
+	int num_of_product_delivered;
+	int salary_per_1_product;
+	int salary;
+public:
+	void input_shipper()
+	{
+		cout << "============= Nhap thong tin ============" << endl;
+		cout << "Nhap ma so: "; getline(cin, this->code);
+		cout << "Nhap ho ten nhan vien: "; getline(cin, this->name);
+		cout << "Nhap luong 1 san pham: "; cin >> this
+			->salary_per_1_product;
+		cout << "Nhap so san pham da giao: "; cin >> this
+			->num_of_product_delivered;
+		salary = salary_per_1_product * num_of_product_delivered;
+	}
+	void output_shipper()
+	{
+		cout << "============ Xuat nv =============" << endl;
+		cout << "Ma so: " << this->code << endl;
+		cout << "Ho ten nhan vien: " << this->name << endl;
+		cout << "So san pham da giao: " << this
+			->num_of_product_delivered << endl;
+		cout << "Luong nhan vien (da tinh): " << this->salary << endl;
+	}
+} shipper;
+
+void main()
+{
+	plumber a;
+	motorbike_taxi b;
+	shipper c;
+
+	a.input_plumber();
+	cin.ignore();
+	b.input_motorbike_taxi();
+	cin.ignore();
+	c.input_shipper();
+
+	a.output_plumber();
+	b.output_motorbike_taxi();
+	c.output_shipper();
+
+	system("pause");
+}

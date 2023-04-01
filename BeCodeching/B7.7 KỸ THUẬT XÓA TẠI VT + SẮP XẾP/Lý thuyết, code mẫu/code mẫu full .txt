@@ -1,0 +1,448 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+	//--- data ---
+	int data;
+	//--- pointer ---
+	node *pnext;
+};
+typedef struct node node;
+
+typedef struct dslk
+{
+	node *phead = NULL;
+	node *tail = NULL;
+}dslk;
+//======================
+node* khoi_tao_node(int x);
+void them_cuoi(dslk &ds, int x);
+//-------------------------
+void xuat_ds(dslk ds);
+//----------- Thêm đầu ----------
+void them_dau(dslk &ds, int x);
+//--------- Xóa đầu ------
+void xoa_dau(dslk &ds);
+//---- Xóa cuối ----
+void xoa_cuoi(dslk &ds);
+//---- Thêm sau vt ----
+void them_sau_vt(dslk &ds, int x, int vt);
+//----- Xóa sau vt ---
+void xoa_sau_vt(dslk &ds, int vt);
+//--- Thêm trước vt ---
+void them_truoc_vt(dslk &ds, int vt, int x);
+//---- Xóa trước vt ----
+void xoa_truoc_vt(dslk &ds, int vt);
+//--- Xóa tại vt ---
+void xoa_tai_vt(dslk &ds, int vt);
+//--- sắp xếp ---
+void sap_xep(dslk &ds);
+
+void main()
+{
+	dslk ds;
+	while (true)
+	{
+		system("cls");
+		cout << "1. Nhap phan tu" << endl;
+		cout << "2. Xuat danh sach" << endl;
+		cout << "3. Them dau" << endl;
+		cout << "4. Xoa dau" << endl;
+		cout << "5. Xoa cuoi" << endl;
+		cout << "6. Them sau vt" << endl;
+		cout << "7. Xoa sau vt" << endl;
+		cout << "8. Them truoc vt" << endl;
+		cout << "9. Xoa truoc vt" << endl;
+		cout << "10. Xoa tai vt" << endl;
+		cout << "11. sap xep" << endl;
+
+		cout << "0. Thoat " << endl;
+		int lc;cout << "Nhap lc: ";cin >> lc;
+		switch (lc)
+		{
+		case 1:
+		{
+			int sl;cout << "Nhap sl pt can them: ";cin >> sl;
+			for (int i = 1;i <= sl;i++)
+			{
+				int x;cout << "Nhap pt thu " << i << ": ";cin >> x;
+				them_cuoi(ds, x);
+			}
+			break;
+		}
+		case 2:
+		{
+			xuat_ds(ds);
+			system("pause");
+			break;
+		}
+		case 3:
+		{
+			int x;cout << "Nhap pt can them: ";cin >> x;
+			them_dau(ds, x);
+			break;
+		}
+		case 4:
+		{
+			xoa_dau(ds);
+			break;
+		}
+		case 5:
+		{
+			xoa_cuoi(ds);
+			break;
+		}
+		case 6:
+		{
+			int x;
+			int vt;
+			cout << "Nhap gia tri can them: ";cin >> x;
+			cout << "Nhap vi tri can them: ";cin >> vt;
+			them_sau_vt(ds, x, vt);
+			break;
+		}
+		case 7:
+		{
+			int vt;
+			cout << "Nhap vi tri can xoa: ";cin >> vt;
+			xoa_sau_vt(ds, vt);
+			break;
+		}
+		case 8:
+		{
+			int x;
+			int vt;
+			cout << "Nhap gia tri can them: ";cin >> x;
+			cout << "Nhap vi tri can them: ";cin >> vt;
+			them_truoc_vt(ds, vt, x);
+			break;
+		}
+		case 9:
+		{
+			int vt;
+			cout << "Nhap vi tri can xoa: ";cin >> vt;
+			xoa_truoc_vt(ds, vt);
+			break;
+		}
+		case 10:
+		{
+			int vt;
+			cout << "Nhap vi tri can xoa: ";cin >> vt;
+			xoa_tai_vt(ds, vt);
+			break;
+		}
+		case 11:
+		{
+			sap_xep(ds);
+			break;
+		}
+		}
+	}
+	system("pause");
+}
+node* khoi_tao_node(int x)
+{
+	node *p = new node;
+	p->data = x;
+	p->pnext = NULL;
+	return p;
+}
+void them_cuoi(dslk &ds, int x)
+{
+	if (ds.phead == NULL)//ds rỗng
+	{
+		node *p = khoi_tao_node(x);
+		ds.phead = ds.tail = p;//Đầu == cuối == pt
+	}
+	else if (ds.phead != NULL)//n pt -> Lk cuối
+	{
+		node *p = khoi_tao_node(x);
+		ds.tail->pnext = p;//B1: Lk pt cuối với p
+		ds.tail = p;//B2: Cập nhật lại pt cuối
+	}
+}
+void xuat_ds(dslk ds)
+{
+	int i = 1;
+	for (node *k = ds.phead;k != NULL;k = k->pnext)
+	{
+		//Tại pt k đang xét
+		cout << "Pt thu " << i++ << " la: " << k->data << endl;
+	}
+}
+void them_dau(dslk &ds, int x)
+{
+	if (ds.phead == NULL)//rỗng
+	{
+		node *p = khoi_tao_node(x);//Chuyển data -> node
+		ds.phead = ds.tail = p;
+	}
+	else//ds co pt (1pt, npt)
+	{
+		node *p = khoi_tao_node(x);
+		p->pnext = ds.phead;//B1: Lk pt cần thêm với phead
+		ds.phead = p;//B2: Cập nhật phead
+	}
+}
+void xoa_dau(dslk &ds)
+{
+	if (ds.phead != NULL && ds.phead == ds.tail)//1 pt
+	{
+		delete ds.phead;//B1: Giải phóng pt đầu
+		ds.phead = ds.tail = NULL;//B2: CẬp nhật lại phead, ptail bằng NULL
+	}
+	else if (ds.phead != ds.tail)//n pt
+	{
+		node *tam = ds.phead;//B1: Cho tạm giữ pt đầu
+		ds.phead = ds.phead->pnext;//B2: Cập nhật phead
+		delete tam;//B3: giải phóng tạm
+	}
+}
+void xoa_cuoi(dslk &ds)
+{
+	if (ds.phead == ds.tail && ds.phead != NULL)
+	{
+		delete ds.phead;
+		ds.phead = ds.tail = NULL;
+	}
+	else if (ds.phead != ds.tail)//n pt
+	{
+		//Tìm vt áp cuối
+		for (node *k = ds.phead;;k = k->pnext)
+		{
+			if (k->pnext->pnext == NULL)//Áp cuối
+			{
+				//B1: Liên kết áp cuối với NULL
+				k->pnext = NULL;
+				//B2 : Giải phóng pt cuối
+				delete ds.tail;
+				//B3 : Cập nhật ptail
+				ds.tail = k;
+				return;//Thoát
+			}
+		}
+	}
+}
+void them_sau_vt(dslk &ds, int x, int vt)
+{
+	if (ds.phead != NULL)//1pt + n pt
+	{
+		for (node *k = ds.phead;k != NULL;k = k->pnext)
+		{
+			if (k->data == vt)
+			{
+				node *p = khoi_tao_node(x);//Khởi tạo mỗi lần cần thêm
+
+										   //--------- Thêm sau k ------------
+				p->pnext = k->pnext;//B1: p lk pt sau k
+				k->pnext = p;//B2: k lk với p
+				if (k->pnext->pnext == NULL)//k đang ở áp cuối -> Vừa thêm cuối
+				{
+					ds.tail = p;//Cập nhật ptail
+					return;
+				}
+				k = k->pnext;//Nhảy tránh lặp vô tận
+			}
+		}
+	}
+}
+void xoa_sau_vt(dslk &ds, int vt)
+{
+	if (ds.phead != ds.tail)//n pt
+	{
+		for (node *k = ds.phead;k->pnext != NULL;k = k->pnext)//Áp cuối
+		{
+			if (k->data == vt)
+			{
+				//Xóa sau k
+				node *tam = k->pnext;//B1: tạm giữ pt sau k
+				k->pnext = tam->pnext;//B2: k lk pt sau tạm
+				delete tam;//B3: giải phóng tạm
+				if (k->pnext == NULL)//k đang ở cuối -> Vừa xóa cuối
+				{
+					ds.tail = k;
+					return;
+				}
+			}
+		}
+	}
+}
+void them_truoc_vt1(dslk &ds, int vt, int x)//kiểm tra vt là pt sau k
+{
+	if (ds.phead == ds.tail && ds.phead != NULL)//1 pt
+	{
+		if (ds.phead->data == vt)
+		{
+			them_dau(ds, x);
+		}
+	}
+	else if (ds.phead != ds.tail)//n pt	(Tối thiểu là 2 pt)
+	{
+		for (node *k = ds.phead;k->pnext != NULL;k = k->pnext)//Áp cuối
+		{
+			if (k == ds.phead && ds.phead->data == vt)
+			{
+				them_dau(ds, x);
+			}
+			if (k->pnext->data == vt)//Thêm trước vt <=> thêm sau k
+			{
+				node *p = khoi_tao_node(x);
+				p->pnext = k->pnext;//B1: p lk pt sau k
+				k->pnext = p;//B2: k lk voi p
+
+				k = k->pnext;//Nhảy k để tránh lặp vô tận
+			}
+		}
+	}
+}
+void them_truoc_vt(dslk &ds, int vt, int x)//Cách 2: h theo k
+{
+	if (ds.phead != NULL)//1pt + n pt
+	{
+		node *h = NULL;
+		for (node *k = ds.phead;k != NULL;k = k->pnext)
+		{
+			if (k == ds.phead && ds.phead->data == vt)//vt ở đầu và chỉ kiểm tra 1 lần duy nhất
+			{
+				them_dau(ds, x);
+			}
+			else if (k->data == vt)
+			{
+				//Thêm trước k -> thêm sau h
+				node *p = khoi_tao_node(x);
+				p->pnext = h->pnext;
+				h->pnext = p;
+			}
+			//----
+			h = k;//h theo k
+		}
+	}
+}
+void xoa_truoc_vt1(dslk &ds, int vt)//h theo k + for khuyết
+{
+	if (ds.phead != ds.tail)//n pt
+	{
+		node *h = NULL;
+		for (node *k = ds.phead;k->pnext != NULL;)
+		{
+			if (k->pnext->data == vt &&k == ds.phead)//vt ở pt thứ 2 -> Xóa đầu
+			{
+				ds.phead = ds.phead->pnext;
+				delete k;//Vô định
+				k = ds.phead;//Nhảy về đầu
+				//-> Ko được nhảy lên bước lặp -> Sót pt
+			}
+			else
+			{
+				//ko phải vt
+				//vt ở vị trí 3,4,5,6,7...
+				if (k->pnext->data == vt)//xóa trước vt => xóa k -> xóa sau h
+				{
+					h->pnext = k->pnext;//h lk pt sau k
+					delete k;//giải phóng k => k bị vô định
+					k = h;//Lùi để tránh sót pt + tránh vô định
+				}
+				//--- h theo k
+				h = k;
+				//--- bước lặp ---
+				k = k->pnext;
+			}
+		}
+	}
+}
+void xoa_truoc_vt(dslk &ds, int vt)//h theo k + đảm bảo 100% vt ko nằm ở pt thứ 2
+{
+	if (ds.phead != ds.tail)//n pt
+	{
+
+		//-------- VT nằm ở pt thứ 2 (riêng)---------
+		//1		Đảm bảo 100% vt ko nằm ở pt thứ 2
+		// 1
+		// ph
+		while(ds.phead->pnext->data == vt)
+		{
+			node *tam = ds.phead;
+			ds.phead = ds.phead->pnext;
+			delete tam;
+
+			if (ds.phead->pnext == NULL)//còn 1 pt
+			{
+				return;
+			}
+		}
+		//-------- vt nằm ở các pt từ pt thứ 3 về cuối (h theo k làm)-----
+		node *h = NULL;
+		for (node *k = ds.phead;k->pnext != NULL;k = k->pnext)
+		{
+			if (k->pnext->data == vt)
+			{
+				// xóa sau h
+				h->pnext = k->pnext;
+				delete k;
+				k = h;
+			}
+			//---- h theo k ---
+			h = k;
+		}
+	}
+}
+void xoa_tai_vt(dslk &ds,int vt)//h theo k + for khuyết
+{
+	if (ds.phead != NULL)//1 pt + n pt
+	{
+		node *h = NULL;
+		for (node *k = ds.phead;k != NULL;)
+		{
+			if (k->data == vt && k == ds.phead)//vt ở đầu
+			{
+				//-- Xóa đầu --
+				ds.phead = ds.phead->pnext;//NULL
+				delete k;//k lại vô định
+				k = ds.phead;//Dựa vào phead thì ko được nhảy bước -> for khuyết
+				if (k == NULL)
+				{
+					//Vừa xóa xong -> ds rỗng -> Cập nhật ptail
+					ds.tail = ds.phead;
+					return;
+				}
+			}
+			else
+			{
+				//vt ở pt thứ 2,3,4,5,6
+				//ko phải vt
+				if (k->data == vt)
+				{
+					//-- xóa k -> Xóa sau h ---
+					h->pnext = k->pnext;
+					delete k;
+					k = h;//Lui để tránh sót pt + tránh vô định
+
+					//---- H đang ở đâu ---Nếu h ở cuối -> Vừa xóa cuối
+					if (h->pnext == NULL)
+					{
+						ds.tail = h;
+						return;
+					}
+				}
+				//---- h theo k --
+				h = k;
+				//--- Bước lặp ---
+				k = k->pnext;
+			}
+			
+		}
+	}
+}
+void sap_xep(dslk &ds)
+{
+	for (node *k = ds.phead;k->pnext!=NULL;k=k->pnext)//Áp cuối
+	{
+		for (node *h = k->pnext;h!=NULL;h=h->pnext)//Cuối
+		{
+			if (h->data < k->data)
+			{
+				swap(h->data,k->data);
+			}
+		}
+	}
+}

@@ -1,0 +1,118 @@
+Bài tập đệ quy: làm full
+Bài tập đệ quy
+
+Bài 1. Cho số nguyên dương n. Tính 1 + 2 + 3 + 4 +...+ n
+Bài 2. Cho số nguyên dương n. Tính 2 x 4 x 6 x...x 2n
+Bài 3. Cho số nguyên dương n. Tính S(n) = 1 + 1/3 + 1/5 + ... + 1/(2n+1)
+Bài 4. Cho số nguyên dương n. Đếm số lượng chữ số nguyên dương n
+
+Bài 5. Đổi sang hệ nhị phân của số nguyên dương n
+Bài 6. Cho 2 số nguyên dương a, b. Tìm ước chung lớn nhất của a và b
+Bài 7. Cho số nguyên dương n. In ra các giá trị từ 1 đến n
+
+=========================================================================
+Bài 1:
+#include<iostream>
+using namespace std;
+
+int sum(int n)
+{
+	if (n == 1)
+	{
+		return 1;
+	}
+	else
+	{
+		cout << n << " + " << n - 1 << endl;
+		return n + sum(n - 1);
+	}
+}
+
+void main()
+{
+	int n;
+	cout << "Nhap n: "; cin >> n;
+	
+	cout << sum(n) << endl;
+
+	system("pause");
+}
+=============
+Bài 2:
+#include<iostream>
+using namespace std;
+
+int gt(int n)
+{
+	if (n == 1)
+	{
+		return 1;
+	}
+	else
+	{
+		cout << 2 * n << " * " << 2 * (n - 1) << endl;
+		return (2 * n) * gt(n - 1);
+	}
+}
+
+void main()
+{
+	int n; 
+	cout << "Nhap n: "; cin >> n;
+
+	cout << gt(n) << endl;
+
+	system("pause");
+}
+===========================================
+Bài 3:
+#include<iostream>
+using namespace std;
+
+float sum(float n)
+{
+	if (n == 0)
+	{
+		return 1;
+	}
+	else
+	{
+		cout << " n= " << n << endl;
+		return 1 / (2 * n + 1) + sum(n - 1);
+	}
+}
+
+void main()
+{
+	float n;
+	cout << "Nhap n: "; cin >> n;
+
+	cout << sum(n) << endl;
+
+	system("pause");
+}
+===========================================
+Bài 4:
+#include<iostream>
+using namespace std;
+
+int count(int n)
+{
+	if (n == 1)
+	{
+		return 1;
+	}
+	else
+	{
+		return 1 + count(n / 10);
+	}
+}
+
+void main()
+{
+	int n;
+	cout << count(123456) << endl;
+
+	system("pause");
+}
+================================================

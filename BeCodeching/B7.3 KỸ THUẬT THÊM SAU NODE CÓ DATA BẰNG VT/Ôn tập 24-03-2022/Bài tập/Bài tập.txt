@@ -1,0 +1,3 @@
+BT về nhà:
+1. Trình bày phân tích + code mẫu kỹ thuật xóa sau vt
+2. TRình bày phân tích + code hàm thêm trước vt

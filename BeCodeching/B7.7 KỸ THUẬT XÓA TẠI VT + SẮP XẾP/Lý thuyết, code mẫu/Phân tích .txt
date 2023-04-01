@@ -1,0 +1,45 @@
+//========= Ôn tập Kỹ thuật xóa trước vt ==============
+
+	+ DS rỗng		ko có xử lý
+	+ DS có 1 pt	ko có xử lý
+
+	+ Ds có n pt	k->pnext->data ==vt
+		+ vt ở giữa
+				=> Xóa trước vt chính là xóa k -> xóa sau h
+				//B1: lk pt h với pt sau k
+				//B2: Giải phóng k
+				//B3: Lùi tránh sót pt + tránh vô định
+
+		+ vt ở đầu		Có gì đâu mà xóa
+
+		+ vt ở cuối		Tự đúng
+		+ vt ở pt thứ 2		h theo k + for khuyết
+					h theo k + 100% ko nằm ở đầu
+	 	+ vt ở áp cuối	Tự đúng
+		+ vt cách xa	Tự đúng
+		+ vt liên tiếp	Tự đúng
+
+//============= Xóa tại vt ====================
+
+
+	+ DS rỗng		ko có gì để xóa
+	+ DS có 1 pt
+	+ DS có n pt	k->data == vt + h theo k
+
+		+ vt ở giữa		Xóa vt -> xóa k => Xóa sau h
+				//B1: h lk pt sau k
+				//B2: giai phong k
+				//B3: lui - tranh vo dinh , tranh sot pt
+
+		+ vt ở cuối		vt ở cuối -> xóa sau h xong -> Kiểm tra h đang ở đâu, nếu h ở cuối -> cập nhật ptail
+		
+		+ vt ở pt đầu	<=> Xóa trước vt trường hợp vt ở pt thứ 2(Xóa đầu)
+				(Xoá đầu ko sử dụng h)
+				+ for khuyết
+				+ đảm bảo 100% vt ko nằm ở pt đầu
+
+		+ vt ở áp cuối	Tự đúng
+		+ vt ở pt thứ 2	Tự đúng
+
+		+ 2 vt liên tiếp	
+		+ 2 vt cách xa

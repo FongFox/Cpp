@@ -1,0 +1,17 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int d = 4, a = 4, c = (d += (a++) * 5);
+	c /= (d++) + (a--);
+	int b = (c++ - ++d) * a++;
+
+	cout << a << endl;
+	cout << b << endl;
+	cout << c << endl;
+	cout << d << endl;
+
+	system("pause");
+	return 0;
+}

@@ -1,0 +1,93 @@
+Bài 115:
+/*
+Viết chương trình nhập họ tên, điểm toán, điểm văn của 1 học sinh.
+Tính điểm trung bình và xuất ra kết quả
+*/
+
+#include<iostream>
+#define MAX 100
+using namespace std;
+
+void nhap_diem(float& math, float& literature)
+{
+	cout << "Nhap diem toan: "; cin >> math;
+	cout << "Nhap diem ngu van: "; cin >> literature;
+}
+
+float tinh(float math, float literature)
+{
+	float dtb;
+	dtb = (math + literature) / 2;
+	return dtb;
+}
+
+void xephocluc(float math, float literature)
+{
+	cout << "=========================Hoc luc=======================" << endl;
+	float dtb = tinh(math, literature);
+	if (dtb < 8.0)
+	{
+		if (dtb >= 6.5)
+		{
+			cout << "Kha." << endl;
+		}
+		else if (4.0 <= dtb && dtb < 6.5)
+		{
+			cout << "Trung binh." << endl;
+		}
+		else cout << "Yeu." << endl;
+	}
+	else cout << "Gioi." << endl;
+}
+
+int main()
+{
+	char name[MAX];
+	float math, literature;
+	cout << "Nhap ten hoc sinh: "; cin.getline(name, MAX);
+	do
+	{
+		nhap_diem(math, literature);
+	} while ((math <= -1 || math >= 11) || (literature <= -1 || literature >= 11));
+	xephocluc(math, literature);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+Bài 116:
+/*
+Viết chương trình nhập n và tính tổng S = 1 + 2 + 3 + … + n. (ko sử dụng hàm)
+*/
+
+#include<iostream>
+#define MAX 100
+using namespace std;
+
+void input(int& a, int& n, int& sum)
+{
+	sum = 0;
+	cout << "Nhap phan tu can su dung: "; cin >> a;
+	for (int i = 1; i <= a; i++)
+	{
+		cout << "Nhap phan tu thu " << i << ": "; cin >> n;
+		sum += n;
+	}
+}
+
+void output(int sum)
+{
+	cout << "Sum: " << sum << endl;
+}
+
+int main()
+{
+	int a, n, sum;
+	input(a, n, sum);
+	output(sum);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+Bài 117:

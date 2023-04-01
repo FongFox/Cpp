@@ -1,0 +1,275 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+struct node
+{
+	//-- data 
+	int data;
+	//-- pointer
+	node *pnext;
+};
+typedef struct node node;
+
+typedef struct dslk
+{
+	node *phead=NULL;
+	node *tail= NULL;
+}dslk;
+//==============
+node* khoi_tao_node(int x);
+void them_cuoi(dslk &ds, int x);
+void xuat(dslk ds);
+//--------- 3 ----------
+void xoa_tai_vt(dslk &ds, int vt);
+void xoa_cac_pt_amstrong(dslk &ds);
+//--- 4 ---
+void sap_xep_chan_tang_dan(dslk &ds);
+void load_file(dslk &ds);
+//=============================
+void main()
+{
+	dslk ds;
+	load_file(ds);
+
+	bool kt_menu = true;
+	while (kt_menu == true)
+	{
+		system("cls");
+		cout << "1. Them" << endl;
+		cout << "2. Xuat danh sach" << endl;
+		cout << "3. Xoa pt la so amstrong" << endl;
+		cout << "4. Sap xep cac pt chan tang dan" << endl;
+		cout << "Nhap lc: ";int lc;cin >> lc;
+		switch (lc)
+		{
+		case 1:
+		{
+			int sl;cout << "Nhap sl phan tu can them: ";cin >> sl;
+			for (int i = 1;i <= sl;i++)
+			{
+				int x;
+				cout << "Nhap pt thu "<<i<<": ";cin >> x;
+				them_cuoi(ds, x);
+			}
+			break;
+		}
+		case 2:
+		{
+			xuat(ds);
+			system("pause");
+			break;
+		}
+		case 3:
+		{
+			xoa_cac_pt_amstrong(ds);
+			break;
+		}
+		case 4:
+		{
+			sap_xep_chan_tang_dan(ds);
+			break;
+		}
+		}
+	}
+	system("pause");
+}
+//---- 1 ----
+
+//rong	đầu  = cuối = p
+//1 pt
+//n pt	lk pt ptail với p
+//		cập nhật ptail
+node* khoi_tao_node(int x)
+{
+	node *p = new node;
+	p->data = x;
+	p->pnext = NULL;
+	return p;
+}
+void them_cuoi(dslk &ds, int x)
+{
+	node *p = khoi_tao_node(x);
+	if (ds.phead == NULL)
+	{
+		ds.phead = ds.tail = p;
+	}
+	else
+	{
+		ds.tail->pnext = p;//lk pt ptail với p
+		ds.tail = p;//cập nhật ptail
+	}
+}
+void xuat(dslk ds)
+{
+	cout << "\t\t--- DS  -----" << endl;
+	int i = 1;
+	for (node *k = ds.phead;k != NULL;k = k->pnext)
+	{
+		cout << "PT thu " << i++ << " la: " << k->data << endl;
+	}
+}
+void xoa_tai_vt(dslk &ds,int vt)//h theo k + for khuyet
+{
+	if (ds.phead != NULL)
+	{
+		node *h = NULL;//2,3,4...
+		for (node *k = ds.phead;k != NULL;)
+		{
+			if (k->data == vt && k == ds.phead)//Xử lý vt ở đầu
+			{
+				ds.phead = ds.phead->pnext;//NULL
+				delete k;
+				k = ds.phead;
+				//ko nhảy
+				if (ds.phead == NULL)
+				{
+					ds.tail = NULL;return;
+				}
+			}
+			else// có vt hoặc ko vt tại các vị trí: 2,3,4,5...
+			{
+				if (k->data == vt)
+				{
+					//-- xoa sau h --
+					h->pnext = k->pnext;
+					delete k;
+					k = h;//Lùi
+					if (h->pnext == NULL)
+					{
+						ds.tail = h;
+						return;
+					}
+				}
+				//---- h theo k --
+				h = k;
+				//--- bước lặp --
+				k = k->pnext;
+			}
+		}
+	}
+}
+void xoa_cac_pt_amstrong1(dslk &ds)//Chan
+{
+	//			check
+	//			ph
+	//					h
+	//			1	3	3	6
+	//						k
+	node *check = ds.phead;//Đối chiếu với phead để xem có bị xóa đầu ko
+	node *h = ds.phead;
+	for (node *k = ds.phead;k != NULL;)
+	{
+		if (k->data%2==0)//số chẵn
+		{
+			xoa_tai_vt(ds,k->data);//Tái sử dụng
+
+			if (check != ds.phead)//Xóa đầu
+			{
+				check = k = h = ds.phead;
+				//ko nhảy
+			}
+			else//Không phải xóa đầu
+			{
+				k = h;
+				k = k->pnext;
+			}
+		}
+		else
+		{
+			k = k->pnext;
+		}
+	}
+}
+void xoa_cac_pt_amstrong2(dslk &ds)//Chan
+{
+	node *h = ds.phead;
+	for (node *k = ds.phead;k != NULL;)//k = k->pnext
+	{
+		if (k->data % 2 == 0 && k==ds.phead)
+		{
+				xoa_tai_vt(ds, k->data);
+				k = ds.phead;
+				//--- ko nhảy ----
+		}
+		else//vt ở các pt còn lại hoặc ko vt
+		{
+			if (k->data%2==0)
+			{
+				xoa_tai_vt(ds, k->data);
+				k = h;//Lùi tránh sót pt
+			}
+			//---- h theo k --
+			h = k;
+			k = k->pnext;
+		}
+		
+	}
+}
+void xoa_cac_pt_amstrong(dslk &ds)//cach 3: fix hàm xóa tại vt
+{
+	if (ds.phead != NULL)
+	{
+		node *h = NULL;//2,3,4...
+		for (node *k = ds.phead;k != NULL;)
+		{
+			if (k->data%2==0 && k == ds.phead)//Xử lý vt ở đầu
+			{
+				ds.phead = ds.phead->pnext;//NULL
+				delete k;
+				k = ds.phead;
+				//ko nhảy
+				if (ds.phead == NULL)
+				{
+					ds.tail = NULL;return;
+				}
+			}
+			else// có vt hoặc ko vt tại các vị trí: 2,3,4,5...
+			{
+				if (k->data%2==0)
+				{
+					//-- xoa sau h --
+					h->pnext = k->pnext;
+					delete k;
+					k = h;//Lùi
+					if (h->pnext == NULL)
+					{
+						ds.tail = h;
+						return;
+					}
+				}
+				//---- h theo k --
+				h = k;
+				//--- bước lặp --
+				k = k->pnext;
+			}
+		}
+	}
+}
+void sap_xep_chan_tang_dan(dslk &ds)
+{
+	for (node *k = ds.phead;k->pnext != NULL;k = k->pnext)
+	{
+		for (node *h = k->pnext;h != NULL;h = h->pnext)
+		{
+			if (k->data % 2 == 0 && h->data % 2 == 0)//Tìm kiếm chọn lọc
+			{
+				if (h->data < k->data)
+				{
+					swap(h->data, k->data);
+				}
+			}
+		}
+	}
+}
+void load_file(dslk &ds)
+{
+	ifstream fi("input.txt");
+	while (fi.eof() == false)
+	{
+		int x;//sv x
+		fi >> x;//file lần lượt từng thông tin
+
+		them_cuoi(ds, x);
+	}
+	fi.close();
+}

@@ -1,0 +1,16 @@
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int a = 5, b = 4, c = 3, d;
+	d = (++a) + (b++) + 6;
+	c = (d++) - (b++);
+	a = (--c) * (d++) - (b++);
+
+	cout << a << endl;
+	cout << b << endl;
+	cout << c << endl;
+	cout << d << endl;
+
+}

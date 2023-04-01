@@ -1,0 +1,33 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+typedef struct sv
+{
+	string ma_sv;
+	string ten;
+	float diem;
+	int tuoi;
+}sv;
+void main()
+{
+	sv a;
+
+	ifstream filein;
+	filein.open("input.txt", ios_base::in);
+	getline(filein, a.ma_sv, ',');
+	getline(filein, a.ten,',');
+	filein >> a.diem;
+	filein.ignore();
+	filein >> a.tuoi;
+
+	filein.close();
+
+	cout << a.ma_sv << endl;
+	cout << a.ten << endl;
+	cout << a.diem << endl;
+	cout << a.tuoi << endl;
+	
+
+	system("pause");
+}

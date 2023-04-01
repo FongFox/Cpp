@@ -1,0 +1,118 @@
+#include<iostream>
+using namespace std;
+
+struct node
+{
+	int data;
+	node* pnext = NULL;
+};
+typedef struct node node;
+
+typedef struct stack
+{
+	node* ptop = NULL;//phead
+} stack;
+//=================================================
+bool empty(stack s);
+node* create_node(int x);
+void push(stack& s, int x);
+int top(stack s);
+void pop(stack& s);
+void output(stack& s);
+
+void main()
+{
+	stack s; 
+	bool quit = false;
+	while (quit != true)
+	{
+		system("cls");
+		int choice;
+		cout << "Chuc nang cua stack." << endl;
+		cout << "1. push." << endl;
+		cout << "2. top." << endl;
+		cout << "3. pop." << endl;
+		cout << "4. top & pop" << endl;
+		cout << "0. Thoat." << endl;
+		cout << "Nhap lua chon: "; cin >> choice;
+		switch (choice)
+		{
+		case 0:
+			cout << "quitting." << endl; quit = true;
+			break;
+		case 1:
+			int n; int x;
+			cout << "Nhap so luong can them: "; cin >> n;
+			for (int i = 1; i <= n; i++)
+			{
+				cout << "Nhap phan tu thu " << i << " : "; cin >> x;
+				push(s, x);
+			}
+			break;
+		case 2:
+			cout << top(s) << endl;
+			system("pause");
+			break;
+		case 3:
+			pop(s);
+			break;
+		case 4: 
+			output(s); system("pause");
+			break;
+		default:
+			cout << "Loi nhap lai" << endl; system("pause");
+			break;
+		}
+
+	}
+	system("pause");
+}
+
+bool empty(stack s)
+{
+	if (s.ptop == NULL)
+		return true;
+	else
+		return false;
+}
+node* create_node(int x)
+{
+	node* p = new node;
+	p->data = x;
+	p->pnext = NULL;
+	return p;
+}
+void push(stack& s,int x)
+{
+	node* p = create_node(x);
+	if (empty(s) == true)
+	{
+		s.ptop = p;
+	}
+	else
+	{
+		p->pnext = s.ptop;
+		s.ptop = p;
+	}
+}
+int top(stack s)
+{
+	if (empty(s) == false)
+	{
+		return s.ptop->data;
+	}
+}
+void pop(stack& s)
+{
+	node* tam = s.ptop;
+	s.ptop = s.ptop->pnext;
+	delete tam;
+}
+void output(stack& s)
+{
+	while (empty(s) == false)
+	{
+		cout << top(s) << endl;
+		pop(s);
+	}
+}

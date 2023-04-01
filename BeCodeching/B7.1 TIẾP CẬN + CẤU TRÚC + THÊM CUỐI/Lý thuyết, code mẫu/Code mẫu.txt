@@ -1,0 +1,101 @@
+#include <iostream>
+using namespace std;
+struct node
+{
+	//----data ---
+	int data;
+	//---- pointer ---
+	node* pnext;
+};
+typedef struct node node;
+
+typedef struct dslk
+{
+	node *phead = NULL;
+	node *ptail = NULL;
+}dslk;
+
+//========================
+node* khoi_tao_node(int x);
+void them(dslk &ds, int x);
+void xuat_ds(dslk ds);
+
+void main()
+{
+	dslk ds;
+	while (true)
+	{
+		system("cls");
+		cout << "1. Nhap pt" << endl;//Them cuoi
+		cout << "2. Xuat danh sach" << endl;
+		cout << "0. Thoat" << endl;
+		int lc;
+		cout << "Nhap lc: ";cin >> lc;
+		switch (lc)
+		{
+		case 1:
+		{
+			int sl;cout << "Nhap sl pt can them: ";cin >> sl;
+			for (int i = 1;i <= sl;i++)
+			{
+				int x;
+				cout << "Nhap pt thu "<<i<<": ";cin >> x;
+				them(ds, x);
+			}
+			break;
+		}
+		case 2:
+		{
+			xuat_ds(ds);
+			system("pause");
+			break;
+		}
+		}
+	}
+
+	system("pause");
+}
+node* khoi_tao_node(int x)
+{
+	node *p = new node;
+	p->data = x;
+	p->pnext = NULL;
+	return p;
+}
+void them(dslk &ds,int x)
+{
+	//ds rỗng
+	if (ds.phead == NULL)
+	{
+		//Chuyển data -> node
+		node *p = khoi_tao_node(x);//BAX03
+		//Thêm
+		ds.phead = ds.ptail = p;//BAX03
+	}
+	else if (ds.phead != NULL && ds.phead == ds.ptail)//ds có 1 pt
+	{
+		//Chuyển data -> node
+		node *p = khoi_tao_node(x);
+		//Thêm
+		ds.ptail->pnext = p;//Nối cầu với nhà mới
+		ds.ptail = p;//Cập nhật lại ptail tại nhà mới
+	}
+	else if (ds.phead != ds.ptail)//ds có n pt
+	{
+		//Chuyển data -> node
+		node *p = khoi_tao_node(x);
+		//Thêm
+		ds.ptail->pnext = p;//Liên kết pt cuối với p
+		ds.ptail = p;//Cập nhật lại pt cuối
+	}
+}
+void xuat_ds(dslk ds)
+{
+	int i = 1;
+	cout << "\t\t==== DS =====" << endl;
+	for (node *k = ds.phead;k != NULL;k = k->pnext)//Thần chú
+	{
+		//Pt đang xét là pt k
+		cout << "Pt thu " << i++ << " la: " << k->data << endl;
+	}
+}

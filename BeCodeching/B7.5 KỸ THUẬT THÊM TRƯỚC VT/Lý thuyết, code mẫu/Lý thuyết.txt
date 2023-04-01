@@ -1,0 +1,40 @@
+//========= Ôn tập xóa sau vt ==============
+
+	+ DS rỗng		ko có gì để xóa
+	+ DS có 1 pt	Ko có gì để xóa
+	+ DS có n pt
+		- vt ở giữa		Xóa sau k
+					B1: Tam giữ pt sau k
+					B2: k lk pt sau tạm
+					B3: giải phóng tạm
+		- vt ở đầu		Tự đúng
+		- vt ở cuối		Ko có gì để xóa -> Áp cuối
+		- vt ở pt thứ 2	Tự đúng
+		- vt ở áp cuối	Xóa xong cần kt k đang ở đâu nếu k đang là pt cuối-> Vừa xóa cuối
+								=> Cần cập nhật ptail
+		- 2 vt cách xa	Tự đúng
+		- 2 vt liên tiếp
+				Giả thiết 1: Xóa theo logic:	1 2 2 2 3 4 -> 1 2 2 4
+				Giả thiết 2: Xóa theo thực tế:	1 2 2 2 3 4	-> 1 2 4
+
+
+-------------------- Thêm trước vt ----------------------------
+
+	+ DS rỗng
+	+ DS có 1 pt
+	+ DS có n pt		k->pnext->Data==vt
+		- vt ở giữa		Thêm  trước vt -> thêm sau k
+					B1: p lk pt sau k
+					B2: k lk với p
+				Nhớ nhảy k - > tránh lặp vô tận
+
+		- vt ở đầu	(*)	Cần kiểm tra phead->Data==vt => Thêm đầu
+					Chỉ kiểm tra 1 lần duy nhất (k đứng tại phead)
+		- vt ở cuối		Tự đúng
+		- vt ở pt thứ 2 (*)	Tự đúng
+		- vt ở áp cuối	Tự đúng
+		- 2 vt cách xa	Khởi tạo bên trong -> Đúng
+		- 2 vt liên tiếp	Tự đúng
+
+		- vt == x		Đã có nhảy k -> Tự đúng nhờ xử lý vt ở đầu
+				Lưu ý: vt ở đầu + vt == x => Chỉ kiểm tra 1 lần

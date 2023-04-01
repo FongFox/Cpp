@@ -1,0 +1,183 @@
+#include<iostream>
+using namespace std;
+
+struct node
+{
+	int data;
+	node* pnext = NULL;
+};
+typedef struct node node;
+typedef struct queue
+{
+	node* phead = NULL;
+	node* ptail = NULL;
+} queue;
+//==================================
+bool empty(queue q);
+node* create_node(int x);
+void push(queue& q, int x);
+void pop(queue& q, int x); //1: xoá đầu; 0: xoá cuối
+int front(queue q);
+void front_pop(queue& q);
+int back(queue q);
+void back_pop(queue& q);
+
+void main()
+{
+	queue q; bool quit = false;
+	while (quit != true)
+	{
+		system("cls");
+		int c;
+		cout << "Thiet ke chuc nang queue." << endl;
+		cout << "1. empty." << endl;
+		cout << "2. push." << endl;
+		cout << "3. front" << endl;
+		cout << "4. back" << endl;
+		cout << "5. front pop" << endl;
+		cout << "6. back pop" << endl;
+		cout << "Nhap lua chon: "; cin >> c;
+		switch (c)
+		{
+		case 0:
+			cout << "quitting" << endl; quit = true;
+			break;
+		case 1:
+			cout << empty(q) << endl; system("pause");
+			break;
+		case 2:
+			int n; int x;
+			cout << "Nhap so luong can dung: "; cin >> n;
+			for (int i = 1; i <= n; i++)
+			{
+				cout << "Nhap phan tu so " << i << " : "; cin >> x;
+				push(q, x);
+			}
+			break;
+		case 3:
+			cout << front(q) << endl; system("pause");
+			break;
+		case 4:
+			cout << back(q) << endl; system("pause");
+			break;
+		case 5:
+			front_pop(q); system("pause");
+			break;
+		case 6:
+			back_pop(q); system("pause");
+			break;
+		default:
+			cout << "Loi nhap lai" << endl;
+			break;
+		}
+	}
+	system("pause");
+}
+
+bool empty(queue q)
+{
+	if (q.phead == NULL && q.ptail == NULL)
+		return true;
+	else
+		return false;
+}
+node* create_node(int x)
+{
+	node* p = new node;
+	p->data = x;
+	p->pnext = NULL;
+	return p;
+}
+void push(queue& q, int x)
+{
+	node* p = create_node(x);
+	if (empty(q) == true)
+	{
+		q.phead = q.ptail = p;
+	}
+	else
+	{
+		if (q.phead == q.ptail)
+		{
+			q.phead->pnext = p;
+			q.ptail = p;
+		}
+		else
+		{
+			q.ptail->pnext = p;
+			q.ptail = p;
+		}
+	}
+}
+void pop(queue& q, int x) //1: xoá đầu; 0: xoá cuối
+{
+	if (x == 1)
+	{
+		if (q.phead == q.ptail)
+		{
+			node* t = q.phead;
+			q.phead = q.ptail = NULL;
+			delete t;
+		}
+		else 
+		{
+			node* t = q.phead;
+			q.phead = t->pnext;
+			t->pnext = NULL;
+			delete t;
+		}
+	}
+	else
+	{
+		if (q.phead == q.ptail)
+		{
+			node* t = q.phead;
+			q.phead = q.ptail = NULL;
+			delete t;
+		}
+		else
+		{
+			for (node* k = q.phead; k != NULL; k = k->pnext)
+			{
+				if (k->pnext == q.ptail)
+				{
+					node* t = q.ptail;
+					q.ptail = k;
+					k->pnext = NULL;
+					delete t;
+				}
+			}
+		}
+	}
+	
+}
+int front(queue q)
+{
+	if (empty(q) == false)
+	{
+		return q.phead->data;
+	}
+}
+void front_pop(queue& q)
+{
+	while (empty(q) == false)
+	{
+		cout << front(q) << endl;
+		pop(q, 1);
+	}
+}
+int back(queue q)
+{
+	if (empty(q) == false)
+	{
+		return q.ptail->data;
+	}
+}
+void back_pop(queue& q)
+{
+	while (empty(q) == false)
+	{
+		cout << back(q) << endl;
+		pop(q, 0);
+	}
+}

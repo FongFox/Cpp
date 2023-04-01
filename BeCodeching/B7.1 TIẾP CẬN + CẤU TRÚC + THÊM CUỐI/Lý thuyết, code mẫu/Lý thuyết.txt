@@ -1,0 +1,47 @@
+//============= Cấu trúc dữ liệu và giải thuật =============
++ DSLK
+	+ Cấu trúc					x
+	+ Thêm Đầu, cuối				x
+	+ Xóa đầu, cuối				x
+
+	+ Thêm sau vt				x
+	+ Xóa sau vt				x
+
+	+ Thêm trước vt				x
+	+ Xóa tại vt				x
+	+ sắp xếp
+
+	+ Xóa trước vt
+	+ Thêm trước sau
+	+ Xóa trước sau
++ stack queue
++ đệ quy, tree nhị phân, cây AVL
+
+//============== Tiếp cận ====================
+Mảng: Tập hợp các pt liên tiếp nhau trong bộ nhớ
+
+	=> Nhược: Phân mảnh bộ nhớ
+	=> Ưu: Dễ truy cập -> Toán tử chỉ số
+ 
+
+DSLK là gì: Tập hợp các pt rải rác nhau trong bộ nhớ
+
+	=> Ưu: Khắc phục được phân mảnh -> Tiết kiệm bộ nhớ
+	=> Nhược: Khó truy cập
+
+//============= Danh sách kỹ thuật ==============
+
+
+	+ Thêm cuối
+		- DS rỗng		Đầu bằng cuối bằng pt cần thêm
+				phead = ptail = p
+
+ 		- DS có 1 pt	ptail->pnext = p	//Liên kết pt cuối với p
+				ptail = p		//Cập nhật lại pt cuối
+
+		- Ds có n pt	Tương tự trường hợp ds có 1 pt.
+
+ 	+ Thêm đầu
+	+ Xóa đầu
+
+	+ Xóa cuối

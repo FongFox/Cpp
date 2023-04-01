@@ -1,0 +1,150 @@
+#include <iostream>
+#include <string>
+#include <stack>
+#include <queue>
+#include <cstdlib>
+using namespace std;
+stack<string> s;
+queue<string> q;
+void chuyen_trung_to_sang_hau_to(string a);
+int uu_tien(string s);
+void chuyen_hau_to_ve_kq();
+int main()
+{
+	
+	string a = "215+6*(5*(15/5)-4)+2*3";
+	chuyen_trung_to_sang_hau_to(a);
+	//================ test =====================
+	/*while (q.empty() == false)
+	{
+		cout << q.front() << " ";
+		q.pop();
+	}
+	cout << endl;*/
+	//================================
+	chuyen_hau_to_ve_kq();
+	system("pause");
+	return 0;
+}
+void chuyen_trung_to_sang_hau_to(string a)//215	6 5 15 5 / * 4 - * + 2 3 * +
+{
+	//*(5*(15/5)-4)+2*3
+	
+	//xet th: 6				s: + 				q:	215
+	//xet tt: +
+	string xet_tt, xet_th;//toan tu, toan hang
+	//=========== bieu thuc con pt ===============
+	while (a.length() != 0)
+	{
+		if (a[0] >= 48 && a[0] <= 57)
+		{
+			xet_th.push_back(a[0]);
+			a.erase(a.begin() + 0);//xoa pt dau string a
+		}
+		else
+		{
+			if (xet_th.length() != 0)
+			{
+				//toan tu: B1: dua xet_tt vao queue
+				q.push(xet_th);
+				//B2: reset xet_tt
+				xet_th.clear();
+			}
+			
+			//B3: xy ly cho tt
+			xet_tt = a[0];//cho xet_tt giu toan tu can xu ly (a[0])
+			if (s.empty() == true || xet_tt == "(")
+			{
+				s.push(xet_tt);
+				a.erase(a.begin() + 0);//xoa pt dau string a
+			}
+			else if (xet_tt == ")")
+			{
+				if (s.top() != "(")
+				{
+					q.push(s.top());//push tt ngoai cung vao queue
+					s.pop();// xoa 
+				}
+				else// == (
+				{
+					s.pop();//vut (
+					a.erase(a.begin() + 0);//xoa pt dau string a :    )
+				}
+			}
+			else
+			{
+				//s.top()//toan tu ngoai cung stack
+				if ((s.top() == "(") || (uu_tien(xet_tt) > uu_tien(s.top())))//tt dang xet > tt ngoai cung stack
+				{
+					s.push(xet_tt);//push tt dang xet vao stack
+					a.erase(a.begin() + 0);//xoa pt dau string a
+				}
+				else if (uu_tien(xet_tt) <= uu_tien(s.top()))
+				{
+					q.push(s.top());//push tt ngoai cung vao queue	: lay xem
+					s.pop();// xoa 
+				}
+			}
+		}
+	}
+	//=========== bieu thuc het pt ===========
+	//B1: chuyen xet_th qua q
+	q.push(xet_th);
+	//B2: chuyen lan luot cac pt con lai cua s sang q
+	while (s.empty() == false)
+	{
+		q.push(s.top());
+		s.pop();
+	}
+	//=================== hoan thanh =================
+}
+int uu_tien(string s)// chi xu ly cho toan tu:	chi co 1 pt
+{
+	if (s[0] == '*' || s[0] == '/' || s[0] == '%')
+	{
+		return 2;
+	}
+	else if (s[0] == '+' || s[0] == '-')
+	{
+		return 1;
+	}
+}
+void chuyen_hau_to_ve_kq()
+{
+	//q: 
+	//s: 287	
+	//xet: /
+	while (q.empty() == false)
+	{
+		string xet = q.front();
+		if (xet[0] >= 48 && xet[0] <= 57)//toan hang
+		{
+			s.push(q.front());//dua sang stack
+		}
+		else
+		{
+			int p1 = atoi(s.top().c_str());s.pop();
+			int p2 = atoi(s.top().c_str());s.pop();
+			int sum = 0;
+			if (xet == "+")
+			{
+				sum = p2 + p1;
+			}
+			else if (xet == "-")
+			{
+				sum = p2 - p1;
+			}
+			else if (xet == "*")
+			{
+				sum = p2 * p1;
+			}
+			else if (xet == "/")
+			{
+				sum = p2 / p1;
+			}
+			s.push(to_string(sum));
+		}
+		q.pop();
+	}
+	cout << "KQ: " << s.top() << endl;
+}

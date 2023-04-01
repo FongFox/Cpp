@@ -1,0 +1,110 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int tong(int n)
+{
+	if (n == 1)
+	{
+		return 1;
+	}
+	else
+	{
+		return  n + tong(n - 1);
+	}
+}
+float tong2(int n)
+{
+	if (n == 0)
+	{
+		return 1;
+	}
+	else
+	{
+		return (float)1 / (2 * n + 1) + tong2(n - 1);
+	}
+}
+int dem_sl_chu_so(int n)
+{
+	if (n == 0)
+	{
+		return 0;
+	}
+	else
+	{
+		return 1 + dem_sl_chu_so(n / 10);
+	}
+}
+int ucln(int a, int b)
+{
+	if (a == b)
+	{
+		return a;
+	}
+	else
+	{
+		if (a > b)
+		{
+			return ucln(a - b, b);
+		}
+		else if (b > a)
+		{
+			return ucln(a, b - a);
+		}
+	}
+}
+void doi(int n)
+{
+	if (n == 0)
+	{
+		//ko lam gi
+	}
+	else
+	{
+		//cout << n % 2;
+
+		doi(n / 2);//------------
+		cout << n % 2;
+	}
+}
+//doi(10)	in0 + doi(5) + in0
+//doi(5)	in1 + doi(2) + in1
+//doi(2)	in0 + doi(1) + in0
+//doi(1)	in1 + doi(0) + in1
+//doi(0)	_					_
+
+
+void doi2(int n,string &s)
+{
+	if(n!=0)
+	{
+		doi2(n / 2,s);//----------------
+		
+		s.push_back((n % 2) + 48);
+	}
+}
+void xuat(int n)
+{
+	if (n!=0)
+	{
+		
+		xuat(n - 1);//----------
+		cout << n;
+	}
+}
+void main()
+{
+	//cout << tong(5) << endl;
+	//cout << tong2(3) << endl;
+
+	//cout << dem_sl_chu_so(16754) << endl;
+	//cout << ucln(8, 6) << endl;
+
+	//doi(10);
+	/*string s = "";
+	doi2(10, s);
+	cout << s << endl;*/
+
+	xuat(10);
+	system("pause");
+
+}

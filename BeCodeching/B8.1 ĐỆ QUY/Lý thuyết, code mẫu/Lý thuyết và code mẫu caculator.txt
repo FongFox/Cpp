@@ -1,0 +1,178 @@
+//======== stack, queue =======
+
+stack segment: vùng nhớ lưu các biến cục bộ
+
+stack: Ngăn xếp	- LIFO
+
+	+ empty
+	+ push
+	+ pop
+	+ top
+
+Ứng dụng: undo, redo
+				push: cuối
+				pop: cuối
+				top: cuối
+
+			VD:	ptop			ptail
+				1	2	3	4
+	------------------------------------------------------------
+				push: đầu
+				pop: đầu
+				top: đầu
+
+			VD2:	ptop
+				4	3	2	1
+queue: Hàng đợi - FiFO
+
+	+ empty
+	+ push
+	+ pop
+	+ front : pt vô đầu tiên
+	+ back : pt vô cuối
+
+				push: Đầu
+				pop: Cuối
+				front: Cuối
+
+			VD1:	phead			ptail
+				4	3	2	1
+
+
+				push: Cuối
+				pop: Đầu
+				front: Đầu
+				back: Cuối
+
+			VD2:	phead			ptail
+				1	2	3	4
+
+
+//====== Ký pháp nghịch đảo Ba Lan ===== caculator
+
+	Trung tố: Toán tử nằm giữa 2 toán hạng	(2*3 - 4)*2
+	Tiền tố: Toán tử nằm đầu biểu thức	- *2 3 * 4 2
+	Hậu tố: Toán tử nằm cuối biểu thức	2 3 * 4 - 2 *
+
+
+//------ Độ ưu tiên toán tử:
+	^  	>	*,/,%	>	+,-	>	=
+//-----------------------------------------
++ Nếu là toán hạng -> push queue
++ Nếu là toán tử: (B1)- Nếu stack rỗng -> push stack
+		- Nếu pt ngoài cùng stack là ( -> push stack
+		- Nếu tt đang xét > tt ngoài cùng -> push tt đang xét vào stack
+		- Nếu tt đang xét <= tt ngoài cùng -> push tt ngoài cùng cho queue -> Quay lại B1
+
++ Nếu là dấu (  -> push stack
++ Nếu là dấu ):(B1)	- Nếu toán tử ngoài cùng là dấu ( -> pop (      	(Triệt tiêu)
+		- Nếu tt ngoài cùng stack không phải à (	-> push tt ngoài cùng stack cho queue 
+									-> Quay lại B1
++ Nếu hết biểu thức -> push lần lượt các pt ở stack cho queue
+
+		2 *(2*3 - 4) + 4*3 - 2
+
+
+Xét			stack			queue
+2						2
+*			*			2
+(			*(			2
+2			*(			2 2 
+*			*(*			2 2
+3			*(*			2 2 3
+-			*(-			2 2 3 *
+4			*(-			2 2 3 * 4
+)			*			2 2 3 * 4 -
++			+			2 2 3 * 4 - *
+4			+			2 2 3 * 4 - * 4
+*			+*			2 2 3 * 4 - * 4
+3			+*			2 2 3 * 4 - * 4 3
+-			-			2 2 3 * 4 - * 4 3 * +
+2			-			2 2 3 * 4 - * 4 3 * + 2
+						2 2 3 * 4 - * 4 3 * + 2 -
+
+	2 *(2*3 - 4) + 4*3 - 2			KD: 	2 2 3 * 4 - * 4 3 * + 2 -
+
+stack:					queue:   
+14			
+
+	tpop1: 2		16 - 2
+	tpop2: 16		tpop2 toán tử tpop1
+
+
+
+//============== BT VN =============
+1.	12 + 3 * (6/2) - (5*(15/5)) + 7 - 2*3
+
+
+Xét		stack			queue
+12					12
++		+			12
+3		+			12 3
+*		+*			12 3
+(		+*(			12 3
+6		+*(			12 3 6
+/		+*(/			12 3 6
+2		+*(/			12 3 6 2		
+)		+*			12 3 6 2 /
+-		-			12 3 6 2 / * +	(5*(15/5)) + 7 - 2*3
+(		-(			12 3 6 2 / * +
+5		-(			12 3 6 2 / * + 5
+*		-(*			12 3 6 2 / * + 5
+(		-(*(			12 3 6 2 / * + 5
+15		-(*(			12 3 6 2 / * + 5 15
+/		-(*(/			12 3 6 2 / * + 5 15
+5		-(*(/			12 3 6 2 / * + 5 15 5
+)		-(*			12 3 6 2 / * + 5 15 5 /
+)		-			12 3 6 2 / * + 5 15 5 / *
++		+			12 3 6 2 / * + 5 15 5 / * -
+7		+			12 3 6 2 / * + 5 15 5/ * - 7
+-		-			12 3 6 2 / * + 5 15 5/ * - 7 +
+2		-			12 3 6 2 / * + 5 15 5/ * - 7 + 2
+*		-*			12 3 6 2 / * + 5 15 5/ * -7 + 2
+3		-*			12 3 6 2 / * + 5 15 5/ * - 7 + 2 3
+				KQ:	12 3 6 2 / * + 5 15 5/ * - 7 + 2 3 * -
+
+	12 + 3 * (6/2) - (5*(15/5)) + 7 - 2*3
+
+stack				queue: 
+7
+
+	tpop1: 15
+	tpop2: 21
+
+
+
+
+
+2.	10 - 3 * (6/2) + 3 * (5*(15/5)) - 7 - 2*3 + 6*5
+
+	10 3 6 2 / * - 3 5 15 5 / * * + 7 - 2 3 * - 6 5 * +
+	
+
+	
+
+
+3.	20 + (2*(3*4)/2) - 3 * (6/2) + 3*(5*(15/5))- 7 + 2 * 3
+
+	20 2 3 4 * * 2 / + 3 6 2 / * - 3 5 15 5 / * * + 7 - 2 3 * +
+
+
+Xét		stack		queue
+20				20
++		+		20
+(		+(		20
+2		+(		20 2
+*		+(*		20 2
+(		+(*(		20 2
+3		+(*(		20 2 3
+*		+(*(*		20 2 3
+4		+(*(*		20 2 3 4
+)		+(*		20 2 3 4 *
+/		+(/		20 2 3 4 * *
+2		+(/		20 2 3 4 * * 2
+)		+		20 2 3 4 * * 2 /
+-		-		20 2 3 4 * * 2 / +
+
+
+	20  2 3 4 * * 2 / +
