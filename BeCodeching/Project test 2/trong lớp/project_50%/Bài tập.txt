@@ -1,0 +1,3 @@
+Bài tập tại lớp này anh sẽ lấy cột lý thuyết mã bài Test2
+
+BT ứng dụng: code full các chức năng nhập xuất load file cho 4 đối tượng

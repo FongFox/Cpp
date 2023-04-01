@@ -1,0 +1,55 @@
+//================ dsmon ================
+KCN11,Lap Trinh C,2,1
+KCN22,Huong Doi Tuong,3,0
+KCN33,Cau Truc Du Lieu,3,1
+KTC11,Mac,3,0
+KTC22,Toan Roi Rac,2,1
+//================ dslop ================
+CN02,Cong Nghe 2,2017
+CN01,Cong Nghe 1,2016
+AT01,An Toan 1,2017
+//================= dssv ====================
+3
+CN123,Nguyen Van,A,Nam,0123456
+CN234,Nguyen Van,D,Nam,01253456
+CN456,Nguyen, A,Nam,012356
+3
+CN567,Nguyen Van,S,Nam,01234656
+CN789,Nguyen Thi,E,Nam,012341156
+CN158,Nguyen Van,C,Nam,01234556
+2
+AT123,Tran Van,C,Nam,012342256
+AT234,Tran,C,Nam,0123422856
+//================ dsdiem ================
+3
+KCN11,1,7
+KCN22,1,8.5
+KCN33,1,5.6
+3
+KCN11,1,7
+KCN22,1,9
+KCN33,1,5.7
+3
+KCN11,1,7
+KCN22,1,8
+KCN33,1,5
+3
+KCN33,1,7
+KCN22,1,8
+KCN11,1,5
+3
+KCN33,1,7
+KCN22,1,8
+KCN11,1,5
+3
+KCN33,1,7
+KCN22,1,8
+KCN11,1,5
+3
+KTC11,1,7
+KTC22,1,8
+KCN11,1,5
+3
+KTC11,1,7
+KTC22,1,8
+KCN11,1,5

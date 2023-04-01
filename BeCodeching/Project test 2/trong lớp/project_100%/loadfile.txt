@@ -1,0 +1,93 @@
+#pragma once
+#include "ctdl.h"
+//============= Khu vực nguyên mẫu các hàm cần thiết cho file loadfile =====
+node_sv* khoi_tao_node(sv x);
+void them_cuoi_sv(danh_sach_sv &ds_sv, sv x);
+//-----------
+node_diem_tp* khoi_tao_node(diem_tp x);
+void them_cuoi_diem_tp(danh_sach_diem &ds_diem, diem_tp x);
+//===============================================================
+void load_ds_mh(danh_sach_mh &ds_mh)
+{
+	ifstream fi("ds_mh.txt");
+	//--- doc file ---
+	while (fi.eof() == false)
+	{
+		mon_hoc a;
+		getline(fi, a.ma_mh, ',');
+		getline(fi, a.ten_mh, ',');
+		fi >> a.stclt;
+		fi.ignore();//Bỏ ,
+		fi >> a.stcth;
+		fi.ignore();//Bỏ \n
+		//---- thêm ---
+		ds_mh.ds[ds_mh.sl++] = a;
+	}
+	fi.close();
+}
+void load_ds_lop(danh_sach_lop &ds_lop)
+{
+	ifstream fi("ds_lop.txt");
+	//--- doc file ---
+	while (fi.eof() == false)
+	{
+		lop a;
+		getline(fi, a.ma_lop, ',');
+		getline(fi, a.ten_lop, ',');
+		fi >> a.nien_khoa;
+		fi.ignore();//Bỏ \n
+		//---- thêm ---
+		ds_lop.ds[ds_lop.sl++] = a;
+	}
+	fi.close();
+}
+void load_ds_sv(danh_sach_lop &ds_lop)
+{
+	ifstream fi("ds_sv.txt");
+	//--- doc file ---
+	for (int i = 0;i < ds_lop.sl;i++)
+	{
+		int n;//sl sinh viên của lớp i - mình lấy trong file
+		fi >> n;
+		fi.ignore();//bỏ \n
+		for (int j = 1;j <= n;j++)//n ông sinh viên
+		{
+			sv a;//lưu tạm data
+			getline(fi, a.ma_sv, ',');
+			getline(fi, a.ho, ',');
+			getline(fi, a.ten, ',');
+			getline(fi, a.phai, ',');
+			getline(fi, a.sdt);
+			//---- thêm ---
+			them_cuoi_sv(ds_lop.ds[i].ds_sv, a);//Cần xài
+		}
+	}
+	fi.close();
+}
+void load_ds_diem(danh_sach_lop &ds_lop)
+{
+	ifstream fi("ds_diem_sv.txt");
+	//--- doc file ---
+	for (int i = 0;i < ds_lop.sl;i++)//từng lớp
+	{
+		for (node_sv *k = ds_lop.ds[i].ds_sv.phead;k != NULL;k = k->pnext)
+		{
+			//Tại sv k -> Load diem
+			int n;//sl điểm tp của sv k
+			fi >> n;
+			fi.ignore();//Bỏ \n
+			for (int j = 1;j <= n;j++)
+			{
+				diem_tp a;
+				getline(fi, a.ma_mh, ',');
+				fi >> a.lan;
+				fi.ignore();//bỏ ,
+				fi >> a.diem;
+				fi.ignore();//Bỏ \n
+				//---- thêm ---
+				them_cuoi_diem_tp(k->data.ds_diem, a);
+			}
+		}
+	}
+	fi.close();
+}

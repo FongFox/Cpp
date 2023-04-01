@@ -1,0 +1,78 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#define MAX 100
+using namespace std;
+//=========== DS môn học =====
+typedef struct mon_hoc
+{
+	string ma_mh;
+	string ten_mh;
+	int stclt;
+	int stcth;
+}mon_hoc;
+
+typedef struct danh_sach_mh
+{
+	mon_hoc ds[MAX];
+	int sl = 0;
+}danh_sach_mh;
+
+//=========== DS điểm tp =====
+typedef struct diem_tp
+{
+	string ma_mh;
+	int lan;
+	float diem;
+}diem_tp;
+struct node_diem_tp
+{
+	//--- data---
+	diem_tp data;
+	//--- pointer --
+	node_diem_tp *pnext;
+};
+typedef struct node_diem_tp node_diem_tp;
+typedef struct danh_sach_diem
+{
+	node_diem_tp *phead = NULL;
+	node_diem_tp *ptail = NULL;
+}danh_sach_diem;
+
+//=========== DS SV =====
+typedef struct sv
+{
+	string ma_sv;
+	string ten;
+	string ho;
+	string phai;
+	string sdt;
+	danh_sach_diem ds_diem;//*p ds diem
+}sv;
+struct node_sv
+{
+	//--- data---
+	sv data;
+	//--- pointer --
+	node_sv *pnext;
+};
+typedef struct node_sv node_sv;
+typedef struct danh_sach_sv
+{
+	node_sv *phead = NULL;
+	node_sv *ptail = NULL;
+}danh_sach_sv;
+//=========== DS LỚP =====
+typedef struct lop
+{
+	string ma_lop;
+	string ten_lop;
+	int nien_khoa;
+	danh_sach_sv ds_sv;//*p ds sv
+}lop;
+
+typedef struct danh_sach_lop
+{
+	lop ds[MAX];
+	int sl = 0;
+}danh_sach_lop;

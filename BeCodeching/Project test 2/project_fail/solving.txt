@@ -1,0 +1,472 @@
+#pragma once
+#include"Structure.h"
+#include"Load_file.h"
+
+//================================================================
+//---------------------- danh sách lớp --------------------
+//--- Nạp chồng toán tử ------
+istream& operator >> (istream& is, student_class& a);
+ostream& operator << (ostream& os, student_class& a);
+void input_class_only(student_class_list& a);
+void output_class_only(student_class_list a);
+//================================================================
+//------------------- danh sách môn học -----------------
+istream& operator >> (istream& is, subject& a);
+ostream& operator << (ostream& os, subject& a);
+void input_subject_list(subject_list& a);
+void output_subject_list(subject_list a);
+//================================================================
+//------------------- danh sách sinh viên (của 1 lớp) -----------------
+////---- Khởi tạo node mới ------
+//node_student* create_new_node_student(student a);
+////---- Thêm node (thêm cuối) ------
+//void add_node_last(student_link_list& ls, student a);
+//-------- Nạp chồng toán tử cin >> ---------------
+istream& operator >> (istream& is, student& a);
+//-------- Hàm nhập học sinh của 1 lớp ------------
+void input_student_in_one_class(student_class_list& a);
+//------------ Xuất ds sinh viên trong 1 lớp ---------
+void output_student_list_in_one_class(student_class_list ls);
+//------------ Sắp xếp và xuất ds sinh viên theo niên khoá -----------
+void arrange_and_ouput_class_with_Year_begin(student_class_list st_ls);
+//------------ Xuất ds sinh viên theo dữ liệu lớp (niên khoá) --------
+void output_student_list_in_one_class_with_year_begin(student_class_list ls, int index);
+void find_and_output_class_with_year_begin(student_class_list st_ls);
+//----------- Sắp xếp ds sinh viên 1 lớp theo alphabet -------------
+void arrange_student_with_alphabet(student_link_list& ls);
+void output_arrange_student_with_alphabet(student_class_list ls);
+//====================================================================
+//------------------------ danh sách điểm ----------------------------
+node_subject_point* create_new_node_subject_point(subject_point a);
+void add_node_last(subject_point_link_list& ls, subject_point a);
+istream& operator >> (istream& is, subject_point& a);
+void input_subject_point_in_one_student(student_class_list& ls);
+ostream& operator << (ostream& os, subject_point a);
+void output_subject_point_in_one_student(student_class_list ls);
+
+//========================================================
+//---- menu -----
+void menu()
+{
+	subject_list sub_ls;
+	student_class_list cl_ls;
+	bool quit = false;
+	while (quit == false)
+	{
+		system("cls");
+		int choice;
+		cout << "1. Nhap ds mon hoc." << endl;
+		cout << "2. Xuat danh sach mon hoc." << endl;
+		cout << "3. Nhap ds lop." << endl;
+		cout << "4. Xuat ds lop." << endl;
+		cout << "5. Nhap ds sinh vien cua 1 lop trong ds lop." << endl;
+		cout << "6. Xuat ds sinh vien cua 1 lop trong ds lop." << endl;
+		cout << "7. Xuat ds sinh vien cua 1 lop trong ds lop. (theo nien khoa)." << endl;
+		cout << "8. Xuat ds sinh vien cua 1 lop theo nien khoa tim kiem." << endl;
+		cout << "9. Sap xep va xuat ds sinh vien cua 1 lop theo ky tu alphabet (Khong thay doi du lieu goc)." << endl;
+		cout << "10. Nhap ds diem cho moi sinh vien trong moi ds lop." << endl;
+		cout << "11. Xuat ds diem cho moi sinh vien trong ds lop." << endl;
+		cout << "0. Thoat." << endl;
+		cout << "Nhap lc: "; cin >> choice;
+		cin.ignore();
+		switch (choice)
+		{
+		case 1:
+			input_subject_list(sub_ls);
+			break;
+		case 2:
+			output_subject_list(sub_ls);
+			system("pause"); break;
+		case 3:
+			input_class_only(cl_ls);
+			break;
+		case 4:
+			output_class_only(cl_ls);
+			system("pause"); break;
+		case 5:
+			input_student_in_one_class(cl_ls);
+			break;
+		case 6:
+			output_student_list_in_one_class(cl_ls);
+			system("pause");
+			break;
+		case 7:
+			arrange_and_ouput_class_with_Year_begin(cl_ls);
+			system("pause"); break;
+		case 8:
+			find_and_output_class_with_year_begin(cl_ls);
+			break;
+		case 9:
+			output_arrange_student_with_alphabet(cl_ls);
+			system("pause"); break;
+		case 10:
+			input_subject_point_in_one_student(cl_ls);
+			break;
+		case 11:
+			output_subject_point_in_one_student(cl_ls);
+			system("pause"); break;
+		case 0:
+			cout << "Quitting!" << endl; quit = true;
+			system("pause"); break;
+		default:
+			cout << "Loi nhap lai!"; break;
+		}
+	}
+}
+//================================================================
+//---------------------- danh sách lớp --------------------
+//--- Nạp chồng toán tử ------
+istream& operator >> (istream& is, student_class& a)
+{
+	cout << "Nhap ma lop: "; getline(is, a.code);
+	cout << "Nhap ten lop: "; getline(is, a.name);
+	cout << "Nhap nam nhap hoc: "; is >> a.y_begin;
+	return is;
+}
+ostream& operator << (ostream& os, student_class& a)
+{
+	os << "Ma lop: " << a.code << endl;
+	os << "Ten lop: " << a.name << endl;
+	os << "Nam nhap hoc: " << a.y_begin << endl;
+	return os;
+}
+//--- Nhập danh sách lớp -------
+void input_class_only(student_class_list& a)
+{
+	int n;
+	cout << "Nhap so luong lop can nhap: "; cin >> n;
+	for (int i = 1; i <= n; i++)
+	{
+		cin.ignore();
+		cout << "======== Nhap thong tin ds lop thu " << i << " ============" 
+			<< endl;
+		cin >> a.list[a.num++];
+	}
+}
+//--- Xuất danh sách lớp --------
+void output_class_only(student_class_list a)
+{
+	for (int i = 0; i < a.num; i++)
+	{
+		cout << "======== Xuat thong tin ds lop thu " << i << " ============"
+			<< endl;
+		cout << a.list[i];
+		cout << endl;
+	}
+}
+//================================================================
+//------------------- danh sách môn học -----------------
+istream& operator >> (istream& is, subject& a)
+{
+	cout << "Nhap ma mon hoc: "; getline(is, a.code);
+	cout << "Nhap ten mon hoc: "; getline(is, a.name);
+	cout << "Nhap tin chi ly thuyet: "; is >> a.t_credits;
+	cout << "Nhap tin chi thuc hanh: "; is >> a.p_credits;
+	return is;
+}
+ostream& operator << (ostream& os, subject& a)
+{
+	os << "Ma mon hoc: " << a.code << endl;
+	os << "Ten mon hoc: " << a.name << endl;
+	os << "So tin chi ly thuyet: " << a.t_credits << endl;
+	os << "So tin chi thuc hanh: " << a.p_credits << endl;
+	return os;
+}
+void input_subject_list(subject_list& a)
+{
+	int n; 
+	cout << "Nhap so luong mon can nhap: "; cin >> n;
+	for (int i = 1; i <= n; i++)
+	{
+		cin.ignore();
+		cin >> a.list[a.num++];
+	}
+}
+void output_subject_list(subject_list a)
+{
+	for (int i = 0; i < a.num; i++)
+	{
+		cout << "======== Xuat thong tin ds mon thu " << i << " ============"
+			<< endl;
+		cout << a.list[i];
+		cout << endl;
+	}
+}
+//================================================================
+//------------------- danh sách sinh viên (của 1 lớp) -----------------
+//---- Khởi tạo node mới ------
+node_student* create_new_node_student(student a)
+{
+	//-------- new node -------------
+	node_student* p_student = new node_student;
+	//-------- add data ----------
+	p_student->data.code = a.code;
+	p_student->data.name = a.name;
+	p_student->data.gender = a.gender;
+	p_student->data.t_number = a.t_number;
+	//-------- pointer (pnext) ----
+	p_student->pnext = NULL;
+	//---- return ------
+	return p_student;
+}
+//---- Thêm node (thêm cuối) ------
+void add_node_last(student_link_list& ls ,student a)
+{
+	//---- ds rỗng ---------
+	if (ls.phead == NULL && ls.ptail == NULL)
+	{
+		//chuyển data sang node
+		node_student* p_student = create_new_node_student(a);
+		//thêm
+		ls.phead = ls.ptail = p_student;
+	}
+	else if (ls.phead != NULL)
+	{
+		//---- ds có 1 p/tử ----
+		if (ls.phead == ls.ptail)
+		{
+			//chuyển data sang node
+			node_student* p_student = create_new_node_student(a);
+			//Thêm (cuối)
+			// Tạo cầu nối giữa phead và node vừa tạo
+			ls.phead->pnext = p_student;
+			//Gán ptail vào node vừa tạo
+			ls.ptail = p_student;
+		}
+		//---- ds có n p/tử ----
+		else if (ls.phead != ls.ptail)
+		{
+			//chuyển data sang node
+			node_student* p_student = create_new_node_student(a);
+			//Thêm (cuối)
+			//Tạo cầu nối giữa ptail và p/tử mới được tạo
+			ls.ptail->pnext = p_student;
+			//gán ptail vào phần tử mới được tạo
+			ls.ptail = p_student;
+		}
+	}
+}
+//-------- Nạp chồng toán tử cin >> ---------------
+istream& operator >> (istream& is, student& a)
+{
+	cout << "Nhap ma so sinh vien: "; getline(is, a.code);
+	cout << "Nhap ten sinh vien: "; getline(is, a.name);
+	cout << "Nhap gioi tinh sinh vien: "; getline(is, a.gender);
+	cout << "Nhap so dien thoai sinh vien: "; getline(is, a.t_number);
+	return is;
+}
+//-------- Hàm nhập học sinh của 1 lớp ------------
+void input_student_in_one_class(student_class_list& a)
+{ 
+	for (int i = 0; i < a.num; i++)
+	{
+		cout << "======== Nhap sinh vien o ds lop " << i + 1 << " ============" 
+			<< endl;
+		int n;
+		cout << "Nhap so luong sinh vien can dung: "; cin >> n; cin.ignore();
+		for (int j = 1; j <= n; j++)
+		{
+			cout << "===== Nhap sv thu " << j << " =======" << endl;
+			student b;
+			cin >> b;
+			add_node_last(a.list[i].st_list, b);
+		}
+	}
+}
+//------------ Xuất ds sinh viên trong 1 lớp ---------
+void output_student_list_in_one_class(student_class_list ls)
+{
+	for (int i = 0; i < ls.num; i++)
+	{
+		int count = 1;
+		cout << "========= Xuat ds sinh vien o ds lop " << ls.list[i].name 
+			 << " =========" << endl;
+		for (node_student* p = ls.list[i].st_list.phead; p != NULL; p = p->pnext)
+		{
+			cout << "====== Xuat sv thu " << count++ << " =========" << endl;
+			cout << "Ma so sinh vien: " << p->data.code << endl;
+			cout << "Ten sinh vien: " << p->data.name << endl;
+			cout << "Gioi tinh sinh vien: " << p->data.gender << endl;
+			cout << "So dien thoai sinh vien: " << p->data.t_number << endl 
+				 << endl;
+		}
+	}
+}
+//------------ Sắp xếp và xuất ds sinh viên theo niên khoá -----------
+void arrange_and_ouput_class_with_Year_begin(student_class_list st_ls)
+{
+	for (int i = 0; i < st_ls.num - 1; i++)
+	{
+		for (int j = i + 1; j < st_ls.num; j++)
+		{
+			if (st_ls.list[i].y_begin > st_ls.list[j].y_begin)
+			{
+				swap(st_ls.list[i], st_ls.list[j]);
+			}
+		}
+	}
+	output_student_list_in_one_class(st_ls);
+}
+//------------ Xuất ds sinh viên theo dữ liệu lớp (niên khoá) --------
+void output_student_list_in_one_class_with_year_begin(student_class_list ls, int index)
+{
+	int count = 1;
+	cout << "========= Xuat ds sinh vien o ds lop " << ls.list[index].name
+		<< " =========" << endl;
+	for (node_student* p = ls.list[index].st_list.phead; p != NULL; p =
+		p->pnext)
+	{
+		cout << "====== Xuat sv thu " << count++ << " =========" << endl;
+		cout << "Ma so sinh vien: " << p->data.code << endl;
+		cout << "Ten sinh vien: " << p->data.name << endl;
+		cout << "Gioi tinh sinh vien: " << p->data.gender << endl;
+		cout << "So dien thoai sinh vien: " << p->data.t_number << endl
+			<< endl;
+	}
+}
+void find_and_output_class_with_year_begin(student_class_list st_ls)
+{
+	int y_begin; int index = -1;
+	cout << "Nhap nien khoa muon tim: "; cin >> y_begin;
+	for (int i = 0; i < st_ls.num; i++)
+	{
+		if (st_ls.list[i].y_begin == y_begin)
+		{
+			index = i;
+			break;
+		}
+	}
+	if (index == -1)
+	{
+		cout << "Ket qua loi!" << endl;
+	}
+	else
+	{
+		output_student_list_in_one_class_with_year_begin(st_ls, index);
+		cout << endl;
+	}
+	system("pause"); return;
+}
+//----------- Sắp xếp ds sinh viên 1 lớp theo alphabet -------------
+void arrange_student_with_alphabet(student_link_list& ls)
+{
+	for (node_student* p = ls.phead; p->pnext != NULL; p = p->pnext)
+	{
+		for (node_student* k = ls.phead->pnext; k != NULL; k = k->pnext)
+		{
+			if (_stricmp(p->data.name.c_str(), k->data.name.c_str()) > 0)
+			{
+				swap(p->data, k->data);
+			}
+		}
+	}
+}
+void output_arrange_student_with_alphabet(student_class_list ls)
+{
+	for (int i = 0; i < ls.num; i++)
+	{
+		arrange_student_with_alphabet(ls.list[i].st_list);
+	}
+	output_student_list_in_one_class(ls);
+}
+//====================================================================
+//------------------------ danh sách điểm ----------------------------
+node_subject_point* create_new_node_subject_point(subject_point a)
+{
+	//tạo node mới
+	node_subject_point* p_subject_point = new node_subject_point;
+	//tạo data và pnext
+	p_subject_point->data.code = a.code;
+	p_subject_point->data.test_num = a.test_num;
+	p_subject_point->data.point = a.point;
+	p_subject_point->pnext = NULL;
+	//return node mới 
+	return p_subject_point;
+}
+void add_node_last(subject_point_link_list& ls, subject_point a)
+{
+	//ds rỗng 
+	if (ls.phead == NULL && ls.ptail == NULL)
+	{
+		//chuyển data sang node
+		node_subject_point* p_sub_point = create_new_node_subject_point(a);
+		//thêm
+		ls.phead = ls.ptail = p_sub_point;
+	}
+	else
+	{
+		//ds có 1 phần tử
+		if (ls.phead == ls.ptail)
+		{
+			//chuyển data sang node
+			node_subject_point* p_sub_point = create_new_node_subject_point(a);
+			//thêm
+			ls.phead->pnext = p_sub_point;
+			ls.ptail = p_sub_point;
+		}
+		//ds có n phần tử
+		else if (ls.phead != ls.ptail)
+		{
+			//chuyển data sang node
+			node_subject_point* p_sub_point = create_new_node_subject_point(a);
+			//thêm
+			ls.ptail->pnext = p_sub_point;
+			ls.ptail = p_sub_point;
+		}
+	}
+	
+}
+istream& operator >> (istream& is, subject_point& a)
+{
+	cout << "Nhap ma mon hoc: "; getline(is, a.code);
+	cout << "Nhap lan thi: "; is >> a.test_num;
+	cout << "Nhap diem: "; is >> a.point;
+	return is;
+}
+void input_subject_point_in_one_student(student_class_list& ls)
+{
+	for (int i = 0; i < ls.num; i++)
+	{
+		cout << "======== Nhap thong tin lop " << ls.list[i].name << " =============" << endl;
+		int count = 1;
+		for (node_student* p = ls.list[i].st_list.phead; p != NULL; p = p->pnext)
+		{
+			cout << "======== Nhap ds diem sv thu " << count++ << " =========" << endl;
+			int n;
+			cout << "Nhap so luong luong mon hoc can nhap: "; cin >> n;
+			for (int j = 1; j <= n; j++)
+			{
+				cin.ignore();
+				cout << "======= Nhap mon hoc thu " << j << " =======" << endl;
+				subject_point a;
+				cin >> a;
+				add_node_last(p->data.sub_point_list, a);
+			}
+		}
+	}
+}
+ostream& operator << (ostream& os, subject_point a)
+{
+	cout << "Ma mon hoc: " << a.code << endl;
+	cout << "Lan thi thu: " << a.test_num << endl;
+	cout << "Diem: " << a.point << endl;
+	return os;
+}
+void output_subject_point_in_one_student(student_class_list ls)
+{
+	for (int i = 0; i < ls.num; i++)
+	{
+		cout << "======== Thong tin lop " << ls.list[i].name << " =============" << endl;
+		int c = 1;
+		for (node_student* p = ls.list[i].st_list.phead; p != NULL; p = p->pnext)
+		{
+			cout << "======== Nhap ds diem sv thu " << c++ << " =========" << endl;
+			int index = 1;
+			for (node_subject_point* k = p->data.sub_point_list.phead; k != NULL; k = k->pnext)
+			{
+				cout << "======= Mon hoc thu " << index++ << " =======" << endl;
+				cout << k->data;
+			}
+		}
+	}
+}

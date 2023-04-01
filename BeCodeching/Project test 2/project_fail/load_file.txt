@@ -1,0 +1,66 @@
+#pragma once
+#include"Structure.h"
+//=============== Khu vực nguyên mẫu các hàm cần thiết cho load file =======
+//---- Khởi tạo node mới ------
+node_student* create_new_node_student(student a);
+//---- Thêm node (thêm cuối) ------
+void add_node_last(student_link_list& ls, student a);
+//==========================================================================
+
+void load_file_subject_list(subject_list& s_ls)
+{
+	ifstream file("ds_mh.txt");
+	//------- Đọc file ----------
+	while (file.eof() == false)
+	{
+		subject a;
+		getline(file, a.code, '|');
+		getline(file, a.name, '|');
+		file >> a.t_credits;
+		file.ignore(); // bỏ dấu "|"
+		file >> a.p_credits;
+		file.ignore(); // bỏ dấu \n
+		//------- thêm ----------
+		s_ls.list[s_ls.num++] = a;
+	}
+	file.close();
+}
+void load_file_class_list(student_class_list& ls)
+{
+	ifstream file("ds_lop.txt");
+	//------- Đọc file ----------
+	while (file.eof() == false)
+	{
+		student_class a;
+		getline(file, a.code, '|');
+		getline(file, a.name, '|');
+		file >> a.y_begin; file.ignore();
+		//-------- thêm vào dữ liệu -------
+		ls.list[ls.num++] = a;
+	}
+}
+void load_file_student_list(student_class_list& ls)
+{
+	ifstream file("ds_sv.txt");
+	//------- Đọc file ----------
+	while (file.eof() == false)
+	{
+		for (int i = 0; i < ls.num; i++)
+		{
+			int n; //sl sv của lớp i - lấy trong file lớp
+			file >> n; file.ignore();
+			for (int j = 1; j <= n; j++)
+			{
+				student a;
+				getline(file, a.code, '|');
+				getline(file, a.name, '|');
+				getline(file, a.gender, '|');
+				getline(file, a.t_number, '|');
+				//Thêm
+				add_node_last(ls.list[i].st_list, a);
+			}
+		}
+		
+	}
+}
+

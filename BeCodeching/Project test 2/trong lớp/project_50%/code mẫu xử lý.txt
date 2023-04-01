@@ -1,0 +1,75 @@
+#pragma once
+#include "load_file.h"
+//============= DS mon hoc ======
+istream& operator >> (istream &is, mon_hoc &a);
+ostream& operator << (ostream &os, mon_hoc a);
+void xuat_ds_mh(danh_sach_mh ds_mh);
+//========
+void menu()
+{
+	//---- setting ---
+	danh_sach_mh ds_mh;
+	danh_sach_lop ds_lop;
+	//--- loadfile ---
+	load_ds_mh(ds_mh);
+	//----- play ---
+	bool kt_menu = true;
+	while (kt_menu == true)
+	{
+		system("cls");
+		cout << "1. Nhap mon hoc" << endl;
+		cout << "2. Xuat danh sach mon hoc" << endl;
+		cout << "3. Nhap lop" << endl;
+		cout << "4. Xuat danh sach lop" << endl;
+		int lc;
+		cout << "Nhap lc: ";cin >> lc;
+		switch (lc)
+		{
+		case 1:
+		{
+			int sl;cout << "Nhap sl mon hoc can them: ";cin >> sl;
+			for (int i = 1;i <= sl;i++)
+			{
+				cin.ignore();
+				cout << "\t\t--- Mon thu " << i << " ----" << endl;
+				mon_hoc a;//Lưu tạm dữ liệu người dùng nhập
+				cin >> a;
+				//--- thêm cuối ----
+				ds_mh.ds[ds_mh.sl++] = a;
+			}
+			break;
+		}
+		case 2:
+		{
+			xuat_ds_mh(ds_mh);
+			system("pause");
+			break;
+		}
+		}
+	}
+}
+istream& operator >>(istream &is,mon_hoc &a)
+{
+	cout << "Nhap ma mon: ";getline(is, a.ma_mh);
+	cout << "Nhap ten mon: ";getline(is, a.ten_mh);
+	cout << "Nhap so tin chi ly thuyet: ";is >> a.stclt;
+	cout << "Nhap so tin chi thuc hanh: ";is >> a.stcth;
+	//----------------
+	return is;
+}
+ostream& operator << (ostream &os, mon_hoc a)
+{
+	os << "Ma mon hoc: " << a.ma_mh << endl;
+	os << "Ten mon hoc: " << a.ten_mh << endl;
+	os << "Stclt: " << a.stclt << endl;
+	os << "Stcth: " << a.stcth << endl;
+	return os;
+}
+void xuat_ds_mh(danh_sach_mh ds_mh)
+{
+	for (int i = 0;i < ds_mh.sl;i++)
+	{
+		cout << "\t\t--- Mon thu " << i << " ---" << endl;
+		cout << ds_mh.ds[i];
+	}
+}

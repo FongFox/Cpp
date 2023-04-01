@@ -1,0 +1,79 @@
+#pragma once
+#include <iostream>
+#include <string>
+#include <fstream>
+#define MAX 100
+using namespace std;
+//========== DS môn học ==========
+//------ 1 môn ----
+typedef struct mon_hoc
+{
+	string ma_mh;
+	string ten_mh;
+	int stclt;
+	int stcth;
+}mon_hoc;
+//---- ds mon ----
+typedef struct danh_sach_mh
+{
+	mon_hoc ds[MAX];
+	int sl = 0;
+}danh_sach_mh;
+//=========== Danh sách điểm thành phần ====
+typedef struct diem_tp
+{
+	string ma_mh;
+	float diem;
+	int lan;
+}diem_tp;
+
+struct node_diem_tp
+{
+	//--- data --
+	diem_tp data;
+	//--- pointer --
+	node_diem_tp *pnext;
+};
+typedef struct node_diem_tp node_diem_tp;
+typedef struct danh_sach_diem
+{
+	node_diem_tp *phead;//*p ds diem
+	node_diem_tp *ptail;
+}danh_sach_diem;
+//=========== Danh sách sinh viên ====
+typedef struct sv
+{
+	string ma_sv;
+	string ho;
+	string ten;
+	string phai;
+	string sdt;
+	danh_sach_diem	ds_diem;
+}sv;
+struct node_sv
+{
+	//--- data --
+	sv data;
+	//--- pointer --
+	node_sv *pnext;
+};
+typedef struct danh_sach_sv
+{
+	node_sv *phead;//*p danh sach sinh vien
+	node_sv *ptail;
+}danh_sach_sv;
+//============ Danh sách lớp ==========
+//----- 1 lớp ----
+typedef struct lop
+{
+	string ma_lop;
+	string ten_lop;
+	int nien_khoa;
+	danh_sach_sv ds_sv;
+}lop;
+//----- ds lớp ---
+typedef struct danh_sach_lop
+{
+	lop ds[MAX];
+	int sl = 0;
+}danh_sach_lop;

@@ -1,0 +1,87 @@
+#pragma once
+#include<iostream>
+#include<fstream>
+#include<string>
+#define MAX 100
+using namespace std;
+
+//================================
+//-------- ds môn học --------
+typedef struct subject
+{
+	string code; //mã môn học
+	string name; //tên môn học
+	int t_credits; // số tín chỉ lý thuyết
+	int p_credits; //số tín chỉ thực hành
+} subject;
+typedef struct subject_list
+{
+	subject list[MAX];
+	int num = 0;
+} subject_list;
+//===============================
+//------ ds điểm ------
+typedef struct subject_point
+{
+	string code; //mã môn học 
+	int test_num; //số lần thi
+	float point; //điểm thi
+} subject_point;
+struct node_subject_point
+{
+	//------ data -------
+	subject_point data;
+	//---- pointer ------
+	node_subject_point* pnext;
+};
+typedef struct node_subject_point	node_subject_point;
+typedef struct subject_point_link_list
+{
+	node_subject_point* phead = NULL;
+	node_subject_point* ptail = NULL;
+} subject_point_link_list;
+//===============================
+//------ ds sinh viên ------
+typedef struct student
+{
+	string code; //mã số sinh viên 
+	string name; //tên sinh viên
+	string gender; //giới tính sinh viên
+	string t_number; //số điện thoại sinh viên
+	//------------- (ds điểm)*pointer (phead) ----------------
+	subject_point_link_list sub_point_list;
+} student;
+struct node_student
+{
+	//------- data --------
+	student data;
+	//---- pointer --------
+	node_student* pnext;
+};
+typedef struct node_student		node_student;
+typedef struct student_link_list
+{
+	node_student* phead = NULL;
+	node_student* ptail = NULL;
+} student_link_list;
+//===============================
+//------ ds lớp ------
+typedef struct student_class
+{
+	string code; //mã lớp
+	string name; //tên lớp
+	int y_begin; //năm nhập học
+	//------- pointer ---------
+	student_link_list st_list;
+} student_class; 
+typedef struct student_class_list
+{
+	student_class list[MAX];
+	int num = 0;
+} student_class_list;
+
+//===============================
+//----- testing ------
+//void testing()
+//{
+//}

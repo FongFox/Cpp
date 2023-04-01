@@ -1,0 +1,5 @@
+9h45 deadline:
+Yêu cầu tối thiểu file ctdl.h full
+
+
+nâng cao: nhập xuất + đọc file ds mh, ds lớp

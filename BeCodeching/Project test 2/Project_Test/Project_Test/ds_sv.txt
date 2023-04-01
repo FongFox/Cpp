@@ -1,0 +1,11 @@
+3
+CN123|Nguyen Van|A|Nam|01234
+CN234|Nguyen Van|B|Nam|01256
+CN456|Nguyen Van|C|Nam|01278
+3
+CN567|Nguyen Van|D|Nam|01277
+CN789|Nguyen Van|E|Nam|01288
+CN158|Nguyen Van|F|Nam|01299
+2
+AT123|Tran Van|A|Nam|0123456
+AT234|Tran Van|B|Nam|0125678

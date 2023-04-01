@@ -1,0 +1,24 @@
+#include "ctdl.h"
+
+void load_ds_mh(danh_sach_mh &ds_mh);
+
+//========================================================
+
+void load_ds_mh(danh_sach_mh &ds_mh)
+{
+	ifstream fi("ds_mh.txt");
+	//--- doc file ---
+	while (fi.eof() == false)
+	{
+		mon_hoc a;//Lưu tạm dữ liệu lấy từ file
+		getline(fi, a.ma_mh, ',');
+		getline(fi, a.ten_mh, ',');
+		fi >> a.stclt;
+		fi.ignore();//Bỏ phẩy
+		fi >> a.stcth;
+		fi.ignore();//Bỏ \n
+		//---- thêm ---
+		ds_mh.ds[ds_mh.sl++] = a;
+	}
+	fi.close();
+}

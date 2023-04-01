@@ -1,0 +1,27 @@
+- Chức năng 1:
+x	+ Nhập ds môn								
+x	+ Xuất ds môn								
+x	+ Xuất file ds môn								
+x	+ Đọc file ds môn								
+- Chức năng 2:
+x	+ Nhập ds lớp								
+x	+ Xuất ds lớp								
+x	+ Xuất file ds lớp							
+x	+ Đọc file ds lớp								
+- chức năng 3:
+x	+ Nhập ds sinh viên của lớp trong vị trí lớp muốn nhập.	
+x	+ Xuất ds sinh viên của lớp trong vị trí lớp muốn nhập.
+x	+ Xuất ds sinh viên của lớp trong tất cả các lớp.
+x	+ Sắp xếp và xuất ds sinh viên theo từng lớp trong ds lớp theo alphabet 	  	  (có tác động dữ iệu gốc).
+x	+ Xuất ds sinh viên theo năm nhập học. 
+x	+ Xuất file ds sinh viên.
+x	+ Đọc file ds sinh viên.
+	
+- Chức năng 4:
+x	+ Nhập ds điểm cho sinh viên.
+x	+ Xuất ds điểm cho 1 lớp.
+x	+ Xuất ds điểm cho tất cả lớp.
+x	+ Xuất ds điểm cho 1 sinh viên bất kỳ trong 1 lớp.
+	+ Xuất file ds điểm.
+	+ Đọc file ds điểm.
+
