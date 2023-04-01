@@ -1,0 +1,224 @@
+#include <iostream>
+#include "mylib.h"
+#define MAX 100
+using namespace std;
+int toa_dox[MAX];
+int toa_doy[MAX];
+int sl = 4;
+int mau = 1;
+int xqua;
+int yqua;
+//=====================================
+void ve_tuong();
+void play();
+//---------
+void tao_ran();
+void ve_ran();
+void xu_ly_ran_di_chuyen(int x, int y);
+//----------
+bool kt_ran_de_qua();
+bool kt_ran_an_qua();
+void tao_qua();
+void ve_qua();
+//----
+bool game_over();
+//----------
+void main()
+{
+	srand(time(NULL));//Tạo bộ hạt giống mới cho rand()
+	ShowCur(0);
+	play();
+	_getch();
+}
+void play()
+{
+	//--- setting ----
+	int x = 50;int y = 13;
+	ve_tuong();
+	tao_ran();
+	tao_qua();
+	ve_qua();
+	int check = 2;//0: đi xuống
+				//1: đi lên
+				//2: qua phải
+				//3: qua trái
+	//--- play ---
+	while (true)
+	{
+		//---- backspace --
+		gotoXY(toa_dox[sl], toa_doy[sl]);
+		cout << " ";
+		//---- in ---
+		ve_ran();
+		//---- điều khiển để thay đổi hướng ---
+		if (_kbhit() == true)
+		{
+			char c = _getch();//-32
+			if (c == -32)
+			{
+				c = _getch();//Mã phím
+				if (c == 72 && check!=0)
+				{
+					check = 1;
+				}
+				else if (c == 80 && check!=1)
+				{
+					check = 0;
+				}
+				else if (c == 75 && check != 2)
+				{
+					check = 3;
+				}
+				else if (c == 77 && check!=3)
+				{
+					check = 2;
+				}
+			}
+		}
+		//---- dựa vào hướng để di chuyển ----
+		if (check == 0)
+		{
+			y++;
+		}
+		else if (check == 1)
+		{
+			y--;
+		}
+		else if (check == 3)
+		{
+			x--;
+		}
+		else if (check == 2)
+		{
+			x++;
+		}
+		//Xử lý di chuyển
+		xu_ly_ran_di_chuyen(x, y);
+		if (kt_ran_an_qua() == true)
+		{
+			tao_qua();
+			ve_qua();
+			sl++;
+		}
+		//----- kt biên ---
+		if (game_over() == true)
+		{
+			break;
+		}
+		//--- speed ---
+
+		if (check == 2 || check == 3)
+		{
+			Sleep(70);
+		}
+		else
+		{
+			Sleep(120);
+		}
+	}
+}
+void ve_tuong()
+{
+	SetColor(11);//Lam
+	//--- trên dưới ---
+	for (int x = 10;x <= 100;x++)
+	{
+		gotoXY(x, 1);cout << "+";
+		gotoXY(x, 27);cout << "+";
+	}
+	//---- trai phai ---
+	for (int y = 1;y <= 27;y++)
+	{
+		gotoXY(10,y);cout << "+";
+		gotoXY(100,y);cout << "+";
+	}
+	SetColor(15);
+}
+void tao_ran()
+{
+	int x = 50;
+	int y = 13;
+	for (int i = 0;i < sl;i++)
+	{
+		toa_dox[i] = x;
+		toa_doy[i] = y;
+		x--;
+	}
+}
+void ve_ran()
+{
+	for (int i = 0;i < sl;i++)
+	{
+		//--- mau ---
+		//SetColor(mau++);
+		//if (mau == 16)
+		//{
+		//	mau = 1;//rs ma mau
+		//}
+		//----------------------
+		gotoXY(toa_dox[i], toa_doy[i]);
+		if (i == 0)
+		{
+			cout << "0";
+		}
+		else
+		{
+			cout << "o";
+		}
+	}
+	//SetColor(15);
+}
+void xu_ly_ran_di_chuyen(int x,int y)
+{
+	for (int i = sl;i > 0;i--)
+	{
+		toa_dox[i] = toa_dox[i - 1];
+		toa_doy[i] = toa_doy[i - 1];
+	}
+	toa_dox[0] = x;
+	toa_doy[0] = y;
+
+}
+bool kt_ran_de_qua()
+{
+	for (int i = 0;i < sl;i++)
+	{
+		if (toa_dox[i] == xqua && toa_doy[i] == yqua)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+bool kt_ran_an_qua()
+{
+	return (xqua == toa_dox[0] && yqua == toa_doy[0]);
+}
+void tao_qua()
+{
+	do
+	{
+		xqua = rand() % (99 - 11 + 1) + 11;
+		yqua = rand() % (26 - 2 + 1) + 2;
+	} while (kt_ran_de_qua() == true);
+}
+void ve_qua()
+{
+	gotoXY(xqua, yqua);
+	cout << "$";
+}
+bool game_over()
+{
+	if (toa_dox[0] == 10 || toa_dox[0] == 100 || toa_doy[0] == 1 || toa_doy[0] == 27)
+	{
+		return true;
+	}
+	for (int i = 1;i < sl;i++)
+	{
+		if (toa_dox[i] == toa_dox[0] && toa_doy[i] == toa_doy[0])
+		{
+			return true;
+		}
+	}
+	return false;
+}

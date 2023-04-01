@@ -1,0 +1,287 @@
+//==== Giải BT mảng 2 chiều ============
+
+//=========  4 level đồ họa căn bản =================
+
+	openGl
+		sdl
+
+Chia tách file:
+
+//-------- LV1: di chuyển vật thể ---------------
+#include <iostream>
+#include "mylib.h"
+using namespace std;
+int main()
+{
+	int i = 1;//Biến mã màu
+
+	int x = 10;int y = 0;
+
+	while (true)
+	{
+		//---- mau ----
+		SetColor(i);
+		i++;
+		if (i == 16)
+		{
+			i = 1;//rs mã màu
+		}
+		//---- in ----
+		gotoXY(x, y);
+		cout << "Hoc lap trinh that de!";
+		//---- di chuyển ----
+		y++;
+		//----- speed -----
+		Sleep(120);
+	}
+
+	_getch();
+	return 0;
+}
+
+//---- lv2: Di chuyển vật thể có biên ------------
+#include <iostream>
+#include "mylib.h"
+using namespace std;
+int main()
+{
+	gotoXY(50, 13);
+	cout << "5555555555555";
+	//---- setting ----
+	int i = 1;//Biến mã màu
+	int x = 10;int y = 0;
+	int xcu=-100;int ycu=-100;
+	int check = 0;//0: Chạm biên trên và đi xuống dưới
+				//1: Chạm biên dưới và đi lên trên
+	//----- play ----
+	while (true)
+	{
+		//----- xóa data cũ ---
+		//system("cls");
+		//backspace
+		gotoXY(xcu, ycu);
+		cout << "                      ";
+		//---- mau ----
+		SetColor(i);
+		i++;
+		if (i == 16)
+		{
+			i = 1;//rs mã màu
+		}
+		//---- in ----
+		gotoXY(x, y);
+		cout << "Hoc lap trinh that de!";
+		//---- cập nhật xcu, ycu -----
+		xcu = x;
+		ycu = y;
+		//---- Dựa vào hướng để di chuyển ----
+		if (check == 0)
+		{
+			y++;
+		}
+		else if (check == 1)//chạm biên dưới và đi lên
+		{
+			y--;
+		}
+		//----- Kiểm tra biên -----
+		if (y == 28)//chạm biên dưới và đi lên trên
+		{
+			check = 1;
+		}
+		else if (y == 0)
+		{
+			check = 0;
+		}
+		//----- speed -----
+		Sleep(120);
+	}
+
+	_getch();
+	return 0;
+}
+//---------- Di chuyển vật thể có biên  +  điều khiển ----------
+#include <iostream>
+#include "mylib.h"
+using namespace std;
+int main()
+{
+	gotoXY(50, 13);
+	cout << "5555555555555";
+	//---- setting ----
+	int i = 1;//Biến mã màu
+	int x = 10;int y = 0;
+	int xcu=-100;int ycu=-100;
+	int check = 0;//0: Chạm biên trên và đi xuống dưới
+				//1: Chạm biên dưới và đi lên trên
+	//----- play ----
+	while (true)
+	{
+		//----- xóa data cũ ---
+		//system("cls");
+		//backspace
+		gotoXY(xcu, ycu);
+		cout << "                      ";
+		//---- mau ----
+		SetColor(i);
+		i++;
+		if (i == 16)
+		{
+			i = 1;//rs mã màu
+		}
+		//---- in ----
+		gotoXY(x, y);
+		cout << "Hoc lap trinh that de!";
+		//---- cập nhật xcu, ycu -----
+		xcu = x;
+		ycu = y;
+		//----- Điều khiển để thay đổi hướng -----
+		if (_kbhit() == true)
+		{
+			char c = _getch();
+			if (c == 'w')
+			{
+				check = 1;
+			}
+			else if (c == 's')
+			{
+				check = 0;
+			}
+		}
+		//---- Dựa vào hướng để di chuyển ----
+		if (check == 0)
+		{
+			y++;
+		}
+		else if (check == 1)//chạm biên dưới và đi lên
+		{
+			y--;
+		}
+		//----- Kiểm tra biên -----
+		if (y == 28)//chạm biên dưới và đi lên trên
+		{
+			check = 1;
+		}
+		else if (y == 0)
+		{
+			check = 0;
+		}
+		//----- speed -----
+		Sleep(120);
+	}
+
+	_getch();
+	return 0;
+}
+
+//-------------- lv4: Di chuyển vật thể có biên + điều khiển (mũi tên)+ 4 hướng -------
+#include <iostream>
+#include "mylib.h"
+using namespace std;
+int main()
+{
+	gotoXY(50, 13);
+	cout << "5555555555555";
+	//---- setting ----
+	int i = 1;//Biến mã màu
+	int x = 10;int y = 0;
+	int xcu=-100;int ycu=-100;
+	int check = 0;//0: Chạm biên trên và đi xuống dưới
+				//1: Chạm biên dưới và đi lên trên
+				//2: Chạm biên trái và đi qua phải
+				//3: Chạm biên phải và đi qua trái
+	//----- play ----
+	while (true)
+	{
+		//----- xóa data cũ ---
+		//system("cls");
+		//backspace
+		gotoXY(xcu, ycu);
+		cout << "                      ";
+		//---- mau ----
+		SetColor(i);
+		i++;
+		if (i == 16)
+		{
+			i = 1;//rs mã màu
+		}
+		//---- in ----
+		gotoXY(x, y);
+		cout << "Hoc lap trinh that de!";
+		//---- cập nhật xcu, ycu -----
+		xcu = x;
+		ycu = y;
+		//----- Điều khiển để thay đổi hướng -----
+		if (_kbhit() == true)//-32 mã phím
+		{
+			char c = _getch();//-32
+			if (c == -32)
+			{
+				c = _getch();//Mã phím
+				if (c == 72)
+				{
+					check = 1;
+				}
+				else if (c == 80)
+				{
+					check = 0;
+				}
+				else if (c == 75)
+				{
+					check = 3;
+				}
+				else if (c == 77)
+				{
+					check = 2;
+				}
+			}
+			
+		}
+		//---- Dựa vào hướng để di chuyển ----
+		if (check == 0)
+		{
+			y++;
+		}
+		else if (check == 1)//chạm biên dưới và đi lên
+		{
+			y--;
+		}
+		else if (check == 2)//chạm biên trÁi đi qua phải
+		{
+			x++;
+		}
+		else if (check == 3)//chạm biên phải đi qua trái
+		{
+			x--;
+		}
+		//----- Kiểm tra biên -----
+		if (y == 28)//chạm biên dưới và đi lên trên
+		{
+			check = 1;
+		}
+		else if (y == 0)
+		{
+			check = 0;
+		}
+		else if (x==0)
+		{
+			check = 2;
+		}
+		else if (x==90)
+		{
+			check = 3;
+		}
+		//----- speed -----
+		if (check == 2 || check == 3)
+		{
+			Sleep(70);
+		}
+		else
+		{
+			Sleep(120);
+		}
+	
+	}
+
+	_getch();
+	return 0;
+}
