@@ -1,0 +1,177 @@
+/*
+Ta có 2 mảng
+a: 1 2 3 4
+b: 5 6 7
+***1. Viết chương trình gộp mảng a vào đầu mảng b																							x
+=> b: 1 2 3 4 5 6 7
+***2. Viết chương trình gộp mảng a vào cuối mảng b																							x
+=> b: 5 6 7 1 2 3 4
+***4. Cho 1 mảng các số nguyên a. Viết chương trình tách các số âm ra mảng b và xóa khỏi a													x
+VD: mảng a:   1   -2   3   4   -6   0
+Xuất:
+mảng a:   1   3    4   0
+mảng b:  -2  -6
+***5. (Tư duy + Xử lý) // Bài thi kết thúc học phần: Tin học cơ sở 2(PTIT HCM)
+Cho 1 mảng số nguyên. Sắp xếp các số âm nằm trước giảm dần tiếp đến là số 0 rồi đến các số dương giảm dần
+VD: mảng: 12pt:    -4     5      0      6      -1     0      8      3     -11    15    2    1
+			 Kết quả:     -1   -4    -11     0       0    15     8      6       5      3     2    1
+Gợi ý: Sử dụng mảng phụ
+*/
+
+#include<iostream>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm thêm phần tử
+void input_element(int& n);
+//Hàm thêm giá trị
+void input_number_array(int n, int a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm thêm
+void add_number_array(int& n, int a[], int vt, int x);
+//Hàm xóa
+void delete_array(int& n, int a[], int vt, int x);
+//Hàm thêm đầu
+void add_first(int a[], int na, int b[], int& nb);
+//Hàm thêm cuối
+void add_last(int a[], int na, int b[], int& nb);
+//Hàm Tách
+void separate(int& na, int a[], int& nb, int b[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất
+void output(int n, int a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	/*int n; int a[MAX] = {};
+	do
+	{
+		input_element(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output(n, a);*/
+	
+	/*int a[] = { 1,2,3,4 }; int na = 4;
+	output(na, a);
+	int b[50] = { 5,6,7 }; int nb = 3;
+	output(nb, b);
+	add_first(a, na, b, nb);
+	output(nb, b);
+	add_last(a, na, b, nb);
+	output(nb, b);*/
+
+	/*int a[] = { 1,-2,3,4,-6,0 }; int na = 6;
+	int b[MAX] = {}; int nb = 0;
+	separate(na, a, nb, b);
+	output(na, a);
+	output(nb, b);*/
+
+
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm nhập phần tử cần dùng array
+void input_element(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị array
+void input_number_array(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu------------------------------------------------------------------------------------------------
+//Hàm thêm
+void add_number_array(int& n, int a[], int vt, int x)
+{
+	//B1: Duyệt
+	for (int i = n; i > vt; i--)
+	{
+		a[i] = a[i - 1];
+	}
+	//B2: Thêm
+	a[vt] = x;
+	//B3: Tăng phần tử
+	n += 1;
+}
+
+//Hàm Xóa
+void delete_array(int& n, int a[], int vt, int x)
+{
+	//B1: Duyệt
+	for (int i = vt; i < n - 1; i++)
+	{
+		a[i] = a[i + 1];
+	}
+	//B2: Xóa
+	n -= 1;
+}
+
+//Hàm gộp đầu
+void add_first(int a[], int na, int b[], int& nb)
+{
+	for (int i = na - 1; i >= 0; i--)
+	{
+		add_number_array(nb, b, 0, a[i]);
+	}
+}
+
+//Hàm gộp cuối
+/*
+a :	1	2	3	4
+	0	1	2	3	4
+					na
+					i
+b :	5	6	7	1	2	3	4
+	0	1	2	3	4	5	6	7
+								nb
+*/
+void add_last(int a[], int na, int b[], int& nb) 
+{
+	for (int i = 0; i < na; i++) //i=0 => a[0]=1
+	{
+		b[nb] = a[i];
+		nb += 1;
+	}
+}
+
+//Hàm Tách
+void separate(int& na, int a[], int& nb, int b[])
+{
+	for (int i = 0; i < na; i++)
+	{
+		if (a[i] < 0)
+		{
+			b[nb] = a[i];
+			nb += 1;
+			delete_array(na, a, i, a[i]);
+			i -= 1;
+		}
+	}
+}
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất
+void output(int n, int a[])
+{
+	cout << "======================== Xuat ==========================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << "\t\t";
+	}
+	cout << endl;
+}
+

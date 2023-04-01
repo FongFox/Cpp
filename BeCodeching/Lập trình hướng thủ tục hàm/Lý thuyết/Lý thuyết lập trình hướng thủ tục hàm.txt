@@ -1,0 +1,109 @@
+//===== Giải bt cũ ====
+1. In tam giác cân rỗng
+			h = 4		2*h - 1
+
+			h-i+1,     h+i-1
+1	      *		4	4
+2	    *  *		3,	5
+3	  *      *		2,	6
+4	*******		[1,	7]
+	1234567
+
+
+2. In tam giác cân đảo ngược.
+			h = 4,	2*h - 1
+
+		1234567	          h- i + 1,	h +i - 1	
+	4	*******		[1,	7]
+	3	  *****		[2,	6]
+	2	    ***		[3,	5]
+	1	      *		[4,	4]
+
+//===================	Hàm =====================
+
+	//Biến toàn cục
+	//Biến cục bộ
+
+
+
+
+Các giai đoạn phát triển của lập trình:
+
++ Lập trình tuyến tính
++ Lập trình hướng thủ tục hàm(Chức năng)
++ Lập trình hướng đối tượng.
+
+
++ Ưu điểm:	Code nhanh hơn, tiết kiệm hơn, dễ dàng tối ưu, chỉnh sửa.
+
++ Cú pháp Định nghĩa hàm
+		<kdl> <tên hàm>(<tham số truyền vô nếu có>)
+		{
+			//Thân hàm
+		}
+
+	Thân hàm: Các thao tác xử lý của chức năng.
+	Tên hàm: Đặt theo quy tắc đặt tên.	- sử dụng: a - z, A - Z, 0 - 9, _
+					- ko bắt đầu bằng số
+					- ko trùng từ khóa
+					- Có pb chữ hoa, chữ thường		case	Case
+	
+Thuật ngữ:	 + Định nghĩa hàm:	Khai báo chương trình biết cái hàm này tồn tại
+			Thiết kế cấu trúc của hàm.
+	+ Lời gọi hàm: gọi lại tên và truyền đối tượng vào để thực thi.
+	
+Kdl của hàm: 
+     + Phân loại hàm:	- Hàm có giá trị trả về		- kdl của hàm <=> kdl của giá trị trả về.
+	Hàm có giá trị trả về là hàm mà nó sẽ đi thực thi tính toán và muốn trả giá trị về cho thằng khác
+									tái sử dụng.
+		Trả về thông qua từ khóa: return.	Lưu ý:	1 hàm chỉ trả về DUY NHẤT 1 giá trị.
+
+			Nguyên lý:	B1: Thoát hàm 	B2: Lấy giá trị trả về cho lời gọi hàm.
+
+		- Hàm không có giá trị trả về	- kdl của hàm  = void
+	Hàm không có giá trị trả về sẽ đi thực thi tính toán nhưng không muốn trả giá trị cho thằng khác tái sử dụng.
+
+BT VD:		Tên hàm			kdl của hàm
+
+		tinh_tong_2_so_nguyen()	void/int
+		tinh_diem_trung_binh()	void/float
+		xep_loai_hoc_luc()		void
+		kiem_tra_so_chan()		void/bool
+		
++ Cách sử dụng lời gọi hàm của hàm có giá trị trả về
+		Vì return trả giá trị về cho lời gọi hàm -> Lời gọi hàm <=> giá trị	
+
+			18
+Cách sử dụng		Giá trị			Lời gọi hàm
+		
+Gán			int tuoi= 18;		int tuoi = gt();
+in ra màn hình		cout<<18<<endl;		cout<<gt()<<endl;
+biểu thức			(1+2 - 18*3)		(1+2 - gt()*3)
+Biểu thức điều kiện		(20 >= 18)			(20 >= gt())
+
+	Hàm không có giá trị trả về: 	=> Chỉ được phép gọi ra dùng.	VD:	gt();
+
+
++ Tham số thực: Truyền ở lời gọi hàm
+
++ Tham số hình thức:	Truyền ở định nghĩa hàm
+		+ Tham trị:	Không có  &
+		+ Tham chiếu:	Có  &
+
+	Lưu ý:	Mọi thay đổi trên vùng nhớ thì đều được lưu lại.
+
++ Các bước chuyển tuyến tính -> hàm
+
++ B1: Xác định tên hàm
++ B2: xác định thân hàm
++ B3: xác định tham số (Hàm này tương tác với ai)
++ B4: xác định kdl của hàm (Hàm này có về không ??)
++ B5: Lưu ý khi sử dụng hàm:
+	+ Nếu tham số là biến, hỏi xem bên trong có sự thay đổi không, Nếu có thì hỏi xem có muốn lưu không
+								Nếu có thì tham chiếu.
+	+
+	+
+
++ Nguyên mẫu hàm
++ Nạp chồng hàm
++ Khuôn mẫu hàm

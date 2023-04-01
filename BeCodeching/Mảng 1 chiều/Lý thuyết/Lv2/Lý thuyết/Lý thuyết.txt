@@ -1,0 +1,101 @@
+LV1 - Câu 4: Thống kê tần xuất.
+
+	VD: a[]	1	3	2	7	3	1	4
+		0	1	2	3	4	5	6
+					i
+						j
+		
+
+
+			
+
+	Cách 1: Đếm + xóa	:	dem = 3	(Thay đổi data gốc/ Tốn bộ nhớ khi dùng mảng phụ)
+	Cách 2: Tạo mảng phân biệt -> đi đếm.
+
+	Cách 3:	Chỉ được thống kê khi pt đó chưa được thống kê.
+
+
+//====================== KỸ THUẬT GỘP ================
+Ta có 2 mảng
+	a: 1 2 3 4
+	b: 5 6 7 
+
+1. Viết chương trình gộp mảng a vào đầu mảng b
+=> b: 1 2 3 4 5 6 7
+
+
+	Gộp a vào đầu b =	Duyệt cuối về đầu của a +  thêm đầu vào b	
+
+	a: 1 2 3 4
+	b:   1 2 3 4 5 6 7
+
+
+
+2. Viết chương trình gộp mảng a vào cuối mảng b
+=> b: 5 6 7 1 2 3 4
+
+
+		Gộp a vào cuối b = Duyệt từ đầu về cuối của a +  thêm cuối b
+
+	a: 1 2 3 4
+	b: 5 6 7 1 2 3 4
+
+4. Cho 1 mảng các số nguyên a. Viết chương trình tách các số âm ra mảng b và xóa khỏi a
+VD: mảng a:   1   -2   3   4   -6   0
+
+Xuất:
+mảng a:    1    3   4   0
+	0   1   2   3   4     5
+
+mảng b:    -2 -6
+	0  1
+
+
+		Nếu là pt âm:	+ Thêm cuối b
+				+ Xóa khỏi a
+
+
+
+5. (Tư duy + Xử lý) // Bài thi kết thúc học phần: Tin học cơ sở 2(PTIT HCM)
+Cho 1 mảng số nguyên. Sắp xếp các số âm nằm trước giảm dần tiếp đến là số 0 rồi đến các số dương giảm dần
+
+VD: mảng: 12pt:    -4     5      0      6      -1     0      8      3     -11    15    2    1  
+
+             Kết quả:     -1   -4    -11     0       0    15     8      6       5      3     2    1  
+
+		-11 -4 -1 0 0 1 2 3 5 6 8 15
+
+Gợi ý: Sử dụng mảng phụ
+
+
+	mảng a:	 0  0
+	
+	B1: Tách pt âm ra mảng b, pt dương ra mảng c
+âm	mảng b:	 -4		-1	-11
+dương	mảng c:	5	6	8	3	15	2	1
+
+	B2: Sắp xếp:	giảm mảng âm, dương
+	a: 0	0
+	b: -1	-4	-11
+	c: 15	8	6	5	3	2	1
+
+	B3:  
+		B3.1:	Gộp mảng b vào đầu mảng a.
+			a: -1 -4 -11 0 0
+
+		B3.2:	Gộp mảng c vào cuối mảng a
+			a: -1 -4 -11 0 0 15 8 6 5 3 2 1
+
+
+
+3. có 2 mảng a, b đã được sắp xếp TĂNG DẦN. Trộn mảng a, b vào c sao cho mảng c tăng dần.
+
+VD: 	a: 1 2 7
+	b: 0 2 6 9
+
+
+
+	a: 
+	b:  9 10 11
+
+=> c: 0 1 2 2 6 7 9 10 11

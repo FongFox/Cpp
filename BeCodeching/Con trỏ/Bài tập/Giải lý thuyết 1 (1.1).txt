@@ -1,0 +1,56 @@
+1. và 3.
+Con biến:
++ Yêu cầu hệ thống cấp 1 vùng nhớ ngẫu nhiêu để chứa giá trị theo độ lớn kiểu dữ liệu.
++ Giá trị khởi tạo ban đầu luôn luôn là giá trị rác.
++ Bao gồm:
+- Địa chỉ.
+- Vùng nhớ. (chứa giá trị)
+Con trỏ:
++ Yêu cầu hệ thống cấp 1 vùng nhớ ngẫu nhiên để chứa địa chỉ của 1 biến.
++ Với kích thước cố định là 4 byte (áp dụng với mọi kiểu dữ liệu). 
++ Khi biến thay đổi giá trị thì con trỏ cũng thay đổi theo (bởi vì con trỏ chứa địa chỉ của biến đó).
++ Khi con trỏ thay đổi thì con biến (dữ liệu gốc) cũng thay đổi theo.
++ Con trỏ chỉ chứ được 1 địa chỉ (của 1 biến) nhưng 1 biến có thể được truy cập được nhiều con trỏ.
+2.
++ Lệnh: int* b = &a;
+- Yêu cầu tạo 1 vùng nhớ ngẫu nhiên trên ram với kích thước cố định 4 byte.
+- b sẽ trỏ vào và ghi nhớ địa chỉ của a (BAX03).
++ Lệnh: cout << b << endl;
+- Xuất ra địa chỉ của a (BAX03) nơi mà b trỏ đến rồi xuống dòng.
++ Lệnh: cout << *b << endl;
+- dấu * cho phép b truy cập vào giá trị bên trong địa chỉ BAX03 (của a) và xuất ra màn hình, rồi xuống dòng.
++ Lệnh: float* c = a;
+- Sẽ báo lỗi vào không có dấu & (địa chỉ).
++ Lệnh a = 15;
+- Thay đổi giá trị trong địa chỉ của biến a thành 15 nếu xuất ra thì giá trị của con trỏ cũng thay đổi theo.
+4.
++ Lợi ích: Tiện, áp dụng vào nhiều thứ (dslk, tree, mảng động, stack, queue...).
+5.
++ kích thước của con trỏ luôn luôn là 4 byte cho mọi kiểu dữ liệu. (vì con trỏ chỉ chứa địa chỉ của biến dó).
+6.
+void input(int&n, int* p)
+{
+	cout << "Nhap phan tu muon su dung: "; cin >> n;
+	for(int i=0; i<n; i++)
+	{
+		cout << "Nhap phan tu thu " << i << " : ";
+		cin >> *(p+i); 
+	}
+}
+void output(int n, int* p)
+{
+	for(int i=0; i<n; i++)
+	{
+		cout << "a[" << i << "]=  " << *(p+i) << "\t\t";
+	}
+	cout << endl;
+}
+int main()
+{
+	int n; int a[100];
+	int* p = a;
+	input(n,p);
+	output(n,p);
+	system("pause");
+}
+

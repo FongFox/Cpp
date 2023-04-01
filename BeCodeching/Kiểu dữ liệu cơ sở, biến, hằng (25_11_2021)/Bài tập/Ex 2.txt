@@ -1,0 +1,65 @@
+/*
+Bài 2. Viết chương trình nhập vào 3 số nguyên. Tìm giá trị nhỏ nhất
+Dữ liệu đầu vào                                           	Dữ liệu đầu ra
+a = 1, b = 2, c = 3                                       	1
+a = 2, b = 1, c = 1                                       	1
+a = 6, b = 6, c = 6                                       	6
+*/
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	//Khai báo biến a, b, c.
+	int a, b, c;
+	cout << "Nhap gia tri a: ";
+	cin >> a;
+	cout << "Nhap gia tri b: ";
+	cin >> b;
+	cout << "Nhap gia tri c: ";
+	cin >> c;
+	/*
+	Mã giả
+	Gán giá trị min là a
+	Nếu min<b
+		thì nếu min < c
+				thì min = a
+			Ngược lại (min > c)
+				thì min = c
+	Ngược lại (min > b)
+		thì min = b
+		và nếu min < c
+				thì min = b
+			ngược lại (min > c)
+				thì min = c
+	*/
+	int min = a;
+	if (min < b)
+	{
+		if (min < c)
+		{
+			cout << a << endl;
+		}
+		else
+		{
+			min = c; 
+			cout << c << endl;
+		}
+	}
+	else 
+	{
+		min = b;
+		if (min < c)
+		{
+			cout << b << endl;
+		}
+		else 
+		{
+			min = c;
+			cout << c << endl;
+		}
+	}
+
+	system("pause");
+	return 0;
+}

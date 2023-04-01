@@ -1,0 +1,147 @@
+/*
+1. Viết chương trình xuất ra các phần tử là số nguyên tố trong mảng														x
+2. Cho dãy số nguyên. Viết chương trình tìm giá trị lẻ cuối cùng trong mảng.												x
+3. Cho dãy số nguyên. Viết chương trình tìm đoạn [a, b] sao cho đoạn này chứa mọi giá trị trong mảng.						x
+4. Cho dãy số nguyên. Viết chương trình kiểm tra mảng có toàn dương hay không?												x
+5. Cho dãy số nguyên. Viết chương trình kiểm tra mảng có tăng dần hay không?												x
+*/
+
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu===============
+void nhap_so_phan_tu(int& n);
+void nhap_gia_tri(int n, int a[]);
+void gia_tri_le_cuoi_cung(int n, int a[]);
+void xuat_doan(int n, int a[]);
+void so_toan_duong(int n, int a[]);
+void kt_so_tang_dan(int n, int a[]);
+void xuat_snt(int n, int a[]);
+
+int main()
+{
+	int n;
+	int a[MAX] = {};
+	
+	
+	do
+	{
+		nhap_so_phan_tu(n);
+	} while (n <= 0 || n > MAX);
+	nhap_gia_tri(n, a);
+	/*gia_tri_le_cuoi_cung(n, a);*/
+	xuat_doan(n, a);
+	so_toan_duong(n, a);
+	/*kt_so_tang_dan(n, a);*/
+	/*xuat_snt(n, a);*/
+
+	cout << endl << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa================
+void nhap_so_phan_tu(int& n)
+{
+	cout << "Nhap so phan tu can su dung: "; cin >> n;
+}
+
+void nhap_gia_tri(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap gia tri: "; cin >> a[i];
+	}
+}
+
+void gia_tri_le_cuoi_cung(int n, int a[])
+{
+	cout << "Gia tri le cuoi cung cua mang: ";
+	for (int i = n - 1; i >= 0; i--)
+	{
+		if (a[i] % 2 != 0)
+		{
+			cout << a[i] << ".";
+			cout << endl;
+			return;
+		}
+	}
+}
+
+void xuat_doan(int n, int a[])
+{
+	int min = INT32_MAX;
+	int max = INT16_MIN;
+	for (int i = 0; i < n; i++)
+	{
+		if (min > a[i])
+		{
+			min = a[i];
+		}
+		if (max < a[i])
+		{
+			max = a[i];
+		}
+	}
+	cout << "[a,b]: " << "[" << min << "," << max << "]" << endl;
+}
+
+void so_toan_duong(int n, int a[])
+{
+	int cohieu = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] < 0 || a[i] == 0)
+		{
+			cohieu = 1;
+		}
+	}
+	if (cohieu == 1)
+	{
+		cout << "Mang khong toan duong." << endl;
+	}
+	else cout << "Mang toan duong." << endl;
+}
+
+void kt_so_tang_dan(int n, int a[])
+{
+	for (int i = 0; i < n-1; i++)
+	{
+		if (a[i] > a[i + 1])
+		{
+			cout << "Mang ko tang dan!" << endl;
+			return;
+		}
+	}
+	cout << "Mang tang dan!" << endl;
+}
+
+void xuat_snt(int n, int a[])
+{
+	cout << "So nguyen to:     ";
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] <= 1)
+		{
+			continue;
+		}
+		if (a[i] > 1 && a[i] < 4)
+		{
+			cout << a[i] << "    ";
+			continue;
+		}
+		if (a[i] % 2 == 0 || a[i] % 3 == 0)
+		{
+			continue;
+		}
+		for (int j = 2; j <= sqrt(a[i]); j++)
+		{
+			if (a[i] % j != 0)
+			{
+				cout << a[i] << "    ";
+				break;
+			}
+		}
+	}
+}

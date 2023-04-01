@@ -1,0 +1,26 @@
+/*
+Bài 4 (11). Viết chương trình nhập vào 2 biến tháng và năm. Xuất ra số ngày của tháng đó
+Không được dùng câu lệnh điều kiện và cấu trúc rẽ nhánh.
+*/
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	//Khai bao bien y, m.
+	int y, m;
+	cout << "Nhap nam: ";
+	cin >> y;
+	do
+	{
+		cout << "Nhap thang: ";
+		cin >> m;
+	} while (m < 1 || m	> 12);
+	
+	m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12 ?
+		cout << "Thang " << m << " co 31 ngay." : (m == 2 ? (y % 4 == 0 || y % 400 == 0 ? cout << "Thang " << m << " co 29 ngay." : cout << "Thang " << m << " co 29 ngay.") : cout << "Thang " << m << " co 30 ngay.");
+
+	cout << endl;
+	system("pause");
+	return 0;
+}

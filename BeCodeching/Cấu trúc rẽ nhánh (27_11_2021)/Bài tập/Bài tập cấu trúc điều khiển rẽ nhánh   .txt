@@ -1,0 +1,74 @@
+======================================== PHẦN 1 – CĂN BẢN ========================================
+Bài 1. Viết chương trình nhập vào 2 số nguyên. Tìm giá trị lớn nhất
+Dữ liệu đầu vào                                           	Dữ liệu đầu ra
+a = 1, b = 2                                                 	2
+a = 2, b = 1                                                 	2
+a = 6, b = 6                                                 	6
+ 
+Bài 2. Viết chương trình nhập vào 3 số nguyên. Tìm giá trị nhỏ nhất
+Dữ liệu đầu vào                                           	Dữ liệu đầu ra
+a = 1, b = 2, c = 3                                       	1
+a = 2, b = 1, c = 1                                       	1
+a = 6, b = 6, c = 6                                       	6
+ 
+Bài 3. Viết chương trình nhập vào điểm của sinh viên gồm điểm chuyên cần(10%), điểm giữa kỳ(30%), điểm cuối kỳ(60%). Tính điểm trung bình và xếp loại theo quy ước sau:
+-        Điểm trung bình < 5     	                	=> loại D
+-        Điểm trung bình >= 5 và < 7             	=> loại C
+-        Điểm trung bình >= 7 và < 9          	  	=> loại B
+-        Điểm trung bình >= 9                       		=> loại A
+Dữ liệu đầu vào                                           	Dữ liệu đầu ra
+cc = 6, gk = 7, ck = 5     	                          	loại C
+cc = 6, gk = 5, ck = 3                                   	loại D
+cc = 8, gk = 7, ck = 9     	                          	loại B
+cc = 10, gk = 9, ck = 8                                 	loại A
+ 
+Bài 4. Viết chương trình giải phương trình bậc nhất có dạng: ax + b = 0
+Dữ liệu đầu vào                                           	Dữ liệu đầu ra
+a = 1, b = 2                                                 	Có nghiệm -2
+a = 0, b = 2                                                 	Vô nghiệm
+a = 0, b = 0                                                 	Vô số nghiệm
+
+Bài 5. Viết chương trình giải phương trình bậc 2 có dạng: ax^2 + bx + c = 0
+Dữ liệu đầu vào                                           	Dữ liệu đầu ra
+a = 1, b = 2, c = 3                                       	Vô nghiệm
+a = 0, b = 2, c = 4                                       	Có nghiệm -2
+a = 0, b = 0, c = 0                                       	Vô số nghiệm
+a = 0, b = 0, c = 4                                       	Vô nghiệm
+a = 1, b = 2, c = 1                                       	Nghiệm kép -1
+a = 1, b = 3, c = 2                                       	Có 2 nghiệm phân biệt -1 và -2
+
+Bài 6. Viết chương trình nhập vào hai giá trị tháng và năm. Xuất ra số ngày tương ứng của tháng đó.
+Gợi ý:
+- Năm nhuận là năm chia hết cho 4 và không chia hết cho 100, hoặc là chia hết cho 400
+- Những tháng có
++ 30 ngày: 4 6 9 11                            	+ 31 ngày: 1 3 5 7 8 10 12
+-        Tháng 2 là tháng đặc biệt
++ 28 ngày: năm không nhuận              	+ 29 ngày: năm nhuận
+Dữ liệu đầu vào                                           	Dữ liệu đầu ra
+thang = 1, nam = 2010                                	Có 31 ngày
+thang = 6, nam = 2012                                	Có 30 ngày
+thang = 2, nam = 2000                                	Có 29 ngày
+thang = 2, nam = 2005                                	Có 28 ngày
+
+======================================== PHẦN 2 – NÂNG CAO ========================================
+Bài 1 (7). Nhập vào số nguyên dương có ít nhất 1 chữ số và tối đa 3 chữ số.
+Đọc số nguyên dương đó bằng chữ
+Dữ liệu đầu vào                                           	Dữ liệu đầu ra
+123                                                      	       Một trăm hai mươi ba
+402                                                      	   	Bốn trăm linh hai
+999                                                      	   	Chín trăm chín mươi chín
+10                                                        	   	Mười
+20                                                        	   	Hai mươi
+ 
+======================================== PHẦN 3 – TƯ DUY PHÂN TÍCH – SUY LUẬN ========================================
+Bài 1 (8). Viết chương trình nhập vào 4 số thực bất kỳ. Tìm giá trị lớn nhất
+Điều kiện chương trình chỉ được dùng tối đa 2 biến
+ 
+Bài 2 (9). Viết chương trình nhập vào 2 số nguyên dương a và b. Hoán vị 2 giá trị cho nhau
+Không được dùng thêm biến nào khác ngoài a và b
+ 
+Bài 3 (10). Viết chương trình nhập vào 2 số nguyên dương a và b. Tìm giá trị lớn nhất.
+Không được dùng câu lệnh điều kiện
+ 
+Bài 4 (11). Viết chương trình nhập vào 2 biến tháng và năm. Xuất ra số ngày của tháng đó
+Không được dùng câu lệnh điều kiện và cấu trúc rẽ nhánh.

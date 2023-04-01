@@ -1,0 +1,163 @@
+/*
+===========================================Bài tập yêu cầu====================================================================================
+Bài 1: Cho 1 dãy số nguyên. Viết chương trình xóa các phần tử là số đối xứng.																x
+Bài 2: Cho 1 dãy số nguyên. Viết chương trình thêm phần tử 0 vào trước các số hoàn thiện.													x
+Bài 3. Cho mảng 1 chiều các số nguyên. Viết chương trình xóa các phần tử trùng nhau trong mảng, chỉ giữ lại duy nhất một phần tử phân biệt.	x
+VD: 1 4 2 2 1 5 4
+==> 1 4 2 5
+==========================================Bài tập nângcao=====================================================================================
+Bài 4. Cho mảng 1 chiều các số nguyên. Viết chương trình đếm số lần xuất hiện của từng phần tử trong mảng.
+VD:
+1 3 5 2 3 1
+==>
+Phần tử	Số lần xuất hiện
+1 	2
+2	1
+3	2
+5 	1
+*/
+
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+void input_element(int& n);
+void input_number(int n, int a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm xóa array
+void delete_array(int& n, int a[]);
+//Hàm xóa số đối lập trong arr
+void delete_opposite_number_array(int& n, int a[]);
+//Hàm thêm số 0 vào trước số hoàn thiện trong arr
+void add_zero_before_perfect_number(int& n, int a[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+void output(int n, int a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int n; int a[MAX];
+	
+	//Hàm nhập (và test thử đầu ra)
+	do
+	{
+		input_element(n);
+	} while (n <= 0 || n > MAX);
+	input_number(n, a);
+	output(n, a);
+
+	//
+	cout << "===========================================" << endl;
+	delete_array(n, a);
+	output(n, a);
+	
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập------------------------------------------------------------------------------------------------------------------
+//Hàm nhập phần tử
+void input_element(int& n)
+{
+	cout << "Nhap phan tu can su dung: "; cin >> n;
+}
+
+//Hàm nhập giá trị
+void input_number(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap gia tri a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+
+//---------------------Hàm xử lý theo yêu cầu------------------------------------------------------------------------------------------------
+void delete_array(int& n, int a[])
+{
+	for (int i = n - 1; i >= 0; i--)
+	{
+		if (a[i] != a[i - 1])
+		{
+			continue;
+		}
+		else 
+		{
+			a[i - 1] = a[i];
+			for (int j = i; j < n; j++)
+			{
+				a[j] = a[j + 1];
+			}
+			n -= 1;
+		}
+	}
+}
+
+void delete_opposite_number_array(int& n, int a[])
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (abs(a[j]) - abs(a[i]) != 0)
+			{
+				continue;
+			}
+			else
+			{
+				for (int k = j; k < n; k++)
+				{
+					a[k] = a[k + 1];
+				}
+				n -= 1;
+			}
+		}
+	}
+}
+
+void add_zero_before_perfect_number(int& n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		int sum = 0;
+		for (int j = 1; j <= a[i] / 2; j++)
+		{
+			if (a[i] % j == 0)
+			{
+				sum += j;
+			}
+		}
+		if (sum != a[i])
+		{
+			continue;
+		}
+		else
+		{
+			for (int k = n; k > i; k--)
+			{
+				a[k] = a[k - 1];
+			}
+			a[i] = 0;
+			i += 1;
+			n += 1;
+		}
+	}
+}
+
+
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+void output(int n, int a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << a[i] << endl;
+	}
+}
+
+

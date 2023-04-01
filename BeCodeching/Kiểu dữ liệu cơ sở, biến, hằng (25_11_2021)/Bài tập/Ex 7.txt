@@ -1,0 +1,295 @@
+/*
+Bài 1 (7). Nhập vào số nguyên dương có ít nhất 1 chữ số và tối đa 3 chữ số.
+Đọc số nguyên dương đó bằng chữ
+Dữ liệu đầu vào                                           	Dữ liệu đầu ra
+123                                                      	       Một trăm hai mươi ba
+402                                                      	   	Bốn trăm linh hai
+999                                                      	   	Chín trăm chín mươi chín
+10                                                        	   	Mười
+20                                                        	   	Hai mươi
+*/
+
+/*
+Note (nhìn code tao thấy :>> ) :
+- Khai báo n.
+- Xét n :
+	if (n>=100 && n<1000)
+	{
+		Khởi tạo hundreds = n/100; Khởi tạo dozens = (n%100)/10; Khởi tạo units = (n%100)%10;
+		
+		if(n%100!=0)
+		{
+			switch (hundreds)
+				case 1 : in ra "một trăm"
+				case 2 : in ra "hai trăm"
+				case 3 : in ra "ba trăm"
+				case 4 : in ra "bốn trăm"
+				case 5 : in ra "năm trăm"
+				case 6 : in ra "sáu trăm"
+				case 7 : in ra "bảy trăm"
+				case 8 : in ra "tám trăm"
+				case 9 : in ra "chín trăm"
+
+			switch (dozens)
+				case 0: in ra "linh"
+				case 1: in ra "mười"
+				case 2: in ra "hai mươi"
+				case 3: in ra "ba mươi"
+				case 4: in ra "bốn mươi"
+				case 5: in ra "năm mươi"
+				case 6: in ra "sáu mươi"
+				case 7: in ra "bảy mươi"
+				case 8: in ra "tám mươi"
+				case 9: in ra "chín mươi"
+
+			switch (units)
+				case 1: in ra "mốt"
+				case 2: in ra "hai"
+				case 3: in ra "ba"
+				case 4: in ra "bốn"
+				case 5: 
+					if(dozens==0)
+						in ra "năm"
+					else in ra "lăm"
+				case 6: in ra "sáu'
+				case 7: in ra "bảy"
+				case 8: in ra "tám"
+				case 9: in ra "chín"
+		} 
+		else
+		{
+			switch(hundreds)
+				case 1: in ra "một trăm"
+				case 2: in ra "hai trăm"
+				case 3: in ra "ba trăm"
+				case 4: in ra "bốn trăm"
+				case 5: in ra "năm trăm"
+				case 6: in ra "sáu trăm"
+				case 7: in ra "bảy trăm"
+				case 8: in ra "tám trăm"
+				case 9: in ra "chín trăm"
+		}
+	}
+	else if (n>=10 && n<100)
+		{
+			Khởi tạo dozens = (n%100)/10; Khởi tạo units = (n%100)%10;
+
+			if(n%10!=0)
+			{
+				switch(dozens)
+					case 1: in ra "mười"
+					case 2: in ra "hai mươi"
+					case 3: in ra "ba mươi"
+					case 4: in ra "bốn mươi"
+					case 5: in ra "năm mươi"
+					case 6: in ra "sáu mươi"
+					case 7: in ra "bảy mươi"
+					case 8: in ra "tám mươi"
+					case 9: in ra "chín mươi"
+
+				switch(units)
+					case 1: 
+						if(dozens==1)
+							in ra "một"
+						else in ra "mốt"
+					case 2: in ra "hai"
+					case 3: in ra "ba"
+					case 4: in ra "bốn"
+					case 5: in ra "lăm"
+					case 6: in ra "sáu"
+					case 7: in ra "bảy"
+					case 8: in ra "tám"
+					case 9: in ra "chín"
+			}
+			else
+			{
+				switch(dozens)
+					case 1: in ra "mười"
+					case 2: in ra "hai mươi"
+					case 3: in ra "ba mươi"
+					case 4: in ra "bốn mươi"
+					case 5: in ra "năm mươi"
+					case 6: in ra "sáu mươi"
+					case 7: in ra "bảy mươi"
+					case 8: in ra "tám mươi"
+					case 9: in ra "chín mươi"
+			}
+
+		}
+		else 
+		{
+			Khởi tạo units = (n%100)%10;
+			switch(units)
+				case 0: in ra "Không"
+				case 1:	in ra "một"
+				case 2: in ra "hai"
+				case 3: in ra "ba"
+				case 4: in ra "bốn"
+				case 5: in ra "năm"
+				case 6: in ra "sáu"
+				case 7: in ra "bảy"
+				case 8: in ra "tám"
+				case 9: in ra "chín"
+		}
+
+
+
+
+
+
+
+*/
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int n, hundreds, dozens, units;
+	do
+	{
+		cout << "Nhap n: ";
+		cin >> n;
+	} while (n<0 || n>999);
+	
+	if (n >= 100 && n < 1000)
+	{
+		hundreds = n / 100; dozens = (n % 100) / 10; units = (n % 10) % 10;
+		if (n % 100 != 0)
+		{
+			switch (hundreds)
+			{
+				case 1: cout << "Mot tram "; break;
+				case 2: cout << "Hai tram "; break;
+				case 3: cout << "Ba tram "; break;
+				case 4: cout << "Bon tram "; break;
+				case 5: cout << "Nam tram "; break;
+				case 6: cout << "Sau tram "; break;
+				case 7: cout << "Bay tram "; break;
+				case 8: cout << "Tam tram "; break;
+				case 9: cout << "Chin tram "; break;
+			}
+
+			switch (dozens)
+			{
+				case 0: cout << "linh "; break;
+				case 1: cout << "muoi "; break;
+				case 2: cout << "hai muoi "; break;
+				case 3: cout << "ba muoi "; break;
+				case 4: cout << "bon muoi "; break;
+				case 5: cout << "nam muoi "; break;
+				case 6: cout << "sau muoi "; break;
+				case 7: cout << "bay muoi "; break;
+				case 8: cout << "tam muoi "; break;
+				case 9: cout << "chin muoi "; break;
+			}
+
+			switch (units)
+			{
+				case 1: cout << "mot."; break;
+				case 2: cout << "hai."; break;
+				case 3: cout << "Ba."; break;
+				case 4: cout << "Bon."; break;
+				case 5: 
+					if (dozens == 0)
+					{
+						cout << "nam."; break;
+					}
+					else cout << "lam."; break;
+				case 6: cout << "Sau."; break;
+				case 7: cout << "Bay."; break;
+				case 8: cout << "Tam."; break;
+				case 9: cout << "Chin."; break;
+			}
+		}
+		else
+		{
+			switch (hundreds)
+			{
+				case 1: cout << "Mot tram "; break;
+				case 2: cout << "Hai tram "; break;
+				case 3: cout << "Ba tram "; break;
+				case 4: cout << "Bon tram "; break;
+				case 5: cout << "Nam tram "; break;
+				case 6: cout << "Sau tram "; break;
+				case 7: cout << "Bay tram "; break;
+				case 8: cout << "Tam tram "; break;
+				case 9: cout << "Chin tram "; break;
+			}
+		}
+	}
+	else if (n >= 10 && n < 100)
+	{
+		dozens = (n % 100) / 10; units = (n % 10) % 10;
+		if (n % 10 != 0)
+		{
+			switch (dozens)
+			{
+				case 1: cout << "Muoi "; break;
+				case 2: cout << "Hai muoi "; break;
+				case 3: cout << "Ba muoi "; break;
+				case 4: cout << "Bon muoi "; break;
+				case 5: cout << "Nam muoi "; break;
+				case 6: cout << "Sau muoi "; break;
+				case 7: cout << "Bay muoi "; break;
+				case 8: cout << "Tam muoi "; break;
+				case 9: cout << "Chin muoi "; break;
+			}
+
+			switch (units)
+			{
+				case 1: 
+					if (dozens == 1)
+					{
+						cout << "mot"; break;
+					}
+					else cout << "mot."; break;
+				case 2: cout << "Hai."; break;
+				case 3: cout << "Ba."; break;
+				case 4: cout << "Bon."; break;
+				case 5: cout << "lam."; break;
+				case 6: cout << "Sau."; break;
+				case 7: cout << "Bay."; break;
+				case 8: cout << "Tam."; break;
+				case 9: cout << "Chin."; break;
+			}
+		}
+		else
+		{
+			switch (dozens)
+			{
+				case 1: cout << "Muoi "; break;
+				case 2: cout << "Hai muoi "; break;
+				case 3: cout << "Ba muoi "; break;
+				case 4: cout << "Bon muoi "; break;
+				case 5: cout << "Nam muoi "; break;
+				case 6: cout << "Sau muoi "; break;
+				case 7: cout << "Bay muoi "; break;
+				case 8: cout << "Tam muoi "; break;
+				case 9: cout << "Chin muoi "; break;
+			}
+		}
+	}
+	else
+	{
+		units = (n % 10) % 10;
+		switch (units)
+		{
+			case 0: cout << "Khong."; break;
+			case 1: cout << "Mot."; break;
+			case 2: cout << "Hai."; break;
+			case 3: cout << "Ba."; break;
+			case 4: cout << "Bon."; break;
+			case 5: cout << "Nam."; break;
+			case 6: cout << "Sau."; break;
+			case 7: cout << "Bay."; break;
+			case 8: cout << "Tam."; break;
+			case 9: cout << "Chin."; break;
+		}
+	}
+
+
+	cout << endl;
+	system("pause");
+	return 0;
+}

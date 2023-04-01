@@ -1,0 +1,23 @@
+//================== BT lý thuyết =====================
+1. mảng là gì ?
+2. số lượng phần tử tối đa của mảng là giá trị như thế nào ?
+3. Mảng tĩnh khác gì so với mảng động ?
+4. Trình bày CHI TIÊT chương trình sẽ xử lý gì khi gặp lệnh:   int a[10];
+5. Trình bày ý nghĩa lệnh:  int a[7];         và lệnh   a[0];
+6. Giá trị của các phần tử mảng sau khi vừa khai báo là gì ?
+7. Trình bày công thức tính kích thước mảng: float a[n]?
+
+//=========================== luyện bài tập cú pháp 5 lần ==================
+
+//================== BT =====================
+***1. Viết chương trình xuất ra các phần tử là số nguyên tố trong mảng
+2. Cho dãy số nguyên. Viết chương trình tìm giá trị lẻ cuối cùng trong mảng.
+3. Cho dãy số nguyên. Viết chương trình tìm đoạn [a, b] sao cho đoạn này chứa mọi giá trị trong mảng.
+4. Cho dãy số nguyên. Viết chương trình kiểm tra mảng có toàn dương hay không?
+5. Cho dãy số nguyên. Viết chương trình kiểm tra mảng có tăng dần hay không?
+6. Viết chương trình in ra các số siêu nguyên tố có trong mảng.
+
+/* Số siêu nguyên tố: à số mà khi bỏ 1 số tùy ý các chữ số bên phải của nó thì phần còn lại vẫn là 1 số nguyên tố
+vd: 2333 là một số siêu nguyên tố có 4 chữ số vì 233, 23, 2 cũng là các số nguyên tố.
+VD 16 số siêu nguyên tố có 4 chữ số:
+2333, 2339, 2393, 2399, 2939, 3119, 3137, 3733, 3739, 3797, 5939, 7193, 7331, 7333, 7393.

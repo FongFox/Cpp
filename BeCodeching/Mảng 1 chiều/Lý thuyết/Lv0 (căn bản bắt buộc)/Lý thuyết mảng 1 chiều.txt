@@ -1,0 +1,51 @@
+//============ Mảng 1 chiều tĩnh =====
+
+	Mảng: Tập hợp các pt cùng kdl.
+
+
++ Cấu tạo
+
+		Cú pháp khai báo:		<kdl> <tên mảng>[<sl pt tối đa>];
+				VD:	int a[5];
+
+		sl pt tối đa: là giá trị không đổi.
+		
++ Nhập
+		-	Khởi tạo trực tiếp (biết trước sl pt, giá trị của từng pt)
+		-	Khởi tạo lần lượt (Thông dụng)
+
+		Sử dụng duyệt -> Để nhập
+
++ Xuất		Duyệt để in
+	============================================
+
+	lv0: Duyệt, tìm kiếm, liệt kê, tính tổng, đặt lính canh, đặt cờ hiệu
+
+	Đặt lính canh:	Tìm min, max
+
+	+ Chọn 1 lính, Sau đó đi tìm lính thỏa mãn hơn. Nếu tìm thấy thì thay lính.
+		=> Kết luận.	
+
+	Đặt cờ hiệu:	kiểm tra cho cả mảng.
+			VD:	kt mảng toàn dương, toàn âm, tăng dần, giảm dần, gợn sóng.
+
+
+		C1:		1	2	4	15
+
+		dem =0		1	2	3	4
+			
+			dem==n	=> Mảng toàn dương
+
+
+
+	+ B1: Đặt cờ:	TH khó xảy ra
+
+	+ B2: Tìm trường hợp làm thay đổi giá trị của cờ:	TH dễ xảy ra
+	+ B3: Dựa vào cờ để kết luận
+
+
+		
+	lv1: Thêm, Xóa, sắp xếp
+	lv2: Gộp, Tách,  Trộn
+
+	lv3: Mảng con

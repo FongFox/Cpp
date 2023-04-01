@@ -1,0 +1,63 @@
+/*
+Nhập giá trị số nguyên có 1 chữ số(0->9). Đọc số nguyên đó bằng chữ (bằng phương pháp switch case).
+*/
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	//Khai báo biến n
+	int n;
+	cout << "Nhap n: ";
+	cin >> n;
+	/*
+	Mã giả
+	Nếu n==0
+		thì in ra số không
+	Ngược lại nếu n==1
+		thì in ra số một
+	Ngược lại nếu n==2
+		thì in ra số hai
+	Ngược lại nếu n==3
+		thì in ra số ba
+	Ngược lại nếu n==4 
+		thì in ra số bốn
+	Ngược lại nếu n==5
+		thì in ra số năm
+	Ngược lại nếu n==6 
+		thì in ra số sáu
+	Ngược lại nếu n==7
+		thì in ra số bảy
+	Ngược lại nếu n==8
+		thì in ra số tám
+	Ngược lại nếu n==9 
+		thì in ra số chín
+	Ngược lại thì in ra chương trình lỗi.
+	*/
+	switch (n)
+	{
+	case 0:
+		cout << "So khong" << endl; break;
+	case 1:
+		cout << "So mot" << endl; break;
+	case 2:
+		cout << "So hai" << endl; break;
+	case 3:
+		cout << "So ba" << endl; break;
+	case 4:
+		cout << "So bon" << endl; break;
+	case 5:
+		cout << "So nam" << endl; break;
+	case 6:
+		cout << "So sau" << endl; break;
+	case 7:
+		cout << "So bay" << endl; break;
+	case 8:
+		cout << "So tam" << endl; break;
+	case 9:
+		cout << "So chin" << endl; break;
+	default:
+		cout << "Chuong trinh loi (nhap sai gia tri)." << endl; break;
+	}
+}

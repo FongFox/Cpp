@@ -1,0 +1,34 @@
+/*
+Bài 1 (8). Viết chương trình nhập vào 4 số thực bất kỳ. Tìm giá trị lớn nhất
+Điều kiện chương trình chỉ được dùng tối đa 2 biến
+*/
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	//Ky thuat linh canh
+	//Khai bao bien a, max (kieu so thuc)
+	float n, max = 0;
+	cout << "Nhap N lan thu 1: ";
+	cin >> n;
+	if (max < n)
+		max = n;
+	cout << "Nhap N lan 2: ";
+	cin >> n;
+	if (max < n)
+		max = n;
+	cout << "Nhap N lan 3: ";
+	cin >> n;
+	if (max < n)
+		max = n;
+	cout << "Nhap N lan thu 4: ";
+	cin >> n;
+	if (max < n)
+		max = n;
+	cout << "Gia tri lon nhat max = " << max << endl;
+
+	system("pause");
+	return 0;
+}

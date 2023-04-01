@@ -1,0 +1,292 @@
+/*
+BT 1. khai báo cấu trúc 1 phân số, biết phân số luôn luôn có tử số và mẩu số
+_ nhập danh sách phân số													x
+_ xuất danh sách phân số													x
+_ rút gọn các phân số														x
+_ tìm phân số lớn nhất														x
+_ tính tổng các phân số														x
+_ thêm phân số x vào vị trí vt nhập từ bàn phím
+_ xóa phân số tại vị trí vt nhập từ bàn phím
+
+//viết xong thì update lên menu luôn nha các bạn ♥
+*/
+#include<iostream>
+#include<stdlib.h>
+#include<fstream>
+#include"Other_lib.h"
+#define MAX 1000
+using namespace std;
+//====================================
+struct danh_sach
+{
+	int ts;
+	int ms;
+};
+typedef struct danh_sach ds;
+//======================================
+//===========================================================
+//Hàm chung (hàm hệ thống)
+//Hàm input (chung)
+istream& operator >> (istream& is, ds& ps);
+//Hàm output (chung)
+ostream& operator << (ostream& os, ds& ps);
+//===========================================================
+//menu
+void menu();
+//input phân số
+void input(int& n, ds ps[]);
+//output phân số
+void output(int n, ds ps[]);
+//Ước chung của phân số
+int UC(int x, int y);
+//Rút gọn phân số
+void rut_gon_1_ps(ds& ps);
+void rut_gon(int n, ds ps[]);
+//sao chép phân số
+void cpy_ps(ds& b, ds a);
+//tìm phân số lớn nhất
+ds find_max(int n, ds ps[]);
+void output_max(int n, ds ps[]);
+//Quy đồng phân số
+void quy_dong(ds& x, ds& y);
+//Tính tổng phân số
+ds sum_ps(int n, ds ps[]);
+void output_sum(int n, ds ps[]);
+//Thêm phân số vào vị trí x
+void add_ps(int& n, ds ps[]);
+//Xóa phan số tại vị trí x
+void delete_ps(int& n, ds ps[]);
+//======================================
+int main()
+{
+	menu();
+	system("cls"); system("pause"); system("cls");
+}
+//==========================================================
+//menu
+void menu()
+{
+	int n{}; ds ps[MAX];
+	int choice = 0;
+	while (choice != 8)
+	{
+		system("cls");
+		cout << "Chao mung den voi C++ !" << endl;
+		cout << "1. Nhap phan so" << endl;
+		cout << "2. Xuat phan so" << endl;
+		cout << "3. Rut gon phan so vua nhap" << endl;
+		cout << "4. Tim phan so lon nhat" << endl;
+		cout << "5. Tinh Tong phan so vua nhap" << endl;
+		cout << "6. Them phan so" << endl;
+		cout << "7. Xoa phan so" << endl;
+		cout << "8. Thoat." << endl;;
+		cout << "Lua chon cua ban: "; cin >> choice;
+		system("cls");
+		switch (choice)
+		{
+		case 1:
+			input(n, ps); break;
+		case 2:
+			output(n, ps); break;
+		case 3:
+			rut_gon(n, ps); break;
+		case 4:
+			output_max(n, ps); break;
+		case 5:
+			output_sum(n, ps); break;
+		case 6:
+			add_ps(n, ps); break;
+		case 7:
+			delete_ps(n, ps); break;
+		case 8:
+			cout << "Quitting."; break;
+		default:
+			cout << "Loi nhap lieu. Vui long nhap lai!"; break;
+		}
+		_getch(); 
+	}
+}
+//===========================================================
+//Hàm chung (hàm hệ thống || Operator)
+//Hàm input (chung)
+istream& operator >> (istream& is, ds& ps)
+{
+	cout << "Nhap tu so: "; cin >> ps.ts;
+	do
+	{
+		cout << "Nhap mau so: "; cin >> ps.ms;
+		if (ps.ms == 0)
+		{
+			cout << "Nhap khong hop le. Vui long nhap lai!" << endl;
+		}
+	} while (ps.ms == 0);
+	if (ps.ms < 0)
+	{
+		ps.ts = -ps.ts;
+	}
+	return is;
+}
+//Hàm output (chung)
+ostream& operator << (ostream& os, ds& ps)
+{
+	if (ps.ms == 1 || ps.ts == 0)
+	{
+		cout << "Phan so vua nhap: " << ps.ts;
+	}
+	else
+	{
+		cout << "Phan so vua nhap: " << ps.ts << "/" << ps.ms;
+	}
+	return os;
+}
+//===========================================================
+//input danh sách phân số
+void input(int& n, ds ps[])
+{
+	cout << "========================= INPUT ================================" << endl;
+	cout << "Nhap phan tu can dung: "; cin >> n;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan so thu " << i + 1 << endl;
+		cin >> ps[i];
+		cout << "=======================================================" << endl;
+	}
+}
+//output danh sách phân số
+void output(int n, ds ps[])
+{
+	cout << "========================= OUTPUT =================================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << ps[i];
+		cout << endl << "=======================================================" << endl;
+	}
+}
+//Ước chung của phân số
+int UC(int x, int y)
+{
+	while (x!=y)
+	{
+		x > y ? x -= y : y -= x;
+	}
+	return x;
+}
+//Rút gọn phân số
+void rut_gon_1_ps(ds& ps)
+{
+	int uc = UC(ps.ts, ps.ms);
+	ps.ts /= uc;
+	ps.ms /= uc;
+}
+void rut_gon(int n, ds ps[])
+{
+	cout << "========================= RUT GON ==============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		ds tam = ps[i];
+
+		if (tam.ms == 1 || tam.ts == 0)
+		{
+			cout << "Phan so thu " << i + 1 << " : " << tam.ts;
+		}
+		else
+		{
+			rut_gon_1_ps(tam);
+			cout << "Phan so thu " << i + 1 << " : " << tam.ts << "/" << tam.ms;
+		}
+		cout << endl << "=======================================================" << endl;
+	}
+}
+//sao chép phân số
+void cpy_ps(ds& b, ds a)
+{
+	b.ts = a.ts;
+	b.ms = a.ms;
+}
+//tìm phân số lớn nhất
+ds find_max(int n, ds ps[])
+{
+	ds max; cpy_ps(max, ps[0]);
+	for (int i = 1; i < n; i++)
+	{
+		if (max.ts * ps[i].ms < ps[i].ts * max.ms)
+		{
+			cpy_ps(max, ps[i]);
+		}
+	}
+	return max;
+}
+void output_max(int n, ds ps[])
+{
+	ds max = find_max(n, ps);
+	if (max.ms == 1 || max.ts == 0)
+	{
+		cout << "===============================================" << endl;
+		cout << "Max = " << max.ts;
+	}
+	else
+	{
+		cout << "===============================================" << endl;
+		cout << "Max = " << max.ts << "/" << max.ms;
+	}
+}
+//Quy đồng phân số
+void quy_dong(ds& x, ds& y)
+{
+	int uc_x = UC(x.ts, x.ms);
+	int uc_y = UC(y.ts, y.ms);
+	x.ts *= uc_y; x.ms *= uc_y;
+	y.ts *= uc_x; y.ms *= uc_x;
+}
+//Tính tổng phân số
+ds sum_ps(int n, ds ps[])
+{
+	ds sum; cpy_ps(sum, ps[0]);
+	for (int i = 1; i < n; i++)
+	{
+		ds tam = ps[i];
+		if (sum.ms != tam.ms)
+		{
+			quy_dong(sum, tam);
+			sum.ts += tam.ts;
+		}
+	}
+	rut_gon_1_ps(sum);
+	return sum;
+}
+void output_sum(int n, ds ps[])
+{
+	ds sum = sum_ps(n, ps);
+	cout << "================================================" << endl;
+	if (sum.ms == 1 || sum.ts == 0)
+	{
+		cout << "Sum: " << sum.ts;
+	}
+	else
+	{
+		cout << "Sum: " << sum.ts << "/" << sum.ms;
+	}
+}
+//Thêm phân số vào vị trí x
+void add_ps(int& n, ds ps[])
+{
+	int vt; ds x;
+	cout << "Nhap vi tri can them: "; cin >> vt;
+	cin >> x;
+	for (int i = n; i > vt; i--)
+	{
+		cpy_ps(ps[i], ps[i - 1]);
+	}
+	ps[vt] = x; n += 1;
+}
+//Xóa phan số tại vị trí x
+void delete_ps(int& n, ds ps[])
+{
+	int vt;
+	cout << "Nhap vi tri can xoa: "; cin >> vt;
+	for (int i = vt; i < n - 1; i++)
+	{
+		cpy_ps(ps[i], ps[i + 1]);
+	}
+	n -= 1;
+}

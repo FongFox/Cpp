@@ -1,0 +1,105 @@
+#include <iostream>
+using namespace std;
+void nhap1(int *p, int n);
+void nhap(int a[], int n);
+void xuat(int *p, int n);
+void min_max(int *p, int n);
+//---------
+void them(int *p, int &n, int vt, int x);
+void xoa(int *p, int &n, int vt);
+void sap_xep(int *p, int n);
+void main()
+{
+	int a[50] = { 1,15,3,-4,2,7 };int n = 6;
+	int *p = a;//p = &a[] = &a[0]	//BAX01
+
+	nhap(&a[0], n);
+	//xuat(a, n);
+	//min_max(p, n);
+	//them(p, n, 2, 9);
+	//xoa(p, n, 0);
+	//sap_xep(p, n);
+
+	//xuat(p, n);
+
+	system("pause");
+}
+
+void nhap(int a[], int n)// int *a = &a[0];
+{
+	cout << "\t\t---- Nhap -----" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Nhap pt thu " << i << ": ";cin >> a[i];// *(a + i)
+	}
+}
+void nhap1(int *p, int n)
+{
+		cout << "\t\t---- Nhap -----" << endl;
+		for (int i = 0;i < n;i++)
+		{
+			cout << "Nhap pt thu " << i << ": ";cin >> *(p + i);
+		}
+}
+void xuat(int *p, int n)
+{
+	cout << "\t\t---- Xuat -----" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Pt thu " << i << " la: " << *(p + i) << endl;
+	}
+}
+void min_max(int *p, int n)//p = &a[0] = BAX01
+{
+	int min = *p;
+	int max = *p;
+	for (int i = 1;i < n;i++)
+	{
+		if (*(p + i) < min)
+		{
+			min = *(p + i);
+		}
+		if (*(p + i) > max)
+		{
+			max = *(p + i);
+		}
+	}
+	cout << "Max = " << max << endl;
+	cout << "Min = " << min << endl;
+}
+void them(int *p, int &n, int vt, int x)
+{
+	//B1: doi
+	for (int i = n;i > vt;i--)
+	{
+		
+		*(p + i)= *(p + i - 1);		//i = 3	-> a[3 - 1]	= a[2]	*(&a[0] + 3- 1)
+	}
+	//B2: chen
+	*(p+vt) = x;
+	//B3: tang
+	n++;
+}
+void xoa(int *p, int &n, int vt)
+{
+	//B1: Doi
+	for (int i = vt;i < n -1;i++)
+	{
+		*(p + i) = *(p + i + 1);
+	}
+	//B2: giam
+	n--;
+}
+void sap_xep(int *p, int n)
+{
+	for (int i = 0;i < n - 1;i++)//ap cuoi
+	{
+		for (int j = i + 1;j < n;j++)//cuoi
+		{
+			if (*(p+j) < *(p+i))
+			{
+				swap(*(p + i), *(p + j));
+			}
+		}
+	}
+}

@@ -1,0 +1,342 @@
+1. Viết chương trình xuất ra các phần tử là số nguyên tố trong mảng
+#include<iostream>
+#include<math.h>
+#define MAX 100
+using namespace std;
+
+void input_element_array(int& n);
+void input_number_array(int n, int*& p);
+void output(int n, int* p);
+bool check_prime_number(int n);
+void prime_number(int n, int* p);
+
+int main()
+{
+	int n; 
+	input_element_array(n);
+	int* p = new int[n];
+	input_number_array(n, p);
+	output(n, p);
+	prime_number(n, p);
+
+	system("pause");
+	return 0;
+}
+
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+
+void input_number_array(int n, int*& p)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu " << i << ": "; cin >> p[i];
+	}
+}
+
+void output(int n, int* p)
+{
+	cout << endl << "=============== Xuat ================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << p[i] << "\t\t";
+	}
+	cout << endl;
+}
+
+bool check_prime_number(int n)
+{
+	if (n <= 1)
+	{
+		return false;
+	}
+	if (n > 1 && n <= 3)
+	{
+		return true;
+	}
+	if (n % 2 == 0 || n % 3 == 0)
+	{
+		return false;
+	}
+	for (int i = 2; i < sqrt(n); i++)
+	{
+		if (n % i == 0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+void prime_number(int n, int* p)
+{
+	cout << endl << "=============== SNT =================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		bool check = check_prime_number(p[i]);
+		if (check)
+		{
+			cout << p[i] << "\t";
+		}
+	}
+	cout << endl;
+}
+================================================================================================================================================================================================
+2. Cho dãy số nguyên. Viết chương trình tìm giá trị lẻ cuối cùng trong mảng.
+#include<iostream>
+#include<math.h>
+#define MAX 100
+using namespace std;
+void input_element(int&n);
+void input_number_array(int n, int*& p);
+void out_put(int n, int* p);
+void print_min_last_array(int n, int* p);
+int main()
+{
+	int n;
+	input_element(n);
+	int* p = new int[n];
+	input_number_array(n, p);
+	out_put(n, p);
+	print_min_last_array(n, p);
+
+	system("pause");
+	return 0;
+}
+void input_element(int&n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+void input_number_array(int n, int*& p)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu " << i << ": "; cin >> p[i];
+	}
+}
+void out_put(int n, int* p)
+{
+	cout << endl << "================ Xuat ==============" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << p[i] << "\t\t";
+	}
+	cout << endl;
+}
+void print_min_last_array(int n, int* p)
+{
+	cout << endl << "============== Xuat gia tri (khong chan) cuoi cung cua mang ======================" << endl;
+	for (int i = n-1; i >= 0; i--)
+	{
+		if (p[i] % 2 != 0)
+		{
+			cout << p[i] << endl;
+			return;
+		}
+	}
+}
+================================================================================================================================================================================================
+3. Cho dãy số nguyên. Viết chương trình tìm đoạn [a, b] sao cho đoạn này chứa mọi giá trị trong mảng.
+#include<iostream>
+#define MAX 100
+using namespace std;
+void input_element(int& n);
+void input_number(int n, int*& p);
+void output(int n, int* p);
+int find_max(int n, int* p);
+int find_min(int n, int* p);
+void print_min_and_max(int n, int* p);
+int main()
+{
+	int n; 
+	input_element(n);
+	int* p = new int[n];
+	input_number(n, p);
+	output(n, p);
+	print_min_and_max(n, p);
+
+	system("pause");
+	return 0;
+}
+void input_element(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+void input_number(int n, int*& p)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu " << i << ": "; cin >> p[i];
+	}
+}
+void output(int n, int* p)
+{
+	cout << endl << "============== Xuat phan tu ==================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << p[i] << "\t\t";
+	}
+	cout << endl;
+}
+
+int find_max(int n, int*p)
+{
+	int max = *p;
+	for (int i = 0; i < n; i++)
+	{
+		if (max < p[i])
+		{
+			max = p[i];
+		}
+	}
+	return max;
+}
+int find_min(int n, int* p)
+{
+	int min = *p;
+	for (int i = 0; i < n; i++)
+	{
+		if (min > p[i])
+		{
+			min = p[i];
+		}
+	}
+	return min;
+}
+void print_min_and_max(int n, int* p)
+{
+	cout << endl << "===============================================" << endl;
+	int max = find_max(n, p);
+	int min = find_min(n, p);
+	cout << "[" << min << "," << max << "]" << endl;
+}
+================================================================================================================================================================================================
+4. Cho dãy số nguyên. Viết chương trình kiểm tra mảng có toàn dương hay không?
+#include<iostream>
+#define MAX 100
+using namespace std;
+void input_element(int& n);
+void input_number(int n, int*& p);
+void output(int n, int* p);
+bool checking(int n, int* p);
+void check_array(int n, int* p);
+int main()
+{
+	int n;
+	input_element(n);
+	int* p = new int[n];
+	input_number(n, p);
+	output(n, p);
+	check_array(n, p);
+
+	system("pause");
+	return 0;
+}
+void input_element(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+void input_number(int n, int*& p)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu " << i << " : "; cin >> p[i];
+	}
+}
+void output(int n, int* p)
+{
+	cout << endl << "======================= Xuat ========================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << p[i] << "\t\t";
+	}
+	cout << endl;
+}
+bool checking(int n, int* p)
+{
+	for (int i = 0; i < n; i++) 
+	{
+		if (p[i] < 0)
+		{
+			return false;
+		}
+	}
+}
+void check_array(int n, int* p)
+{
+	cout << endl << "=======================================" << endl;
+	bool check = checking(n, p);
+	if (check)
+	{
+		cout << "Mang toan duong." << endl;
+	}
+	else cout << "Mang khong toan duong." << endl;
+}
+================================================================================================================================================================================================
+5. Cho dãy số nguyên. Viết chương trình kiểm tra mảng có tăng dần hay không?
+#include<iostream>
+#define MAX 100
+using namespace std;
+void input_element(int& n);
+void input_number(int n, int*& p);
+void output(int n, int* p);
+bool check_ascending_array(int n, int* p);
+void print_result(int n, int* p);
+int main()
+{
+	int n;
+	input_element(n);
+	int* p = new int[n];
+	input_number(n, p);
+	output(n, p);
+	print_result(n, p);
+
+	system("pause");
+	return 0;
+}
+void input_element(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+void input_number(int n, int*& p)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu " << i << " : "; cin >> p[i];
+	}
+}
+void output(int n, int* p)
+{
+	cout << endl << "========================== Xuat ========================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]= " << p[i] << "\t\t";
+	}
+	cout << endl;
+}
+bool check_ascending_array(int n, int* p)
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		for(int j = i + 1; j < n; j++)
+		{
+			if (p[j] < p[i])
+			{
+				return false;
+			}
+		}
+	}
+	return true;
+}
+void print_result(int n, int* p)
+{
+	cout << endl << "============================================" << endl;
+	bool check = check_ascending_array(n, p);
+	if (check)
+	{
+		cout << "Ham tang dan!" << endl;
+	}
+	else cout << "Ham khong tang dan!" << endl;
+}

@@ -1,0 +1,56 @@
+/*
+Bài 6. Viết chương trình nhập vào hai giá trị tháng và năm. Xuất ra số ngày tương ứng của tháng đó.
+Dữ liệu đầu vào                                           	Dữ liệu đầu ra
+thang = 1, nam = 2010                                	Có 31 ngày
+thang = 6, nam = 2012                                	Có 30 ngày
+thang = 2, nam = 2000                                	Có 29 ngày
+thang = 2, nam = 2005                                	Có 28 ngày
+*/
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	//Khai báo tháng, năm.
+	int m, y;
+	do
+	{
+		cout << "Nhap thang: ";
+		cin >> m;
+		cout << "Nhap nam: ";
+		cin >> y;
+	} while (m < 1 || m>12);
+	/*
+	Nếu tháng == 2 
+		thì nếu năm chia hết cho 4 = 0
+				thì xuất tháng 2 có 29 ngày
+			Ngược lại 
+				thì xuất tháng 2 có 28 ngày
+	Ngược lại nếu tháng == 4 || tháng == 6 || tháng == 9 || tháng == 11
+					thì xuất tháng (4 || 6 || 9 || 11) có 30 ngày.
+	Ngược lại (nếu tháng == 1 || tháng == 3 || tháng == 5 || tháng == 7 || tháng == 8 || tháng == 10 || tháng == 12)
+				thì xuất tháng (1 || 3 || 5 || 7 || 8 || 10 || 12) có 31 ngày.
+	*/
+	switch (m)
+	{
+	case 1: case 3: case 5: case 7: case 8: case 10: case 12:
+		cout << "Thang " << m << " co 31 ngay." << endl; break;
+	case 4: case 6: case 9: case 11:
+		cout << "Thang " << m << " co 30 ngay." << endl; break;
+	case 2:
+		if (y % 4 == 0 || y % 400 == 0)
+		{
+			cout << "Thang " << m << " co 29 ngay." << endl;
+		}
+		else cout << "Thang " << m << " co 28 ngay." << endl;
+		break;
+
+	default:
+		cout << "Khong hop le." << endl;
+		break;
+	}
+
+	
+	system("pause");
+	return 0;
+}

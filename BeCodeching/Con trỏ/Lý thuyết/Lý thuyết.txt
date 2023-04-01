@@ -1,0 +1,39 @@
+//================ Biến con trỏ =========
+
+Biến thường:	+ Địa chỉ:	Nơi sinh ra		&a
+		+ Vùng nhớ: Nơi lưu trữ giá trị		a
+
+Biến con trỏ:	+ Địa chỉ: Nơi sinh ra			&p
+		+ Miền giá trị: Lưu địa chỉ nơi nó trỏ đến	p
+		+ Giá trị của nơi nó trỏ đến: 		*p
+
+
+Lưu ý:	+ Biến con trỏ khi sinh ra không có vùng nhớ để lưu trữ giá trị
+		+ Trỏ đến 1 biến để dùng chung với nhớ, 1 ông thay đổi -> ông kia thay đổi theo
+		+ Tự mua nhà
+
+
+	+ Tại 1 thời điểm:	- 1 con trỏ chỉ có thể trỏ đến 1 nơi.
+			- 1 biến thì có thể được nhiều con trỏ trỏ đến.
+
+		
+	
+
+Cú pháp khai báo:		<kdl nơi con trỏ trỏ đến> *<tên biến con trỏ>;
+
+			VD:	int* p;//Khai báo  1 biến con trỏ *p
+
+
+				int* p;
+				p = &a;
+
+
+	Ứng dụng:		+  Mảng động
+			+ DSLK
+			+ stack, queue
+			+ cây nhị phân
+
+			+ 
+
+
+=>	Con trỏ quản lý mảng.

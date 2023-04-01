@@ -1,0 +1,136 @@
+#include <iostream>
+using namespace std;
+//==========
+void nhap(int *p, int n);
+void xuat(int *p, int n);
+void cap_phat(int *&p, int ncu, int nmoi);
+void them(int *&p, int &n, int vt, int x);
+void xoa(int *&p, int &n, int vt);
+void giai_phong(int *p);
+
+void main()
+{
+	//--- setting ---
+	int *p = NULL;int n = 0;
+	bool kt_menu = true;
+	//--- menu ---
+	while (kt_menu == true)
+	{
+		system("cls");//clear screen	clrscr
+		cout << "1. Them phan tu" << endl;
+		cout << "2. Xuat danh sach" << endl;
+		cout << "3. Them pt x tai vi tri vt nhap tu ban phim" << endl;
+		cout << "4. Xoa pt tai vi tri vt nhap tu ban phim" << endl;
+		cout << "0. Thoat" << endl;
+		int lc;cout << "Nhap lua chon: ";cin >> lc;
+		switch (lc)
+		{
+		case 1:
+		{
+			int sl;cout << "Nhap so luong pt can them: ";cin >> sl;
+			for (int i = 1;i <= sl;i++)
+			{
+				//------- Nhập 1 pt ------------
+				int x;//Lưu tạm giá trị cần thêm.
+				cout << "Nhap phan tu thu "<<i<<": ";cin >> x;
+				//----- Kỹ thuật thêm cuối ----
+				/*cap_phat(p, n, n + 1);
+				p[n++] = x;*/
+				them(p, n, n, x);
+			}
+			
+			break;
+		}
+		case 2:
+		{
+			xuat(p, n);
+			system("pause");
+			break;
+		}
+		case 3:
+		{
+			int vt, x;
+			cout << "Nhap vi tri can them: ";cin >> vt;
+			cout << "Nhap gia tri can them: ";cin >> x;
+			them(p, n, vt, x);
+			break;
+		}
+		case 4:
+		{
+			int vt;
+			cout << "Nhap vi tri can xoa: ";cin >> vt;
+			xoa(p, n, vt);
+			break;
+		}
+		case 0:
+		{
+			cout << "See u again!" << endl;
+			giai_phong(p);
+			kt_menu = false;
+			break;
+		}
+		}
+	}
+	system("pause");
+}
+void them(int *&p,int &n,int vt,int x)
+{
+	//B1: cấp phát - nới rộng
+	cap_phat(p, n,n + 1);//Tăng bộ nhớ	//Có thay đổi miền giá trị
+	//B2: Thêm
+	for (int i = n;i > vt ; i--)
+	{
+		p[i] = p[i - 1];
+	}
+	p[vt] = x;
+	n++;//tăng số pt hiện tại	//thay đổi
+}
+void xoa(int *&p, int &n, int vt)//n = 4
+{
+	//B1: Xóa - pt rác(ko sử dụng) nằm ở cuối
+	for (int i = vt;i < n - 1;i++)
+	{
+		p[i] = p[i + 1];
+	}
+	//B2: Thu hep//ncu = (3)4,	nmoi = 4 - 1
+	cap_phat(p, n - 1, n - 1);//có thay đổi miền giá trị
+	n--;//sl pt hiện tại giảm.	//có thay đổi
+}
+void cap_phat(int *&p, int ncu, int nmoi)//*p = NULL
+{
+	//B1: cho tam giu nha cu
+	int *tam = p;//NULL
+	//B2: mua nha moi
+	p = new int[nmoi];//thay đổi miền giá trị
+
+	//B3: Tam dời đồ từ nhà cũ sang nhà mới
+	for (int i = 0;i < ncu;i++)
+	{
+		p[i] = tam[i];
+	}
+	//B4: Giai toa
+	if (tam != NULL)
+	{
+		delete[] tam;
+	}
+}
+void nhap(int *p,int n)
+{
+	cout << "\t\t===== Nhap ===" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Nhap pt thu " << i << ": ";cin >> p[i];
+	}
+}
+void xuat(int *p, int n)
+{
+	cout << "\t\t===== Xuat ===" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Pt thu " << i << " la: " << p[i] << endl;
+	}
+}
+void giai_phong(int *p)
+{
+	delete[] p;
+}

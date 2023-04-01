@@ -1,0 +1,720 @@
+========================================= BT lý thuyết ========================
+1. So sánh con biến con trỏ và biến thường, trình bày chi tiết các thành phần của biến con trỏ và biến thường
+2. Ta có int a = 5; địa chỉ của a là BAX03
+trình bày luồng chương trình khi gặp lệnh: int *b = &a; 
+lệnh: cout<<b<<endl;
+lệnh: cout<<*b<<endl;
+lệnh: float *c = a;
+lệnh: a = 15; //trình bày các sự thay đổi liên quan
+3. trình bày tính chất của biến thường và biến con trỏ trong phạm vi trỏ
+4. Lợi ích của con trỏ ?
+5. kích thước con trỏ là bao nhiêu ? trình bày chi tiết ?
+6. trình bày cú pháp của hàm trả về một con trỏ
+
+========================================= BT vận dụng =============================
+1. Viết chương trình dùng con trỏ quản lí mảng n phần tử. Xuất phần tử lớn nhất và nhỏ nhất trong mảng.
+2. Viết chương trình dùng con trỏ quản lí mảng n phần tử.
+Xuất các phần tử là số nguyên tố
+========================================= BT nâng cao ==========================================
+3. Viết chương trình dùng con trỏ quản lí mảng. Xóa phần tử tại vị trí vt nhập từ bàn phím
+
+
+4. Viết chương trình dùng con trỏ quản lí mảng. Thêm phần tử có giá trị x tại vị trí vt nhập từ bàn phím
+----------
+5. Viết chương trình dùng con trỏ quản lí mảng. Sắp xếp các phần tử trong mảng tăng dần.
+
+
+===================================== Bài giải (vận dụng) ======================================
+================================================================================================
+2. Viết chương trình dùng con trỏ quản lí mảng n phần tử.
+Xuất các phần tử là số nguyên tố
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+//Hàm nhập con trỏ
+void input_number_array_pointer(int n, int* p);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm check snt
+bool check_prime_number(int n);
+//Hàm chung
+void output_prime_number(int n, int* p);
+
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+//Hàm xuất con trỏ
+void output_array_pointer(int n, int* p);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n; 
+	float arr[MAX] = {};
+
+	int* p = a;
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array_pointer(n, p);
+	output_array_pointer(n, p);
+
+	output_prime_number(n, p);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+//Hàm nhập con trỏ
+void input_number_array_pointer(int n, int* p)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu " << i << " : "; cin >> *(p + i);
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm check snt
+bool check_prime_number(int n)
+{
+	if (n <= 1)
+	{
+		return false;
+	}
+	if (n > 1 && n <= 3)
+	{
+		return true;
+	}
+	if (n % 2 == 0 || n % 3 == 0)
+	{
+		return false;
+	}
+	for (int i = 2; i < sqrt(n); i++)
+	{
+		if (n % i == 0)
+		{
+			continue;
+		}
+	}
+	return true;
+}
+//Hàm chung
+void output_prime_number(int n, int* p)
+{
+	cout << "=================== SNT =======================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		bool check = check_prime_number(*(p + i));
+		if (check)
+		{
+			cout << *(p + i) << "\t\t";
+		}
+	}
+	cout << endl;
+}
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+//Hàm xuất con trỏ
+void output_array_pointer(int n, int* p)
+{
+	cout << "=================== Xuat phan tu ========================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]: " << *(p + i) << "\t\t";
+	}
+	cout << endl;
+}
+================================================================================================================================================================================================
+1. Viết chương trình dùng con trỏ quản lí mảng n phần tử. Xuất phần tử lớn nhất và nhỏ nhất trong mảng.
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+//Hàm nhập con trỏ
+void input_number_array_pointer(int n, int* p);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm min, max
+void min_max_array_pointer(int n, int* p);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+//Hàm xuất con trỏ
+void output_array_pointer(int n, int* p);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n; 
+	float arr[MAX] = {};
+
+	int* p = a;
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array_pointer(n, p);
+	output_array_pointer(n, p);
+
+	min_max_array_pointer(n, p);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+//Hàm nhập con trỏ
+void input_number_array_pointer(int n, int* p)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu " << i << " : "; cin >> *(p + i);
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm min, max
+void min_max_array_pointer(int n, int* p)
+{
+	int min = 0; int max = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (min == 0 && max == 0)
+		{
+			min = *(p + i); max = *(p + i);
+			continue;
+		}
+		if (min > *(p + i))
+		{
+			min = *(p + i);
+		}
+		if (max < *(p + i))
+		{
+			max = *(p + i);
+		}
+	}
+	cout << "Max: " << max << endl << "Min: " << min << endl;
+}
+
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+//Hàm xuất con trỏ
+void output_array_pointer(int n, int* p)
+{
+	cout << "=================== Xuat phan tu ========================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]: " << *(p + i) << "\t\t";
+	}
+	cout << endl;
+}
+================================= Bài nâng cao =================================================
+================================================================================================
+3. Viết chương trình dùng con trỏ quản lí mảng. Xóa phần tử tại vị trí vt nhập từ bàn phím
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+//Hàm nhập con trỏ
+void input_number_array_pointer(int n, int* p);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm xóa
+void delete_array_pointer(int& n, int* p, int vt);
+//Hàm chung
+void array_delete(int& n, int* p);
+
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+//Hàm xuất con trỏ
+void output_array_pointer(int n, int* p);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n; 
+	float arr[MAX] = {};
+
+	int* p = a;
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array_pointer(n, p);
+	output_array_pointer(n, p);
+
+	array_delete(n, p);
+	output_array_pointer(n, p);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+//Hàm nhập con trỏ
+void input_number_array_pointer(int n, int* p)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu " << i << " : "; cin >> *(p + i);
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm xóa
+void delete_array_pointer(int&n, int* p, int vt)
+{
+	for (int i = vt; i < n - 1; i++)
+	{
+		*(p + i) = *(p + i + 1);
+	}
+	n -= 1;
+}
+//Hàm chung
+void array_delete(int&n, int* p)
+{
+	int vt;
+	cout << "Nhap vt can xoa: "; cin >> vt;
+	delete_array_pointer(n, p, vt);
+}
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+//Hàm xuất con trỏ
+void output_array_pointer(int n, int* p)
+{
+	cout << "=================== Xuat phan tu ========================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]: " << *(p + i) << "\t\t";
+	}
+	cout << endl;
+}
+================================================================================================================================================================================================
+4. Viết chương trình dùng con trỏ quản lí mảng. Thêm phần tử có giá trị x tại vị trí vt nhập từ bàn phím
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//hàm nhập phần tử mảng
+void input_element_array(int& n);
+//Hàm nhập giá trị của mảng (con trỏ)
+void input_number_array_pointer(int n, int* p);
+
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm thêm
+void add_array(int& n, int* p, int vt, int x);
+//Hàm chung
+void array_add(int& n, int* p);
+
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (con trỏ)
+template<class e1>
+void output_array_pointer(int n, e1* p);
+
+
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int n; int a[MAX] = {};
+	int* p = a;
+	do
+	{
+		input_element_array(n);
+	} while (n<=0 || n>MAX);
+	input_number_array_pointer(n, p);
+	output_array_pointer(n, p);
+
+	array_add(n, p);
+	output_array_pointer(n, p);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//hàm nhập phần tử mảng
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị của mảng (con trỏ)
+void input_number_array_pointer(int n, int* p)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu " << i << " : "; cin >> *(p + i);
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm thêm
+void add_array(int&n, int* p, int vt, int x)
+{
+	for (int i = n; i > vt; i--)
+	{
+		*(p + i) = *(p + i - 1);
+	}
+	*(p + vt) = x;
+	n += 1;
+}
+//Hàm chung
+void array_add(int& n, int* p)
+{
+	int vt; int x;
+	cout << "Nhap vi tri can them: "; cin >> vt;
+	cout << "Nhap gia tri can them: "; cin >> x;
+	add_array(n, p, vt, x);
+}
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (con trỏ)
+template<class e1>
+void output_array_pointer(int n, e1* p)
+{
+	cout << "=============================== Xuat ===========================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]: " << *(p + i) << "\t\t";
+	}
+	cout << endl;
+}
+================================================================================================================================================================================================
+5. Viết chương trình dùng con trỏ quản lí mảng. Sắp xếp các phần tử trong mảng tăng dần.
+-------------------------------------- Cách 1 --------------------------------------------------
+------------------------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//hàm nhập phần tử mảng
+void input_element_array(int& n);
+//Hàm nhập giá trị của mảng (con trỏ)
+void input_number_array_pointer(int n, int* p);
+
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm thêm
+void add_array(int& n, int* p, int vt, int x);
+//Hàm chung
+void array_min(int n, int* p);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (con trỏ)
+template<class e1>
+void output_array_pointer(int n, e1* p);
+
+
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int n; int a[MAX] = {};
+	int* p = a;
+	do
+	{
+		input_element_array(n);
+	} while (n<=0 || n>MAX);
+	input_number_array_pointer(n, p);
+	output_array_pointer(n, p);
+
+	array_min(n, p);
+	output_array_pointer(n, p);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//hàm nhập phần tử mảng
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị của mảng (con trỏ)
+void input_number_array_pointer(int n, int* p)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu " << i << " : "; cin >> *(p + i);
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm thêm
+void add_array(int&n, int* p, int vt, int x)
+{
+	for (int i = n; i > vt; i--)
+	{
+		*(p + i) = *(p + i - 1);
+	}
+	*(p + vt) = x;
+	n += 1;
+}
+//Hàm chung
+void array_min(int n, int* p)
+{
+	for (int i = 0; i < n-1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (*(p + i) > *(p + j))
+			{
+				swap(*(p + i), *(p + j));
+			}
+		}
+	}
+}
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (con trỏ)
+template<class e1>
+void output_array_pointer(int n, e1* p)
+{
+	cout << "=============================== Xuat ===========================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]: " << *(p + i) << "\t\t";
+	}
+	cout << endl;
+}
+----------------------------------------- Cách 2 -----------------------------------------------
+------------------------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//hàm nhập phần tử mảng
+void input_element_array(int& n);
+//Hàm nhập giá trị của mảng (con trỏ)
+void input_number_array_pointer(int n, int* p);
+
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm thêm
+void add_array(int& n, int* p, int vt, int x);
+//Hàm xóa
+void delete_array(int& n, int* p, int vt);
+//Hàm chung
+void array_min(int n, int* p, int&nb, int* p2);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (con trỏ)
+template<class e1>
+void output_array_pointer(int n, e1* p);
+
+
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int n; int a[MAX] = {};
+	int* p = a;
+	int nb=0; int b[MAX] = {};
+	int* p2 = b;
+	do
+	{
+		input_element_array(n);
+	} while (n<=0 || n>MAX);
+	input_number_array_pointer(n, p);
+	output_array_pointer(n, p);
+
+	array_min(n, p, nb, p2);
+	output_array_pointer(nb, p2);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//hàm nhập phần tử mảng
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị của mảng (con trỏ)
+void input_number_array_pointer(int n, int* p)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu " << i << " : "; cin >> *(p + i);
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm thêm
+void add_array(int&n, int* p, int vt, int x)
+{
+	for (int i = n; i > vt; i--)
+	{
+		*(p + i) = *(p + i - 1);
+	}
+	*(p + vt) = x;
+	n += 1;
+}
+//Hàm xóa
+void delete_array(int& n, int* p, int vt)
+{
+	for (int i = vt; i < n - 1; i++)
+	{
+		*(p + i) = *(p + i + 1);
+	}
+	n -= 1;
+}
+//Hàm chung
+void array_min(int n, int* p, int&nb, int* p2)
+{
+	for (int i = 0; i < n; i++)
+	{
+		int min = *(p + i);
+		int index = 0;
+		for (int j = i + 1; j < n; j++)
+		{
+			if (min > *(p + j))
+			{
+				min = *(p + j);
+				index = j;
+			}
+		}
+		*(p2 + nb) = min;
+		nb += 1;
+		delete_array(n, p, index); i -= 1;
+	}
+}
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (con trỏ)
+template<class e1>
+void output_array_pointer(int n, e1* p)
+{
+	cout << "=============================== Xuat ===========================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]: " << *(p + i) << "\t\t";
+	}
+	cout << endl;
+}
+

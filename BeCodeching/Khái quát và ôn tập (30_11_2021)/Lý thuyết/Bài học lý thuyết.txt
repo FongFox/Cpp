@@ -1,0 +1,69 @@
+BT:	+ LT
+	+ BT Code	
+		- Ứng dụng.
+		- Nâng cao
+		- Tư duy
+
++ Cách nộp bài tập:	past.ubuntu
++ Deadline nộp bài: 12h trưa buổi học hôm sau.
+//=============== Câu lệnh điều kiện, Cấu trúc rẽ nhánh ======================
+------ Thuật ngữ --------
+Biểu thức:		VD:	1 + 2*(6 - 3)	Tính toán trả về giá trị.
+Biểu thức điều kiện:	VD:	(0!=1)	= false	Tính toán trả về true/flase
+		>=, <=, >, <, ==, !=
+Khởi tạo giá trị:	Lưu giá trị vô cho biến lần đầu.
+Cập nhật giá trị:	Thay đổi giá trị cho biến sau lần khởi tạo.
+
+Toán tử gán:	=		Vế phải gán cho vế trái. Lưu ý: 2 vế phải tương đồng kdl.
+							Trừ: char, bool
+						VD: int a = 'C';	0 - 255
+
+	Thế số, copy, past				VD: bool kt =true;	// true: 1	false: 0
+						int a = kt;
+		int a = 1 + 2*(6 - 3);
+
+		int a;//Khai báo 1 biến số nguyên a.
+		a = 1 + 2*(6 - 3);
+
+			Trả lời kết quả của btđk:	(25 && 0)		(true && false)	false
+						(12 || 21)		(true || true)	true
+				x = 5	(x<=0) || (x>=20)
+
+1. Câu lệnh điều kiện.
+	+ Thiếu
+		if(<btđk>)
+		{
+			//Lệnh
+		}
+	+ Đủ
+		if(<btđk>)
+		{
+			//Lệnh
+		}
+		else
+		{
+			//Lệnh
+		}
+
+	if -else if -else if - .... 
+
+2. Cấu trúc rẽ nhánh.
+
+Thiếu:
+Đủ:	default:
+		switch(<biến/giá trị>)
+		{
+			case <giá trị thứ 1>:
+			{
+				//lệnh
+				break;
+			}
+			case <giá trị thứ 2>:
+			{
+				//lệnh
+				break;
+			}
+		}
+//================== 
+
+	Đề: So sánh điểm giống và khác nhau của câu lệnh đk và cấu trúc rẽ nhánh.

@@ -1,0 +1,69 @@
+Biến -> sẽ lưu giá trị	-> vùng nhớ
+giá trị:	int, float, char, bool
+
+Thành phần:	+ Vùng nhớ: nơi lưu trữ giá trị
+		+ địa chỉ: nơi biến sinh ra
+
+
+
+Biến con trỏ lưu: -> miền giá trị
+địa chỉ:	mã hexa
+
+Thành phần:	+ Địa chỉ: Nơi sinh ra
+		+ Miền giá trị: Lưu trữ địa chỉ của nơi trỏ đến.
+		+ Giá trị: Giá trị của nơi nó trỏ đến
+
+	Lưu ý:	Con trỏ khi sinh ra không có vùng nhớ để lưu trữ giá trị. Muốn lưu được giá trị thì sao?
+	+ C1: Trỏ đến nhà 1 ông nào đó để dùng chung -> 1 thằng thay đổi -> thằng kia thay đổi theo
+	+ C2: Mua nhà - Cấp phát vùng nhớ cho con trỏ.
+
+
+//------------ Về các vùng nhớ ----
+	- code segment: Lưu code -> mã nhị phân		CPU quản lý
+	- data segment: Lưu các biến toàn cục, static	CPU quản lý
+	- stack segment: Lưu các biến cục bộ		CPU quản lý -  CPU giải phóng
+
+	- heap segment: Do lập trình viên tự quản lý (Yêu cầu cấp phát - Yêu cầu giải phóng).
+		Cấp phát vùng nhớ cho con trỏ. (Thiên đường của con trỏ)
+
+//------ Con trỏ vô kiểu -------
+	
+	int *p1;
+	float  *p2;
+
+	void *p;//Con trỏ vô kiểu
+
+
+VD:
+void main()
+{
+	void *p;
+
+	float c = 3.5;
+	p = &c;
+	cout << *(float*)p << endl;//Ép kiểu
+
+	char x = 'm';
+	p = &x;
+	cout << *(char*)p << endl;
+
+	system("pause");
+}
+
+//----- Cấp phát bên C ------	<stdlib.h>			Nếu ko cấp phát được thì trả về NULL
+
+	
++ malloc()		void* malloc(int size);		Cấp phát vùng nhớ bên heap có size byte và trả về.
+	
+
++ calloc()		void* calloc(int count, int size);		Cấp phát count vùng nhớ, mỗi vùng có size byte
+						và trả về. Giá trị khởi tạo là 0.
+
++ realloc()		void* realloc(void* pointer, int size);
+			+ Cấp phát mới: Kiểm tra pointer, nếu chưa trỏ đi đâu -> Cấp phát mới 
+						(Cấp phát vùng nhớ kích thước size byte)
+
+		+ Nếu đã có vùng nhớ -> Dựa trên size cũ và size mới để quyết định nới rộng hoặc thu hẹp.
+
+
+//------ Cấp phát bên C++ ------

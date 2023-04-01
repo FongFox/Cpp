@@ -1,0 +1,148 @@
+sTa có 2 mảng
+a: 1 2 3 4
+b: 5 6 7
+***1. Viết chương trình gộp mảng a vào đầu mảng b
+=> b: 1 2 3 4 5 6 7
+#include<iostream>
+using namespace std;
+void input_e(int& n);
+void input_n(int n, int* p);
+void output(int n, int* p);
+void adding(int nold, int*& p, int nnew, int vt);
+void add_first(int n, int& n1, int* p, int*& p1);
+int main()
+{
+	int n; 
+	input_e(n);
+	int* p = new int[n];
+	input_n(n, p);
+	int n1;
+	input_e(n1);
+	int* p1 = new int[n1];
+	input_n(n1, p1);
+	output(n, p);
+	output(n1, p1);
+	add_first(n, n1, p, p1);
+	output(n1, p1);
+
+	system("pause");
+}
+void input_e(int&n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+void input_n(int n, int* p)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu " << i << " : "; cin >> p[i];
+	}
+}
+void output(int n, int* p)
+{
+	cout << endl << "==================== Xuat ====================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "p[" << i << "]= " << p[i] << endl;
+	}
+	cout << endl;
+}
+void adding(int nold, int*& p, int nnew, int vt)
+{
+	int* tam = p;
+	p = new int[nnew]; int j = 0;
+	for (int i = 0; i < nold; i++)
+	{
+		if (j == vt)
+		{
+			j += 1; i -= 1;
+			continue;
+		}
+		p[j] = tam[i]; j += 1;
+	}
+	if (tam != NULL)
+	{
+		delete[] tam;
+	}
+}
+void add_first(int n, int& n1, int* p, int*& p1)
+{
+	for (int i = n - 1; i >= 0; i--)
+	{
+		adding(n1, p1, n1 + 1, 0);
+		p1[0] = p[i];
+		n1 += 1;
+	}
+}
+======================================================================================================================================================================================================================================================================================
+Ta có 2 mảng
+a: 1 2 3 4
+b: 5 6 7
+***2. Viết chương trình gộp mảng a vào cuối mảng b
+=> b: 5 6 8 1 2 3 4
+#include<iostream>
+using namespace std;
+void input_e(int& n);
+void input_n(int n, int* p);
+void output(int n, int* p);
+void cap_phat(int nold, int*& p, int nnew);
+void add_last(int n, int* p, int& n2, int*& p2);
+int main()
+{
+	int n;
+	input_e(n);
+	int* p = new int[n];
+	input_n(n, p);
+	output(n, p);
+	int n2;
+	input_e(n2);
+	int* p2 = new int[n2];
+	input_n(n2, p2);
+	output(n2, p2);
+	add_last(n, p, n2, p2);
+	output(n2, p2);
+
+	system("pause");
+}
+void input_e(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+void input_n(int n, int* p)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu " << i << " : "; cin >> p[i];
+	}
+}
+void output(int n, int* p)
+{
+	cout << endl << "=========================== Xuat =======================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "p[" << i << "]= " << p[i] << endl;
+	}
+	cout << endl;
+}
+void cap_phat(int nold, int*& p, int nnew)
+{
+	int* tam = p;
+	p = new int[nnew];
+	for (int i = 0; i < nold; i++)
+	{
+		p[i] = tam[i];
+	}
+	if (tam != NULL)
+	{
+		delete[] tam;
+	}
+}
+void add_last(int n, int* p, int& n2, int*& p2)
+{
+	for (int i = 0; i < n; i++)
+	{
+		cap_phat(n2, p2, n2 + 1);
+		p2[n2] = p[i]; n2 += 1;
+	}
+}
+======================================================================================================================================================================================================================================================================================

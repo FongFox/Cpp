@@ -1,0 +1,34 @@
+#include <iostream>
+#define MAX 100
+using namespace std;
+void nhap(int a[], int n);
+void xuat(int a[], int n);
+void main()
+{
+	int a[MAX];
+	int n = 0;
+	do
+	{
+		cout << "Nhap so luong phan tu: ";cin >> n;
+	} while (n <= 0 || n > MAX);
+	//============================
+	nhap(a, n);
+	xuat(a, n);
+	system("pause");
+}
+void nhap(int a[], int n)
+{
+	cout << "\t\t===== Nhap =====" << endl;
+	for (int i = 0;i < n;i++)//Thần chú
+	{
+		cout << "Nhap pt thu " << i << ": ";cin >> a[i];
+	}
+}
+void xuat(int a[], int n)
+{
+	cout << "\t\t===== Xuat =====" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "PT thu " << i << " la: " << a[i] << endl;
+	}
+}

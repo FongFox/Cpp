@@ -1,0 +1,31 @@
+Nhập môn:
+Bài 1. Cho 2 mảng a và b. Viết chương trình kiểm tra xem mảng a có phải là con trong mảng b hay không ?
+Bài 2. Cho 2 mảng a và b. Viết chương trình đếm số lần xuất hiện của mảng a trong mảng b ?
+
+Chuyên sâu:
+Bài 1. Cho mảng 1 chiều các số nguyên. Viết chương trình tìm tất cả các mảng con của mảng ban đầu
+Mảng con là mảng có số lượng phần tử nhỏ hơn hoặc bằng mảng ban đầu, và nằm liên tiếp nhau.
+VD: 3 1 2 4
+==>
+3 
+3 1
+3 1 2
+3 1 2 4
+
+1
+1 2
+1 2 4
+
+2
+2 4
+
+4
+-------------- 
+Bài 1. Cho dãy số nguyên có n phần tử. Viết chương trình tìm các dãy con tăng trong mảng.
+Bài 2. Cho mảng 1 chiều các số nguyên và một số nguyên M. Viết chương trình tìm tất cả các mảng con có tổng bằng với M
+Bài 3. Cho dãy số nguyên có n phần tử. Viết chương trình tìm dãy con toàn dương
+Bài 4. Cho dãy số nguyên có n phần tử. Viết chương trình tìm dãy con toàn dương dài nhất. 
+Bài 5. Cho dãy số nguyên có n phần tử. Viết chương trình tìm dãy con có tổng lớn nhất.
+VD: 
+2 -1 4 -7 10 5 -9 5 8 12 -10
+==> 10 5 -9 5 8 12

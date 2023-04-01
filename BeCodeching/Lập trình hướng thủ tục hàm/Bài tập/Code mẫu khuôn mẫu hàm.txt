@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+//==== Nguyên mẫu ====
+template <class p1, class p2>
+p1 sum(p1 a, p2 b);
+
+void main()
+{
+	int a = 3;
+	int b = 7;
+	int e = 2;
+
+	float c = 1.2;
+	float d = 3.7;
+	cout << sum(b,c) << endl;
+
+
+	system("pause");
+}
+//====== Định nghĩa hàm =======
+template <class p1, class p2>
+p1 sum(p1 a,p2 b)
+{
+	return a + b;
+}

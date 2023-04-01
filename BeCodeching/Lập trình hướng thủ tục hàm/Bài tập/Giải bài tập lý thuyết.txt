@@ -1,0 +1,59 @@
+===================================Giải bài tập lý thuyết=======================
+1. 
+Ưu điểm: 
+- Khiến code ở hàm main gọn hơn.
+- Có thể sử 1 hàm đó cho nhiều biến, giá trị. (có thể tái sử dụng nhiều lần)
+
+2. 
+Có 2 loại hàm :
+- Hàm không trả về. (void)
+- Hàm có trả về. (có câu lệnh return cuối thân hàm trong mỗi hàm)
+
+3.
+- Return dùng để kết thúc hàm đó khi chạy tới câu lệnh đó trong thân hàm, và lưu giá giá trị (theo kiểu dữ liệu) của hàm đó.
+- Khi chạy tới câu lệnh return trong thân hàm (thường sẽ để cuối trong thân hàm), thì ngay lập tức sẽ thoát khỏi hàm đó và lưu giá trị vào hàm đó.
+
+4.
+Cách dùng:
+- Khai báo cú pháp (giống hàm trên nhưng không có khai báo kiểu dữ liệu ở đầu) <tênhàm>(<biếnmuốntươngtác>);
+
+5 và 6.
+- Tham số thực là tham số được truyền và tương tác ở trong hàm main.
+- Tham số hình thức là tham số tương tác ở trên hàm đó.
+
+#include<iostream>
+using namespace std;
+
+int number (int x //Tham số hình thức)
+{
+ int x = 15;
+ return x;
+}
+
+int main()
+{
+ int a;
+ int n = number(a //Tham số thực);
+ cout << n << endl;
+
+ system("pause");
+ return 0;
+} 
+
+- Tham số hình thức chia ra 2 loại: 
++ Tham trị: không có địa chỉ (dấu &). Tạo ra 1 bản sao copy và tương tác trên nó, không tương tác với dữ liệu gốc.
++ Tham chiếu: có địa chỉ (dấu &). Tương tác trên dữ liệu gốc và dữ liệu sễ thay đổi sau khi tương tác.
+
+7.
+- Hàm trong chương trình được thực thi khi khi có lời gọi hàm ở hàm main.
+
+8. 
+- Nếu muốn trả về nhiều hơn 2 giá trị thì đổi kiểu dữ liệu đầu là void và ko cần return ,thêm địa chỉ (dấu &) và những biến cần tương tác trực tiếp. 
+
+
+
+
+
+
+
+

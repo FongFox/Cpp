@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+//===== Khai báo nguyên mẫu hàm ====
+int bcnn(int a, int b);
+int ucln(int a, int b);
+
+
+void main()
+{
+	int a, b;
+	cout << "Nhap a, b: ";cin >> a >> b;
+	//cout << ucln(a, b) << endl;
+	cout << "BCNN: " << bcnn(a, b) << endl;
+
+	system("pause");
+}
+
+//====== Định nghĩa hàm =======
+
+int bcnn(int a, int b)//8,4
+{
+	return (a*b) / ucln(a, b);  //32 /4 = 8
+}
+
+int ucln(int a, int b)//8	4
+{
+	while (a != b)//2	2
+	{
+		if (a > b)
+		{
+			a = a - b;//a=a-b = 4-2 =2
+		}
+		else//b>a
+		{
+			b = b - a;//
+		}
+	}
+	return a;//b
+}

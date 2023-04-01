@@ -1,0 +1,81 @@
+/*
+Bài 5. Viết chương trình giải phương trình bậc 2 có dạng: ax^2 + bx + c = 0
+Dữ liệu đầu vào                                           	Dữ liệu đầu ra
+a = 1, b = 2, c = 3                                       	Vô nghiệm
+a = 0, b = 2, c = 4                                       	Có nghiệm -2
+a = 0, b = 0, c = 0                                       	Vô số nghiệm
+a = 0, b = 0, c = 4                                       	Vô nghiệm
+a = 1, b = 2, c = 1                                       	Nghiệm kép -1
+a = 1, b = 3, c = 2                                       	Có 2 nghiệm phân biệt -1 và -2
+*/
+#include<iostream>
+#include<math.h>
+#include<conio.h>
+#include<Windows.h>
+using namespace std;
+
+int main()
+{
+	//Khai báo a, b, c.
+	float a, b, c;
+	cout << "Nhap gia tri a: ";
+	cin >> a;
+	cout << "Nhap gia tri b: ";
+	cin >> b;
+	cout << "Nhap gia tri c: ";
+	cin >> c;
+	/*
+	Cách giải
+	Nếu a == 0
+		thì nếu b == 0
+				thì nếu c == 0
+						thì pt vô sô nghiệm
+					Ngược lại 
+						thì pt vô nghiệm
+			Ngược lại (nếu b != 0)
+				thì x = -c/b
+	Ngược lại (nếu b != 0)
+		thì gán delta = b^2 - 4ac
+		Nếu delta < 0
+			thì pt vô nghiệm
+		Ngược lại nếu delta == 0
+			thì pt có nghiệm kép x = -b/2a
+		Ngược lại (nếu delta > 0)
+			thì PT có 2 nghiệm x1 = (-b + sqrt(delta))/2a ; x2 = (-b + sqrt(delta))/2a;	
+	*/
+	if (a == 0)
+	{
+		if (b == 0)
+		{
+			if (c == 0)
+			{
+				cout << "PT vo so nghiem." << endl;
+			}
+			else
+			{
+				cout << "PT vo nghiem." << endl;
+			}
+		}
+		else cout << "Pt co 1 nghiem x = " << -c / b << endl;
+	}
+	else
+	{
+		double delta = (b * b) - (4 * a * c);
+		if (delta < 0)
+		{
+			cout << "PT vo nghiem." << endl;
+		}
+		else if (delta == 0)
+		{
+			cout << "PT co nghiem kep x = " << -b / (2 * a) << endl;
+		}
+		else
+		{
+			cout << "PT co 2 nghiem phan biet." << endl;
+			cout << "x1 = " << (-b + sqrt(delta)) / (2 * a) << endl << "x2 = " << (-b - sqrt(delta)) / (2 * a) << endl;
+		}
+	}
+
+	system("pause");
+	return 0;
+}

@@ -1,0 +1,6 @@
+BT LT:
+code mẫu hàm cap_phat() có cmt chi tiết.
+BT code:
+1. Xây dựng hàm thêm
+2. Xây dựng hàm xóa.
+Chú ý vị trí biên xem có đúng ko.

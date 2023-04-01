@@ -1,0 +1,26 @@
+/*
+Bài 2 (9). Viết chương trình nhập vào 2 số nguyên dương a và b. Hoán vị 2 giá trị cho nhau
+Không được dùng thêm biến nào khác ngoài a và b
+*/
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	//Khai bao bien a, b
+	int a, b;
+	cout << "Nhap a: ";
+	cin >> a;
+	cout << "Nhap b: ";
+	cin >> b;
+	//Khai bao bien temp, gan bien temp = a, gan a = b, gan b = a, xuat ket qua hoan vi.
+	int temp;
+	temp = a;
+	a = b;
+	b = temp;
+	cout << "Ket qua hoan vi a = " << a << ", b = " << b << endl;
+
+	system("pause");
+	return 0;
+}

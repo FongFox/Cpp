@@ -1,0 +1,93 @@
+=================================Bài tập lý thuyết=================================
+1.
+Mảng không thêm được phần tử khi đã đạt tới phần tử giới hạn của mảng.
+2.
+Mảng không xóa được phần tử khi không chỉ còn đúng 1 phần tử (đã khai báo) của mảng.
+3 và 4.
+_ Vd(thuật toán xóa): Xóa giá trị 3 ở phần tử 2 trong mảng. 
+	//Giá trị:	1	2	3	4	5
+	//Vị trí: 	0	1	2	3	4
+			i
+	+ Duyệt từ phần tử 0 tới phần tử cần xóa :
+	//Giá trị:	1	2	3	4	5
+	//Vị trí: 	0	1	2	3	4
+					i
+	+ Tiền hành dời giá trị :
+	//Giá trị:	1	2	4	5	5
+	//Vị trí: 	0	1	2	3	4
+							i	
+		_ Cho a[2] = a[3];
+		_ Cho a[3] = a[4];
+	+ Tiến hành xóa (ẩn) phần tử thứ 4 :(khai báo hệ thống để ẩn đi phần tử)
+	//Giá trị:	1	2	4	5	
+	//Vị trí: 	0	1	2	3	
+						i
+		_ phần tử = phần tử - 1; (có thay đổi giá trị phần tử nếu sử dụng hàm)
+	+ Xuất kết quả :
+	//Giá trị:	1	2	4	5	
+	//Vị trí: 	0	1	2	3	
+
+_ Vd(thuật toán thêm): thêm giá trị 6 ở phần tử 3 trong mảng. 
+	//Giá trị:	1	2	3	4	5
+	//Vị trí: 	0	1	2	3	4
+			i
+	+ Tiến hành tăng thêm 1 phần tử:(khai báo hệ thống để cung cấp thêm 1 phần tử, miễn là vẫn chưa tới giới hạn của arr[MAX])
+	//Giá trị:	1	2	3	4	5
+	//Vị trí: 	0	1	2	3	4	5
+								i
+	+ Duyệt phần tử, tiến hành dời giá trị ở a[4] về a[5]:
+	//Giá trị:	1	2	3	4		5
+	//Vị trí: 	0	1	2	3	4	5
+							i
+	+ Duyệt phần tử, tiến hành dời giá trị ở a[3] về a[4]:
+	//Giá trị:	1	2	3		4	5
+	//Vị trí: 	0	1	2	3	4	5
+						i
+	+ Duyệt phần tử, tiến hành dời giá trị ở a[2] về a[3] và dừng (vì tới phần tử cần thêm giá trị):
+	//Giá trị:	1	2		3	4	5
+	//Vị trí: 	0	1	2	3	4	5
+					i
+	+ Thêm giá  trị 6 vào phần tử:
+	//Giá trị:	1	2	6	3	4	5
+	//Vị trí: 	0	1	2	3	4	5
+					i
+	+ Xuất kết quả:
+	//Giá trị:	1	2	6	3	4	5
+	//Vị trí: 	0	1	2	3	4	5
+
+code giả (thêm giá trị)
+b1: Tăng thêm 1 phần tử.
+    n = n + 1 => n = 6 => arr[5]
+	//Giá trị:	1	2	3	4	5
+	//Vị trí: 	0	1	2	3	4	5
+b2: Dời giá trị :
+	a[4] = a[5];
+	a[3] = a[4];
+ 	//Giá trị:	1	2	3		4	5
+	//Vị trí: 	0	1	2	3	4	5	
+b3: Thêm giá trị 6 và a[3] và xuất kết quả
+	a[3] = 6;
+	//Giá trị:	1	2	3	6	4	5
+	//Vị trí: 	0	1	2	3	4	5							
+
+=> code:
+	int x, y;
+	cout << "Nhap phan tu can them gia tri: "; cin >> x;
+	cout << "Nhap gia tri can them: "; cin >> y;
+	for(int i=n; i>x; i--)
+	{
+		a[i] = a[i-1];	
+	}
+	a[x] = 6;
+	n += 1;
+	for (int i=0; i<n; i++)
+	{
+		cout << "a[ << i << "] = " << a[i] << endl;
+	}
+				
+
+
+
+
+
+		 

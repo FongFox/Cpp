@@ -1,0 +1,216 @@
+#include <iostream>
+#define MAX 100
+using namespace std;
+void nhap(int a[], int n);
+void xuat(int a[], int n);
+
+void xoa(int a[], int &n, int vt);
+void sap_xep_giam(int a[], int n);
+void them(int a[], int &n, int vt, int x);
+void gop_dau(int a[], int na, int b[], int &nb);
+void gop_cuoi(int a[], int na, int b[], int &nb);
+void sap_xep_co_dieu_kien(int a[], int na);
+
+void tron(int a[], int na, int b[], int nb, int c[], int &nc);
+
+void main()
+{
+	//int a[MAX];int n = 0;
+	//do
+	//{
+	//	cout << "Nhap n: ";cin >> n;
+	//} while (n <= 0 || n > MAX);
+	////-------------
+	//nhap(a, n);
+	//xuat(a, n);
+
+	//int a[] = { -4,5,0,6,-1,0,8,3,-11,15,2,1 };int n = 12;
+	//xuat(a, n);
+	//sap_xep_co_dieu_kien(a, n);
+	//xuat(a, n);
+
+	int a[50] = { 1,2,7 };int na = 3;
+	int b[50] = { 0,2,6,9,10 };int nb = 5;
+	int c[100];int nc = 0;
+	tron(a, na, b, nb, c, nc);
+	xuat(c, nc);
+
+	system("pause");
+}
+void nhap(int a[], int n)
+{
+	cout << "\t\t==== Nhap ===" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Nhap phan tu thu " << i << ": ";cin >> a[i];
+	}
+}
+void xuat(int a[], int n)
+{
+	cout << "\t\t==== Xuat ===" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Phan tu thu " << i << " la: " << a[i] << endl;
+	}
+}
+void xoa(int a[], int &n, int vt)
+{
+	for (int i = vt;i < n - 1;i++)
+	{
+		a[i] = a[i + 1];
+	}
+	n--;
+}
+void sap_xep_giam(int a[], int n)
+{
+	for (int i = 0;i < n - 1;i++)//ap cuoi
+	{
+		for (int j = i + 1;j < n;j++)//cuoi
+		{
+			if (a[j] > a[i])
+			{
+				int tam = a[i];
+				a[i] = a[j];
+				a[j] = tam;
+			}
+		}
+	}
+}
+void them(int a[], int &n, int vt, int x)
+{
+	for (int i = n;i > vt;i--)
+	{
+		a[i] = a[i - 1];
+	}
+	a[vt] = x;
+	n++;
+}
+void gop_dau(int a[], int na, int b[], int &nb)
+{
+	//a: 1 2 3 4 5
+	//b: 7 8 9
+	for (int i = na - 1;i >= 0;i--)//Duyệt ngược mảng a
+	{
+		//Thêm đầu b
+		them(b, nb, 0, a[i]);
+	}
+}
+void gop_cuoi(int a[], int na, int b[], int &nb)
+{
+	//a: 1 2 3 4 5
+	//b: 7 8 9
+	for (int i = 0;i < na;i++)//Duyệt xuôi mảng a
+	{
+		//Thêm cuối b
+		b[nb++] = a[i];
+	}
+}
+void sap_xep_co_dieu_kien1(int a[],int na)
+{
+	int b[MAX]; int nb = 0;//Lưu pt âm
+	int c[MAX];int nc = 0;//Lưu pt dương
+
+	//B1: Tách âm, dương
+	for (int i = 0;i < na;i++)
+	{
+		if (a[i] < 0)
+		{
+			//----- ChuyỂn ----
+			b[nb] = a[i];
+			nb++;
+			//--- xóa ---
+			xoa(a, na, i);
+			i--;
+		}
+		else if (a[i] > 0)
+		{
+			//----- ChuyỂn ----
+			c[nc] = a[i];
+			nc++;
+			//--- xóa ---
+			xoa(a, na, i);
+			i--;
+		}
+	}
+	//B2: Sắp xếp giảm
+	sap_xep_giam(b, nb);
+	sap_xep_giam(c, nc);
+	//B3: Gộp
+			//B3.1: gộp phần mảng âm vào đầu
+	gop_dau(b, nb, a, na);
+			//B3.2: gộp phần mảng dương vào cuối
+	gop_cuoi(c, nc, a, na);
+}
+void sap_xep_tang(int a[], int n)
+{
+	for (int i = 0;i < n - 1;i++)//ap cuoi
+	{
+		for (int j = i + 1;j < n;j++)//cuoi
+		{
+			if (a[j] < a[i])
+			{
+				int tam = a[i];
+				a[i] = a[j];
+				a[j] = tam;
+			}
+		}
+	}
+}
+void sap_xep_co_dieu_kien(int a[], int na)//cach 3
+{
+	//B1: sắp xếp tăng
+	sap_xep_tang(a, na);
+	//B2: chỉ sắp xếp cho đoạn giá trị âm, dương
+	for (int i = 0;i < na - 1;i++)//ap cuoi
+	{
+		for (int j = i + 1;j < na;j++)//cuoi
+		{
+			if ((a[i] < 0 && a[j] < 0)|| (a[i]>0 &&a[j]>0))
+			{
+				if (a[j] > a[i])//SẮp xếp giảm khi nào ????
+				{
+					int tam = a[i];
+					a[i] = a[j];
+					a[j] = tam;
+				}
+			}
+			
+		}
+	}
+}
+void tron(int a[], int na, int b[], int nb, int c[], int &nc)//Trộn a,b vào c
+{
+	nc = na + nb;
+	int ia = 0;
+	int ib = 0;
+
+	//a: 1 2 7 0 0
+	//          ia
+	//b: 0 2 6 9 10
+	//         ib
+
+	for (int ic = 0;ic < nc;ic++)//Duyệt theo mảng c
+	{
+		if (ia == na)//mảng a hết pt
+		{
+			c[ic] = b[ib];//Thêm pt mảng b vào c
+			ib++;
+		}
+		else if (ib == nb)//Mảng b hết pt
+		{
+			c[ic] = a[ia];//thêm pt mảng a vào c
+			ia++;
+		}
+		else if (a[ia] <= b[ib])//nếu pt mảng a < pt mảng b
+		{
+			c[ic] = a[ia];//thêm pt mảng a vào c
+			ia++;
+		}
+		else if (b[ib] < a[ia])//Nếu pt mảng b < pt mảng a
+		{
+			c[ic] = b[ib];//Thêm pt mảng b vào c
+			ib++;
+		}
+		
+	}
+}

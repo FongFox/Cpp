@@ -1,0 +1,37 @@
+//============================ phần 1 ==================
+1. C: các hàm cấp phát nằm ở thư viện nào ?
+2. C: nguyên mẫu hàm của các hàm cấp phát
+3. C: ứng dụng: lời gọi hàm
+4: C: cơ chế hoạt động của từng hàm ?
+5: C++: cơ chế hoạt động của toán tử new
+6: Nhận xét hàm realloc và new , giống và khác nhau ?
+
+======================================== Bài giải ==============================================
+================================================================================================
+Bài 1: (ở C)
+Các hàm cấp phát nằm ở thư viện:
+#include<stdlib.h>
+Bài 2: (ở C)
+void* malloc(int size)
+void* calloc(int count, int size)
+void* realloc(int* pointer, int size)
+Bài 3: (ở C)
+void* p=NULL;
+p=(int*)malloc(sizeof(int));
+-------------------------------
+void* p=NULL; int n=10;
+p=(int*)calloc(n,sizeof(int);
+-------------------------------
+void* p=NULL; int n=5;
+p=(int*)realloc(p,n*sizeof(int));
+Bài 4: (ở C)
+malloc: Yêu cầu cấp vùng nhớ (ở heap) với kích thước (size) bytes, có trả về.
+calloc: Yêu cầu cấp theo count vùng nhớ (ở heap) với kích thước (size) bytes, có trả về.
+realloc: 
++ Cấp phát mới: nếu biến con trỏ chưa trỏ đến địa chỉ nào.
+-> yêu cầu cấp phát theo vùng nhớ (ở heap) với kích thước (size) bytes, có trả về.
++ Thay đổi: nếu biến con trỏ đã trỏ vào địa chỉ của biến nào đó.
+-> Phụ thuộc vào biến trước và sau mà có thể nới rộng hoặc thu hẹp.
+Bài 5 và 6:
+int* p=new<data-type>;
+

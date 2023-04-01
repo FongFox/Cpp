@@ -1,0 +1,35 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+void nhap(int *p, int n);
+void xuat(int *p, int n);
+void main()
+{
+	int* p = NULL;int n = 3;
+
+	p = (int *)realloc(p, n*sizeof(int));//cấp phát mới 3 vùng
+
+	nhap(p, n);
+	xuat(p, n + 5);
+
+	p = (int *)realloc(p, 5 * sizeof(int));//Nới rộng
+	xuat(p, n + 5);
+
+	system("pause");
+}
+void nhap(int *p, int n)
+{
+	cout << "\t\t---- Nhap -----" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Nhap pt thu " << i << ": ";cin >> *(p + i);
+	}
+}
+void xuat(int *p, int n)
+{
+	cout << "\t\t---- Xuat -----" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Pt thu " << i << " la: " << *(p + i) << endl;
+	}
+}

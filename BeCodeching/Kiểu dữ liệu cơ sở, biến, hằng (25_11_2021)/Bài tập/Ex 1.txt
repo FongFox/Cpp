@@ -1,0 +1,39 @@
+/*
+Bài 1. Viết chương trình nhập vào 2 số nguyên. Tìm giá trị lớn nhất
+Dữ liệu đầu vào                                           	Dữ liệu đầu ra
+a = 1, b = 2                                                 	2
+a = 2, b = 1                                                 	2
+a = 6, b = 6                                                 	6
+*/
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	//Khai báo a, b.
+	int a, b;
+	cout << "Nhap gia tri a: ";
+	cin >> a;
+	cout << "Nhap gia tri b: ";
+	cin >> b;
+	/*
+	Nếu a>b
+		thì in ra a là số lớn nhất.
+	Ngược lại nếu a<b
+		thì in ra b là số lớn nhất.
+	Ngược lại
+		thì in ra không có số nào lớn nhất.
+	*/
+	if (a > b)
+	{
+		cout << a << " la so lon nhat." << endl;
+	}
+	else if (a < b)
+	{
+		cout << b << " la so lon nhat." << endl;
+	}
+	else cout << "Khong co so nao lon nhat ca !" << endl;
+
+	system("pause");
+	return 0;
+}

@@ -1,0 +1,21 @@
+=================================Lý thuyết===============================
+1.
+Mảng là tập hợp các phần tử cùng chung kiểu dữ liệu.
+2. 
+Số lượng phần tử tối đa của mảng là giá trị không đổi (const).
+3.
+Mảng tĩnh là mảng được tạo ra đã có mọi dữ liệu (khi biết trước yêu cầu).
+Mảng động là mảng được tạo ra để người dùng nhập vào (khi chưa biết yêu cầu).
+4.
+Khi gặp lệnh int a[10] thì chương trình sẽ:
++ Lấy 10 phần tử trong bộ nhớ (mỗi bộ nhớ tốn số byte tùy theo kiểu dữ liệu).
++ Mỗi phần tử trong bộ nhớ đó chứa dữ liệu rác (-85).
+5.
+Ý nghĩa lệnh:
++ int a[7]; : Sẽ tạo 7 phần tử với kiểu dữ liệu là int.
++ a[0]; : Lỗi chương trình (chương trình tạo mảng với 0 phần tử => lỗi).
+6.
+Giá trị của các phần tử sau khi khai báo là rác (-85).
+7.
+float a[n];
+Kích thuóc mảng: 4 x n(số phần tử được quy định (const)). 

@@ -1,0 +1,63 @@
+/*
+Bài 3. Viết chương trình nhập vào điểm của sinh viên gồm điểm chuyên cần(10%), điểm giữa kỳ(30%), điểm cuối kỳ(60%). 
+Tính điểm trung bình và xếp loại theo quy ước sau:
+-        Điểm trung bình < 5     	                	=> loại D
+-        Điểm trung bình >= 5 và < 7             	=> loại C
+-        Điểm trung bình >= 7 và < 9          	  	=> loại B
+-        Điểm trung bình >= 9                       		=> loại A
+Dữ liệu đầu vào                                           	Dữ liệu đầu ra
+cc = 6, gk = 7, ck = 5     	                          	loại C
+cc = 6, gk = 5, ck = 3                                   	loại D
+cc = 8, gk = 7, ck = 9     	                          	loại B
+cc = 10, gk = 9, ck = 8                                 	loại B
+*/
+
+#include<iostream>
+#include<conio.h>
+#include<Windows.h>
+using namespace std;
+
+int main()
+{
+	//Khai báo điểm chuyên cần, điểm giữa kỳ, điểm cuối kỳ.
+	float dcc, dgk, dck;
+	do
+	{
+		system("CLS");
+		cout << "Nhap diem chuyen can cua ban: ";
+		cin >> dcc;
+		cout << "Nhap diem giua ky cua ban: ";
+		cin >> dgk;
+		cout << "Nhap diem cuoi ky cua ban: ";
+		cin >> dck;
+	} while (dcc < 0 || dcc >10 || dgk < 0 || dgk >10 || dck < 0 || dck >10);
+		/*
+		Mã giả
+		Gán điểm trung bình = (điểm chuyên cần * 10%) + (điểm giữa kỳ * 30%) + (điểm cuối kỳ * 60%)
+		Nếu điểm trung bình < 5
+			thì đánh giá loại d
+		Ngược lại nếu điểm trung bình >= 5 và < 7
+			thì đánh giá loại c
+		Ngược lại nếu điểm trung bình >= 7 và < 9
+			thì đánh giá loại b
+		Ngược lại (nếu điểm trung bình >= 9)
+			thì đánh giá loại a
+		*/
+	double dtb = (dcc * 0.1) + (dgk * 0.3) + (dck * 0.6);
+	if (dtb < 5)
+	{
+		cout << "Loai D." << endl;
+	}
+	else if (dtb >= 5 && dtb < 7)
+	{
+		cout << "Loai C." << endl;
+	}
+	else if (dtb >= 7 && dtb < 9)
+	{
+		cout << "Loai B." << endl;
+	}
+	else cout << "Loai A." << endl;
+
+	system("pause");
+	return 0;
+}

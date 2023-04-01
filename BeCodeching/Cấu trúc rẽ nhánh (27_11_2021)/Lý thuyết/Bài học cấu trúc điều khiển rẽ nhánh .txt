@@ -1,0 +1,184 @@
+Chương trình máy tính là tập hợp các câu lệnh(dòng code) nhằm giúp chúng ta giải quyết 1 vấn đề nào đó
+Cấu trúc điều khiển là thứ tự thực thi các câu lệnh trong chương trình
+1. Cấu trúc điều khiển tuần tự
+2. Cấu trúc điều khiển rẽ nhánh(điều kiện)
+3. Cấu trúc điều khiển lặp(vòng lặp)
+
+========================================= CẤU TRÚC ĐIỀU KHIỂN TUẦN TỰ - CẤU TRÚC ĐIỀU KHIỂN RẼ NHÁNH =========================================
+1.	Cấu trúc điều kiện if – else
+2.	Cấu trúc điều kiện if – else lồng nhau
+3.	Cấu trúc điều kiện if – else if – else if – else
+4.	Cấu trúc điều kiện if – else if – else if – else lồng nhau
+5.	Cấu trúc switch – case
+6.	Cấu trúc switch – case lồng nhau
+
+*************** CẤU TRÚC ĐIỀU KHIỂN TUẦN TỰ ***************
+Viết chương trình nhập vào 2 số nguyên. Tính tổng 2 số nguyên đó
+SOURCE CODE 1: https://paste.ubuntu.com/p/kbgf347q6c/
+
+*************** CẤU TRÚC ĐIỀU KHIỂN RẼ NHÁNH *************** 
+
+******** A. Câu lệnh điều kiện if thiếu ******** 
+if(<điều kiện cần kiểm tra>)
+{
+	// khối lệnh cần xử lý gì đó
+}
+ví dụ: Nếu hôm nay trời mưa thì tèo sẽ nghỉ học
+if(hôm nay trời mưa)
+{
+	==> tèo nghỉ học
+}
+
+******** B. Câu lệnh điều kiện if đủ ******** 
+// điều kiện khẳng định
+if(<điều kiện cần kiểm tra>)
+{
+	// khối lệnh cần xử lý gì đó
+}
+else // chính là điều kiện ngược lại của cái if bên trên gần nó nhất <=> điều kiện phủ định
+{
+	// khối lệnh cần xử lý gì đó
+}
+ví dụ: Nếu hôm nay trời mưa thì tèo sẽ nghỉ học
+if(hôm nay trời mưa)
+{
+	==> tèo nghỉ học
+}
+else // <=> if(hôm nay trời không mưa)
+{
+	==> tèo không nghỉ học
+}
+Viết chương trình nhâp vào 2 số nguyên. Kiểm tra xem số nguyên nào lớn nhất
+SOURCE CODE 2: https://paste.ubuntu.com/p/yvQFm9XJb3/
+
+******** C. Câu lệnh điều kiện if else lồng vào nhau ******** 
+if(<điều kiện cần kiểm tra 1>)
+{
+	// khối lệnh cần xử lý gì đó
+	if(<điều kiện cần kiểm tra 2>)
+	{
+		// khối lệnh cần xử lý gì đó	
+	}
+	else
+	{
+		// khối lệnh cần xử lý gì đó	
+	}	
+}
+else
+{
+	// khối lệnh cần xử lý gì đó	
+}
+
+VÍ DỤ CƠ CHẾ HOẠT ĐỘNG ĐĂNG NHẬP CỦA FACEBOOK
+if(người dùng bấm vào nút đăng nhập)
+{
+	Lấy thông tin email hoặc sdt và mật khẩu ở ô input
+	if(kiểm tra email hoặc sdt và mật khẩu có trùng với tài khoản đã đăng ký trước đó)
+	{
+		Đăng nhập thành công
+		if(nếu crush mà online)
+		{
+			Chat chit với crush...
+		}
+		else
+		{
+			đi kiếm crush khác...
+		}
+	}
+	else
+	{
+		Đăng nhập thất bại
+	}
+}
+else // <=> if(người dùng không bấm vào nút đăng nhập)
+{
+	Không làm gì hết	
+}
+Viết chương trình giải phương trình bậc nhất có dạng ax + b = 0
+============= MÃ GIẢ (PHÂN TÍCH BÀI TOÁN - DÀNH 80%) =============
+Bước 1 - Nhập giá trị hệ số a và b từ bàn phím
+Bước 2 - Thuật toán <=> Tư duy lập trình <=> Logic xử lý
++ a = 0 ==> b = 0
+	+ b = 0
+		=> PT VSN
+	+ b != 0
+		=> PT VN
++ a != 0 ==> ax + b = 0
+	==> PT co nghiem -b / a
+
+============= LẬP TRÌNH (XÂY DỰNG CHƯƠNG TRÌNH - DÀNH 20%) =============
+C, C++, JAVA, C#, PYTHON, WEB, MOBILE...
+SOURCE CODE 3: https://paste.ubuntu.com/p/XKsq6pxh3g/
+
+******** Cấu trúc điều kiện if else if else if....else ******** 
+Kiểm tra từng điều kiện, nếu điều kiện nào đúng sẽ xử lý điều kiện đó và dừng cấu trúc lại luôn
+if(<điều kiện 1)
+{
+	// khối lệnh cần xử lý 1
+}
+else if(<điều kiện 2>)
+{
+	// khối lệnh cần xử lý 2
+}
+else if(<điều kiện 3>)
+{
+	// khối lệnh cần xử lý 3
+}
+...
+else
+{
+	// khối lệnh cần xử lý khi các điều kiện 1 2 và 3 không thỏa mãn <=> điều kiện ngược lại với tất cả các điều kiện ở trên
+}
+Nhập giá trị số nguyên có 1 chữ số(0->9). Đọc số nguyên đó bằng chữ
+============= MÃ GIẢ (PHÂN TÍCH BÀI TOÁN - DÀNH 80%) =============
+Bước 1: Nhập giá trị số nguyên có 1 chữ số là x
+Bước 2: Thuật toán
+Nếu x là 0
+	==> KHÔNG
+Ngược lại nếu x là 1
+	==> MỘT
+Ngược lại nếu x là 2
+	==> HAI
+Ngược lại nếu x là 3
+	==> BA
+Ngược lại nếu x là 4
+	==> BON
+Ngược lại nếu x là 5
+	==> NAM
+Ngược lại nếu x là 6
+	==> SAU
+Ngược lại nếu x là 7
+	==> BAY
+Ngược lại nếu x là 8
+	==> TAM
+Ngược lại nếu x là 9
+	==> CHIN
+Ngược lại nếu x không phải là 0 đến 9
+	==> KHONG THOA MAN DIEU KIEN
+
+============= LẬP TRÌNH (XÂY DỰNG CHƯƠNG TRÌNH - DÀNH 20%) =============
+C, C++, JAVA, C#, PYTHON, WEB, MOBILE...
+SOURCE CODE 4: https://paste.ubuntu.com/p/shJBD2S7hn/ 
+
+******** D. Cấu trúc switch - case ******** 
+Nhược điểm là <Biến/BT>(giá trị) chỉ nhận là số nguyên hoặc ký tự  
+
+switch (<Biến/BT>)
+{
+	case <GT1>:
+		{
+			// khối lệnh cần xử lý 1
+		}
+		break;
+	case <GT2>:
+		{
+			// khối lệnh cần xử lý 2
+		}
+		break;
+	...
+	default:
+		{
+			// khối lệnh cần xử lý
+		}
+}
+SOURCE CODE 5: https://paste.ubuntu.com/p/ws3hVpHCrk/ 

@@ -1,0 +1,9 @@
+Mảng tĩnh gồm:
++ vị trí (nằm liên tiếp).
++ giá trị nằm trong vị trí đó.
+Danh sách liên kết:
++ Chia 1 ô làm 2 bên (tính chất tượng trưng).
+- 1 bên lưu giữ giá trị nào đó. 
+- 1 bên còn lại lưu địa chỉ nó trỏ đến (hoặc nối tới). Nếu nằm vị trí cuối trong dslk thì địa chỉ của nó là NULL.
++ là tập hợp những node (hoặc nói cho dễ hiểu đó là phần tử).
++ 1 node bên trong được chia làm 2 phần 1 phần là để dữ liệu (data) phần còn lại chứ địa chỉ muốn trỏ đến 1 node tiếp theo (hoặc null nếu đó là node cuối).

@@ -1,0 +1,173 @@
+#include <iostream>
+#define MAX 100
+using namespace std;
+//==============
+void nhap(int a[], int n);
+void xuat(int a[], int n);
+//-------- 1 ----------
+bool kt_snt(int x);
+void liet_ke_snt(int a[], int n);
+//--------- 2 -----------
+void tim_le_cuoi(int a[], int n);
+//-------- 3 ----------
+void tim_min_max(int a[], int n);
+//---- 5 ---
+void kt_mang_tang_dan(int a[], int n);
+//--------- 6 ------
+bool kt_so_sieu_nt(int n);
+void liet_ke_so_sieu_nt(int a[], int n);
+void main()
+{
+	//system("pause");
+	//======
+	int a[MAX];int n = 0;
+	do
+	{
+		cout << "Nhap so luong pt: ";cin >> n;
+	} while (n <= 0 || n > MAX);
+	//------
+	nhap(a, n);
+	xuat(a, n);
+
+	//liet_ke_snt(a, n);
+	//tim_le_cuoi(a, n);
+	//tim_min_max(a, n);
+
+	//kt_mang_tang_dan(a, n);
+	liet_ke_so_sieu_nt(a, n);
+
+
+	system("pause");
+}
+void nhap(int a[], int n)
+{
+	cout << "\t\t===== NHAP ===" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Nhap phan tu thu " << i << ": ";cin >> a[i];
+	}
+}
+void xuat(int a[], int n)
+{
+	cout << "\t\t===== XUAT ===" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Phan tu thu " << i << " la: " << a[i] << endl;
+	}
+}
+bool kt_snt(int x)// 2 3 5 7 11 17 ...
+{
+	if (x <= 1)
+	{
+		return false;
+	}
+	else
+	{
+		// [2,x-1]		tìm 1 giá trị mà x chia hết -> x ko phải là snt
+
+		for (int i = 2;i <= x - 1;i++)//i<=sqrt(x);i++
+		{
+			if (x%i == 0)
+			{
+				return false;//x ko phải là snt
+			}
+		}
+		//	x:			1234567...x		sqrt(x)
+		return true;//x là snt
+	}
+}
+void liet_ke_snt(int a[], int n)
+{
+	cout << "DS snt: ";
+	for (int i = 0;i < n;i++)
+	{
+		if (kt_snt(a[i]) == true)
+		{
+			cout << a[i] << "   ";//xuất
+		}
+	}
+	cout << endl;
+}
+//--------- 2 -----------
+void tim_le_cuoi(int a[], int n)
+{
+	for (int i = n - 1;i >= 0;i--)
+	{
+		if (a[i] % 2 != 0)//Lẻ
+		{
+			cout << "Le cuoi la: " << a[i] << endl;
+			return;
+		}
+	}
+	cout << "Khong tim thay!" << endl;
+}
+void tim_min_max(int a[], int n)
+{
+	int min = a[0];
+	int max = a[0];
+	for (int i = 1;i < n;i++)
+	{
+		if (a[i] < min)
+		{
+			min = a[i];
+		}
+		if (a[i] > max)
+		{
+			max = a[i];
+		}
+	}
+	cout << "[a,b] = [" << min << "," << max << "]" << endl;
+}
+void kt_mang_tang_dan(int a[],int n)
+{
+	//B1: đặt cờ
+	bool kt = true;//Mảng tăng dần
+
+	//B2: tìm trường hợp sai
+	for (int i = 0;i < n - 1;i++)//áp cuối
+	{
+		if (a[i] >= a[i + 1])
+		{
+			kt = false;//ko tăng dần
+			break;
+		}
+	}
+	//B3: dựa vào cờ để kết luận
+	if (kt == true)
+	{
+		cout << "Mang tang dan" << endl;
+	}
+	else
+	{
+		cout << "Mang khong tang dan" << endl;
+	}
+}
+//--------- 6 ------
+bool kt_so_sieu_nt(int n)
+{
+	while (n != 0)//22
+	{
+		if (kt_snt(n) == true)//Kiểm tra snt
+		{
+			n = n / 10;//vứt
+		}
+		else//ko phải snt
+		{
+			return false;//ko phải số siêu nguyên tố
+		}
+	}
+	//n ==0
+	return true;//số siêu nguyên tố
+}
+void liet_ke_so_sieu_nt(int a[], int n)
+{
+	cout << "Danh sach so sieu nguyen to: ";
+	for (int i = 0;i < n;i++)
+	{
+		if (kt_so_sieu_nt(a[i]) == true)
+		{
+			cout << a[i] << "   ";
+		}
+	}
+	cout << endl;
+}

@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+int gt(int a)//4
+{
+	int gta = 1;
+	for (int i = 1;i <= a;i++)//i <= 4
+	{
+		gta = gta*i;//1*1*2*3*4
+	}
+	return gta;//24
+}
+int main()
+{
+	int a, b, c;
+	cout << "Nhap lan luot a,b,c: ";cin >> a >> b >> c;
+
+	int gta = gt(a);
+	int gtb = gt(b);
+	int gtc = gt(c);
+
+	int s = gta + gtb + gtc;
+	cout << "S = " << s << endl;
+	system("pause");
+	return 0;
+}

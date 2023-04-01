@@ -1,0 +1,22 @@
+/*
+Bài 3 (10). Viết chương trình nhập vào 2 số nguyên dương a và b. Tìm giá trị lớn nhất.
+Không được dùng câu lệnh điều kiện
+*/
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	//Khai bao a, b.
+	int a, b;
+	cout << "Nhap gia tri a: ";
+	cin >> a;
+	cout << "Nhap gia tri b: ";
+	cin >> b;
+	//so sanh a va b va dua ra ket qua
+	a == b ? cout << "Khong co max" : (a > b ? cout << "max = " << a : cout << "max = " << b);
+
+	cout << endl;
+	system("pause");
+	return 0;
+}

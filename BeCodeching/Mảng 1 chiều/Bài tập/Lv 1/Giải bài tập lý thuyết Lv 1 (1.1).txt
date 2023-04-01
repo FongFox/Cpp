@@ -1,0 +1,36 @@
+========================== Giải bài tập lý thuyết ============================================
+1.
+Mảng không thêm được khi:
++ Quá số lượng phần tử giới hạn (đã quy định từ trước)
++ Khi bị lỗi.
+2.
+Mảng không xóa được khi:
++ Không có phần tử nào.
++ Khi bị lỗi.
+3.
+Thuật toán thêm
++ Bước 1: duyệt và dời phần tử (từ n - 1 tới n) tới vị trí cần thêm.
++ Bước 2: Thêm giá trị vào vị trí phần tử cần thêm.
++ Bước 3: tăng phần tử lên 1.
+Thuật toán xóa
++ Bước 1: duyệt và dời phần tử từ n - 1 về tới vị trí.
++ Bước 2: giảm phần tử xuống còn 1.
+4.
+void add_array(int& n, int a[], int vt, int x)
+{
+	for(int i=n; i<vt; i--)
+	{
+		a[i] = a[i-1];
+	}
+	a[vt] = x;
+	n+=1;
+}
+
+void delete_array(int& n, int a[], int vt)
+{
+	for(int i=vt; i<n-1; i++)
+	{
+		a[i]=a[i+1];
+	}
+	n-=1;
+}

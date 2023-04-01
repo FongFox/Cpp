@@ -1,0 +1,49 @@
+//============= Giải BT =====
+1. Viết ct Tính UCLN, BCNN 2 số nguyên a,b
+
+	+ ucln		
+		ước của số x: Là số mà x chia hết
+				VD:	x = 15:	15,5,3,1
+
+		ước chung a,b:	Là giá trị mà cả a,b đồng thời chia hết
+
+			VD:	12, 8		4,2,1
+
+		a = 12000		b = 8
+
+		i	khi a%i==0  && b%i==0	=> i là uc
+			Duyệt i từ trên xuống -> Nếu gặp đk thỏa mãn lần đầu -> i là ucln
+
+		12 11 10 9 8 7 6 5 4 3 2 1
+
+		8 7 6 5 4 3 2 1		Kết luận: 	Duyệt từ min về 1.
+		i				Nếu thỏa mãn đk thì -> kết luận i là ucln.
+
+
+
+	+ bcnn
+		Bội của x là giá trị chia hết cho x		VD:	5	5,10,15,20,....
+
+		Bội chung của a,b:	Là giá trị đồng thời chia hết cho a và b
+				
+					a = 3, b = 900	9, 27, ...
+
+		Bội chung nhỏ nhất:	
+
+				1 2 3 4 5 6 7 8 9 10 11 12 13 14 .... 
+
+		kiểm tra: i%a==0 && i%b==0
+		Cần duyệt từ max
+
+
+
++ Nguyên mẫu hàm
++ Nạp chồng hàm
++ Khuôn mẫu hàm
+
+
+	lv 0:	Duyệt, Tìm kiếm, liệt kê, tính tổng, đặt lính canh, đặt cờ hiệu
+	lv 1:	Thêm, xóa, sắp xếp
+	lv 2:	Gộp(gộp đầu, gộp cuối), tách, trộn
+
+	lv 3:	Mảng con

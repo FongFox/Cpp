@@ -1,0 +1,23 @@
+BT lý thuyết: LÀM THEO HIỂU BIẾT - KHÔNG XEM TÀI LIỆU
+1. Ưu điểm của lập trình thủ tục hàm so với lập trình tuyết tính là gì ?
+2. Có mấy loại hàm, kể tên và phân tích loại hàm đó được sử dụng khi nào?
+3. Chức năng và nguyên lý hoạt động của return trong hàm có kdl trả về
+4. cách dùng lời gọi hàm của hàm có giá trị trả về ?
+5. tham số hình thức là gì, tham số thực là gì ?
+6. Tham trị là gì, tham chiếu là gì ?
+7. Hàm trong chương trình được thực thi khi nào ?
+8. Nếu muốn trả về nhiều hơn 2 giá trị thì ta làm sao ?
+==============================================================================
+============================ BÀI TẬP ỨNG DỤNG // giúp làm quen và ghi nhớ cú pháp===============================
+
+---------- GIẢI BẰNG LẬP TRÌNH THỦ TỤC HÀM --------
+
+1. Viết ct Tính UCLN, BCNN 2 số nguyên a,b
+2. viết ct nhập n số nguyên, tìm số lớn nhất, nhỏ nhất.// ko sử dụng mảng
+3. Viết hàm nhập vào điểm -> xuất ra học lực của học sinh. // 9,10 giỏi, 78 khá, 456 tb, 0123 yếu
+4. Viết ct hoán vị 2 số nguyên a,b
+5. Viết hàm nhập vào tuổi -> xuất ra năm sinh
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+-------------- NHỮNG BÀI VIẾT CT:  YÊU CẦU VIẾT CẢ CT - NHỮNG BÀI YÊU CẦU VIẾT HÀM -> CHỈ CẦN VIẾT RA HÀM THÔI -----------------

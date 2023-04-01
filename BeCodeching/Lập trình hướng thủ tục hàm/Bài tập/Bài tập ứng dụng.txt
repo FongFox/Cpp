@@ -1,0 +1,154 @@
+=====================================Bài tập áp dụng=======================================
+2. Nhập số từ bàn phím; in ra giá trị min, max. (ko dùng mảng)
+#include<iostream>
+using namespace std;
+
+void input(int& x)
+{
+	cout << "Nhap so: ";
+	cin >> x;
+}
+
+int main()
+{
+	int x;
+	int min = 0;
+	int max = 0;
+
+	do 
+	{
+		input(x);
+		if (min > x)
+		{
+			min = x;
+		}
+		if (max < x)
+		{
+			max = x;
+		}
+	} while (x != 0);
+	
+	cout << endl << "Min: " << min << endl;
+	cout << endl << "Max: " << max << endl;
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+3. Viết hàm nhập vào điểm -> xuất ra học lực của học sinh. // 9,10 giỏi, 78 khá, 456 tb, 0123 yếu
+#include<iostream>
+using namespace std;
+void input(int &x)
+{
+	cout << "Nhap diem: "; cin >> x;
+}
+void output(int x)
+{
+	if(x>=4)
+	{
+		if(x>8)
+		{
+			cout << "gioi"<<endl;
+		}
+		else if(x>6 && x<9)
+		     {
+		     	cout << "kha" << endl;
+		     }
+		else cout << "trung binh" << endl;
+	}
+	else cout << "yeu" << endl;	
+}
+int main()
+{
+	int diem;
+	do
+	{
+		input(diem);
+	}while(diem < 0 || diem >10);
+	output(diem);
+	system("pause");
+	return 0;	
+}
+
+4. Viết ct hoán vị 2 số nguyên a,b
+#include<iostream>
+using namespace std;
+void input(int &x, int &y)
+{
+	cout << "Nhap a: "; cin >> x;
+	cout << "Nhao b: "; cin >> y;
+}
+void hoanvi(int &x, int &y)
+{
+	int tam = x;
+	x = y;
+	y = tam;
+}
+int main()
+{
+	int a,b;
+	input(a,b);
+	hoanvi(a,b);
+	cout << a << "   " << b << endl;
+
+	system("pause");
+	return 0;
+}
+
+5. Viết hàm nhập vào tuổi -> xuất ra năm sinh
+#include<iostream>
+using namespace std;
+void input(int &x, int &y)
+{
+	cout << "Nhap tuoi hien tai: "; cin >> x;
+	cout << "Nhap nam hien tai: "; cin >> y;
+}
+void output(int x, int y)
+{
+	cout << "Nam sinh cua ban: " << y - x << endl;
+}
+int main()
+{
+	int a, y;
+	do
+	{
+		input(a,y);
+	}while(a>0 && y>0);
+	output(a,y);
+	system("pause");
+	return 0;
+}
+
+1. Viết ct Tính UCLN, BCNN 2 số nguyên a,b
+#include<iostream>
+using namespace std;
+void input(int a, int b)
+{
+	cout << "Nhap a: "; cin >> a;
+	cout << "Nhap b: "; cin >> b;
+}
+void output(int &a, int &b)
+{
+	int tich = a*b;
+	while(a!=b)
+	{
+		if(a>b)
+		{
+			a=a-b; 
+		}else b=b-a;
+	}
+	cout << "UCLN: " << a << endl;
+	cout << "BCNN: " << tich/a << endl;
+}
+int main()
+{
+	int x,y;
+	do
+	{
+		input(x,y);
+	}while(x<0 || y<0);
+	output(x,y);
+	system("pause");
+	return 0;
+}

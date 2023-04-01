@@ -1,0 +1,1760 @@
+Ta có 2 mảng
+a: 1 2 3 4
+b: 5 6 7
+***1. Viết chương trình gộp mảng a vào đầu mảng b
+=> b: 1 2 3 4 5 6 7
+***2. Viết chương trình gộp mảng a vào cuối mảng b
+=> b: 5 6 8 1 2 3 4
+======================================================================================================================================================================================================================================
+***1. Viết chương trình gộp mảng a vào đầu mảng b
+=> b: 1 2 3 4 5 6 7
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm thêm 
+void add_array(int& n, int a[], int vt, int x);
+//Hàm chung
+void add_first_array(int na, int a[], int& nb, int b[]);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	/*int a[max] = {}; int n;
+	float arr[max] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > max);
+	input_number_array(n, arr);
+	output_array(n, arr);*/
+
+	int a[] = { 1,2,3,4 }; int na = 4;
+	int b[MAX] = { 5,6,7 }; int nb = 3;
+	add_first_array(na, a, nb, b);
+	output_array(nb, b);
+
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm thêm 
+void add_array(int& n, int a[], int vt, int x)
+{
+	for (int i = n; i > vt; i--)
+	{
+		a[i] = a[i - 1];
+	}
+	a[vt] = x;
+	n += 1;
+}
+//Hàm chung
+void add_first_array(int n, int a[], int&nb, int b[])
+{
+	for (int i = n-1; i >= 0; i--)
+	{
+		add_array(nb, b, 0, a[i]);
+	}
+}
+//--------------------Hàm xuất kết quả----------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================================================================================
+***2. Viết chương trình gộp mảng a vào cuối mảng b
+=> b: 5 6 8 1 2 3 4
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung (thêm cuối)
+void add_last_array(int n, int a[], int& nb, int b[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	/*int a[max] = {}; int n;
+	float arr[max] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > max);
+	input_number_array(n, arr);
+	output_array(n, arr);*/
+
+	int a[] = { 1,2,3,4 }; int na = 4;
+	int b[MAX] = { 5,6,7 }; int nb = 3;
+
+	add_last_array(na, a, nb, b);
+	output_array(nb,b);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm chung (thêm cuối)
+void add_last_array(int n, int a[], int&nb, int b[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		b[nb] = a[i];
+		nb += 1;
+	}
+}
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================================================================================
+***4. Cho 1 mảng các số nguyên a. Viết chương trình tách các số âm ra mảng b và xóa khỏi a
+VD: mảng a:   1   -2   3   4   -6   0
+Xuất:
+mảng a:   1   3    4   0
+mảng b:  -2    -6
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm xóa
+void delete_array(int& n, int a[], int vt);
+//Hàm chung
+void separte_negative_number(int& n, int a[], int& nb, int b[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n; int b[MAX] = {}; int nb = 0;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+	
+	separte_negative_number(n, a, nb, b);
+	output_array(n, a);
+	output_array(nb, b);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+/*
+***4. Cho 1 mảng các số nguyên a. Viết chương trình tách các số âm ra mảng b và xóa khỏi a
+VD: mảng a:   1   -2   3   4   -6   0
+Xuất:
+mảng a:   1   3    4   0
+mảng b:  -2    -6
+*/
+//Hàm xóa
+void delete_array(int&n, int a[], int vt)
+{
+	for (int i = vt; i < n - 1; i++)
+	{
+		a[i] = a[i + 1];
+	}
+	n -= 1;
+}
+//Hàm chung
+void separte_negative_number(int&n, int a[], int&nb, int b[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] < 0)
+		{
+			b[nb] = a[i];
+			nb += 1;
+			delete_array(n, a, i);
+		}
+	}
+}
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================================================================================
+***5. (Tư duy + Xử lý) // Bài thi kết thúc học phần: Tin học cơ sở 2(PTIT HCM)
+Cho 1 mảng số nguyên. Sắp xếp các số âm nằm trước giảm dần tiếp đến là số 0 rồi đến các số dương giảm dần
+VD: mảng: 12pt:    -4     5      0      6      -1     0      8      3     -11    15    2    1
+			 Kết quả:     -1   -4    -11     0       0    15     8      6       5      3     2    1
+Gợi ý: Sử dụng mảng phụ
+------------------------------------------- Cách 1 ----------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm thêm
+void add_array(int& n, int a[], int vt, int x);
+//Hàm xóa
+void delete_array(int& n, int a[], int vt);
+//Hàm sắp xếp
+void arrange(int& a, int& b);
+void arrange_number_array(int n, int a[]);
+//Hàm tách và sắp xếp (chung)
+void separate_number_and_arrange_number_in_other_array(int& n, int a[], int& nb, int b[], int& nc, int c[]);
+//Hàm thêm đầu và cuối (chung)
+void add_first_and_last_array(int& n, int a[], int nb, int b[], int nc, int c[]);
+
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n; int b[MAX] = {}; int nb = 0; int c[MAX] = {}; int nc = 0;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+	
+	separate_number_and_arrange_number_in_other_array(n, a, nb, b, nc, c);
+	add_first_and_last_array(n, a, nb, b, nc, c);
+	output_array(n, a);
+	output_array(nb, b);
+	output_array(nc, c);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+/*
+***5. (Tư duy + Xử lý) // Bài thi kết thúc học phần: Tin học cơ sở 2(PTIT HCM)
+Cho 1 mảng số nguyên. Sắp xếp các số âm nằm trước giảm dần tiếp đến là số 0 rồi đến các số dương giảm dần
+VD: mảng: 12pt:    -4     5      0      6      -1     0      8      3     -11    15    2    1
+			 Kết quả:     -1   -4    -11     0       0    15     8      6       5      3     2    1
+Gợi ý: Sử dụng mảng phụ
+*/
+//Hàm thêm
+void add_array(int& n, int a[], int vt, int x)
+{
+	for (int i = n; i > vt; i--)
+	{
+		a[i] = a[i - 1];
+	}
+	a[vt] = x;
+	n += 1;
+}
+//Hàm xóa
+void delete_array(int& n, int a[], int vt)
+{
+	for (int i = vt; i < n - 1; i++)
+	{
+		a[i] = a[i + 1];
+	}
+	n -= 1;
+}
+//Hàm sắp xếp
+void arrange(int& a, int& b)
+{
+	int tam = a; a = b; b = tam;
+}
+void arrange_number_array(int n, int a[])
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (a[i] < a[j])
+			{
+				arrange(a[i], a[j]);
+			}
+		}
+	}
+}
+//Hàm tách và sắp xếp (chung)
+void separate_number_and_arrange_number_in_other_array(int&n, int a[], int&nb, int b[], int&nc, int c[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] > 0)
+		{
+			b[nb] = a[i]; nb += 1;
+			delete_array(n, a, i); i -= 1;
+			continue;
+		}
+		if (a[i] < 0)
+		{
+			c[nc] = a[i]; nc += 1;
+			delete_array(n, a, i); i -= 1;
+			continue;
+		}
+	}
+	arrange_number_array(nb, b);
+	arrange_number_array(nc, c);
+}
+//Hàm thêm đầu và cuối (chung)
+void add_first_and_last_array(int& n, int a[], int nb, int b[], int nc, int c[])
+{
+	for (int i = nc-1; i >= 0; i--)
+	{
+		add_array(n, a, 0, c[i]);
+	}
+	for (int j = 0; j < nb; j++)
+	{
+		a[n] = b[j];
+		n += 1;
+	}
+}
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+---------------------------------------------- cách 2 -------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm thêm
+void add_array(int& n, int a[], int vt, int x);
+//Hàm xóa
+void delete_array(int& n, int a[], int vt);
+//Hàm chung
+void change_number_array(int& n, int a[]);
+
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n; int b[MAX] = {}; int nb = 0; int c[MAX] = {}; int nc = 0;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+	
+	change_number_array(n, a);
+	output_array(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+/*
+***5. (Tư duy + Xử lý) // Bài thi kết thúc học phần: Tin học cơ sở 2(PTIT HCM)
+Cho 1 mảng số nguyên. Sắp xếp các số âm nằm trước giảm dần tiếp đến là số 0 rồi đến các số dương giảm dần
+VD: mảng: 12pt:    -4     5      0      6      -1     0      8      3     -11    15    2    1
+			 Kết quả:     -1   -4    -11     0       0    15     8      6       5      3     2    1
+Gợi ý: Sử dụng mảng phụ
+*/
+//Hàm thêm
+void add_array(int& n, int a[], int vt, int x)
+{
+	for (int i = n; i > vt; i--)
+	{
+		a[i] = a[i - 1];
+	}
+	a[vt] = x;
+	n += 1;
+}
+//Hàm xóa
+void delete_array(int& n, int a[], int vt)
+{
+	for (int i = vt; i < n - 1; i++)
+	{
+		a[i] = a[i + 1];
+	}
+	n -= 1;
+}
+//Hàm chung
+void change_number_array(int& n, int a[])
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (a[i] < 0 && a[j] < 0)//-4<0 && -11<0
+			{
+				if (a[j] > a[i])
+				{
+					int tam = a[i];
+					a[i] = a[j];
+					add_array(n, a, i + 1, tam); 
+					j += 1;
+					delete_array(n, a, j);
+					i += 1; continue;
+				}
+				else
+				{
+					add_array(n, a, i + 1, a[j]);
+					j += 1;
+					delete_array(n, a, j);
+					i += 1; continue;
+				}
+			}
+		}
+		for (int k = i + 1; k < n; k++)
+		{
+			if (a[k] == 0)
+			{
+				add_array(n, a, i + 1, a[k]);
+				k += 1;
+				delete_array(n, a, k);
+				i += 1;
+				continue;
+			}
+		}
+		for (int p = i + 1; p < n - 1; p++)
+		{
+			for (int s = p + 1; s < n; s++)
+			{
+				if (a[p] < a[s])
+				{
+					int tam = a[p];
+					a[p] = a[s];
+					a[s] = tam;
+				}
+			}
+			i += 1;
+		}
+	}
+}
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+------------------------------------- Cách 3 ----------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm thêm
+void add_array(int& n, int a[], int vt, int x);
+//Hàm xóa
+void delete_array(int& n, int a[], int vt);
+//Hàm sắp xếp lần 1
+void arrange_1(int n, int a[]);
+//Sắp xếp số âm
+void arrange_2(int n, int a[]);
+//Sắp số dương
+void arrange_3(int n, int a[]);
+//Hàm chung
+void change_number_array(int& n, int a[]);
+
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n; int b[MAX] = {}; int nb = 0; int c[MAX] = {}; int nc = 0;
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+	
+	arrange_1(n, a);
+	change_number_array(n, a);
+	output_array(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+/*
+***5. (Tư duy + Xử lý) // Bài thi kết thúc học phần: Tin học cơ sở 2(PTIT HCM)
+Cho 1 mảng số nguyên. Sắp xếp các số âm nằm trước giảm dần tiếp đến là số 0 rồi đến các số dương giảm dần
+VD: mảng: 12pt:    -4     5      0      6      -1     0      8      3     -11    15    2    1
+			 Kết quả:     -1   -4    -11     0       0    15     8      6       5      3     2    1
+Gợi ý: Sử dụng mảng phụ
+*/
+//Hàm thêm
+void add_array(int& n, int a[], int vt, int x)
+{
+	for (int i = n; i > vt; i--)
+	{
+		a[i] = a[i - 1];
+	}
+	a[vt] = x;
+	n += 1;
+}
+//Hàm xóa
+void delete_array(int& n, int a[], int vt)
+{
+	for (int i = vt; i < n - 1; i++)
+	{
+		a[i] = a[i + 1];
+	}
+	n -= 1;
+}
+//Hàm sắp xếp lần 1
+void arrange_1(int n, int a[])
+{
+	for (int i = 0; i < n-1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (a[j] < a[i])
+			{
+				swap(a[i], a[j]);
+			}
+		}
+	}
+}
+//Sắp xếp số âm
+void arrange_2(int n, int a[])
+{
+	for (int i = 0; i < n-1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (a[i] < 0 && a[j] < 0)
+			{
+				if (a[j] > a[i])
+				{
+					swap(a[i], a[j]);
+				}
+			}
+		}
+	}
+}
+//Sắp số dương
+void arrange_3(int n, int a[])
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (a[i] > 0 && a[j] > 0)
+			{
+				if (a[j] > a[i])
+				{
+					swap(a[i], a[j]);
+				}
+			}
+		}
+	}
+}
+//Hàm chung
+void change_number_array(int& n, int a[])
+{
+	arrange_1(n, a);
+	arrange_2(n, a);
+	arrange_3(n, a);
+}
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================================================================================
+3. có 2 mảng a, b đã được sắp xếp TĂNG DẦN. Trộng mảng a, b vào c sao cho mảng c tăng dần.
+VD: a: 1 2 7
+b: 0 2 6 9
+=> c: 0 1 2 2 6 7 9
+-------------------------------------------- cách 1 ---------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void add_number(int na, int a[], int nb, int b[], int& nc, int c[]);
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	/*int a[MAX] = {}; int n; 
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);*/
+
+	int a[] = { 1,2,7 }; int na = 3;
+	int b[] = { 0,2,6,9 }; int nb = 4;
+	int c[MAX]; int nc = 0;
+	
+	add_number(na, a, nb, b, nc, c);
+	output_array(nc, c);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm thêm
+void add_array(int& n, int a[], int vt, int x)
+{
+	for (int i = n; i > vt; i--)
+	{
+		a[i] = a[i - 1];
+	}
+	a[vt] = x;
+	n += 1;
+}
+//Hàm chung
+void add_number(int na, int a[], int nb, int b[], int& nc, int c[])
+{
+	int ia = 0; int ib = 0;int ic = 0;
+	while (ia != na && ib != nb)
+	{
+		if (a[ia] < b[ib])
+		{
+			c[nc] = a[ia]; nc += 1;
+			ia += 1;
+		}
+		if (a[ia] > b[ib])
+		{
+			c[nc] = b[ib]; nc += 1;
+			ib += 1;
+		}
+		if (a[ia] == b[ib])
+		{
+			c[nc] = a[ia]; nc += 1;
+			ia += 1;
+		}
+		if (ia == na)
+		{
+			for (int j = ib; j < nb; j++)
+			{
+				c[nc] = b[ib]; nc += 1;
+			}
+		}
+		if (ib == nb)
+		{
+			for (int k = ia; k < na; k++)
+			{
+				c[nc] = a[ia]; nc += 1;
+			}
+		}
+	}
+}
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+---------------------------------------------- Cách 2 -------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void add_number_had_been_arranged(int na, int a[], int nb, int b[], int& nc, int c[]);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	/*int a[MAX] = {}; int n; 
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);*/
+
+	int a[] = { 1,2,7 }; int na = 3;
+	int b[] = { 0,2,6,9,10 }; int nb = 5;
+	int c[MAX] = {}; int nc = 0;
+	
+	add_number_had_been_arranged(na, a, nb, b, nc, c);
+	output_array(nc, c);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm chung
+void add_number_had_been_arranged(int na, int a[], int nb, int b[], int& nc, int c[])
+{
+	int ia = 0; int ib = 0;
+	for (int i = 0; i <= nc; i++)
+	{
+		if (ia != na && ib != nb)
+		{
+			if (b[ib] < a[ia])
+			{
+				c[i] = b[ib];
+				ib += 1; nc += 1;
+				continue;
+			}
+			if (a[ia] < b[ib])
+			{
+				c[i] = a[ia];
+				ia += 1; nc += 1;
+				continue;
+			}
+			if (a[ia] == b[ib])
+			{
+				c[i] = a[ia];
+				ia += 1; nc += 1;
+				continue;
+			}
+		}
+		if (ia == na && ib != nb)
+		{
+			for (int j = ib; j < nb; j++)
+			{
+				c[i] = b[ib];
+				ib += 1; nc += 1; i += 1;
+				continue;
+			}
+		}
+		if (ia != na && ib == nb)
+		{
+			for (int j = ia; j < na; j++)
+			{
+				c[i] = a[ia];
+				ia += 1; nc += 1; i += 1;
+				continue;
+			}
+		}
+		if (ia == na && ib == nb)
+			break;
+	}
+}
+
+
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================================================================================
+6. Cho mảng 1 chiều các số nguyên. Viết chương trình tìm phần tử lớn thứ k trong mảng
+VD: 2 15 3 -6 4     k = 2    =>  phần tử lớn thứ 2 là: 4
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm sắp xếp
+void arrange_number(int n, int a[]);
+//Hàm chung
+void find_k_number(int n, int a[]);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	/*int a[MAX] = {}; int n; 
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);*/
+
+	int a[] = { 15, 15, 15, 4, 2 }; int n = 5;
+	arrange_number(n, a);
+	output_array(n, a);
+	find_k_number(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm sắp xếp
+void arrange_number(int n, int a[])
+{
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = i + 1; j < n; j++)
+		{
+			if (a[i] < a[j])
+			{
+				swap(a[i], a[j]);
+			}
+		}
+	}
+}
+//Hàm chung
+void find_k_number(int n, int a[])
+{
+	arrange_number(n, a);
+	bool check = true; int k;
+	cout << "Nhap phan tu lon muon tim: "; cin >> k;
+	if ((k - 1) == 0)
+	{
+		cout << "Phan tu lon thu " << k << ": " << a[k - 1];
+		return;
+	}
+	if ((k - 1) == (n - 1))
+	{
+		cout << "Phan tu lon thu " << k << ": " << a[k - 1];
+		return;
+	}
+	int index = k - 1;
+	for (int i = 0; i < index; i++)
+	{
+		if (a[i] == a[index])
+		{
+			index += 1;
+			continue;
+		}
+	}
+	cout << "Phan tu lon thu " << k << ": " << a[index];
+}
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================================================================================
+8. Cho mảng 1 chiều các số nguyên. Hãy tìm giá trị trong mảng các số nguyên xa giá trị x nhất(x nhập từ bàn phím)
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void find_max(int n, int a[]);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	/*int a[MAX] = {}; int n; 
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);*/
+
+	int a[MAX] = { 24,45,23,43,-12 }; int na = 5;
+	find_max(na, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm chung
+void find_max(int n, int a[])
+{
+	int max = 0; int x;
+	cout << "Nhap gia tri: "; cin >> x;
+	for (int i = 0; i < n; i++)
+	{
+		int k = abs(a[i]) - x;
+		if (max == 0)
+		{
+			max = a[i]; continue;
+		}
+		if (max < k)
+		{
+			max = a[i]; continue;
+		}
+	}
+	cout << "Gia tri trong mang xa " << x << " nhat:  " << max << endl;
+}
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================================================================================
+Bài 9. Cho mảng 1 chiều các số nguyên. Viết chương trình in ra các phần tử kề nhau mà cả hai đều chẵn.
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void add_array(int n, int a[], int& nb, int b[]);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n; 
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	int b[MAX] = {}; int nb = 0;
+	add_array(n, a, nb, b);
+	output_array(nb, b);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm chung
+void add_array(int n, int a[], int&nb, int b[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] % 2 == 0)
+		{
+			b[nb] = a[i];
+			nb += 1;
+		}
+	}
+}
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+======================================================================================================================================================================================================================================
+Bài 10. Cho mảng 1 chiều các số nguyên. Viết chương trình đảo ngược mảng. 
+-------------------------------------- Cách 1 -----------------------------------------------
+---------------------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm chung
+void add_last_number_array(int n, int a[], int& nb, int b[]);
+
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n; 
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	int b[MAX] = {}; int nb = 0;
+	add_last_number_array(n, a, nb, b);
+	output_array(nb, b);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm chung
+void add_last_number_array(int n, int a[], int& nb, int b[])
+{
+	for (int i = n - 1; i >= 0; i--)
+	{
+		b[nb++] = a[i];
+	}
+}
+
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+---------------------------------------- Cách 2 ---------------------------------------------
+---------------------------------------------------------------------------------------------
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm thêm
+void add_array(int& n, int a[], int vt, int x);
+//Hàm xóa
+void delete_array(int& n, int a[]);
+//Hàm chung
+void add_last_array(int& n, int a[]);
+
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n; 
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	add_last_array(n, a);
+	output_array(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm thêm
+void add_array(int& n, int a[], int vt, int x)
+{
+	for (int i = n; i > vt; i--)
+	{
+		a[i] = a[i - 1];
+	}
+	a[vt] = x;
+	n += 1;
+}
+//Hàm xóa
+void delete_array(int& n, int a[], int vt)
+{
+	for (int i = vt; i < n; i++)
+	{
+		a[i] = a[i + 1];
+	}
+	n -= 1;
+}
+//Hàm chung
+void add_last_array(int& n, int a[])
+{
+	int i = n - 1;
+	for (int j = 0; j < i;)
+	{
+		int x = a[i];
+		add_array(n, a, j, x); i += 1;
+		delete_array(n, a, i); i -= 1; 
+		j += 1;
+	}
+}
+
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+==========================================================================================================================================================================================
+Bài 11. Cho mảng 1 chiều các số nguyên. Hãy "dịch phải xoay vòng" k lần các phần tử trong mảng. VD: 1 5 6 2 3 , k = 2  => 2 3 1 5 6
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm xóa
+void delete_array(int& n, int a[], int vt);
+//Hàm chung
+void arrange_number(int& n, int a[]);
+
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n; 
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	arrange_number(n, a);
+	output_array(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm xóa
+void delete_array(int& n, int a[], int vt)
+{
+	for (int i = vt; i < n - 1; i++)
+	{
+		a[i] = a[i + 1];
+	}
+	n -= 1;
+}
+//Hàm chung
+void arrange_number(int& n, int a[])
+{
+	int k;
+	cout << "Nhap so lan lap: "; cin >> k;
+	int c = 0;
+	while (c != k)
+	{
+		int k = 0; int i = n - 1;
+		while (i > 0)
+		{
+			int tam = a[k];
+			a[n] = tam; n += 1;
+			delete_array(n, a, k); i -= 1;
+		}
+		c += 1;
+	}
+}
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+==========================================================================================================================================================================================
+7. Viết chương trình tìm UCLN của tất cả các phần tử trong mảng 1 chiều các số nguyên.
+#include<iostream>
+#include<math.h>
+#define MAX 1000
+using namespace std;
+//==================Nguyên mẫu (mục lục)======================================
+//------------------Hàm nhập phần tử, giá trị---------------------------------
+//Hàm nhập phần tử
+void input_element_array(int& n);
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[]);
+
+//------------------Hàm xử lý-------------------------------------------------
+//Hàm ước chung
+int UC(int a, int b);
+//Hàm chung
+void ucln(int n, int a[]);
+
+
+//------------------Hàm xuất kết quả------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[]);
+
+//==================Hàm main(Hàm chính)===================================================
+int main()
+{
+	int a[MAX] = {}; int n; 
+	float arr[MAX] = {};
+
+	do
+	{
+		input_element_array(n);
+	} while (n <= 0 || n > MAX);
+	input_number_array(n, a);
+	output_array(n, a);
+
+	ucln(n, a);
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+}
+
+//=================Định nghĩa(nơi xả hàm và mọi thứ :v)=======================================================================================
+//-----------------Hàm nhập-------------------------------------------------------------------------------------------------------------------
+//Hàm Nhập phần tử
+void input_element_array(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+//Hàm nhập giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void input_number_array(p1 n, p2 a[])
+{
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu a[" << i << "]= "; cin >> a[i];
+	}
+}
+
+//---------------------Hàm xử lý theo yêu cầu-------------------------------------------------------------------------------------------------
+//Hàm ước chung
+int UC(int a, int b)
+{
+	a = abs(a); b = abs(b);
+	while (a != b)
+	{
+		(a > b) ? a = a - b : b = b - a;
+	}
+	return a;
+}
+//Hàm chung
+void ucln(int n, int a[])
+{
+	int uc = UC(a[0], a[1]);
+	for (int i = 2; i < n; i++)
+	{
+		uc = UC(uc, a[i]);
+	}
+	cout << "Uoc chung lon nhat cua mang la: " << uc << endl;
+}
+
+
+//--------------------Hàm xuất kết quả-------------------------------------------------------------------------------------------------------------
+//Hàm xuất giá trị mảng (áp dụng mọi kiểu dữ liệu ;-;)
+template<class p1, class p2>
+void output_array(p1 n, p2 a[])
+{
+	cout << endl << "================ Xuat mang ============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "a[" << i << "]=    " << a[i] << "\t\t" << endl;
+	}
+}
+
+
+
+
+
+
+
+
+

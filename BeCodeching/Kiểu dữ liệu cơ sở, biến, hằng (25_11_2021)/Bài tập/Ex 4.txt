@@ -1,0 +1,42 @@
+/*
+Bài 4. Viết chương trình giải phương trình bậc nhất có dạng: ax + b = 0
+Dữ liệu đầu vào                                           	Dữ liệu đầu ra
+a = 1, b = 2                                                 	Có nghiệm -2
+a = 0, b = 2                                                 	Vô nghiệm
+a = 0, b = 0                                                 	Vô số nghiệm
+*/
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	//Khai báo a, b.
+	int a, b;
+	cout << "Nhap gia tri a: ";
+	cin >> a;
+	cout << "Nhap gia tri b: ";
+	cin >> b;
+	/*
+	Cách giải
+	Nếu a == 0
+		thì nếu b == 0
+				thì Pt vô số nghiệm
+			ngược lại (b != 0)
+				thì Pt vô nghiệm
+	Ngược lại (nếu a != 0)
+		thì x = -b/a
+	Xuất Pt x.
+	*/
+	if (a == 0)
+	{
+		if (b == 0)
+		{
+			cout << "PT vo so nghiem." << endl;
+		}
+		else cout << "PT vo nghiem." << endl;
+	}
+	else cout << "PT x = " << -b / a << endl;
+
+	system("pause");
+	return 0;
+}

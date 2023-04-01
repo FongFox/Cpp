@@ -1,0 +1,260 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+struct phan_so
+{
+	int ts;
+	int ms;
+};
+typedef struct phan_so ps;
+//=====================
+void nhap_1_ps(ps &a);
+void xuat_1_ps(ps a);
+void xuat_ds_ps(ps ds[], int n);
+//---------
+void rut_gon(ps &a);
+//-------------------------------
+void ps_max(ps ds[], int n);
+//-------------
+ps tong(ps a, ps b);
+void tong_ds_ps(ps ds[], int n);
+//-----------
+void them(ps ds[], int n, int vt, ps x);
+void xoa(ps ds[], int &n, int vt);
+//-------
+istream& operator >> (istream &is, ps &a);
+ostream& operator <<(ostream &os, ps a);
+ps operator +(ps a, ps b);
+
+void main()
+{
+	ps a;
+	cin >> a;
+	ps b;
+	cin >> b;
+	ps s = a + b;
+	cout << s;
+
+	ps ds[100];int n = 0;
+	bool kt_menu = true;
+	while (kt_menu == true)
+	{
+		system("cls");
+		cout << "1. Them phan so" << endl;
+		cout << "2. In danh sach phan so" << endl;
+		cout << "3. Tim phan so max" << endl;
+		cout << "4. Tong danh sach phan so" << endl;
+		cout << "5. Them" << endl;
+		cout << "6. Xoa" << endl;
+		cout << "0. Thoat" << endl;
+		int lc;cout << "Nhap lua chon: ";cin >> lc;
+		switch (lc)
+		{
+		case 1:
+		{
+			int sl;cout << "Nhap so luong phan so can them: ";cin >> sl;
+			for (int i = 1;i <= sl;i++)
+			{
+				cout << "\t\t--- PT thu " << i << " ----" << endl;
+				ps a;//Lưu tạm dữ liệu người dùng nhập vào
+				nhap_1_ps(a);
+				//---- thêm ---
+				ds[n++] = a;
+			}
+			break;
+		}
+		case 2:
+		{
+			xuat_ds_ps(ds, n);
+			system("pause");
+			break;
+		}
+		case 3:
+		{
+			ps_max(ds, n);
+			system("pause");
+			break;
+		}
+		case 4:
+		{
+			tong_ds_ps(ds, n);
+			system("pause");
+			break;
+		}
+		case 5:
+		{
+			int vt;
+			cout << "Nhap vt can them: ";cin >> vt;
+			ps x;
+			cout << "\t\t---- Nhap phan so can them -----" << endl;
+			nhap_1_ps(x);
+			them(ds, n, vt, x);
+			break;
+		}
+		case 6:
+		{
+			int vt;
+			cout << "Nhap vt can them: ";cin >> vt;
+			xoa(ds, n, vt);
+			break;
+		}
+		case 0:
+		{
+			kt_menu = false;
+		}
+		}
+	}
+
+	system("pause");
+}
+//	1/3		-1/3	1/-3	-1/-3	3/0		0/3		3/1
+void nhap_1_ps(ps &a)
+{
+	cout << "Nhap tu so: ";cin >> a.ts;
+	do
+	{
+		cout << "Nhap mau so: ";cin >> a.ms;
+		if (a.ms == 0)
+		{
+			cout << "Mau so phai khac 0, vui long nhap lai!" << endl;
+		}
+	} while (a.ms == 0);
+	
+	if (a.ms < 0)
+	{
+		a.ts = -a.ts;
+		a.ms = -a.ms;
+	}
+	//-----------
+	rut_gon(a);
+}
+istream& operator >> (istream &is, ps &a)
+{
+	cout << "Nhap tu so: ";is >> a.ts;
+	do
+	{
+		cout << "Nhap mau so: ";is >> a.ms;
+		if (a.ms == 0)
+		{
+			cout << "Mau so phai khac 0, vui long nhap lai!" << endl;
+		}
+	} while (a.ms == 0);
+
+	if (a.ms < 0)
+	{
+		a.ts = -a.ts;
+		a.ms = -a.ms;
+	}
+	//-----------
+	rut_gon(a);
+	return is;
+}
+void xuat_1_ps(ps a)
+{
+	if (a.ts == 0 || a.ms == 1)
+	{
+		cout << a.ts << endl;
+	}
+	else
+	{
+		cout << a.ts << "/" << a.ms << endl;
+	}
+}
+ostream& operator <<(ostream &os, ps a)
+{
+	if (a.ts == 0 || a.ms == 1)
+	{
+		os << a.ts << endl;
+	}
+	else
+	{
+		os << a.ts << "/" << a.ms << endl;
+	}
+	return os;
+}
+void xuat_ds_ps(ps ds[], int n)
+{
+	cout << "\t\t===== DS Phan so =======" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Phan so thu " << i << " la: ";xuat_1_ps(ds[i]);
+	}
+}
+int ucln(int a, int b)
+{
+	a = abs(a);
+	b = abs(b);
+	while (a!=b)
+	{
+		(a > b) ? a -= b : b -= a;
+	}
+	return a;
+}
+void rut_gon(ps &a)
+{
+	//2/6
+	int uc = ucln(a.ts, a.ms);
+
+	a.ts = a.ts /uc;// 2/ucln(2,6) = 2/2 = 1
+	a.ms = a.ms /uc;// 6/ucln(1,6) = 6/1 = 6
+}
+//-------------------------------
+void ps_max(ps ds[],int n)
+{
+	//3/4	1/3
+	ps max = ds[0];
+	for (int i = 1;i < n;i++)
+	{
+		if (ds[i].ts*max.ms > max.ts*ds[i].ms)
+		{
+			max = ds[i];//thay linh
+		}
+	}
+	cout << "PS max = ";xuat_1_ps(max);
+}
+ps tong(ps a, ps b)
+{
+	//1/3	3/4		3/12 + 9/12
+	ps s;
+	s.ts = a.ts*b.ms + b.ts*a.ms;
+	s.ms = a.ms *b.ms;
+	rut_gon(s);
+	return s;
+}
+ps operator +(ps a, ps b)
+{
+	ps s;
+	s.ts = a.ts*b.ms + b.ts*a.ms;
+	s.ms = a.ms *b.ms;
+	rut_gon(s);
+	return s;
+}
+void tong_ds_ps(ps ds[], int n)
+{
+	if (n > 0)
+	{
+		ps s = ds[0];
+		for (int i = 1;i < n;i++)
+		{
+			s = tong(ds[i], s);
+		}
+		cout << "S = ";xuat_1_ps(s);
+	}
+}
+void them(ps ds[], int n, int vt, ps x)
+{
+	for (int i = n;i > vt;i--)
+	{
+		ds[i] = ds[i - 1];
+	}
+	ds[vt] = x;
+	n++;
+}
+void xoa(ps ds[], int &n, int vt)
+{
+	for (int i = vt;i < n - 1;i++)
+	{
+		ds[i] = ds[i + 1];
+	}
+	n--;
+}

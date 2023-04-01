@@ -1,0 +1,23 @@
+Bài tập lý thuyết (30/11/2021)
+1. Trình bày cơ chế hoạt động khi CT gặp lệnh khai báo: int a; 
+int a; //Tạo 1 biến a có giá trị 4 bytes ở vị trí ngẫu nhiên trên RAM.
+2. Cho biết kết quả của: ((12&&21) -1)||1
+( (12&&21) - 1) || 1
+	true	|| False = true
+3. So sánh điểm giống và khác nhau của câu lệnh đk và ct rẽ nhánh.
+Câu lệnh điều kiện		|| Ct rẽ nhánh                               
+================================||================================
+1. Xét điều kiện		|| 1. Xét điều kiện
+2. Có hàm điều kiện thiếu.	|| 2. Có hàm điều kiện thiếu.
+3. Trả về những câu lệnh trong  || 3. Nếu giá trị đó bằng case của giá trị đó thì sẽ xuất câu lệnh trong hàm case đó.
+ngoặc Khi giá trị là true.	||
+4. Không trả về hoặc trả về ở	|| 4. Trả về hàm trong default khi không có case nào thỏa mãn giá trị. (hoặc sẽ ko trả giá trị gì nếu không có hàm default)				
+hàm else khi giá trị là false.	||
+5. Khi thực hiện xong câu lệnh  || 5. Sẽ trôi lệnh nếu không có câu lệnh break. 
+(đúng || sai) cấu trúc if else  ||
+sẽ bị gãy.                      ||
+6. Hàm if else có cấu trúc dây  || 6. Chỉ đơn giản là switch case bình thường.
+xích, cấu trúc lồng nhau.       ||
+
+Alo, cho em nộp bài
+https://paste.ubuntu.com/p/3vhKWxwccm/

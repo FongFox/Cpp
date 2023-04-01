@@ -1,0 +1,144 @@
+#include <iostream>
+#define MAX 100
+using namespace std;
+
+void nhap(int a[], int n);
+void xuat(int a[], int n);
+void thong_ke(int a[], int n);
+//========== 1,2 ==========
+void them(int a[], int &n, int vt, int x);
+void gop_dau(int a[], int na, int b[], int &nb);
+void gop_cuoi(int a[], int na, int b[], int &nb);
+//========== 4 ======
+void xoa(int a[], int &n, int vt);
+void tach_am(int a[], int &na, int b[], int &nb);
+void main()
+{
+	//int a[MAX];int n = 0;
+	//do
+	//{
+	//	cout << "Nhap so luong phan tu: ";cin >> n;
+	//} while (n <= 0 || n > MAX);
+	////---- 
+	//nhap(a, n);
+	//xuat(a, n);
+
+	//thong_ke(a, n);
+	//xuat(a, n);
+
+	int a[] = { 1,-2,3,4,-6,0 };int na = 6;
+
+	int b[50] = {};int nb = 0;
+
+	//gop_dau(a, na, b, nb);
+	//gop_cuoi(a, na, b, nb);
+
+	tach_am(a, na, b, nb);
+
+	xuat(a, na);
+	xuat(b, nb);
+
+	system("pause");
+}
+void nhap(int a[], int n)
+{
+	cout << "\t\t===== Nhap ===" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Nhap pt thu " << i << ": ";cin >> a[i];
+	}
+}
+void xuat(int a[], int n)
+{
+	cout << "\t\t===== xuat ===" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Pt thu " << i << " la: " << a[i] << endl;
+	}
+}
+void thong_ke(int a[], int n)
+{
+	for (int i = 0;i < n;i++)//i: thống kê tần xuất cho từng pt
+	{
+		//B1: Kiểm tra pt a[i] đã được thống kê chưa?
+		bool kt = false;//chưa thống kê
+		for (int j = 0;j < i;j++)//Quét tất cả phần tử trước i
+		{
+			if (a[i] == a[j])
+			{
+				kt = true;
+				break;
+			}
+		}
+		if (kt == false)//a[i] chưa được thống kê
+		{
+			//B2: Tiến hành thống kê
+			int dem = 1;
+			for (int j = i + 1;j < n;j++)//Quét tất cả pt còn lại của i
+			{
+				if (a[j] == a[i])
+				{
+					dem++;
+				}
+			}
+			cout << "PT " << a[i] << " lap " << dem << " lan." << endl;
+		}
+	}
+}
+void them(int a[], int &n, int vt, int x)
+{
+	//B1: Dời
+	for (int i = n;i > vt ;i--)
+	{
+		a[i] = a[i - 1];
+	}
+	//B2: Chèn
+	a[vt] = x;
+	//B3: Tăng
+	n++;
+}
+void gop_dau(int a[],int na,int b[],int &nb)
+{
+	for (int i = na - 1;i >= 0;i--)//Duyệt từ cuối về đầu của a
+	{
+		them(b, nb, 0, a[i]);//Thêm vào đầu b	//Có thay đổi
+	}
+}
+void gop_cuoi(int a[], int na, int b[], int &nb)
+{
+	//1 2 3
+	//0 1 2 3
+
+	//nb = 3
+	for (int i = 0;i < na;i++)//Duyệt từ đầu về cuối a
+	{
+		//them(b, nb, nb, a[i]);//Thêm vào cuối b
+
+		//Kỹ thuật thêm cuối
+		b[nb++] = a[i];
+	}
+}
+void xoa(int a[], int &n, int vt)
+{
+	//B1: Doi
+	for (int i = vt;i<n-1;i++)
+	{
+		a[i] = a[i + 1];
+	}
+	//B2: Giam
+	n--;
+}
+void tach_am(int a[], int &na, int b[], int &nb)
+{
+	for (int i = 0;i < na;i++)
+	{
+		if (a[i] < 0)//Liệt kê pt âm
+		{
+			//B1: Tách sang b (Thêm cuối b)
+			b[nb++] = a[i];//có thay đổi
+			//B2: Vứt
+			xoa(a, na, i);//có thay đổi
+			i--;//Lùi tránh sót pt
+		}
+	}
+}

@@ -1,0 +1,211 @@
+#include <iostream>
+using namespace std;
+void nhap(int a[], int n);
+void xuat(int a[], int n);
+void sap_xep_giam(int a[], int n);
+void tim_max_thu_k(int a[], int n);
+//------------
+int ucln(int a, int b);
+void ucln_mang(int a[], int n);
+//-------
+void tim_kc_max(int a[], int n);
+
+//---------
+void dao_mang(int a[], int n);
+void main()
+{
+	int a[100];int n = 0;
+	do
+	{
+		cout << "Nhap n: ";cin >> n;
+	}while(n <= 0 || n > 100);
+	//---
+	nhap(a, n);
+	xuat(a, n);
+
+	//tim_max_thu_k(a, n);
+	//ucln_mang(a, n);
+	//tim_kc_max(a, n);
+	dao_mang(a, n);
+
+	xuat(a, n);
+	system("pause");
+}
+void nhap(int a[], int n)
+{
+	cout << "\t\t==== Nhap ===" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Nhap pt thu " << i << ": ";cin >> a[i];
+	}
+}
+void xuat(int a[], int n)
+{
+	cout << "\t\t==== Xuat ===" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Pt thu " << i << " la: " << a[i] << endl;
+	}
+}
+void sap_xep_giam(int a[], int n)
+{
+	for (int i = 0;i < n - 1;i++)
+	{
+		for (int j = i + 1;j < n;j++)
+		{
+			if (a[j] > a[i])
+			{
+				swap(a[i], a[j]);
+			}
+		}
+	}
+}
+void tim_max_thu_k1(int a[], int n)
+{
+	int k;cout << "Nhap k: ";cin >> k;
+	sap_xep_giam(a, n);
+	int dem = 1;//pt a[0] la pt max
+	if (k == 1)
+	{
+		cout << "Pt max thu " << k << " la: " << a[0] << endl;
+	}
+	else
+	{
+		for (int i = 1;i < n;i++)
+		{
+			if (a[i] != a[i - 1])//pt hiện tại khác pt đứng trước
+			{
+				dem++;//a[i] là pt lớn thứ đếm
+				if (dem == k)
+				{
+					cout << "Pt max thu " << k << " la: " << a[i] << endl;
+					return;
+				}
+			}
+		}
+		cout << "k khong hop le!" << endl;
+	}
+}
+
+void tim_max_thu_k(int a[], int n)//2
+{
+	int k;cout << "Nhap k: ";cin >> k;
+	sap_xep_giam(a, n);
+	int max = a[0];
+	int dem = 1;//pt a[0] la pt max
+
+	if (k == 1)
+	{
+		cout << "Pt max thu " << k << " la: " << max << endl;
+	}
+	else
+	{
+		for (int i = 1;i < n;i++)
+		{
+			if (a[i] != max)
+			{
+				dem++;
+				max = a[i];
+				//-- so sánh với k ---
+				if (dem == k)
+				{
+					cout << "Pt max thu " << k << " la: " << max<< endl;
+					return;
+				}
+			}
+		}
+		cout << "K khong hop le" << endl;
+	}
+
+}
+int ucln(int a, int b)
+{
+	a = abs(a);
+	b = abs(b);
+	while (a != b)
+	{
+		(a > b) ? a = a - b : b = b - a;
+	}
+	return a;//b
+}
+void ucln_mang(int a[], int n)
+{
+	if (n < 2)
+	{
+		cout << "Khong tinh duoc" << endl;
+	}
+	else
+	{
+		int uc = ucln(a[0], a[1]);
+		for (int i = 2;i < n;i++)
+		{
+			uc = ucln(uc, a[i]);
+		}
+		cout << "ucln cua mang la: " << uc << endl;
+	}
+}
+void tim_kc_max1(int a[], int n)
+{
+	int x;cout << "Nhap gia tri x: ";cin >> x;
+
+	//======== B1: Tìm kc max =======
+	int kc_max = abs(a[0] - x);
+	for (int i = 1;i < n;i++)
+	{
+		int kc = abs(a[i] - x);//kc của pt hiện tại
+		if (kc > kc_max)
+		{
+			kc_max = kc;//Thay lính
+		}
+	}
+	//====== B2: Liệt kê các giá trị có kc == kc max ====
+	for (int i = 0;i < n;i++)
+	{
+		int kc = abs(a[i] - x);
+		if (kc_max == kc)
+		{
+			bool kt = false;//chưa kết luận
+			for (int j = 0;j < i;j++)
+			{
+				if (a[j] == a[i])
+				{
+					kt = true;//đã kết luận
+					break;
+				}
+			}
+			if (kt == false)//Khi chưa kết luận
+			{
+				cout << "Pt co khoang cach xa " << x << " nhat la: " << a[i] << endl;
+
+			}
+		}
+	}
+}
+void tim_kc_max(int a[], int n)//3
+{
+	int x;cout << "Nhap gia tri x: ";cin >> x;
+	sap_xep_giam(a, n);
+
+	int kc_dau = abs(a[0] - x);
+	int kc_cuoi = abs(a[n-1] - x);
+	if (kc_dau > kc_cuoi)
+	{
+		cout << "Pt co khoang cach xa " << x << " nhat la: " << a[0] << endl;
+	}
+	else if (kc_cuoi > kc_dau)
+	{
+		cout << "Pt co khoang cach xa " << x << " nhat la: " << a[n - 1] << endl;
+	}
+	else
+	{
+		cout << "Pt co khoang cach xa " << x << " nhat la: " << a[0] << endl;
+		cout << "Pt co khoang cach xa " << x << " nhat la: " << a[n - 1] << endl;
+	}
+}
+void dao_mang(int a[], int n)
+{
+	for (int i = 0;i < n / 2;i++)
+	{
+		swap(a[i], a[n - i - 1]);
+	}
+}
