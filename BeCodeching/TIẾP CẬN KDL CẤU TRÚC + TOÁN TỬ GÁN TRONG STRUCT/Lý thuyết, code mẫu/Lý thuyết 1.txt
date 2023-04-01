@@ -1,0 +1,29 @@
+//===== KDL cấu trúc ======
+
+
+KDL cấu trúc là kdl do lập trình viên tự định nghĩa. (Lưu trữ nhiều kdl khác)
+
+	Cú pháp định nghĩa:
+
+	struct <tên kdl cấu trúc>
+	{
+		<kdl tp 1> <tên tp 1>
+		<kdl tp 2> <tên tp 2>;
+		<kdl tp 3> <tên tp 3>;
+		....
+		<kdl tp n> <tên tp n>;
+	};
+
+
+Thuật ngữ định nghĩa: Khai báo và thiết kế
+
++ Toán tử gán trong struct: 	
+	Gán ngang hàng, -> Nếu trong struct có biến con trỏ -> Gán miền giá trị -> Dùng chung
+
++ Lưu ý khi struct có tp là biến con trỏ:
+	- Cấp phát vùng nhớ cho tp biến con trỏ
+	- Không sử dụng toán tử gán
+	- Giải phóng vùng nhớ cho tp biến con trỏ
+
+
+//============= Bài mẫu quản lý danh sách sinh viên ================

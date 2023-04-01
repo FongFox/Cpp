@@ -1,0 +1,245 @@
+Giải bài tập lý thuyết:
+1.
+struct là cấu trúc dữ liệu và bên trong nó bao gồm rất nhiều biến có kiểu dữ liệu (do người dùng nhập vào).
+
+2.
+struct <name>
+{
+	<kdl> <biến>;
+	<kdl> <biến>;
+	<kdl> <biến>;
+	<kdl> <biến>;
+	...
+};
+
+3.
+Đặt khai báo struct dưới hàm main sẽ báo lỗi, vì lúc này struct không phải là biến toàn cục nữa.
+
+4.
+Dòng typedef có chức năng định nghĩa struct <name> vừa khai báo biến toàn cục ở trên thành một cái tên nào đó. (và có thể xài tên đó để thay cho phần struct <name> bên trên)
+
+5.
++ Dùng sao chép bằng toán tử gán khi tạo một biến struct và biến này có cùng thuộc tính kiểu dữ liệu ở biến trước và khi thay đổi biến trước thì biến struct sẽ thay đổi theo. 
++ Dùng gán lần lượt khi một biến struct có cùng thuộc tính kiểu dữ liệu ở biến trên nhưng biến struct này sẽ không ảnh hưởng sự thay đổi khi biến trước bị thay đổi.
+
+7.
+Nên chú ý khi cấu trúc có biến con trỏ:
++ Phải cấp phát vùng nhớ khi muốn sử dụng con trỏ.
++ Không xài toán tử gán.
++ Phải giải phóng khi không xài nữa.
+
+6.
+biến kdl struct cần tham chiếu khi cập nhật giá trị thay đổi trong hàm. Vì kdl struct cũng như mọi kiểu dữ liệu khác.
+
+8. 
+Thực hành : dễ. 
+Lý thuyết : Khó. 
+=> Tóm lại là không biết .-. .
+
+======================================================================================================================================================================================================
+Giải bài tập thực hành 
+
+BT 1:
+#include<iostream>
+#include<stdlib.h>
+#include"Other_lib.h"
+#define MAX 1000
+using namespace std;
+
+struct phan_so
+{
+	int tu_so;
+	int mau_so;
+};
+typedef struct phan_so ps;
+
+//Phần nhập phần tử và nhập số lượng phân số
+void input_element(int& n);
+void input(int& n, ps a[]);
+//Phần xuất số lượng phân số vừa nhập
+void output(int n, ps a[]);
+//menu
+void menu();
+//Rút gọn phân số
+void sao_chep(ps& b, ps a);
+int UC(int x, int y);
+void rut_gon(int n ,ps a[]);
+//Tính tổng các phân số vừa nhập
+void quy_dong(ps& x, ps& y);
+void sum_ps(ps& x, ps y);
+void Tong_ps(int n, ps a[]);
+//Thêm ps
+void add_ps(int& n, ps a[]);
+//Xóa ps
+void delete_ps(int& n, ps a[]);
+
+int main()
+{
+	menu();
+	system("CLS"); system("pause"); system("CLS");
+}
+
+//menu
+void menu()
+{
+	int n{}; ps a[MAX];
+	int choice = 0;
+	
+	while (choice != 7)
+	{
+		system("CLS");
+		cout << "Chao mung den chuong trinh c++" << endl;
+		cout << "1. Nhap phan so (toi da duoi 1000)." << endl;
+		cout << "2. Xuat nhung phan so vua nhap." << endl;
+		cout << "3. Rut gon nhung phan so vua nhap." << endl;
+		cout << "4. Tinh Tong phan so vua nhap." << endl;
+		cout << "5. Them Phan so." << endl;
+		cout << "6. Xoa phan so." << endl;
+		cout << "7. Thoat chuong trinh." << endl;
+		cout << "Lua chon cua ban: "; cin >> choice;
+		system("CLS");
+		switch (choice)
+		{
+		case 1:
+			input(n, a); break;
+		case 2:
+			output(n, a); break;
+		case 3:
+			rut_gon(n, a); break;
+		case 4:
+			Tong_ps(n, a); break;
+		case 5:
+			add_ps(n, a); break;
+		case 6:
+			delete_ps(n, a); break;
+		case 7:
+			cout << "Quitting"; break;
+		default:
+			cout << "Loi nhap lai"; break;
+		}
+		_getch();
+	}
+	return;
+}
+//Phần nhập phần tử và nhập số lượng phân số
+void input_element(int& n)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+}
+void input(int& n ,ps a[])
+{
+	cout << "========================== INPUT ===============================" << endl;
+	input_element(n);
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan so thu " << i + 1 << endl;
+		cout << "Nhap tu so: "; cin >> a[i].tu_so;
+		cout << "Nhap mau so: "; cin >> a[i].mau_so;
+		cout << "=========================================================" << endl;
+	}
+}
+//Phần xuất số lượng phân số vừa nhập
+void output(int n, ps a[])
+{
+	cout << endl << "========================== OUTPUT ===============================" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Phan so thu " << i + 1  << ": " << a[i].tu_so << "/" << a[i].mau_so << endl;
+		cout << "=========================================================" << endl;
+	}
+}
+//Rút gọn phân số
+void sao_chep(ps& b, ps a)
+{
+	b.tu_so = a.tu_so;
+	b.mau_so = a.mau_so;
+}
+int UC(int x, int y)
+{
+	x = abs(x);
+	y = abs(y);
+	while (x != y)
+	{
+		x > y ? x -= y : y -= x;
+	}
+	return x;
+}
+void rut_gon(int n ,ps a[])
+{
+	cout << "================== RUT GON TOAN BO PHAN SO ===================" << endl;
+	ps tam;
+	for (int i = 0; i < n; i++)
+	{
+		sao_chep(tam, a[i]);
+		int c = UC(tam.tu_so, tam.mau_so);
+		tam.tu_so /= c;
+		tam.mau_so /= c;
+		cout << "Phan so " << i + 1 << " da duoc rut gon: " << tam.tu_so << "/" << tam.mau_so << endl;
+		cout << "====================================================" << endl;
+	}
+}
+void rut_gon_1_phan_so(ps& a)
+{
+	int uc = UC(a.tu_so, a.mau_so);
+	a.tu_so /= uc;
+	a.mau_so /= uc;
+}
+//Tính tổng các phân số vừa nhập
+void quy_dong(ps& x, ps& y)
+{
+	int uc_x = UC(x.tu_so, x.mau_so);
+	int uc_y = UC(y.tu_so, y.mau_so);
+	x.tu_so *= uc_y; x.mau_so *= uc_y;
+	y.tu_so *= uc_x; y.mau_so *= uc_x;
+}
+void sum_ps(ps& x, ps y)
+{
+	if (x.mau_so != y.mau_so)
+	{
+		quy_dong(x, y);
+	}
+	x.tu_so += y.tu_so;
+	rut_gon_1_phan_so(x);
+}
+void Tong_ps(int n, ps a[])
+{
+	ps sum; sao_chep(sum, a[0]);
+	for (int i = 1; i < n; i++)
+	{
+		sum_ps(sum, a[i]);
+	}
+	cout << endl << "================================================" << endl;
+	cout << "Sum = " << sum.tu_so << "/" << sum.mau_so << endl;
+}
+
+//Thêm ps
+void add_ps(int& n, ps a[])
+{
+	ps x; int vt;
+	cout << "Nhap vi tri can them: "; cin >> vt;
+	cout << "=============================================" << endl;
+	cout << "Nhap tu so: "; cin >> x.tu_so;
+	cout << "Nhap mau so: "; cin >> x.mau_so;
+	cout << "================ DA THEM XONG ===============" << endl;
+	for (int i = n; i > vt; i--)
+	{
+		a[i] = a[i - 1];
+	}
+	a[vt] = x; n += 1;
+}
+
+//Xóa ps
+void delete_ps(int& n, ps a[])
+{
+	int vt;
+	cout << "Nhap vi tri can xoa: "; cin >> vt;
+	cout << "=============================================" << endl;
+	cout << "================ DA XOA XONG ================" << endl;
+	for (int i = vt; i < n - 1; i++)
+	{
+		a[i] = a[i + 1];
+	}
+	n -= 1;
+}
+
+

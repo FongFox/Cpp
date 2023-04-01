@@ -1,0 +1,299 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+#define MAX 100
+using namespace std;
+struct bang_diem
+{
+	float Mac = 0;
+	float dai_so = 0;
+	float cpp = 0;
+};
+typedef struct bang_diem bang_diem;
+
+typedef struct sv
+{
+	string ma_sv;
+	string ho_ten;
+	string phai;
+	string nam_sinh;
+	bang_diem ds_diem;
+}sv;
+//=========================================
+istream& operator >> (istream &is, sv &a);
+ostream& operator <<(ostream &os, sv a);
+void in_ds_sv(sv ds_sv[], int n);
+void load_file(sv ds_sv[], int &n);
+void ghi_file(sv ds_sv[], int n);
+//--------------------
+void xoa(sv a[], int &n, int vt);
+int kt_trung_ma_sv(sv ds_sv[], int n, string s);
+//---------------------
+int cat_ngay_thang(string s, int lc);
+void sap_xep_ds_sv_tang_theo_nam_sinh(sv ds_sv[], int n);
+int main()
+{
+	sv ds_sv[MAX];int n = 0;
+	load_file(ds_sv, n);
+	bool kt_menu = true;
+	while (kt_menu == true)
+	{
+		system("cls");
+		cout << "1. Nhap sinh vien" << endl;
+		cout << "2. Xuat danh sach sinh vien" << endl;
+		cout << "3. Xoa sv co ma sv nhap tu ban phim" << endl;
+		cout << "4. Nhap diem cho sv co ma sv nhap tu ban phim" << endl;
+		cout << "5. Sap xep tang dan theo nam sinh" << endl;
+		cout << "0. Thoat" << endl;
+		int lc;
+		cout << "Nhap lua chon: ";cin >> lc;
+		switch (lc)
+		{
+		case 1:
+		{
+			int sl;cout << "Nhap sl sv can them: ";cin >> sl;
+			cin.ignore();
+			for (int i = 1;i <= sl;i++)
+			{
+				cout << "\t\t-----Nhap sinh vien thu " << i << " ---" << endl;
+				sv a;//Lưu tạm
+				cin >> a;
+				//-- Thêm cuối ----
+				ds_sv[n++] = a;
+			}
+			break;
+		}
+		case 2:
+		{
+			in_ds_sv(ds_sv, n);
+			system("pause");
+			break;
+		}
+		case 3:
+		{
+			cin.ignore();
+			string s;
+			cout << "Nhap ma sv can xoa: ";getline(cin, s);
+			//-----
+			int  i = kt_trung_ma_sv(ds_sv, n, s);
+			if (i >= 0)//Có tồn tại
+			{
+				xoa(ds_sv, n, i);
+				cout << "Da xoa!" << endl;
+			}
+			else
+			{
+				cout << "Khong tim thay!" << endl;
+			}
+			system("pause");
+			break;
+		}
+		case 4:
+		{
+			cin.ignore();
+			string s;
+			cout << "Nhap ma sv can nhap diem: ";getline(cin, s);
+			//-----
+			int  i = kt_trung_ma_sv(ds_sv, n, s);
+			if (i >= 0)//Có tồn tại
+			{
+				//--- Nhập cho ai ?? -> Nhập cho sv i ----
+				cout << "Nhap diem Mac: ";cin >> ds_sv[i].ds_diem.Mac;
+				cout << "Nhap diem dai so: ";cin >> ds_sv[i].ds_diem.dai_so;
+				cout << "Nhap diem cpp: ";cin >> ds_sv[i].ds_diem.cpp;
+			}
+			else
+			{
+				cout << "Khong tim thay!" << endl;
+			}
+			system("pause");
+			break;
+		}
+		case 5:
+		{
+			sap_xep_ds_sv_tang_theo_nam_sinh(ds_sv, n);
+			system("pause");
+			break;
+		}
+		case 0:
+		{
+			kt_menu = false;
+			ghi_file(ds_sv, n);
+			break;
+		}
+		}
+	}
+	system("pause");
+	return 0;
+}
+istream& operator >> (istream &is, sv &a)
+{
+	cout << "Nhap ma sv: ";getline(is, a.ma_sv);
+	cout << "Nhap ho ten: ";getline(is, a.ho_ten);
+	cout << "Nhap phai: ";getline(is, a.phai);
+	cout << "Nhap ngay thang nam sinh: ";getline(is, a.nam_sinh);
+	//----------------
+	return is;
+}
+ostream& operator <<(ostream &os, sv a)
+{
+	os << "Ma sv: " << a.ma_sv << endl;
+	os << "Ho ten: " << a.ho_ten << endl;
+	os << "Phai: " << a.phai << endl;
+	os << "Nam sinh: " << a.nam_sinh << endl;
+	cout << "------ Danh sach diem -----" << endl;
+	os << "Diem Mac: " << a.ds_diem.Mac << endl;
+	os << "Diem dai so: " << a.ds_diem.dai_so << endl;
+	os << "Diem cpp: " << a.ds_diem.cpp << endl;
+	//------------------
+	return os;
+}
+void in_ds_sv(sv ds_sv[], int n)
+{
+	cout << "\t\t==== DSSV ====" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "\t\t---- SV thu " << i << " ----" << endl;
+		cout << ds_sv[i];
+	}
+}
+void load_file(sv ds_sv[], int &n)//s link
+{
+	ifstream fi("ds.txt");
+	//---- Doc file ----
+	while (fi.eof() != true)
+	{
+		//---- Lấy 1 sv từ bộ nhớ file -----
+		sv a;//Lưu tạm dữ liệu lấy từ file
+		getline(fi, a.ho_ten, ',');
+		getline(fi, a.ma_sv, ',');
+		getline(fi, a.phai, ',');
+		getline(fi, a.nam_sinh, ',');
+		fi >> a.ds_diem.Mac;
+		fi.ignore();//Bỏ ,
+		fi >> a.ds_diem.dai_so;
+		fi.ignore();//Bỏ ,
+		fi >> a.ds_diem.cpp;
+		fi.ignore();//Bỏ \n
+		//---- thêm ----
+		ds_sv[n++] = a;//n thay Đổi
+	}
+	fi.close();
+}
+void ghi_file(sv ds_sv[], int n)
+{
+	ofstream fo("output.txt",ios_base::out);
+	for (int i = 0;i < n;i++)
+	{
+		sv a = ds_sv[i];
+		//sv thu i
+		fo << a.ho_ten << "," << a.ma_sv << "," << a.phai << "," << a.nam_sinh << ",";
+		fo << a.ds_diem.Mac << "," << a.ds_diem.dai_so << "," << a.ds_diem.cpp;
+		if (i != n - 1)
+		{
+			fo<< endl;
+		}
+	}
+	fo.close();
+}
+//--------------------
+void xoa(sv a[], int &n,int vt)
+{
+	for (int i = vt;i < n - 1;i++)
+	{
+		a[i] = a[i + 1];
+	}
+	n--;
+}
+int kt_trung_ma_sv(sv ds_sv[], int n,string s)
+{
+	for (int i = 0;i < n;i++)
+	{
+		if (_stricmp(s.c_str(), ds_sv[i].ma_sv.c_str()) == 0)
+		{
+			return i;
+		}
+	}
+	return -1;
+}
+//-------------
+//1: day, 2: month, 3:year
+int cat_ngay_thang(string s,int lc)
+{
+	//s = "dd/mm/yy"
+	//s = "12/3/2022"
+	string day = "";//
+	while (s[0] != '/')
+	{
+		day.push_back(s[0]);//thêm pt vừa xét vào cuối day
+		s.erase(s.begin() + 0);//Xóa pt vừa xét
+	}
+	//s = "/3/2022"
+	s.erase(s.begin() + 0);//Xóa /
+	//s = "3/2022"
+
+	string month = "";//3
+	while (s[0] != '/')
+	{
+		month.push_back(s[0]);//thêm pt vừa xét vào cuối day
+		s.erase(s.begin() + 0);//Xóa pt vừa xét
+	}
+	//s = "/2022"
+	s.erase(s.begin() + 0);//Xóa /
+	//s = "2022"	<=> year
+	switch (lc)
+	{
+	case 1:
+	{
+		return atoi(day.c_str());
+	}
+	case 2:
+	{
+		return  atoi(month.c_str());
+	}
+	case 3:
+	{
+		return  atoi(s.c_str());//s = year
+	}
+	default:
+	{
+		cout << "Lc khong hop le" << endl;
+		return -1;
+	}
+	}
+}
+void sap_xep_ds_sv_tang_theo_nam_sinh(sv ds_sv[], int n)
+{
+	for (int i = 0;i < n - 1;i++)
+	{
+		for (int j = i + 1;j < n;j++)
+		{
+			//12/3/2022
+			//13/3/2021
+			int nami = cat_ngay_thang(ds_sv[i].nam_sinh, 3);
+			int namj = cat_ngay_thang(ds_sv[j].nam_sinh, 3);
+			if (namj < nami)
+			{
+				swap(ds_sv[i], ds_sv[j]);
+			}
+			else if (namj == nami)//Năm bằng nhau
+			{
+				int thangi = cat_ngay_thang(ds_sv[i].nam_sinh, 2);
+				int thangj = cat_ngay_thang(ds_sv[j].nam_sinh, 2);
+				if (thangj < thangi)
+				{
+					swap(ds_sv[i], ds_sv[j]);
+				}
+				else if (thangj == thangi)//Tháng bằng nhau
+				{
+					int ngayi = cat_ngay_thang(ds_sv[i].nam_sinh, 1);
+					int ngayj = cat_ngay_thang(ds_sv[j].nam_sinh, 1);
+					if (ngayj < ngayi)
+					{
+						swap(ds_sv[i], ds_sv[j]);
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,224 @@
+//================ GiẢi đôi vớ ==========
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n, m;
+	cout << "Nhap so vo ban dau: ";cin >> n;
+	cout << "Nhap so ngay me mua them vo: ";cin >> m;
+	if (m == 1)
+	{
+		cout << "Mang ko het vo" << endl;
+	}
+	else
+	{
+		int dem_ngay = 0;
+
+		while (n != 0)
+		{
+			//--- 1 ngày ----
+			n--;//mang 1 đôi
+			dem_ngay++;
+			if (dem_ngay%3==0)//đủ ngày
+			{
+				n++;//mua thêm 1 đôi vớ
+			}
+		}
+		cout << "Tong ngay: " << dem_ngay << endl;
+	}
+	
+	system("pause");
+	return 0;
+}
+
+//=========== cach 2 ===========
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n, m;
+	cout << "Nhap so vo ban dau: ";cin >> n;
+	cout << "Nhap so ngay me mua them vo: ";cin >> m;
+	if (m == 1)
+	{
+		cout << "Mang ko het vo" << endl;
+	}
+	else
+	{
+		int dem_ngay = 0;
+
+		while (n >= m)
+		{
+			n -= m;
+			n++;
+			dem_ngay += m;
+		}
+		dem_ngay += n;//cộng phần thừa.
+		cout << "Tong ngay: " << dem_ngay << endl;
+	}
+	
+	system("pause");
+	return 0;
+}
+
+//========== Giải đôi vớ cách 3 =================
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n, m;
+	cout << "Nhap so vo ban dau: ";cin >> n;
+	cout << "Nhap so ngay me mua them vo: ";cin >> m;
+	if (m == 1)
+	{
+		cout << "Mang ko het vo" << endl;
+	}
+	else
+	{
+		//n = 9
+		int gio = n;//9
+
+		while (n / m > 0)//3
+		{
+			int ps = n / m;
+			int thua = n%m;
+
+			n = ps + thua;
+			gio = gio + ps;
+		}
+		cout << "S = " << gio << endl;
+	}
+	
+	system("pause");
+	return 0;
+}
+
+//===================================================================
+1. Nhận n số nguyên dương từ bàn phím. Xuất ra màn hình kết quả nhỏ nhất(không sử dụng mảng).
+
+	Yêu cầu:	Nhập liệu	n > 0
+		Tìm min trong n số - không dùng mảng.
+
+#include <iostream>
+using namespace std;
+int main()
+{
+	int n;
+	do
+	{
+		cout << "Nhap so nguyen duong n(n > 0): ";cin >> n;
+	} while (n <= 0);
+	//--------------
+	int min;
+								//				min
+	for (int i = 1;i <= n;i++)//	10k	10k1	10k2	10k3
+	{
+		int x;
+		cout << "Nhap gia tri thu " << i << ": ";cin >> x;
+		if (i == 1)//pt đầu
+		{
+			min = x;//Min được giữ pt đầu.
+		}
+		else if (x < min)
+		{
+			min = x;
+		}
+	}
+	cout << "Min = " << min << endl;
+	system("pause");
+	return 0;
+}
+
+//===================== câu 3 ====
+
+				h = 4
+				2*h - 1 	Cột
+
+i		             [h-i +1,h+i-1]
+1   	___*___		[4,4]
+2	__***__		[3,5]
+3	_*****_		[2,6]
+4	*******		[1,7]
+	1234567
+	j
+
+
+
+#include <iostream>
+using namespace std;
+int main()
+{
+	int h;cout << "Nhap h: ";cin >> h;
+
+	//for (int i = 1;i <= h;i++)//dong
+	//{
+	//	for (int j = 1;j <= 2 * h - 1;j++)//cot
+	//	{
+	//		if (j >= h - i + 1 && j <= h + i - 1)
+	//		{
+	//			cout << "*";
+	//		}
+	//		else
+	//		{
+	//			cout << " ";
+	//		}
+	//	}
+	//	cout << endl;
+	//}
+	
+	int l = h;
+	int r = h;
+	for (int i = 1;i <= h;i++)//dong
+	{
+		for (int j = 1;j <= 2 * h - 1;j++)//cot
+		{
+			if (j >= l && j <= r)
+			{
+				cout << "*";
+			}
+			else
+			{
+				cout << " ";
+			}
+		}
+		cout << endl;
+		l--;
+		r++;
+	}
+
+	system("pause");
+	return 0;
+}
+//===================== Câu 2 ========================
+
+
+Tìm tất cả các phương án kết hợp 3 loại giấy bạc 100đ, 200đ, 500đ với nhau để cho ra số tiền 10000đ.
+
+100	0	100
+200	0	50
+500	0	20
+
+
+#include <iostream>
+using namespace std;
+int main()
+{
+	int i = 1;
+	for (int i500 = 0;i500 <= 20;i500++)
+	{
+		for (int i100 = 0;i100 <= 100;i100++)
+		{
+			for (int i200 = 0;i200 <= 50;i200++)
+			{
+				if (i500 * 500 + i100 * 100 + i200 * 200 == 10000)
+				{
+					cout << "Phuong an " << i << ": " << i500 << " * 500 + " << i100 << " * 100 + " << i200 << " * 200" << endl;
+					i++;
+				}
+			}
+		}
+	}
+
+	system("pause");
+	return 0;
+}

@@ -1,0 +1,87 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct sinh_vien
+{
+	string ma_sv;
+	string ho_ten;
+	string phai;
+	float dtb;
+};
+typedef struct sinh_vien sv;
+//========================================
+void nhap_1_sv(sinh_vien &a);
+void xuat_1_sv(sinh_vien a);
+void xuat_ds_sv(sv ds[], int n);
+
+int main()
+{
+	sv ds[100];int n = 0;
+
+	bool kt_menu = true;
+	while (kt_menu == true)
+	{
+		system("cls");
+		cout << "1. Nhap sinh vien" << endl;
+		cout << "2. Xuat danh sach sinh vien" << endl;
+		cout << "0. Thoat" << endl;
+		int lc;cout << "Nhap lua chon: ";cin >> lc;
+		switch (lc)
+		{
+		case 1:
+		{
+			int sl;cout << "Nhap so luong sinh vien can them: ";cin >> sl;
+			//cin.ignore();//Chỉ xóa cho sv đầu tiên
+
+			for (int i = 1;i <= sl;i++)
+			{
+				cin.ignore();//Xóa bộ nhớ đệm cho mỗi sinh viên
+				cout << "\t\t---- SV thu " << i << " ----" << endl;
+				sv a;//Lưu tạm dữ liệu do người dùng nhập
+				nhap_1_sv(a);
+				//---- Thêm cuối ----
+				ds[n++] = a;
+			}
+			break;
+		}
+		case 2:
+		{
+			xuat_ds_sv(ds, n);
+			system("pause");
+			break;
+		}
+		case 0:
+		{
+			kt_menu = false;
+			break;
+		}
+		}
+	}
+
+	system("pause");
+	return 0;
+}
+void nhap_1_sv(sinh_vien &a)
+{
+	cout << "Nhap ma sv: ";getline(cin, a.ma_sv);
+	cout << "Nhap ho ten: ";getline(cin, a.ho_ten);
+	cout << "Nhap phai: ";getline(cin, a.phai);
+	cout << "Nhap diem trung binh: ";cin >> a.dtb;//giá trị
+}
+void xuat_1_sv(sinh_vien a)
+{
+	cout << "Ma sv: " << a.ma_sv << endl;
+	cout << "Ho ten: " << a.ho_ten<< endl;
+	cout << "Phai: " << a.phai << endl;
+	cout << "Diem trung binh: " << a.dtb << endl;//giá trị
+}
+void xuat_ds_sv(sv ds[],int n)
+{
+	cout << "\t\t====== DSSV ========" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "\t\t---- SV thu " << i << " -----" << endl;
+		xuat_1_sv(ds[i]);
+	}
+}

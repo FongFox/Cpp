@@ -1,0 +1,33 @@
+////===== Bài tập ======
+Bài 1. Trình bày cơ chế cin, gets
+Bài 2. Phân tích lỗi trôi lệnh
+—-------------------------- code —----------------------------
+cout<< "Nhap ho ten: ";gets_s(ho_ten);
+cout<< "Nhap tuoi: ";cin >> tuoi;
+cout << "Nhap que quan: ";gets_s(que_quan);
+
+Bài 3. Bài tập ứng dụng:
+Sử dụng X U để giải quyết:
+
+Xây dựng hàm tính độ dài và hàm copy
+sau đó ứng dụng hàm độ dài để giải 2 bài tập bên dưới
+1. Nhập vào 1 chuỗi từ bàn phím có độ dài tối đa 15 ký tự
+2. Nhập vào thông tin của 1 sinh viên. Biết sinh viên đó gồm có các thông tin sau:
+Họ và tên: tối đa 30 ký tự
+Mã sinh viên: tối đa 10 ký tự
+năm sinh
+quê quán: tối đa 20 ký tự
+_ Xuất thông tin sinh viên ra màn hình
+—-------------------------------
+Bài 4: Xây dựng các hàm xử lý xâu
++ strlen(<str>)		trả về độ dài thực của xâu				ok
++ strcpy(<str1><str2>)	copy xâu str2 sang cho str1 //a[10] = "thanh";		ok
++ * strdup(<str>)		copy 1 xâu có độ dài = độ dài của str		ok
++ strlwr(<str>)		viết thường xâu A=65 Z=90 a=97 z=122			ok
++ strupr(<str>)		viết hóa xâu						ok
++ strrev(<str>)		đảo ngược xâu abcd -> dcba				ok		
+strcmp(<str1><str2>)	so sánh phân biệt chữ hoa - thường			
+stricmp(<str1><str2>)	so sánh không phân biệt
++ strcat(<str1><str2>)	get str2 vào str1					ok
++ thêm + xóa tại vị trí								ok
+

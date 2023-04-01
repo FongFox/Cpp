@@ -1,0 +1,52 @@
+Bài tập lý thuyết: 
+1. struct là gì ?
+2. cú pháp khai báo 1 struct ?
+3. Đặt khai báo struct dưới hàm main được không? vì sao ?
+4. dòng typedef có chức năng gì ? tối ưu việc gì ?
+5. khi nào dùng sao chép bằng toán tử gán khi nào dùng gán lần lượt ? vì sao ?
+6. biến kdl struct có cần tham chiếu khi cập nhật giá trị thay đổi trong hàm không ?
+7. Nếu trong cấu trúc mà có biến con trỏ thì ta nên chú ý việc gì(đáp án gồm 3 ý - cố gắng trả lời đủ 3)
+8. struct dễ không ?
+
+//=============== chúng ta khi tương tác với struct thì nên chú ý các thành phần là string khi nhập liệu, hãy cân nhắc có nên xóa bộ nhớ đệm không, và xóa như nào========
+
+//========================== BT struct ===================
+BT 1. khai báo cấu trúc 1 phân số, biết phân số luôn luôn có tử số và mẩu số
+_ nhập danh sách phân số					x
+_ xuất danh sách phân số					x
+_ rút gọn các phân số						x
+_ tìm phân số lớn nhất
+_ tính tổng các phân số
+_ thêm phân số x vào vị trí vt nhập từ bàn phím
+_ xóa phân số tại vị trí vt nhập từ bàn phím
+
+//viết xong thì update lên menu luôn nha các bạn ♥
+
+BT 3. BT bổ sung: (Bạn nào làm xong thì làm luyện thêm nhé BT1 là bắt buộc)
+
+Đề: Hãy khai báo kdl cấu trúc để biểu diễn thông tin của 1 sinh viên
+Biết rằng sinh viên có:
+_ mã số sinh viên: char[20]
+_ họ tên sinh viên: char[30]
+_ điểm kĩ thuật lập trình : float
+_ điểm toán rời rạc: float
+_ điểm ctdl : float
+
+1. viết hàm nhập danh sách sinh viên
+2. viết hàm xuất danh sách sinh viên
+3. Xếp loại học lực sinh viên theo điểm trung bình 3 môn
+- xuất sắc: >9.8
+- giỏi: >=8
+- khá: >=6.5
+- trung bình >=4
+- yếu <4
+4. sắp xếp danh sách sinh viên theo điểm trung bình
+5. sắp xếp danh sách sinh viên giảm dần theo tên sinh viên. theo bảng mã ascii
+
+//===========================
+
+2/2
+
+2/4
+
+

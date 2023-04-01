@@ -1,0 +1,283 @@
+Bài 1. Trình bày cơ chế cin, gets.
++ cin : lấy ký tự (tùy theo kiểu dữ liệu) trừ khoảng cách, enter('\n');
++ gets : lấy ký tự (và cả khoảng trắng) trừ enter ('\n');
+Bài 2: Phân tích lỗi trôi lệnh
+—-------------------------- code —----------------------------
+cout<< "Nhap ho ten: ";gets_s(ho_ten); 
+cout<< "Nhap tuoi: ";cin >> tuoi;// Vd: Nhập 18 và enter.
+cout << "Nhap que quan: ";gets_s(que_quan);
+
+Lỗi:
+Nguyên nhân: 
++ Khi nhập vào 18 và enter thì bộ nhớ đệm sẽ nhận 18/n thì hệ thống sẽ xuất sẽ lấy 18 và dừng ở \n (enter) và gets sẽ lấy phần enter.
+Cách khắc phục:
++ C1: thêm cin.Ignore(); (nếu chỉ có 1 ký tự \n).
++ C2: Xóa bộ nhớ đệm bằng câu lệnh while(getchar() != '\n';
+
+Bài 3:
+1.
+#include<iostream>
+#define MAX 100
+using namespace std;
+
+int check_character(char x[]);
+
+int main()
+{
+	int n = 99;
+	char x[MAX];
+	int check; 
+	do
+	{
+		cout << "Nhap gi do: "; gets_s(x);
+		check = check_character(x);
+	} while (check > 15);
+	
+	cout << "Nhung gi da nhap: " << x << endl;
+	cout << "Do dai ky tu: " << check << endl;
+	
+	system("pause");
+}
+
+int check_character(char x[])
+{
+	int count = 0;
+	for (int i = 0; i <= count; i++)
+	{
+		if (x[i] != '\0')
+		{
+			count += 1;
+		}
+	}
+	return count;
+}
+==========================================================================
+2.
+##include<iostream>
+#define MAX 100
+using namespace std;
+
+template<class p1>
+int check(p1 x[]);
+
+int main()
+{
+	char ho_ten[MAX]; char mssv[MAX]; int nam_sinh; char que_quan[MAX];
+	int check_name; int check_mssv; int check_nam_sinh; int check_que_quan;
+	do
+	{
+		cout << "Nhap ten sinh vien: "; gets_s(ho_ten);
+		check_name = check(ho_ten);
+	} while (check_name > 30);
+	do
+	{
+		cout << "Nhap ma so sinh vien: "; gets_s(mssv);
+		check_mssv = check(mssv);
+	} while (check_mssv > 10);
+	cout << "Nhap nam sinh: "; cin >> nam_sinh;
+	while (getchar() != '\n');
+	do
+	{
+		cout << "Nhap que quan: "; gets_s(que_quan);
+		check_que_quan = check(que_quan);
+	} while (check_que_quan > 20);
+
+	cout << "Ho ten: " << ho_ten << endl;
+	cout << "Mssv: " << mssv << endl;
+	cout << "Nam sinh: " << nam_sinh << endl;
+	cout << "Que quan: " << que_quan << endl;
+
+	system("pause");
+}
+
+template<class p1>
+int check(p1 x[])
+{
+	int count = 0;
+	for (int i = 0; i <= count; i++)
+	{
+		if (x[i] != '\0')
+		{
+			count += 1;
+		}
+	}
+	return count;
+}
+==============================================================================
+Bài 4:
+#include<iostream>
+using namespace std;
+
+//Hàm tính độ dài sâu chuỗi
+int str_len(char c[]);
+
+//Hàm coppy string 
+void str_copy(char c[], char a[]);
+
+//Hàm chuyển chữ hoa sang chữ thường
+void str_lwr(char c[]);
+
+//Hàm chuyển chữ thường sang chữ hoa
+void str_upr(char c[]);
+
+//Hàm đảo ngược chữ cái
+void str_rev(char c[]);
+
+//Hàm ghép str2 vào str1
+void str_cat(char a[], char b[]);
+
+//Hàm thêm
+void add_string(char c[], int vt, char add_c);
+
+//Hàm xóa 
+void delete_string(char c[], int vt);
+
+int main()
+{
+	char a[] = "thanh"; /*cout << a << endl << endl;*/
+	char b[] = "AZ"; /*cout << b << endl << endl;*/
+	char c[50];
+	char d[] = "az"; /*cout << d << endl << endl;*/
+	char str_1[50] = "Tran Gia"; char str_2[] = "|Nguyen Phong!";
+	/*cout << "Nhap gi do: "; gets_s(c);
+	cout << c << endl << endl;*/
+
+	//Hàm tính độ dài của chuỗi
+	/*int count = str_len(c);
+	cout << "Do dai cua chuoi vua nhap: " << count << endl;*/
+
+	//Hàm coppy chuỗi này sang chuỗi khác
+	/*str_copy(c, a);
+	cout << c << endl;*/
+
+	//Hàm con trỏ chuỗi
+	/*char* copium = a;
+	cout << copium << endl;*/
+
+	//hàm thay đỗi chữ hoa sang chữ thường
+	/*cout << endl << endl;
+	str_lwr(b);
+	cout << b << endl;*/
+
+	//Hàm chuyển chữ thường sang chữ hoa
+	/*cout << endl << endl;
+	str_upr(d);
+	cout << d << endl;*/
+
+	//Hàm đổi chiều chữ cái
+	/*str_rev(c);
+	cout << c << endl;*/
+
+	//hàm thêm str2 vào str1
+	str_cat(str_1, str_2);
+	cout << str_1 << endl;
+
+	system("pause");
+}
+
+//Hàm tính độ dài sâu chuỗi
+int str_len(char c[])
+{
+	int count = 0;
+	while (c[count] != '\0')
+	{
+		count += 1;
+	}
+	return count;
+}
+
+//Hàm coppy string 
+void str_copy(char c[], char a[])
+{
+	int max = str_len(a); int n = 0;
+	for (int i = 0; i < max; i++)
+	{
+		c[n++] = a[i];
+	}
+	c[n] = '\0';
+}
+
+//Hàm chuyển chữ hoa sang chữ thường
+void str_lwr(char c[])
+{
+	int max = str_len(c);
+	for (int i = 0; i < max; i++)
+	{
+		switch ((int)c[i])
+		{
+			case 65: c[i] = 97; break;
+			case 90: c[i] = 122; break;
+		}
+	}
+	c[max] = '\0';
+}
+
+//Hàm chuyển chữ thường sang chữ hoa
+void str_upr(char c[])
+{
+	int max = str_len(c);
+	for (int i = 0; i < max; i++)
+	{
+		switch ((int)c[i])
+		{
+		case 97: c[i] = 65; break;
+		case 122: c[i] = 90; break;
+		}
+	}
+	c[max] = '\0';
+}
+
+//Hàm đảo ngược chữ cái
+void str_rev(char c[])
+{
+	int max = str_len(c);
+	int j = 0;
+	for (int i = max - 1; i >= j; i--)
+	{
+		char tam = c[j];
+		c[j] = c[i];
+		c[i] = tam;
+		j++;
+	}
+	c[max] = '\0';
+}
+
+//Hàm ghép str2 vào str1
+void str_cat(char a[], char b[])
+{
+	int max_1 = str_len(a); int max_2 = str_len(b); 
+	for (int i = 0; i < max_2; i++)
+	{
+		a[max_1] = b[i];
+		max_1 += 1;
+	}
+	a[max_1] = '\0';
+}
+
+//Hàm thêm
+void add_string(char c[], int vt, char add_c)
+{
+	int max = str_len(c);
+	cout << "Nhap vi tri muon them: "; cin >> vt;
+	cout << "Nhap chu cai muon them: "; cin >> add_c;
+	for (int i = max; i > vt; i--)
+	{
+		c[i] = c[i - 1];
+	}
+	c[vt] = add_c;
+	max += 1; c[max] = '\0';
+}
+
+//Hàm xóa 
+void delete_string(char c[], int vt)
+{
+	int max = str_len(c);
+	cout << "Nhap vi tri muon xoa: "; cin >> vt;
+	for (int i = vt; i < max - 1; i++)
+	{
+		c[i] = c[i + 1];
+	}
+	max -= 1; c[max] = '\0';
+}
+
+ 

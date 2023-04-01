@@ -1,0 +1,315 @@
+Bài 1:
+#include<iostream>
+#include"My_lib_string_1.h"
+using namespace std;
+
+//Hàm chọn min
+int check_and_return_min(char a[], char b[]);
+//Hàm chọn max
+int check_and_return_max(char a[], char b[]);
+//Hàm so sánh phân biệt chữ hoa thường
+void str_compare(char a[], char b[]);
+//Hàm so sánh không phân biệt
+void str_icompare(char a[], char b[]);
+
+int main()
+{
+	char str1[50]; cout << "Nhap dai gi do di: "; gets_s(str1);
+	char str2[50]; cout << "Nhap dai gi do nua di: "; gets_s(str2);
+	
+	/*str_compare(str1, str2);*/
+	/*str_icompare(str1, str2);*/
+
+
+	system("pause");
+}
+//Hàm chọn min
+int check_and_return_min(char a[], char b[])
+{
+	int x = str_len(a);
+	int y = str_len(b);
+	if (a < b)
+	{
+		return x;
+	}
+	else if (a > b)
+	{
+		return y;
+	}
+}
+
+//Hàm chọn max
+int check_and_return_max(char a[], char b[])
+{
+	int x = str_len(a);
+	int y = str_len(b);
+	if (a > b)
+	{
+		return x;
+	}
+	else if (a < b)
+	{
+		return y;
+	}
+}
+
+//Hàm so sánh phân biệt chữ hoa thường
+void str_compare(char a[], char b[])
+{
+	int min = check_and_return_min(a, b);
+	int j = 0;
+	for (int i = 0; i <= min; i++) // đang so sánh ở mã ascii (dữ liệu kiểu số nguyên)
+	{
+		if (a[i] == b[j]) //Nếu a bằng b
+		{
+			j += 1;
+			continue;
+		}
+		else
+		{
+			if (a[i] > b[j]) //Nếu a lớn hơn b
+			{
+				cout << "str1 lon hon str2" << endl; 
+				cout << "Giai thich: " << "\t" << a[i] << " > " << b[j] << endl;
+				return;
+			}
+			else if (a[i] < b[j]) //Nếu b lớn hơn a
+			{
+				cout << "str2 lon hon str1" << endl; 
+				cout << "Giai thich: " << "\t" << a[i] << " < " << b[j] << endl;
+				return;
+			}
+			else if (a[i] == '\0') // Nếu a đã chạm tới ký tự \0
+			{
+				cout << "str2 lon hon str1" << endl; 
+				cout << "Giai thich: " << "\t" << "a[i] = \0" << endl;
+				return;
+			}
+			else if (b[j] == '\0') // Nếu b đã chạm tới ký tự \0
+			{
+				cout << "str1 lon hon str2" << endl; 
+				cout << "Giai thich: " << "\t" << "b[i] = \0" << endl;
+				return;
+			}
+		}
+	}
+	cout << "str1 bang str 2" << endl << "Giai thich: " << "\t" << "vi 2 ky tu ghi deu nhu nhau." << endl;
+}
+
+//Hàm so sánh không phân biệt
+void str_icompare(char a[], char b[])
+{
+	int n1 = strlen(a);
+	int n2 = strlen(b);
+	for (int i = 0; i < n1; i++)
+	{
+		if (a[i] >= 65 && a[i] <= 90)
+		{
+			a[i] += 32;
+		}
+	}
+	for (int i = 0; i < n2; i++)
+	{
+		if (b[i] >= 65 && b[i] <= 90)
+		{
+			b[i] += 32;
+		}
+	}
+	str_compare(a, b);
+}
+============================================================================================================================================================
+Bài 2:
+#include<iostream>
+#include"My_lib_string_1.h"
+using namespace std;
+
+//Hàm đếm chữ cái 
+void counting_letter_in_string(char a[]);
+
+int main()
+{
+	char str1[100]; cout << "Nhap gi do di: "; gets_s(str1);
+
+	counting_letter_in_string(str1);
+
+	system("pause");
+}
+
+//Hàm đếm chữ cái 
+void counting_letter_in_string(char a[])
+{
+	int n = str_len(a);
+	for (int i = 0; i < n; i++)
+	{
+		if (a[i] >= 65 && a[i] <= 90)
+		{
+			a[i] += 32;
+		}
+	}
+	for (int i = 0; i <= n; i++)
+	{
+		int count = 1;
+		for (int j = i + 1; j <= n; j++)
+		{
+			if (a[i] == a[j])
+			{
+				count += 1;
+			}
+		}
+		int check = 1; //khởi tại và gán check = true (1).
+		for (int k = i - 1; k >= 0; k--)
+		{
+			if (a[i] == a[k])
+			{
+				check = 0; break;
+			}
+		}
+		if (check == 0)
+		{
+			continue;
+		}
+		if (a[i] == 32)
+		{
+			cout << "Dau spacebar da xuat hien " << count << " lan." << endl; continue;
+		}
+		if (a[i] == '\0')
+		{
+			cout << "Dau enter da xuat hien " << count << " lan." << endl; continue;
+		}
+		cout << "Tu " << a[i] << " da xuat hien " << count << " lan." << endl;
+	}
+}
+============================================================================================================================================================
+#include<iostream>
+#include"My_lib_string_1.h"
+
+using namespace std;
+
+//Hàm tìm chữ cái đầu trong cụm từ
+int return_head(char a[]);
+//Hàm tìn điểm cuối trong cụm từ
+int return_tail(char a[], int head);
+//Hàm ghi đại (chưa có ý tưởng)
+void change_letter(char a[]);
+
+
+int main()
+{
+	char str1[100]; cout << "Nhap gi do di: "; gets_s(str1);
+
+	change_letter(str1);
+	cout << endl << endl << str1 << endl; 
+
+	system("pause");
+}
+
+//Hàm tìm chữ cái đầu trong cụm từ
+int return_head(char a[])
+{
+	int c = 0; int head;
+	for (int i = 0; i <= c; i++)
+	{
+		if (a[i] == '\0')
+		{
+			c += 1;
+		}
+		else
+		{
+			return head = i;
+		}	
+	}
+	
+}
+
+//Hàm tìn điểm cuối trong cụm từ
+int return_tail(char a[], int head)
+{
+	int c = head; int tail;
+	for (int i = head; i <= c; i++)
+	{
+		if (a[i] != '\0')
+		{
+			c += 1;
+		}
+		else
+		{
+			return tail = i - 1;
+		}
+	}
+
+}
+
+//Hàm ghi đại (chưa có ý tưởng)
+void change_letter(char a[])
+{
+	int len = str_len(a); int x;
+	for (int i = 0; i <= len; i++)
+	{
+		if (i == 0 && a[i] == 32)
+		{
+			for (int k = i; k <= len; k++)
+			{
+				if (a[k] == 32)
+				{
+					continue;
+				}
+				else
+				{
+					for (int j = k; j >= i; j--)
+					{
+						if (a[j - 1] == 32)
+						{
+							delete_string_2(a, j - 1); k -= 1;
+						}
+					}
+					
+					if ((a[k] > 96 && a[k] < 123) && k == 0)
+					{
+						a[k] -= 32;
+						break;
+					}
+				}
+			}
+		}
+		else if (a[i] != 32)
+		{
+			continue;
+		}
+		else if (a[i] == 32)
+		{
+			if (a[i - 1] != a[i])
+			{
+				continue;
+			}
+			else
+			{
+				for (int k = i; k <= len; k++)
+				{
+					if (a[k] == 32)
+					{
+						continue;
+					}
+					else
+					{
+						for (int j = k; j > i; j--)
+						{
+							if (a[j - 1] == 32)
+							{
+								delete_string_2(a, j - 1); k -= 1;
+							}
+						}
+						if (a[k] != a[k - 1])
+						{
+							break;
+						}
+					}
+				}
+			}
+		}
+		
+		
+		
+		
+	}
+}
+

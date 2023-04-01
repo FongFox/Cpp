@@ -1,0 +1,109 @@
+Bài 1. Nhập vào 1 số nguyên n(n > 0).Tính tổng 2 + 4 + 6 + ... + (2 * n)
+#include<iostream>
+using namespace std;
+int main()
+{
+	int n, sum = 0;
+	do
+	{
+		cout << "Nhap n: ";
+		cin >> n;
+	} while (n<0);
+
+	for (int i = 2; i <= n * 2; i += 2)
+	{
+		sum += i;
+	}
+	cout << "Tong cua n: " << sum << endl;
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+----------------------------------------------------------------------------------------------------------------
+Bài 2. Nhập vào 1 số nguyên dương n, điều kiện 0 < n < 20. Tính giai thừa của số nguyên dương n.
+#include<iostream>
+using namespace std;
+int main()
+{
+	int n, gt = 1;
+	do
+	{
+		cout << "Nhap n: ";
+		cin >> n;
+	} while (n<=0 || n>=20);
+
+	for (int i = n; i > 1; i--)
+	{
+		gt *= i;
+	}
+
+	cout << "Giai thua cua n: " << gt << endl;
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+----------------------------------------------------------------------------------------------------------------
+Bài 3. Nhập vào số nguyên dương n(n > 0). Viết chương trình tách các chữ số của số nguyên dương n ?
+VD: n = 1675
+==> gồm các chữ số
+5
+7
+6
+1
+
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int n;
+	do
+	{
+		cout << "Nhap n: ";
+		cin >> n;
+	} while (n<0);
+	cout << endl;
+	while (n != 0)
+	{
+		cout << "\t" << n % 10 << endl;
+		n = n / 10;
+	}
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+----------------------------------------------------------------------------------------------------------------
+Bài 4. Nhập vào 1 số nguyên n(n > 0). Tính tổng các " chữ số lẻ " của số nguyên dương n.
+#include<iostream>
+using namespace std;
+int main()
+{
+	int n;
+	int sum = 0;
+	do
+	{
+		cout << "Nhap n: ";
+		cin >> n;
+	} while (n<0);
+	cout << endl;
+	while (n != 0)
+	{
+		if ((n % 10) % 2 != 0)
+		{
+			sum = sum + (n % 10);
+		}
+		
+		n = n / 10;
+	}
+	cout << "Tong so le: " << sum << endl;
+
+	cout << endl << "Ket thuc chuong trinh." << endl;
+	system("pause");
+	return 0;
+}
+
+
+
+

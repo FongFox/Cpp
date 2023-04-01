@@ -1,0 +1,61 @@
+#include <iostream>
+#include <string>
+using namespace std;
+void chuan_hoa(string &s);
+int main()
+{
+	string s = "      kY    ThUAT      lAp trInh            ";
+	chuan_hoa(s);
+	cout << s << "|" << endl;
+	system("pause");
+	return 0;
+}
+void chuan_hoa(string &s)
+{
+	// s = "      kY    ThUAT      lAp trInh            "; 
+	//---- Cắt khoảng trắng đầu ----
+	while (s[0] == ' ')
+	{
+		s.erase(s.begin() + 0);
+	}
+	//--- Cắt khoảng trắng cuối ----
+	while (s.back() == ' ')
+	{
+		s.pop_back();//xoa cuoi
+	}
+	//---- Cắt khoảng trắng  giữa ----
+
+	int n = s.length();//Biến theo dõi
+	for (int i = 0;i < n; i++)
+	{
+		if (s[i] == ' ' && s[i + 1] == ' ')
+		{
+			s.erase(s.begin() + i);
+			i--;
+			n--;//Cần cập nhật
+		}
+	}
+	//--- In hoa, thường -------
+	if (s[0] >= 97 && s[0] <= 122)
+	{
+		s[0] -= 32;
+	}
+	for (int i = 1;i < n;i++)
+	{
+		if (s[i] == ' ')
+		{
+			i++;//Pt cần in hoa
+			if (s[i] >= 97 && s[i] <= 122)
+			{
+				s[i] -= 32;
+			}
+		}
+		else
+		{
+			if (s[i] >= 65 && s[i] <= 90)
+			{
+				s[i] += 32;
+			}
+		}
+	}
+}

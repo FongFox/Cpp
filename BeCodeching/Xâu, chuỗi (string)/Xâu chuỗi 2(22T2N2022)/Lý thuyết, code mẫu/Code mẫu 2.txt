@@ -1,0 +1,139 @@
+#include <iostream>
+using namespace std;
+int do_dai(char c[]);
+void sao_chep(char str1[], char str2[]);
+char* sao_chep2(char str2[]);
+void in_thuong(char c[]);
+void in_hoa(char c[]);
+void dao(char c[]);
+void them(char c[], int vt, char x);
+void xoa(char c[], int vt);
+
+void main()
+{
+	//char c[100];
+	//cout << "Nhap c: ";gets_s(c);
+	//cout << c << endl;
+	//cout << "Do dai: " << do_dai(c) << endl;
+
+	//char str2[100] = "hello";
+	//char str1[100];
+	//sao_chep(str1, str2);
+
+	//char *str1 = sao_chep2(str2);
+	//cout << str1 << endl;
+
+	char c[100];
+	cout << "Nhap c: ";gets_s(c);
+	cout << c << endl;
+	/*in_hoa(c);
+	cout << c << endl;
+	dao(c);
+	cout << c << endl;
+	in_thuong(c);
+	cout << c << endl;*/
+
+	//them(c, 2, 'x');
+	xoa(c, 1);
+	cout << c << endl;
+	
+
+	system("pause");
+}
+int do_dai(char c[])
+{
+	//c:	h	e	l	l	o	\0
+	//		0	1	2	3	4	5
+	int i = 0;
+	while (c[i] != '\0')
+	{
+		i++;
+	}
+	return i;
+}
+void sao_chep(char str1[],char str2[])
+{
+	//str2[]:	hello \0 \0 \0 \0
+	//			01234 5
+	//str1[]:	hello \0
+	int n2 = do_dai(str2);
+	for (int i = 0;i <= n2;i++) //Xem \0 như 1 kí tự của xâu
+	{
+		str1[i] = str2[i];
+	}
+}
+char* sao_chep2(char str2[])
+{
+	//str2[]:	hello \0 \0 \0 \0
+	//			01234 5
+
+	int n2 = do_dai(str2);//5
+
+	char *p = new char[n2 + 1];
+	for (int i = 0;i <= n2;i++) //Xem \0 như 1 kí tự của xâu
+	{
+		p[i] = str2[i];
+	}
+	return p;
+}
+void in_thuong(char c[])
+{
+	int n = do_dai(c);
+	for (int i = 0;i < n;i++)
+	{
+		if (c[i] >= 65 && c[i] <= 90)
+		{
+			c[i] += 32;
+		}
+	}
+}
+void in_hoa(char c[])
+{
+	int n = do_dai(c);
+	for (int i = 0;i < n;i++)
+	{
+		if (c[i] >= 97 && c[i] <= 122)
+		{
+			c[i] -= 32;
+		}
+	}
+}
+void dao(char c[])
+{
+	int n = do_dai(c);
+
+	//	7	8	9	1	2
+	//	0	1	2	3	4
+
+	//	2	1	9	8	7
+
+	for (int i = 0;i < n / 2;i++)
+	{
+		swap(c[i], c[n - i - 1]);
+	}
+}
+void them(char c[], int vt, char x)
+{
+	//	helloo \0
+	//	012345  6		n=5
+	//       i
+	int n = do_dai(c);
+	for (int i = n + 1;i > vt;i--)	//Xem \0 như là kí tự của xâu (i = n+1)
+	{
+		c[i] = c[i - 1];
+	}
+	c[vt] = x;
+	//c[n + 1] = '\0';
+}
+void xoa(char c[], int vt)
+{
+	//hllo\0\0
+	//012345
+	//     i
+	int n = do_dai(c);
+	for (int i = vt;i < n;i++)//xem \0 như là 1 kí tự của xâu (i < n)
+	{
+		c[i] = c[i + 1];
+	}
+	//c[n] = '\0';
+}

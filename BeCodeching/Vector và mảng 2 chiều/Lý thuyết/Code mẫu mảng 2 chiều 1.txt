@@ -1,0 +1,73 @@
+#include <iostream>
+#define dong_max 100
+#define cot_max 100
+using namespace std;
+void nhap(int a[dong_max][cot_max], int dong, int cot);
+void xuat(int a[dong_max][cot_max], int dong, int cot);
+void liet_ke(int a[dong_max][cot_max], int dong, int cot);
+void main()
+{
+	int a[dong_max][cot_max];// = { {1,2,3},{4},{7,8,9} };
+	int dong;
+	int cot;
+	cout << "Nhap dong,cot: ";cin >> dong >> cot;
+
+	nhap(a, dong, cot);
+	xuat(a, dong, cot);
+
+	liet_ke(a, dong, cot);
+
+	system("pause");
+}
+void nhap(int a[dong_max][cot_max], int dong, int cot)
+{
+	cout << "\t\t==== Nhap =====" << endl;
+	for (int i = 0;i < dong;i++)
+	{
+		for (int j = 0;j < cot;j++)
+		{
+			cout << "Nhap pt thu a[" << i << "][" << j << "]: ";cin >> a[i][j];
+		}
+		cout << endl;
+	}
+}
+void xuat(int a[dong_max][cot_max], int dong, int cot)
+{
+	cout << "\t\t==== Xuat =====" << endl;
+	for (int i = 0;i < dong;i++)
+	{
+		for (int j = 0;j < cot;j++)
+		{
+			cout << a[i][j] << "   ";
+		}
+		cout << endl;
+	}
+}
+void liet_ke(int a[dong_max][cot_max], int dong, int cot)
+{
+	cout << "Pt nam tren duong cheo chinh: ";
+	for (int i = 0;i < dong;i++)
+	{
+		for (int j = 0;j < cot;j++)
+		{
+			if (i == j)
+			{
+				cout << a[i][j] << "   ";
+			}
+		}
+	}
+	cout << endl;
+	//-------------------------
+	cout << "Pt nam tren duong cheo phu: ";
+	for (int i = 0;i < dong;i++)
+	{
+		for (int j = 0;j < cot;j++)
+		{
+			if (i+j == dong-1)
+			{
+				cout << a[i][j] << "   ";
+			}
+		}
+	}
+	cout << endl;
+}

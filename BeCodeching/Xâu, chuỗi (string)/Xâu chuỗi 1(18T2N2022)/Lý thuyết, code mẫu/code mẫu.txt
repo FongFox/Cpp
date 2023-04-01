@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+void main()
+{
+	int tuoi;
+	char ho_ten[30];//thanh
+
+	//thanh\0
+	//01234 5
+	
+	cout << "Nhap tuoi: ";cin >> tuoi;//a8\n		tuoi: 1
+	//cin.ignore(3);//3 ki tu
+	while (getchar() != '\n');
+
+	cout << "Nhap ho ten: ";gets_s(ho_ten);	//
+	
+
+	cout << "Ho ten: " << ho_ten << "|" << endl;
+	cout << "Tuoi: " << tuoi << endl;
+	
+	system("pause");
+}

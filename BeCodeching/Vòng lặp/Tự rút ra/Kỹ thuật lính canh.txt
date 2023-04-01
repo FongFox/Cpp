@@ -1,0 +1,44 @@
+Kỹ thuật lính canh.
+Bài vd:
+Viết xuông code nhập số từ bàn phím (sẽ dừng khi nhập 0). Xuất ra giá trị lớn nhất và nhỏ nhất. (Sử dụng hàm để làm và ko sử dụng mảng và code trong visual)
+#include<iostream>
+using namespace std;
+void nhap(int &x)
+{
+	cout << "Nhap x: "; cin >> x;
+}
+void kiemtra(int &x,int &max, int &min)
+{
+	do
+	{
+		nhap(x);
+		if(min > x)
+		{
+			min = x; 
+		} else if (max < x)
+			{
+				max = x;
+			}
+	}while(x!=0);
+}
+void xuat(int max, int min)
+{
+	cout << "Min: " << min << endl;
+	cout << "Max: " << max << endl;
+}
+int main()
+{
+	int x; int max = INT32_MIN; int min = INT32_MAX;  
+	kiemtra(x,max,min);
+	xuat(max, min);
+
+	system("pause");
+	return 0;
+}
+
+Ưu điểm (sẽ cập nhật):
+. Không cần sử dụng mảng.
+
+
+Nhược điểm (sẽ cập nhật):
+. sẽ không sử dụng được chức năng nào khi đề cập tới vị trí.

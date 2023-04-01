@@ -1,0 +1,39 @@
+//============ Xâu, chuỗi =============
+
+		ký tự:	'c'
+	Tập hợp các ký tự:	"hello"
+
+
++ Xâu: 	mảng ký tự - char []			int a[50];		char <tên xâu>[<sl tối đa>];
++ Chuỗi:	thư viện string
+
+
+	=> Xâu
+
+	Vd:	char c[30];	//Lưu tối đa 29 kí tự + 1 kí tự kết thúc \0
+		Kí tự kết thúc xâu:	\0
+
+	+ Có hỗ trợ cout trực tiếp (Xuất ra đến \0 là dừng, nếu thiếu sẽ bị lỗi)
+
+
++ Khởi tạo:	- Khởi tạo trực tiếp: Các pt còn lại mặc định bằng \0
+		- Khởi tạo bằng cin - Có hỗ trợ (Lưu ý: chỉ có 1 \0)
+
+Cơ chế cin:	+ Nhận dữ liệu, không nhận khoảng trắng, xuống dòng.
+
+
+Cơ chế gets:	+ Nhận dữ liệu, nhận cả khoảng trắng nhưng không nhận xuống dòng.
+
+	B1: Chạy vô bộ nhớ đệm để kiểm tra. Nếu bnđ có phần tử -> Lấy cho biến/xâu
+				Nếu bnđ rỗng -> B2: Yêu cầu người dùng nhập -> (Quay lại B1)
+
+
+	+ Biểu hiện lỗi: Bị trôi lệnh nhập khi dùng gets
+	+ Nguyên nhân: Bộ nhớ đệm có phần tử
+	+ Giải pháp: Xóa bộ nhớ đệm
+			-	cin.ignore()	//xóa 1 pt trong bộ nhớ đệm
+			-	while(getchar()!='\n');		//clear bộ nhớ đệm	
+	
+			-	fflush(stdin);//Vô nghĩa
+
+//================ Chức năng ==================

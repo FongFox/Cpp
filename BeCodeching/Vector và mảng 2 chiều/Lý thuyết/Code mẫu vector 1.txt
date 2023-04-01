@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+void nhap(vector<int> &a);
+void xuat(vector<int> a);
+void main()
+{
+	vector<int> a;//Khai báo 1 vector a quản lý các pt số nguyên.
+
+	int n;cout << "Nhap sl pt: ";cin >> n;
+	a.resize(n);//Cap phat moi
+
+	//nhap(a);
+	xuat(a);
+	
+	//1 2 3 4 5
+	//a.push_back(6);
+
+
+	xuat(a);
+
+	system("pause");
+}
+void nhap(vector<int> &a)
+{
+	cout << "\t\t=== Nhap ====" << endl;
+	int n = a.size();
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Nhap pt thu " << i << ": ";cin >> a.at(i);
+	}
+}
+void xuat(vector<int> a)
+{
+	cout << "\t\t=== Xuat ====" << endl;
+	int n = a.size();
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Pt thu "<<i<<" la: "<<a.at(i) << endl;
+	}
+}

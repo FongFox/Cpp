@@ -1,0 +1,211 @@
+------------------------ Lý thuyết -----------------------
+1.
+Lưu ý khi sử dụng hàm:
++ Kiểm tra xem có return về không ? Nếu có thì thêm kiểu dữ liệu muốn trả về (nếu không thì void).
++ Kiểm tra xem cần thay đổi kiểu dữ liệu biến gốc không ? Nếu có thì tham chiếu, nếu không thì tham trị.
++ Cái cuối không nhớ.
+2.
+Lưu ý khi sữ dụng hàm getline:
++ Biến phải sử dụng kiểu dữ liệu string.
++ Nếu nhập số xong đến nhập kiểu dữ liệu string thì phải bỏ qua 1 ký tự (dùng cin.ignore();).
+3.
+Lưu ý khi sữ dụng struct:
++ Nếu trong struct có biến con trỏ thì không được dùng phép gán.
++ Hiện tại chưa nhớ.
++ Hiện tại chưa nhớ.
+
+-------------------- Thực hành -----------------------------
+Bài 1:
+/*
+1(2đ). (Tư duy + Xử lý) // Bài thi kết thúc học phần: Tin học cơ sở 2(PTIT HCM)
+Cho 1 mảng số nguyên. Sắp xếp các số âm nằm trước giảm dần tiếp đến là số 0 rồi đến các số dương giảm dần
+VD: mảng: 12pt:    -4     5      0      6      -1     0      8      3     -11    15    2    1
+             Kết quả:     -1   -4    -11     0       0    15     8      6       5      3     2    1
+Gợi ý: Sử dụng mảng phụ
+*/
+#include<iostream>
+#include<fstream>
+#define MAX 1000
+using namespace std;
+
+//Ham nhap xuat
+void input(int& n, int a[]);
+void output(int n, int a[]);
+//Ham sap xep
+void sap_xep(int n, int a[]);
+//Ham mo rong
+void mo_rong(int& n, int a[], int vt, int x);
+//Ham an 
+void an(int& n, int a[], int vt);
+//Ham tach
+void tach_va_sap_xep(int& n, int a[], int& nb, int b[], int& nc, int c[]);
+//Ham gop
+void gop_am(int& n, int a[], int nb, int b[]);
+//Ham gop_duong
+void gop_duong(int& n, int a[], int nc, int c[]);
+
+
+int main()
+{
+    int n; int a[MAX];
+    int na = 0; int am[MAX];
+    int nd = 0; int duong[MAX];
+    
+    input(n, a);
+    output(n, a);
+    tach_va_sap_xep(n, a, na, am, nd, duong);
+    gop_am(n, a, na, am);
+    gop_duong(n, a, nd, duong); cout << endl;
+    output(n, a);
+
+    system("pause");
+}
+//Ham nhap xuat
+void input(int& n, int a[])
+{
+    cout << "Nhap phan tu can dung: "; cin >> n;
+    for (int i = 0; i < n; i++)
+    {
+        cout << "Nhap phan tu " << i + 1 << ": "; cin >> a[i];
+    }
+}
+void output(int n, int a[])
+{
+    for (int i = 0; i < n; i++)
+    {
+        cout << a[i] << "\t";
+    }
+    cout << endl;
+}
+//Ham sap xep
+void sap_xep(int n, int a[])
+{
+    for (int i = 0; i < n - 1; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (a[i] < a[j])
+            {
+                swap(a[i], a[j]);
+            }
+        }
+    }
+}
+//Ham mo rong
+void mo_rong(int& n, int a[], int vt, int x)
+{
+    for (int i = n; i > vt; i--)
+    {
+        a[i] = a[i - 1];
+    }
+    a[vt] = x; n += 1;
+}
+//Ham an 
+void an(int& n, int a[], int vt)
+{
+    for (int i = vt; i < n - 1; i++)
+    {
+        a[i] = a[i + 1];
+    }
+    n -= 1;
+}
+//Ham tach
+void tach_va_sap_xep(int& n, int a[], int& nb, int b[], int& nc, int c[])
+{
+    for (int i = 0; i < n; i++)
+    {
+        if (a[i] < 0)
+        {
+            b[nb++] = a[i];
+            an(n, a, i);
+            i -= 1;
+        }
+        else if(a[i] > 0)
+        {
+            c[nc++] = a[i];
+            an(n, a, i);
+            i -= 1;
+        }
+    }
+    sap_xep(nb, b); sap_xep(nc, c);
+}
+//Ham gop
+void gop_am(int& n, int a[], int nb, int b[])
+{
+    for (int i = nb - 1; i >= 0; i--)
+    {
+        mo_rong(n, a, 0, b[i]);
+    }
+}
+//Ham gop_duong
+void gop_duong(int& n, int a[], int nc, int c[])
+{
+    for (int i = 0; i < nc; i++)
+    {
+        a[n++] = c[i];
+    }
+}
+------------------------------------------------------------------------------------------
+Bài 2.
+/*
+2(2đ). Cho mảng 1 chiều các số nguyên. Hãy tìm giá trị trong mảng các số nguyên xa giá trị x nhất(x nhập từ bàn phím)
+VD: 24 45 23 13 43 -12
+x = 15
+==> giá trị trong mảng xa x nhất là: 45
+*/
+#include<iostream>
+#define MAX 1000
+using namespace std;
+
+void input(int& n, int a[], int& x);
+void output(int n, int a[]);
+void khoang_cach(int n, int a[], int x);
+
+
+int main()
+{
+	int n; int a[MAX]; int x;
+	
+	input(n, a, x);
+	output(n, a);
+	khoang_cach(n, a, x);
+
+	system("pause");
+}
+
+void input(int& n, int a[], int& x)
+{
+	cout << "Nhap phan tu can dung: "; cin >> n;
+	for (int i = 0; i < n; i++)
+	{
+		cout << "Nhap phan tu thu " << i + 1 << ": "; cin >> a[i];
+	}
+	cout << "Nhap x: "; cin >> x;
+}
+
+void output(int n, int a[])
+{
+	cout << "Nhung phan tu can nhap" << endl;
+	for (int i = 0; i < n; i++)
+	{
+		cout << a[i] << "\t";
+	}
+	cout << endl;
+}
+
+void khoang_cach(int n, int a[], int x)
+{
+	int d_max = a[0] - x; int max = a[0];
+	/*cout << d_max << endl;*/
+	for (int i = 0; i < n; i++)
+	{
+		if ((a[i]-x) > d_max)
+		{
+			d_max = a[i] - x;
+			max = a[i];
+		}
+		/*cout << d_a << endl;*/
+	}
+	cout << "max: " << max << endl;
+}
+

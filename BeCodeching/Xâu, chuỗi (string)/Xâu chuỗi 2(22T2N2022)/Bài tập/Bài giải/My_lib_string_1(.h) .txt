@@ -1,0 +1,134 @@
+#pragma once
+#include<iostream>
+using namespace std;
+
+//Hàm tính độ dài sâu chuỗi
+int str_len(char c[]);
+
+//Hàm coppy string 
+void str_copy(char c[], char a[]);
+
+//Hàm chuyển chữ hoa sang chữ thường
+void str_lwr(char c[]);
+
+//Hàm chuyển chữ thường sang chữ hoa
+void str_upr(char c[]);
+
+//Hàm đảo ngược chữ cái
+void str_rev(char c[]);
+
+//Hàm ghép str2 vào str1
+void str_cat(char a[], char b[]);
+
+//Hàm thêm
+void add_string(char c[], int vt, char add_c);
+
+//Hàm xóa 
+void delete_string(char c[], int vt);
+
+
+
+//Hàm tính độ dài sâu chuỗi
+int str_len(char c[])
+{
+	int count = 0;
+	while (c[count] != '\0')
+	{
+		count += 1;
+	}
+	return count;
+}
+
+//Hàm coppy string 
+void str_copy(char c[], char a[])
+{
+	int max = str_len(a); int n = 0;
+	for (int i = 0; i < max; i++)
+	{
+		c[n++] = a[i];
+	}
+	c[n] = '\0';
+}
+
+//Hàm chuyển chữ hoa sang chữ thường
+void str_lwr(char c[])
+{
+	int max = str_len(c);
+	for (int i = 0; i < max; i++)
+	{
+		switch ((int)c[i])
+		{
+		case 65: c[i] = 97; break;
+		case 90: c[i] = 122; break;
+		}
+	}
+	c[max] = '\0';
+}
+
+//Hàm chuyển chữ thường sang chữ hoa
+void str_upr(char c[])
+{
+	int max = str_len(c);
+	for (int i = 0; i < max; i++)
+	{
+		switch ((int)c[i])
+		{
+		case 97: c[i] = 65; break;
+		case 122: c[i] = 90; break;
+		}
+	}
+	c[max] = '\0';
+}
+
+//Hàm đảo ngược chữ cái
+void str_rev(char c[])
+{
+	int max = str_len(c);
+	int j = 0;
+	for (int i = max - 1; i >= j; i--)
+	{
+		char tam = c[j];
+		c[j] = c[i];
+		c[i] = tam;
+		j++;
+	}
+	c[max] = '\0';
+}
+
+//Hàm ghép str2 vào str1
+void str_cat(char a[], char b[])
+{
+	int max_1 = str_len(a); int max_2 = str_len(b);
+	for (int i = 0; i < max_2; i++)
+	{
+		a[max_1] = b[i];
+		max_1 += 1;
+	}
+	a[max_1] = '\0';
+}
+
+//Hàm thêm
+void add_string(char c[], int vt, char add_c)
+{
+	int max = str_len(c);
+	cout << "Nhap vi tri muon them: "; cin >> vt;
+	cout << "Nhap chu cai muon them: "; cin >> add_c;
+	for (int i = max; i > vt; i--)
+	{
+		c[i] = c[i - 1];
+	}
+	c[vt] = add_c;
+	max += 1; c[max] = '\0';
+}
+
+//Hàm xóa 
+void delete_string(char c[], int vt)
+{
+	int max = str_len(c);
+	cout << "Nhap vi tri muon xoa: "; cin >> vt;
+	for (int i = vt; i < max - 1; i++)
+	{
+		c[i] = c[i + 1];
+	}
+	max -= 1; c[max] = '\0';
+}

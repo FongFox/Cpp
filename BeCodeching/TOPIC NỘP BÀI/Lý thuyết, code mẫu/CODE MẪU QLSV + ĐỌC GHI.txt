@@ -1,0 +1,122 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+using namespace std;
+struct sv
+{
+	string ma_sv;
+	string ho_ten;
+	float ktlt;
+	float trr;
+	float ctdl;
+};
+typedef struct sv sv;
+//===========
+istream& operator >> (istream &is, sv &a);
+ostream& operator << (ostream &os, sv a);
+void xuat_ds(sv ds[], int n);
+//-----------------------------------------
+void load_ds(sv ds[], int &n);
+void ghi_ds(sv ds[], int n);
+
+int main()
+{
+	sv ds[100];int n = 0;
+	load_ds(ds, n);
+	bool kt_menu = true;
+	while (kt_menu==true)
+	{
+		system("cls");
+		cout << "1. Nhap sv" << endl;
+		cout << "2. Xuat danh sach sv" << endl;
+		cout << "0. Thoat" << endl;
+		int lc;cout << "Nhap lc: ";cin >> lc;
+		switch (lc)
+		{
+		case 1:
+		{
+			int sl;cout << "Nhap sl sinh vien can them: ";cin >> sl;
+			for (int i = 1;i <= sl;i++)
+			{
+				cin.ignore();
+				cout << "\t\tNhap sv thu " << i << " ----" << endl;
+				cin >> ds[n++];
+			}
+			break;
+		}
+		case 2:
+		{
+			xuat_ds(ds, n);
+			system("pause");
+			break;
+		}
+		case 0:
+		{
+			kt_menu = false;
+			ghi_ds(ds, n);
+			break;
+		}
+		}
+	}
+	system("pause");
+	return 0;
+}
+istream& operator >> (istream &is, sv &a)
+{
+	cout << "Nhap ma sv: ";getline(is,a.ma_sv);
+	cout << "Nhap ho ten: ";getline(is, a.ho_ten);
+	cout << "Nhap diem ktlt: ";is >> a.ktlt;
+	cout << "Nhap diem trr: ";is >> a.trr;
+	cout << "Nhap diem ctdl: ";is >> a.ctdl;
+	return is;
+}
+ostream& operator << (ostream &os, sv a)
+{
+	os << "Ma sv: " << a.ma_sv << endl;
+	os << "Ho ten: " << a.ho_ten << endl;
+	os << "Diem ktlt: " << a.ktlt << endl;
+	os << "Diem trr: " << a.trr << endl;
+	os << "Diem ctdl: " << a.ctdl << endl;
+	return os;
+}
+void xuat_ds(sv ds[], int n)
+{
+	cout << "\t\t=== DS ====" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "\t\t---- SV thu " << i << " ----" << endl;
+		cout << ds[i];
+	}
+}
+void load_ds(sv ds[], int &n)
+{
+	ifstream fi("dssv.txt");//in
+	while (fi.eof() != true)
+	{
+		sv a;//Luu tam
+		getline(fi, a.ma_sv, ',');
+		getline(fi, a.ho_ten, ',');
+		fi >> a.ktlt;
+		fi.ignore();//bỏ ,
+		fi >> a.trr;
+		fi.ignore();//bỏ ,
+		fi >> a.ctdl;
+		fi.ignore();//bỏ \n
+		//---- them ----
+		ds[n++] = a;
+	}
+	fi.close();
+}
+void ghi_ds(sv ds[], int n)
+{
+	ofstream fo("output.txt");//out
+	for (int i = 0;i < n;i++)
+	{
+		fo << ds[i].ma_sv << "," << ds[i].ho_ten << "," << ds[i].ktlt << "," << ds[i].trr << "," << ds[i].ctdl;
+		if (i != n - 1)
+		{
+			fo<< endl;
+		}
+	}
+	fo.close();
+}

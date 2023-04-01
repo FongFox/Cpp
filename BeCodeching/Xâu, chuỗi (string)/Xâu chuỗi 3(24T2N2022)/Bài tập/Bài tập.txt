@@ -1,0 +1,73 @@
+Bài 1. Nhập vào 1 chuỗi bất kỳ. Viết chương trình chuyển chuỗi số thành số nguyên
+Bài 2. Nhập vào 1 số nguyên. Viết chương trình chuyển số nguyên thành chuỗi số
+Bài 3: Viết chương trình nhập chuỗi ngày tháng năm. Tiến hành chuẩn hóa chuỗi ngày tháng năm.
+_ Nếu có khoảng trắng thì xóa.
+_ Chuỗi chỉ có 2 kí tự '/'.  Nếu sai điều kiện thì yêu cầu nhập lại.
+_ Nếu điều kiện ngày tháng năm không hợp lý thì yêu cầu nhập lại. VD: 1/13/2021, 31/2/2021
+
+Bài 4. Nhập vào 1 chuỗi ngày tháng năm định dạng như sau dd/mm/yyyy (đã chuẩn hóa). Viết chương 
+trình kiểm tra xem tháng mm có bao nhiêu ngày ?
+Bài 5. Nhập vào chuỗi ngày tháng năm định dạng như sau dd/mm/yyyy(đã chuẩn hóa) và số ngày. 
+Viết chương trình tính ngày kết quả sau khi cộng ngày với số ngày.
+VD: 
+21/11/2015	42	⇒ 02/01/2016
+2/8/2020		152	=> 1/1/2021
+Bài 6. Nhập vào ngày tháng năm time1(đã chuẩn hóa), và time2(đã chuẩn hóa).Tính khoảng cách ngày từ time1 đến time2.
+
+Bài 7. Nhập vào 2 chuỗi số x và y với độ dài tối đa là 3. Viết chương trình cộng trừ 2 chuỗi số đó lại với nhau ?
+
+Bài 8. Nhập 1 chuỗi: tính tổng các số có trong chuỗi. 
+		VD: abc24d123e7gf1		s = 24 + 123 + 7 + 1 = 155
+
+Bài 9. Nhập 1 chuỗi, sắp xếp các số có trong chuỗi theo thứ tự tăng dần, các ký tự khác vẫn giữ nguyên. 
+Lưu ý: Nếu có số 0 đứng trước số thì xóa bỏ.
+		VD: abc24d0123e07gf1	KQ: abc1d7e24gf123	
+//=========================================================
+1. Cho một mảng chuỗi, hãy tìm tiền tố chung dài nhất của tất cả các phần tử.
+ ________________________________________
+| Đầu vào: abc Abd abf			 |
+| Đầu ra: ab 				 |
+| _______________________________________|
+2. Loại bỏ các phần tử trùng lặp khỏi một mảng và trả về độ dài mới.
+Không tạo bất kỳ mảng tạm thời nào
+Ví dụ:
+ _______________________________
+| Đầu vào: [ab, ac, ab, bc] 	|
+| Đầu ra: 3 			|
+| ______________________________|
+
+3. Nhập 2 số phức bằng chuỗi sau đó trả về một chuỗi
+KQ của phép nhân 2 số đó. Kết quả nên sử dụng chuỗi.
+Số phức có dạng a + bi (i2 = -1, b có thể âm hoặc dương)
+Ví dụ:
+________________________________
+| Đầu vào: 3 + 2i 3 + 2i	|
+| Đầu ra: 5 + 12i		|
+| ______________________________|
+
+4. Nhập 2 số nhị phân bằng cách sử dụng chuỗi sau đó trả về tổng của hai số đó.
+Kết quả nên sử dụng chuỗi.
+Ví dụ:
+ _______________________
+| Đầu vào: 111 11	|
+| Đầu ra: 1010		|
+| ______________________|
+
+5. Xem xét bố cục bàn phím điện thoại T9 (tức là phím số 2 cũng được sử dụng để 
+
+nhập a, b hoặc c),
+1 và 0 được coi là ký tự trống. Viết chương trình để nhập một loạt bàn phím được 
+
+nhấn
+sau đó xuất ra các tổ hợp chữ cái có thể có.
+Ví dụ:
+ ____________________________________
+| Đầu vào: 36			     |
+| Đầu ra: dm dn do em en eo fm fn fo |
+| ___________________________________|
+
+6. Nhập một chuỗi, tìm độ dài của chuỗi con dài nhất không có ký tự lặp lại. 
+Ví dụ: 
+"abcabcbb", câu trả lời là "abc", length = 3 
+"bbbbb", câu trả lời là "b", length = 1
+-------------------------------------

@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+void nhap(int *p, int n);
+void xuat(int *p, int n);
+void cap_phat(int *&p, int ncu, int nmoi);
+void them(int *&p, int &n, int vt, int x);
+void xoa(int *&p, int &n, int vt);
+
+void main()
+{
+	int *p = NULL;int n = 0;
+	cin >> n;
+	cap_phat(p, 0, n);
+
+	nhap(p, n);
+	xuat(p, n);
+
+	//cap_phat(p, n, n + 2); n = 5;
+	
+	//them(p, n, 2, 9);
+	xoa(p, n, 1);
+	xuat(p, n+5);
+
+	system("pause");
+}
+void nhap(int *p, int n)
+{
+	cout << "\t\t==== Nhap ===" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Nhap pt thu " << i << ": ";cin >> p[i];
+	}
+}
+void xuat(int *p, int n)
+{
+	cout << "\t\t==== Xuat ===" << endl;
+	for (int i = 0;i < n;i++)
+	{
+		cout << "Pt thu " << i << " la: " << p[i] << endl;
+	}
+}
+void cap_phat(int *&p, int ncu, int nmoi)
+{
+	//B1: cho tạm giữ nhà cũ
+	int *tam = p;//NULL
+	//B2: mua nhà mới
+	p = new int[nmoi];//Thay đổi miền giá trị
+	//B3: chuyển đồ
+	for (int i = 0;i < ncu;i++)
+	{
+		p[i] = tam[i];
+	}
+	//B3: giải phóng
+	if (tam != NULL)
+	{
+		delete tam;//Delete NULL
+	}
+	
+}
+void them(int *&p,int &n,int vt,int x)
+{
+	//-4	0	9	2	9	-33
+	// 0	1	2	3	4
+
+	cap_phat(p, n, n + 1);//Tăng số lượng vùng nhớ(bộ nhớ)	p Thay đổi miền giá trị
+	for (int i = n;i > vt;i--)//Dời
+	{
+		p[i] = p[i - 1];
+	}
+	p[vt] = x;//Chèn
+	n++;//Tăng số lượng pt hiện tại
+}
+
+void xoa(int *&p, int &n, int vt)
+{
+	//	-4	0	9	9	-33
+	//	0	1	2	3
+
+	//	-4	0	9	-33
+	//	0	1	2
+
+	//---- Tịnh tiến(Dọn nhà để thừa phòng rác) ---
+	for (int i = vt;i < n - 1;i++)
+	{
+		p[i] = p[i + 1];
+	}
+	//--- Thu hẹp ---
+	//cap_phat(p,3,3);
+	cap_phat(p, n -1, n - 1);//p,3,3		//Có thay đổi miền giá trị
+	n--;//Giảm
+}

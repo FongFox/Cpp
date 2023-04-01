@@ -1,0 +1,63 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct sinh_vien
+{
+	string ma_sv;
+	string ho_ten;
+	string phai;
+	float *dtb = new float;
+};
+typedef struct sinh_vien sv;
+
+void nhap_1_sv(sinh_vien &a);
+void xuat_1_sv(sinh_vien a);
+void gan(sv &b, sv a);
+
+int main()
+{
+	sv a;
+	*a.dtb = 7;
+
+	//sv b = a;//Toán tử gán
+	sv b;
+	gan(b, a);
+
+	xuat_1_sv(b);
+
+	
+
+	*a.dtb = 5;
+
+	cout << "--- a---" << endl;
+	xuat_1_sv(a);
+	cout << "--- b---" << endl;
+	xuat_1_sv(b);
+
+	
+
+	system("pause");
+	return 0;
+}
+void gan(sv &b, sv a)//sv cần sao chép, sv nguồn
+{
+	b.ma_sv = a.ma_sv;
+	b.ho_ten = a.ho_ten;
+	b.phai = a.phai;
+	*b.dtb = *a.dtb;//Gán giá trị
+}
+void nhap_1_sv(sinh_vien &a)
+{
+	cout << "Nhap ma sv: ";getline(cin, a.ma_sv);
+	cout << "Nhap ho ten: ";getline(cin, a.ho_ten);
+	cout << "Nhap phai: ";getline(cin, a.phai);
+	cout << "Nhap diem trung binh: ";cin >> *a.dtb;//giá trị
+}
+void xuat_1_sv(sinh_vien a)
+{
+	cout << "Ma sv: " << a.ma_sv << endl;
+	cout << "Ho ten: " << a.ho_ten<< endl;
+	cout << "Phai: " << a.phai << endl;
+	cout << "Diem trung binh: " << *a.dtb << endl;//giá trị
+}

@@ -1,0 +1,67 @@
+//=== BÀI TẬP BẮT BUỘC ===
+Bài 1. VIẾT HÀM strcmp, stricmp
+Bài 2. Nhập vào 1 chuỗi bất kì. Thống kê tần suất xuất hiện của từng kí tự trong chuỗi
+
+Bài 3. Nhập vào 1 chuỗi từ bàn phím. Viết hàm chuẩn hóa chuỗi vừa nhập theo yêu cầu sau:
++ Không tồn tại kí tự khoảng trắng ở đầu chuỗi 
++ Không tồn tại kí tự khoảng trắng ở cuối chuỗi
++ Mỗi từ chỉ cách nhau 1 kí tự khoảng trắng
++ Viết hoa kí tự đầu của mỗi từ
+Ví dụ:
+s = "   Ki       thuat lap         trinh     "
+===> sau khi chuẩn hóa: s = "Ki Thuat Lap Trinh"
+
+Bạn nào đã làm: nhớ cmt ghi chú.
+
+
+
+
+
+
+
+strcmp(<str1><str2>)	so sánh phân biệt chữ hoa - thường			
+stricmp(<str1><str2>)	so sánh không phân biệt
+
+str1 a[i]:	f	o	n	g	/0
+		0	1	2	3	4
+str2 b[i]: 	f	o	x	/0
+		0	1	2	3
+
+
+
+str1 c[i]:	f	o	n	g	f	o	x	/0
+		0	1	2	3	4	5	6	7
+
+
+
+   Ki       thuat lap         trinh     
+0123456789abcdefghiklmnopqrstuvwxyzABCDE
+
+41 ký tự (bao gồm cả enter, spacebar)
+
+
+
+
+
+
+ K	i		t	u	
+[0]	1	2	3	4	5	6	7	8	9	
+ 			i				
+ 		i-1
+ 			
+			k
+ 			j
+		j-1   
+
+
+
+
+
+
+
+
+
+
+
+
+

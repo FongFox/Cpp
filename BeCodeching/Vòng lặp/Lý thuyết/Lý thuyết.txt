@@ -1,0 +1,88 @@
+//==== BT LÝ THUYẾT (Làm hết)====
+1. Trình bày cơ chế hoạt động khi CT gặp lệnh khai báo: int a; 
+
+	
+2. Cho biết kết quả của: ((12&&21) -1)||1		true: 1	false: 0
+
+		0 || 1
+		false || true  => true
+
+3. So sánh điểm giống và khác nhau của câu lệnh đk và ct rẽ nhánh.
+
+	Các cấu trúc điều khiển cơ bản:	+ Tuần tự.
+				+ Chọn lọc
+				+ Lặp
+
+	+ Giống: Bắt điều kiện để xem thực thi lệnh nào. 
+
+	+ Khác:	if else if else if ...:	VD: kt số: âm, dương, 0
+			- So sánh linh hoạt (>, <, >=, <=, ==)
+			- mọi kdl
+			- btđk
+	
+	if(x >= 0)
+		switch case:	VD: Đọc số
+			- So sánh bằng
+			- kdl số nguyên
+			- biểu thức
+
+	+ Ứng dụng:	if - Mọi trường hợp	VD: xếp loại học lực.
+
+			switch case: Ngày tháng năm, menu tĩnh, menu động.
+		1. Nhập
+		2. Xuất
+		3. Xóa
+
+//=================== Vòng lặp ==============
+
+	+ while:		chưa biết số lần lặp
+	+ do while:	nhập liệu
+	+ for:		biết trước số lần
+
+
+	Cú pháp:		while(bt đk)
+			{
+				//lệnh or khối lệnh
+			}
+
+	B1: kiểm tra btđk, Nếu  Đúng -> 	B2: Thực hiện lệnh or khối lệnh -> quay về B1
+			Nếu Sai -> Thoát
+
+
+
+	Cú pháp:		for(<khởi tạo>;<btđk>;<bước lặp>)
+			{
+				//Lệnh or khối lệnh
+			}
+	B1: Khởi tạo
+	B2: kiểm tra btđk, Nếu Đúng	-> B3: Thực hiện lệnh or khối lệnh
+				-> B4: Thực hiện bước lặp -> quay lại B2
+		Nếu Sai -> Thoát
+
+
+
+	Đọc đề	-> Xác định:	Bắt đầu ?
+				Kết thúc ?
+				Độ lệch ?
+
+	Cú pháp:	do
+		{
+			//Lệnh or khối lệnh
+		}while(btđk);
+
+	B1: Thực hiện lệnh or khối lệnh
+	B2: Kiểm tra bt đk	-> Nếu đúng -> Quay lại B1
+			Nếu sai Thoát
+
+
+
+	+ Tại sao có ý tưởng, đọc hiểu đề mà code ko ra.	=> Code quá ít.
+
+	+ Nắm được lý thuyết, giải bài mẫu thì oke. Nhưng mau quên. Qua dạng bài khác -> bí.
+
+-> B1: Nắm vững lý thuyết + code mẫu(CT ráp code).	=> hỏi -> nãy số liền.
+B2: mang đi ứng dụng, giải những câu tương tự, càng nhiều dạng càng tốt.
+
+Tận dụng tối đa những thức đã học, -> hỏi xem liệu những cái đó có cái nào giải quyệt được bài này ko.
+
+	1000 bài của  Thầy Khang

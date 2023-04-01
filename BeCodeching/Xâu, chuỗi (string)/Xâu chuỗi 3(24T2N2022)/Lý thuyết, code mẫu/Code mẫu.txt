@@ -1,0 +1,201 @@
+#include <iostream>
+using namespace std;
+
+int do_dai(char c[]);
+int ss_co_pb(char str1[], char str2[]);
+
+void in_thuong(char c[]);
+char* sao_chep2(char str[]);
+int ss_ko_pb(char str1[], char str2[]);
+
+void thong_ke(char c[]);
+
+void xoa(char c[], int vt);
+void chuan_hoa(char c[]);
+void main()
+{
+	/*char c1[100];
+	char c2[100];
+	cout << "Nhap c1: ";gets_s(c1);
+	cout << "Nhap c2: ";gets_s(c2);
+	cout << ss_ko_pb(c1, c2) << endl;*/
+
+	//char c[100];
+	//cout << "Nhap c: ";gets_s(c);
+	//cout << c << endl;
+	//thong_ke(c);
+
+	char c[100] = "   kI       tHUAT lap         tRINh     ";
+	cout << c << "|" << endl;
+	chuan_hoa(c);
+	cout << c <<"|"<< endl;
+
+	system("pause");
+}
+int do_dai(char c[])
+{
+	int i;
+	for (i = 0;c[i] != '\0';i++)
+	{
+		//Khuyết
+	}
+	return i;//0
+}
+//	str1 < str2	< 0
+//	str1 > str2 > 0
+//	str1 == str2 = 0
+int ss_co_pb(char str1[],char str2[])
+{
+	//str1: thanh
+	//str2: tha
+	int n1 = do_dai(str1);
+	int n2 = do_dai(str2);
+	int min = (n1 < n2) ? n1 : n2;
+	for (int i = 0;i < min;i++)//str2
+	{
+		if (str1[i] != str2[i])		//	a - A
+		{
+			return str1[i] - str2[i];
+		}
+	}
+	//--- Nếu chạy đến đây -> xâu có min pt đã hết -> Xét theo độ dài ---
+	return n1 - n2;
+}
+void in_thuong(char c[])
+{
+	int n = do_dai(c);
+	for (int i = 0;i < n;i++)
+	{
+		if (c[i] >= 65 && c[i] <= 90)
+		{
+			c[i] += 32;
+		}
+	}
+}
+char* sao_chep2(char str[])
+{
+	//thanh\0
+	//01234 5		n = 5
+	int n = do_dai(str);
+	char *p = new char[n + 1];//6
+	for (int i = 0;i <= n;i++)// \0
+	{
+		p[i] = str[i];
+	}
+	return p;
+}
+int ss_ko_pb(char str1[], char str2[])
+{
+	//str1: THANH
+	//str2: thanh
+
+	//str1: thanh
+	//str2: thanh
+
+	char *c1 = sao_chep2(str1);
+	char *c2 = sao_chep2(str2);
+	in_thuong(c1);
+	in_thuong(c2);
+
+	int kq = ss_co_pb(c1, c2);
+	delete[] c1;
+	delete[] c2;
+
+	return kq;
+}
+void thong_ke(char c[])
+{
+	//cong thanh
+	//  i
+	//        j
+
+	int n = do_dai(c);
+	for (int i = 0;i < n;i++)
+	{
+		bool kt = false;//Chưa thống kê
+		for (int j = 0;j < i;j++)//Quét các pt trước i
+		{
+			if (c[i] == c[j])//Đã thống kê
+			{
+				kt = true;break;
+			}
+		}
+		if (kt == false)//Chưa thống kê
+		{
+			//------ Thống kê tần suất ------
+			int dem = 1;//Tính a[i]
+			for (int j = i + 1;j < n;j++)
+			{
+				if (c[i] == c[j])
+				{
+					dem++;
+				}
+			}
+			cout << "Ki tu " << c[i] << " lap " << dem << " lan." << endl;
+		}
+	}
+}
+void xoa(char c[],int vt)
+{
+	int n = do_dai(c);
+	for (int i = vt;i < n;i++)//i < n vì \0 là 1 kí tự
+	{
+		c[i] = c[i + 1];
+	}
+}
+void chuan_hoa(char c[])
+{
+	//c = "   Ki       thuat lap         trinh     "
+	//---- cắt khoảng trắng đầu ----
+	while (c[0]==' ')
+	{
+		xoa(c, 0);
+	}
+	//---- cắt khoảng trắng cuối ----
+	int n = do_dai(c);//38
+	while(c[n - 1] ==' ')
+	{
+		c[n - 1] = '\0';//Xóa cuối	//38 - 1
+		n--;//37
+	}
+	//---- cắt khoảng trắng giữa --
+	for (int i = 0;i < n;i++)
+	{
+		if (c[i] == ' ' && c[i + 1] == ' ')//2 space lien tiep
+		{
+			xoa(c, i);
+			n--;//cập nhật số lượng pt hiện tại
+			i--;//Lùi tránh sót pt
+		}
+	}
+
+	//Cong Thanh
+	
+	//---- In hoa pt đầu ------
+		if (c[0] >= 97 && c[0] <= 122)//in Hoa
+		{
+			c[0] -= 32;
+		}
+	//---- in hoa, thường các pt còn lại ----
+	for (int i = 1;i < n;i++)
+	{
+		if (c[i] == ' ')
+		{
+			//in hoa cho c[i+1] -- phía sau
+			//cong thanh
+			//    ii
+			i++;//Nhảy lên pt cần in hoa
+			if (c[i] >= 97 && c[i] <= 122)//in Hoa
+			{
+				c[i] -= 32;
+			}
+		}
+		else//các pt cần in thường vì đã bắt đk hết rồi.
+		{
+			if (c[i] >= 65 && c[i] <= 90)//in thường
+			{
+				c[i] += 32;
+			}
+		}
+	}
+}

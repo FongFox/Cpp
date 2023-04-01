@@ -1,0 +1,75 @@
+//======= Mảng 1 chiều tĩnh ===
+	int a[5];	int n = 0;
+
+	+ Duyệt, tìm kiếm, liệt kê, tính tổng/tích, đếm, đặt lính canh, đặt cờ hiệu
+	+ Thêm xóa sắp xếp
+	+ gộp tách trộn
+	+ mảng con
+
+//======== Mảng 1 chiều  động ==========
+	+ Biến con trỏ
+		-	Địa chỉ: Nơi sinh ra
+		-	Miền giá trị: Lưu trữ địa chỉ(Nơi trỏ đến)
+		-	Giá trị của nơi trỏ đến
+	
+	+ Biến thường
+		-	Địa chỉ: Nơi sinh ra
+		-	vùng nhớ: Nơi lưu trữ giá trị
+
+
+	-> Con trỏ sinh ra không có vùng nhớ để lưu trữ giá trị() , Muốn lưu giá trị thì sao?
+
+		+ Dùng chung vùng nhớ của thằng khác(int a; int *p = &a;), 1 thằng thay đổi -> Thằng kia thay đổi theo
+		+ Mua nhà -> Cấp phát vùng nhớ cho biến con trỏ
+
+
+Heap: Vùng nhớ dành riêng cho biến con trỏ -> Do lập trình viên quản lý (Yêu cầu hđh cấp phát, giải phóng)
+
+
+	int a = 15;
+
+	int *p = cấp phát;
+	*p = 15;
+
+
+	+ Cấp phát C:	malloc, calloc, realloc		stdlib.h
+			
+			void* malloc(int size)		cấp phát 1 vùng size byte
+			int  *p = (int *)malloc(10);	10%4 = 2	-> con trỏ *p quản lý mảng 2 pt
+
+			void* calloc(int count, int size)	cấp phát count vùng, mỗi vùng size byte, 0
+
+			void* realloc(void *p,int size)	+ Cấp phát mới
+						+ Cấp phát lại(nới rộng, thu hẹp)
+
+	+ Cấp phát C++:	
+
+			new	-> 	int *p = new int[1];	= new int;
+
+	+ Hàm cấp phát()			//1,2,3		//1 2 3 rác rác
+			//B1: Cho tạm giữ data cũ
+			//B2: Mua nhà mới
+			//B3: Dời đồ từ nhà cũ qua
+			//B4: Giải phóng nhà cũ
+
+	+ Thêm, Xóa
+
+//==== Mảng 2 chiều, vector =====
+
+	int a[dòng_max][cột_max];
+	int dong = 0;
+	int cot = 0;
+
+	j
+	0	1	2
+i
+0	1	2	3
+1	4	5	6
+2	7	8	9		a[i][j]
+
+			=> Ma trận vuông -> Đcc:	i == j
+					-> Đcp:	i + j + 1 = cot/dong
+
+			Phía trên đcc: i < j
+			Phía dưới đcc: i > j
+			Cắt ngang: i == j

@@ -1,0 +1,31 @@
+BT lý thuyết:
+1. Trình bày lần lược: cấu trúc while, do while, for  được  sử dụng đối với bài toán gì ?
+2. trong các cấu trúc lặp. vòng lặp sẽ dừng lại khi nào ?
+3. Trường hợp vòng lặp bị lặp vô tận, chúng ta có cách nào để khắc phục ?
+4. 
+for(int i= 2;i<=5;i+=2)
+{
+    cout<<i<<endl;
+}
+Cho đoạn code trên, phân tích luồng xử lý của chương trình(test tay)
+5. trình bày điểm giống và khác nhau của break và continue
+============================ BT ứng dụng ===================
+Bài 1. Nhập vào 1 số nguyên n(n > 0). Tính tổng 2 + 4 + 6 +...+ (2*n)
+Bài 2. Nhập vào 1 số nguyên dương n , điều kiện 0 < n < 20. Tính giai thừa của số nguyên dương n.
+Bài 3. Nhập vào số nguyên dương n(n > 0). Viết chương trình tách các chữ số của số nguyên dương n ?
+VD: n = 1675
+==> gồm các chữ số
+5  
+7  
+6  
+1
+Bài 4. Nhập vào 1 số nguyên n(n > 0). Tính tổng các " chữ số lẻ " của số nguyên dương n.
+Bài 5. ==== ĐÔI VỚ BÉ BÉ XINH XINH ==== Tư Duy ======
+- Nhà bạn A có n đôi vớ, mỗi ngày bạn A mang 1 đôi, mang xong thì vứt bỏ
+- Cứ m ngày thì mẹ bạn A mua thêm cho A một đôi vớ mới.
+- Hỏi bạn A mang vớ bao nhiêu ngày thì hết vớ để mang.
+vd1:
+INPUT: m = 2, n = 2
+OUTPUT: 3
+vd2: INPUT: m = 3, n = 9
+OUTPUT: 13

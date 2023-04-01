@@ -1,0 +1,94 @@
+#include <iostream>
+#define MAX 100
+using namespace std;
+void nhap(int a[], int n);
+void xuat(int a[], int n);
+void sap_xep_tang(int a[], int n);
+void cau_5(int a[], int n);
+void kc_xa_x_nhat(int a[], int n);
+int main()
+{
+	int a[MAX];int n = 0;
+	do
+	{
+		cout << "Nhap n: ";cin >> n;
+	} while (n <= 0 || n > MAX);
+	//-------------
+	nhap(a, n);
+	xuat(a, n);
+	//sap_xep_tang(a, n);
+	//cau_5(a, n);
+	//xuat(a, n);
+
+	kc_xa_x_nhat(a, n);
+
+	system("pause");
+	return 0;
+}
+void nhap(int a[], int n)
+{
+	cout << "\t\t==== Nhap ----" << endl;
+	for (int i = 0;i < n;i++)//for each in c++
+	{
+		cout << "Nhap pt thu " << i << ": ";cin >> a[i];
+	}
+}
+void xuat(int a[], int n)
+{
+	cout << "\t\t==== Xuat ----" << endl;
+	for (int i = 0;i < n;i++)//for each in c++
+	{
+		cout << "Pt thu " << i << " la: " << a[i] << endl;
+	}
+}
+void sap_xep_tang(int a[], int n)
+{
+	for (int i = 0;i < n - 1;i++)//ap cuoi
+	{
+		for (int j = i + 1;j < n;j++)
+		{
+			if (a[j] < a[i])
+			{
+				swap(a[i], a[j]);
+			}
+		}
+	}
+}
+void cau_5(int a[], int n)
+{
+	sap_xep_tang(a, n);
+	for (int i = 0;i < n -1;i++)//ap cuoi
+	{
+		for (int j = i + 1;j < n;j++)
+		{
+			if ((a[i] < 0 && a[j] < 0) || (a[i] > 0 && a[j] > 0))
+			{
+				if (a[j] > a[i])//So sánh để sắp xếp
+				{
+					swap(a[i], a[j]);
+				}
+			}
+		}
+	}
+}
+void kc_xa_x_nhat(int a[], int n)
+{
+	int x;cout << "Nhap gia tri x: ";cin >> x;
+	sap_xep_tang(a, n);
+	int kc1 = abs(a[0] - x);
+	int kc2 = abs(a[n - 1] - x);
+
+	if (kc1 > kc2)
+	{
+		cout << "Gia tri xa x nhat la: " << a[0] << endl;
+	}
+	else if (kc2 > kc1)
+	{
+		cout << "Gia tri xa x nhat la: " << a[n - 1] << endl;
+	}
+	else if (kc1 == kc2)
+	{
+		cout << "Gia tri xa x nhat la: " << a[0] << endl;
+		cout << "Gia tri xa x nhat la: " << a[n - 1] << endl;
+	}
+}
